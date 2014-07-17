@@ -1,0 +1,2 @@
+module Nego::SalesReportsHelper
+end

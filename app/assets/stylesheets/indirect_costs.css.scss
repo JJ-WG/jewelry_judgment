@@ -1,0 +1,62 @@
+// Place all the styles related to the indirect_costs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 間接労務費管理 共通 */
+table th.ratio{
+  text-align: center;
+}
+
+table td.ratio{
+  text-align: center;
+}
+
+/* 間接労務費管理 間接労務費一覧 */
+div.list thead th.start-date {
+  width: 20%;
+}
+
+div.list thead th.indirect-cost-method {
+  width: 67%;
+}
+
+div.list thead th.start-date {
+}
+
+div.list tbody td.indirect-cost-method {
+}
+
+/* 間接労務費管理 登録・編集画面 */
+.radio_button {
+  float: left;
+  margin: 2px;
+}
+
+table.indirect-cost-ratio {
+  width: 540px;
+}
+
+/* 間接労務費管理 閲覧画面 */
+table.show tbody tr:last-child th:first-child {
+  border-radius: 0 0 0 3px;
+}
+
+table.show tbody tr:last-child td:last-child {
+  border-radius: 0 0 3px 0;
+}
+
+table.show-indirect-cost-ratio {
+  width: 540px;
+}
+
+table.show-indirect-cost-ratio th.ratio{
+}
+
+table.show-indirect-cost-ratio td.name{
+  width: 20%;
+}
+
+table.show-indirect-cost-ratio td.ratio{
+  width: 20%;
+  text-align: right;
+}

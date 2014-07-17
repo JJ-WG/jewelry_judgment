@@ -1,0 +1,15 @@
+<% if action_name == 'on_change_project_list'  %>
+  //
+  // 作業工程コントロール更新処理
+  //
+  $('#result_work_type_id').parent().html(
+  "<%= escape_javascript(render :partial => 'work_type_select_list', :locals => {:result => @result}) %>"
+  );
+  //
+  // ユーザー編集用コントロール更新処理
+  //
+  $('#result_user_id').parent().html(
+  "<%= escape_javascript(render :partial => 'user_select_list', :locals => {:result => @result}) %>"
+  );
+<% end %>
+

@@ -1,0 +1,36 @@
+<% if action_name == 'show' || action_name == 'destroy' %>
+  // 詳細の場合
+  <% dialog_title = t('common_label.browsing_model', :model => SalesReport.model_name.human) %>
+  $('#sales_report_content').html(
+    "<%= escape_javascript(render :partial => 'detail') %>"
+  );
+<% else %>
+  <% if action_name == 'new' || action_name == 'create' %>
+    // 新規の場合
+    <% dialog_title = t('common_label.new_model', :model => SalesReport.model_name.human) %>
+  <% else %>
+    // 更新の場合
+    <% dialog_title = t('common_label.editing_model', :model => SalesReport.model_name.human) %>
+  <% end %>
+
+  $('#sales_report_content').html(
+    "<%= escape_javascript(render :partial => 'report_content_form') %>"
+  );
+
+  // 営業日
+  var datepicker_options = {
+    showOn: "button"
+  };
+  $('#sales_report_activity_date').datepicker(datepicker_options);
+<% end %>
+
+$("#sales_report_content").dialog({
+    title: "<%= dialog_title %>",
+    autoOpen: true,
+    height: 540,
+    width: 700,
+    closeOnEscape: false,
+    modal: true
+});
+
+$( "#sales_report_content" ).dialog("open");

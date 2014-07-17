@@ -1,0 +1,60 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="code">
+                  <%= t('activerecord.attributes.customer.code') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :code, :class => 'text_field ime_off', :maxlength => '10', :style => 'width:100px;' %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.customer.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'text_field ime_on', :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="name_ruby">
+                  <%= t('activerecord.attributes.customer.name_ruby') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name_ruby, :class => 'text_field ime_on', :maxlength => '40', :style => 'width:400px;' %>
+                <div class="rule"><%= t('activerecord.attributes..customer.name_ruby_rule') %></div>
+              </dd>
+              
+              <dt>
+                <label for="prefecture">
+                  <%= t('activerecord.attributes.customer.pref') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%
+                  if @customer.pref_cd.blank?
+                    @customer.pref_cd = DEFAULT_PREF_CODE.to_s
+                  end
+                %>
+                <%= f.select(:pref_cd, prefectures_list) %>
+              </dd>
+              
+              <dt>
+                <label for="location">
+                  <%= t('activerecord.attributes.customer.location') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :location, :class => 'text_field ime_on', :maxlength => '100', :style => 'width:400px;' %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_customers_path,
+                  :class => 'cancel') %>
+            </div>

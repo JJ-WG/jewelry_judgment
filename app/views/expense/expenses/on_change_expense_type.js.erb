@@ -1,0 +1,6 @@
+//
+// 税区分選択リスト更新処理
+//
+$("#expense_tax_division_id").html(
+"<%= escape_javascript(options_for_select(TaxDivision.tax_divisions_list, :selected => @default_tax_division_id)) %>"
+);

@@ -1,0 +1,41 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="notice_indication_days">
+                  <%= t('activerecord.attributes.system_setting.notice_indication_days') %>（日）<%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :notice_indication_days, :class => 'text_field numeric ime_off',
+                    :maxlength => '10', :style => 'width:50px;' %>
+              </dd>
+              
+              <dt>
+                <label for="default_unit_price">
+                  <%= t('activerecord.attributes.system_setting.default_unit_price') %>
+                  <%= t('common_label.yen') %>
+                  <%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :default_unit_price,
+                    :value => @system_setting.default_unit_price.to_i,
+                    :class => 'text_field numeric ime_off', :maxlength => '10',
+                    :style => 'width:50px;' %>
+              </dd>
+              
+              <dt>
+                <label for="lock_project_after_editing">
+                  <%= multi_line(t('activerecord.attributes.system_setting.lock_project_after_editing')) %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.check_box(:lock_project_after_editing) %>
+              </dd>
+              
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+            </div>

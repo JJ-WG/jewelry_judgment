@@ -1,0 +1,46 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'messages' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", notice_notices_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", "#{@message.id}" %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= @message.title %></h1>
+          
+          <ul class="utilityNav">
+            <li class="csv"><%= link_to('一覧へ戻る', notice_notices_path) %></li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <%= multi_line(@message.message) %>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->
+

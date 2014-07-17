@@ -1,0 +1,38 @@
+# encoding: UTF-8
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+secton_1:
+  id: 1
+  name: 開発１課
+  view_order: 1
+  deleted: false
+
+secton_2:
+  id: 2
+  name: 開発２課
+  view_order: 2
+  deleted: false
+
+secton_3:
+  id: 3
+  name: 開発３課
+  view_order: 3
+  deleted: true
+
+secton_4:
+  id: 4
+  name: 営業１課
+  view_order: 4
+  deleted: false
+
+secton_5:
+  id: 5
+  name: 営業２課
+  view_order: 5
+  deleted: false
+
+secton_6:
+  id: 6
+  name: 総務課
+  view_order: 6
+  deleted: false

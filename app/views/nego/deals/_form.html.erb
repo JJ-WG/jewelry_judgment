@@ -1,0 +1,273 @@
+# encoding: utf-8
+
+  <dl>
+    <dt>
+      <label for="name">
+        <%= t('activerecord.attributes.deal.name') %><%= essential if action_name == 'new' || action_name == 'create' %>
+      </label>
+    </dt>
+    <dd>
+      <% if action_name == 'new' || action_name == 'create' %>
+        <%= f.text_field :name, :class => 'largeText', :maxlength => '40' %>
+      <% else %>
+        <%= f.text_field :name, :class => 'largeText', :maxlength => '40', :disabled => true %>
+      <% end %>
+    </dd>
+
+    <dt>
+      <label for="customer_id">
+        <%= t('activerecord.attributes.customer.name') %><%= essential if action_name == 'new' || action_name == 'create' %>
+      </label>
+    </dt>
+    <dd>
+      <% if action_name == 'new' || action_name == 'create' %>
+        <%= f.select(:customer_id, Customer.customers_list, {:include_blank => true}) %>
+      <% else %>
+        <%= f.select(:customer_id, Customer.customers_list, {:include_blank => true}, {:disabled => true }) %>
+      <% end %>
+    </dd>
+
+    <dt>
+      <label for="contact_person_name">
+        <%= t('activerecord.attributes.deal.contact_person_name') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :contact_person_name, :class => 'largeText', :maxlength => '20' %>
+    </dd>
+
+    <dt>
+      <label for="staff_user_id">
+        <%= t('label.deal_reflection.label.staff_user') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%# TODO dairg QA7 保留 %>
+      <%= f.select(:staff_user_id, deal_staff_user_list, {:include_blank => true}) %>
+    </dd>
+
+    <dt>
+      <label>
+        <%= t('label.deal_reflection.label.budge_dimension') %>
+      </label>
+    </dt>
+    <dd>
+      <dl>
+        <dt style='width: 8%'>
+          <label for="budge_amount">
+            (<%= t('activerecord.attributes.deal.budge_amount') %>)
+          </label>
+        </dt>
+        <dd>
+          <% if action_name == 'edit' %>
+            <%= f.text_field :budge_amount, :class => 'text numeric', :value => @deal.budge_amount,
+                :size => '10', :maxlength => '10', :style => 'width:100px;' %>
+          <% else %>
+            <%= f.text_field :budge_amount, :class => 'text numeric',
+                :size => '10', :maxlength => '10', :style => 'width:100px;' %>
+          <% end %>
+        </dd>
+        <br />
+        <dt style='width: 8%'>
+          <label for="anticipated_price">
+            (<%= t('activerecord.attributes.deal.anticipated_price') %>)
+          </label>
+        </dt>
+        <dd>
+          <% if action_name == 'edit' %>
+            <%= f.text_field :anticipated_price, :class => 'text numeric', :value => @deal.anticipated_price,
+                :size => '10', :maxlength => '10', :style => 'width:100px;' %>
+          <% else %>
+            <%= f.text_field :anticipated_price, :class => 'text numeric',
+                :size => '10', :maxlength => '10', :style => 'width:100px;' %>
+          <% end %>
+        </dd>
+      </dl>
+    </dd>
+
+    <dt>
+      <label>
+        <%= t('label.deal_reflection.label.schedule') %>
+      </label>
+    </dt>
+    <dd>
+      <dl>
+        <dt style='width: 8%'>
+          <label for="adoption_period">
+            (<%= t('activerecord.attributes.deal.adoption_period') %>)
+          </label>
+        </dt>
+        <dd style='width: 18%'>
+          <%= select_year @deal.adoption_period.blank? ? nil : Date.strptime(@deal.adoption_period, Deal::PERIOD_DATE_FORMAT),
+            :prefix => 'deal[adoption_period]',
+            :start_year => (action_name == 'new' || action_name == 'create') ? Date.today.year : Date.today.year-3,
+            :end_year => Date.today.year+3, :prompt => '' %>
+          <%= t('datetime.prompts.year') %>
+          <%= select_month @deal.adoption_period.blank? ? nil : Date.strptime(@deal.adoption_period, Deal::PERIOD_DATE_FORMAT),
+            :prefix => 'deal[adoption_period]', :use_month_numbers => true, :prompt => '' %>
+          <%= t('datetime.prompts.month') %>
+          <%= t('label.deal_reflection.label.date_about') %>
+        </dd>
+        <br />
+        <dt style='width: 8%'>
+          <label for="delivery_period">
+            (<%= t('activerecord.attributes.deal.delivery_period') %>)
+          </label>
+        </dt>
+        <dd style='width: 18%'>
+          <%= select_year @deal.delivery_period.blank? ? nil : Date.strptime(@deal.delivery_period, Deal::PERIOD_DATE_FORMAT),
+            :prefix => 'deal[delivery_period]',
+            :start_year => (action_name == 'new' || action_name == 'create') ? Date.today.year : Date.today.year-3,
+            :end_year => Date.today.year+3, :prompt => '' %>
+          <%= t('datetime.prompts.year') %>
+          <%= select_month @deal.delivery_period.blank? ? nil : Date.strptime(@deal.delivery_period, Deal::PERIOD_DATE_FORMAT),
+            :prefix => 'deal[delivery_period]', :use_month_numbers => true, :prompt => '' %>
+          <%= t('datetime.prompts.month') %>
+          <%= t('label.deal_reflection.label.date_about') %>
+        </dd>
+      </dl>
+    </dd>
+
+    <dt>
+      <label for="selection_method">
+        <%= t('activerecord.attributes.deal.selection_method') %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :selection_method, :class => 'largeText', :maxlength => '20' %>
+    </dd>
+
+    <dt>
+      <label for="order_type_cd">
+        <%= t('activerecord.attributes.deal.order_type') %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.select(:order_type_cd, order_types_list, {:include_blank => true}) %>
+    </dd>
+
+    <dt>
+      <label for="billing_destination">
+        <%= t('activerecord.attributes.deal.billing_destination') %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :billing_destination, :class => 'largeText', :maxlength => '40' %>
+    </dd>
+
+    <dt>
+      <label for="reliability_cd">
+        <%= t('activerecord.attributes.deal.reliability') %><%= essential if action_name == 'edit' || action_name == 'update' %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.select(:reliability_cd, reliability_list, {:include_blank => true}, 
+                 {:disabled => (action_name == 'new' || action_name == 'create')}) %>
+      <% if action_name == 'new' || action_name == 'create' %>
+        <%= f.hidden_field :reliability_cd, { value: RELIABILITY_CODE[:start_deal] } %>
+      <% end %>
+    </dd>
+
+    <dt>
+      <label for="prj_managed">
+        <%= t('activerecord.attributes.deal.prj_managed') %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.check_box :prj_managed, 
+        :disabled => @deal.deal_status_cd && @deal.deal_status_cd >= DEAL_STATUS_CODE[:pj_progress] %>
+    </dd>
+    
+    <dt>
+      <label for="deal_status_cd">
+        <%= t('activerecord.attributes.deal.deal_status') %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.select(:deal_status_cd, deal_status_list.reject {|item| @deal.deal_status_cd && item[1] < @deal.deal_status_cd },
+                 {:include_blank => false},
+                 {:disabled => (action_name == 'new' || action_name == 'create')}) %>
+      <% if action_name == 'new' || action_name == 'create' %>
+        <%= f.hidden_field :deal_status_cd, { value: DEAL_STATUS_CODE[:under_negotiation] } %>
+      <% end %>
+    </dd>
+
+    <% if action_name == 'edit' || action_name == 'update' %>
+      <dt>
+        <label for="order_volume">
+          <%= t('activerecord.attributes.deal.order_volume') %>
+        </label>
+      </dt>
+      <dd>
+        <% if action_name == 'edit' %>
+          <%= f.text_field :order_volume, :class => 'text numeric', :value => @deal.order_volume,
+              :size => '10', :maxlength => '10', :style => 'width:100px;' %>
+        <% else %>
+          <%= f.text_field :order_volume, :class => 'text numeric',
+              :size => '10', :maxlength => '10', :style => 'width:100px;' %>
+        <% end %>
+      </dd>
+
+      <dt>
+        <label>
+          <%= SalesReport.model_name.human %>
+        </label>
+      </dt>
+      <dd>
+        <div id="sales_report_content">
+        </div>
+
+        <ul class="utilityNav" style="float:left;">
+          <li style="margin-left:0px">
+            <%= link_to t('label.deal_reflection.label.sales_report_create'), new_nego_deal_sales_report_path(@deal), remote: true %>
+          </li>
+        </ul>
+        <br />
+        <br />
+        <div id="sales_report_list" style='width: 65%'>
+          <%= render :partial => 'nego/sales_reports/list', :locals => {:sales_reports => @deal.sales_reports} %>
+        </div>
+      </dd>
+    <% end %>
+
+    <dt>
+      <label for="notes">
+        <%= t('activerecord.attributes.deal.notes') %>
+        <br />
+        (<%= t('label.deal_reflection.label.notes_tip') %>)
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_area :notes, :rows => 4, :cols => 60 %>
+    </dd>
+
+    <dt>
+      <label>
+        <%= t('label.deal_reflection.label.related_file') %>
+      </label>
+    </dt>
+    <dd>
+      <% 5.times do |i| %>
+        <%= file_field_tag "file#{i}", :size => '50' -%>
+        <br />
+      <% end %>
+      <% if action_name == 'edit' || action_name == 'update' %>
+        <br />
+        <div>
+          <%= render :partial => 'related_file_list', :locals=> {:deal => @deal } %>
+        </div>
+      <% end %>
+    </dd>
+  </dl>
+
+  <div class="button">
+    <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), nego_deals_path,
+        :class => 'cancel') %>
+    <% else %>
+      <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), nego_deal_path(@deal),
+        :class => 'cancel') %>
+    <% end %>
+  </div>
+

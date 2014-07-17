@@ -1,0 +1,944 @@
+﻿@charset "utf-8";
+
+@import "reset.css";
+
+
+/* Base Style
+================================================== */
+
+body {
+	background: fff;
+	color: #333;
+	font-family: Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Osaka", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+	font-size: 87.5%;
+}
+a {
+	color: #06c;
+}
+img {
+	vertical-align: top;
+}
+sup {
+	font-size: 71.43%;
+	vertical-align: text-top;
+}
+sub {
+	font-size: 71.43%;
+	vertical-align: text-bottom;
+}
+pre, code, kbd, samp, tt {
+	font-family: monospace;
+}
+input, textarea, select, button {
+	font-size: 100%;
+	font-family: inherit;
+}
+
+
+/* Block Skip
+================================================== */
+
+#top {
+	background: #4c4c4c;
+}
+.skip a {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+.skip a.show {
+	display: block;
+	width: auto;
+	height: auto;
+	padding: 3px 10px;
+	color: #fff;
+	text-decoration: none;
+}
+
+
+/* Layout
+================================================== */
+
+html, body {
+/*	height: 100%;*/
+}
+#container {
+/*
+ 	min-height: 100%;
+	_height: 100%;
+*/
+  min-width: 1024px;
+}
+.inner {
+	margin: 0px 5px;
+	padding: 0 10px;
+/*
+	max-width: 1240px;
+	min-width: 760px;
+	_width: 1200px;
+*/
+}
+#content {
+	margin-top: 1.5em;
+	padding-bottom: 3.5em;
+}
+#commonFooter {
+	bottom: 0;
+	height: 1.5em;
+	width: 100%;
+}
+
+
+/* Header
+================================================== */
+
+#commonHeader {
+/*	behavior: url(/assets/PIE.htc);*/
+}
+#commonHeader .inner {
+	padding: 0 0;
+	background-image: url('header_bg.png');
+	background-repeat: repeat-x;
+  font-size: 84%;
+}
+#commonHeader .inner .inner-left {
+	float: left;
+}
+#commonHeader .inner .login-inner-right {
+	float: right;
+	height: 80px;
+	width: 10px;
+}
+#commonHeader .inner .inner-right {
+	float: right;
+	line-height: 1.3;
+	background-image: url('header_login.png');
+	height: 80px;
+	width: 420px;
+}
+#commonHeader .inner .inner-right .login-info {
+	color: #ffffff;
+	float: left;
+	margin: 0 0 0 55px;
+	padding:40px 0 0 0;
+}
+#commonHeader .inner .inner-right .logout {
+	float: right;
+	padding: 40px 5px 0 10px;
+}
+#commonHeader .inner .inner-right .logout a {
+	color: #f8b551;
+}
+#guideNav {
+	float: right;
+	margin-top: .25em;
+}
+#guideNav li {
+	float: left;
+	padding: 0 10px;
+	border-right: 1px solid #666;
+}
+#guideNav li:last-child {
+	padding-right: 0;
+	border-right: 0;
+}
+
+
+/* Nav
+================================================== */
+
+#mainNav, #subNav {
+	font-weight: bold;
+}
+#mainNav li a, #subNav li a {
+	text-decoration: none;
+	white-space: nowrap;
+}
+#globalNav {
+	padding: 0 5px;
+	border-bottom: 1px solid #333;
+	background: #4c4c4c;
+	color: #fff;
+	font-size: 114.29%;
+}
+#globalNav li {
+	float: left;
+	margin-top: 5px;
+	margin-right: 5px;
+	_margin-bottom: -2px;
+}
+#globalNav li a {
+	display: inline-block;
+	*display: block;
+	_display: inline;
+	padding: 8px 10px;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-right: 1px solid #666;
+	border-radius: 5px 5px 0 0;
+	behavior: url(/assets/PIE.htc);
+	background: #686868;
+	color: #eaeaea;
+}
+#globalNav li a:hover,
+#globalNav li a:focus {
+	background: #757575;
+	color: #fff;
+}
+#globalNav li.current a {
+	margin-bottom: -1px;
+	border-top-color: #333;
+	border-left-color: #333;
+	border-bottom: 1px solid #fff;
+	background: #fff;
+	color: #333;
+}
+#localNav {
+	padding: 5px 5px 0;
+	*padding-bottom: 5px;
+	border: 1px solid #666;
+	border-top: 0;
+	border-radius: 0 0 5px 5px;
+	behavior: url(/assets/PIE.htc);
+}
+#localNav li {
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+#localNav li a {
+	display: inline-block;
+	padding: 5px 8px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	behavior: url(/assets/PIE.htc);
+	color: #666;
+}
+#localNav li a:hover,
+#localNav li a:focus {
+	border-color: #d9cfc7;
+	background: #d9cfc7;
+	color: #333;
+}
+#localNav li.current a {
+	border-top: 1px solid #fcf6cc;
+	border-left: 1px solid #fcf6cc;
+	border-right: 1px solid #e6a83f;
+	border-bottom: 1px solid #e6a83f;
+	background: #d2b780;
+	color: #333;
+}
+
+
+/* Content
+================================================== */
+
+#content {
+	line-height: 1.5;
+}
+.pageHeader {
+	margin-bottom: 1.5em;
+	margin-left: 8px;
+}
+.pageHeader h1 {
+	float: left;
+}
+
+.utilityNav {
+	float: right;
+}
+.utilityNav li {
+	display: inline;
+	margin-left: 8px;
+}
+.utilityNav li a {
+	display: inline-block;
+	padding: 2px 10px;
+	border-top: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #a3a3a3;
+	border-bottom: 1px solid #a3a3a3;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+	background: #eee;
+	text-decoration: none;
+}
+.utilityNav li a:hover,
+.utilityNav li a:focus {
+	background: #e8e8e8;
+}
+
+
+/* Search
+-------------------------------------------------- */
+
+.dataSearch {
+	margin: 1.5em 0;
+	padding: 10px 15px 0;
+	border-top: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #a3a3a3;
+	border-bottom: 1px solid #a3a3a3;
+	border-radius: 5px;
+	background: #eee;
+	behavior: url(/assets/PIE.htc);
+}
+.dataSearch div {
+	float: left;
+	min-height: 2.25em;
+	_height: 2.25em;
+	margin-right: 1em;
+	margin-bottom: 5px;
+	white-space: nowrap;
+}
+.dataSearch input[type="text"],
+.dataSearch select {
+	padding: 3px;
+	border-top: 1px solid #a3a3a3;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+}
+.dataSearch input.text {
+	width: 15em;
+}
+.dataSearch input.date {
+	width: 5.5em;
+}
+.dataSearch div.button {
+	float: right;
+	margin-right: 0;
+}
+.dataSearch input[type="submit"] {
+	padding: 3px 8px !important;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-right: 1px solid #5b5b5b;
+	border-bottom: 1px solid #5b5b5b;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+	background: #666;
+	color: #fff;
+}
+.dataSearch input[type="submit"]:hover,
+.dataSearch input[type="submit"]:focus {
+	background: #767676;
+}
+
+
+/* List Table
+-------------------------------------------------- */
+
+.list table {
+	width: 100%;
+	margin: 1.5em 0;
+	border-collapse: separate;
+	*border-collapse: collapse;
+}
+.list th,
+.list td {
+	padding: .5em 8px;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+	*border-top: 1px solid #b9b9b9;
+	*border-left: 1px solid #b9b9b9;
+	vertical-align: middle;
+}
+.list thead th {
+	border-top: 1px solid #cfcfcf;
+	background: #666;
+	color: #fff;
+}
+.list th:first-child,
+.list td:first-child {
+	border-left: 1px solid #cfcfcf;
+}
+.list th:last-child,
+.list td:last-child {
+	border-right: 1px solid #a3a3a3;
+}
+.list tbody tr:last-child td {
+	border-bottom: 1px solid #a3a3a3;
+}
+.list thead th:first-child {
+	border-radius: 5px 0 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.list thead th:last-child {
+	border-radius: 0 5px 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.list tbody tr:last-child td:first-child {
+	border-radius: 0 0 0 5px;
+	behavior: url(/assets/PIE.htc);
+}
+.list tbody tr:last-child td:last-child {
+	border-radius: 0 0 5px 0;
+	behavior: url(/assets/PIE.htc);
+}
+.list tbody tr:nth-child(even) th,
+.list tbody tr:nth-child(even) td {
+	background: #f4f4f4;
+}
+.list tbody tr:hover th,
+.list tbody tr:hover td {
+	background: #d9cfc7;
+}
+
+.list td.state {
+	padding: 0;
+}
+.list td.state span {
+	display: block;
+	padding: 1.5em 5px 1.35em;
+	border-bottom-width: 1.25em;
+	border-bottom-style: solid;
+}
+.list td.state span.preparation {
+	border-bottom-color: #c59943;
+}
+.list td.state span.progress {
+	border-bottom-color: #66ad70;
+}
+.list td.state span.complete {
+	border-bottom-color: #d87074;
+}
+.list td.state span.deleted {
+	border-bottom-color: #ae98bf;
+}
+
+tbody th {
+	font-weight: normal;
+	text-align: left;
+}
+td.id,
+td.num {
+	text-align: right;
+}
+td.state,
+td.date {
+	text-align: center;
+}
+
+/* Strong and Emphasis */
+.list td strong,
+.data td strong,
+.data dd strong,
+.entryForm dd strong {
+	color: #e00;
+}
+.list td em,
+.data td em,
+.data dd em,
+.entryForm dd em {
+	font-style: normal;
+	color: #c0c;
+}
+
+/* Table Sorter Plugin */
+
+.tablesorter th.header {
+	padding-right: 15px;
+	background-image: url(toggle_w.gif);
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+	cursor: pointer;
+}
+.tablesorter th.header:hover {
+	background-color: #767676;
+}
+.tablesorter th.headerSortUp {
+	background-image: url(asc.gif);
+}
+.tablesorter th.headerSortDown {
+	background-image: url(desc.gif);
+}
+.tablesorter th.headerSortDown,
+.tablesorter th.headerSortUp,
+.tablesorter th.headerSortDown:hover,
+.tablesorter th.headerSortUp:hover {
+	background-color: #fced81;
+	color: #333;
+}
+
+
+/* Pagination
+-------------------------------------------------- */
+
+.pagination {
+	margin: 1.5em 0;
+	text-align: center;
+}
+.pagination input {
+	width: 2em;
+	padding: 3px 8px;
+	*padding: 0 5px;
+	border-top: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #a3a3a3;
+	border-bottom: 1px solid #a3a3a3;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+	background: #eee;
+	cursor: pointer;
+}
+.pagination input:hover,
+.pagination input:focus {
+	background: #e8e8e8;
+}
+.pagination select {
+	padding: 3px;
+	border-top: 1px solid #a3a3a3;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+}
+.pagination span.page {
+	margin: 0 1em;
+}
+.pagination span.number {
+	margin-left: 1em;
+}
+
+
+/* Project Data
+-------------------------------------------------- */
+
+.data {
+	margin: 1.5em 0;
+	padding: 8px 15px;
+	border-top: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #a3a3a3;
+	border-bottom: 1px solid #a3a3a3;
+	border-radius: 5px;
+	background: #eee;
+	behavior: url(/assets/PIE.htc);
+}
+.data dt {
+	clear: left;
+	float: left;
+	/* widthは、.data dd{padding-right}と同値 */
+	width: 15em;
+	padding: .75em 0;
+	font-weight: bold;
+}
+.data dd {
+	/* padding-rightは、.data dt{width}と同値 */
+	padding: .75em 0 .75em 15em; 
+	border-bottom: 1px dotted #ccc;
+	min-height: 1.5em;
+	_height: 1.5em;
+}
+.data dd.two-lines {
+	min-height: 3em;
+	_height: 3em;
+}
+.data dd:last-child {
+	border-bottom: 0;
+}
+.data dt.table {
+	float: none;
+}
+.data dd.table {
+	padding: 0 0 1em 0;
+}
+.data dd dt {
+	float: none;
+	width: auto;
+	padding: 0;
+	display: inline-block;
+	*display: inline;
+	font-weight: normal;
+}
+.data dd dt:after {
+	content: ":"
+}
+.data dd dd {
+	padding: 0;
+	border-bottom: 0;
+	display: inline-block;
+	*display: inline;
+	width: 9em;
+	min-height: 0;
+	_height: auto;
+	margin-right: 3em;
+	text-align: right;
+}
+
+data table {
+	border-collapse: separate;
+	*border-collapse: collapse;
+}
+.data th,
+.data td {
+	padding: .35em 8px;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+	*border-top: 1px solid #b9b9b9;
+	*border-left: 1px solid #b9b9b9;
+	font-weight: normal;
+	vertical-align: middle;
+}
+.data thead th {
+	padding: .5em 3px;
+	border-top: 1px solid #b9b9b9;
+	background: #ddd;
+	line-height: 1.25;
+}
+.data th:first-child,
+.data td:first-child {
+	border-left: 1px solid #b9b9b9;
+}
+.data thead th:first-child {
+	border-radius: 3px 0 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.data thead th:last-child {
+	border-radius: 0 3px 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.data tfoot th:first-child,
+.data tfoot td:first-child {
+	border-radius: 0 0 0 3px;
+	behavior: url(/assets/PIE.htc);
+}
+.data tfoot td:last-child {
+	border-radius: 0 0 3px 0;
+	behavior: url(/assets/PIE.htc);
+}
+.data tbody tr:nth-child(odd) th,
+.data tbody tr:nth-child(odd) td {
+	background: #f8f8f8;
+}
+.data tfoot th,
+.data tfoot td {
+	background: #e3e3e3;
+}
+.data tbody tr:hover th,
+.data tbody tr:hover td {
+	background: #fcf6c9;
+}
+
+
+/* Entry Form
+-------------------------------------------------- */
+
+.entryForm form {
+	margin: 1.5em 0;
+	padding: 8px 15px;
+	border-top: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #a3a3a3;
+	border-bottom: 1px solid #a3a3a3;
+	border-radius: 5px;
+	background: #eee;
+	behavior: url(/assets/PIE.htc);
+}
+.entryForm dt {
+	clear: left;
+	float: left;
+	width: 200px;
+	padding-top: .9em;
+	font-weight: bold;
+}
+.entryForm dd {
+	padding: .75em 0 .75em 200px;
+	border-bottom: 1px dotted #ccc;
+}
+.entryForm span.required {
+	color: #c00;
+	font-weight: normal;
+}
+.entryForm input[type="text"],
+.entryForm select,
+.entryForm textarea {
+	padding: 3px;
+	border-top: 1px solid #a3a3a3;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+	*behavior: none;
+}
+.entryForm input[type="text"]:focus,
+.entryForm textarea:focus,
+.entryForm select:focus {
+	background: #ffffed;
+}
+
+.entryForm input[readonly] {
+	border-color: #eee;
+	background: #fff !important;
+	color: #333 !important;
+}
+
+.entryForm input.largeText {
+	width: 20em;
+	max-width: 99%;
+}
+.entryForm input.smallText {
+	width: 10em;
+}
+.entryForm input.date {
+	width: 5.5em;
+}
+.entryForm input.hour {
+	width: 4em;
+	text-align: right;
+}
+.entryForm input.rate {
+	width: 4em;
+	text-align: right;
+}
+.entryForm input.price {
+	width: 6em;
+	text-align: right;
+}
+.entryForm textarea {
+	width: 50em;
+	max-width: 99%;
+}
+.entryForm input[type="checkbox"] + label {
+	margin-right: 1em;
+}
+
+.entryForm table {
+	border-collapse: separate;
+	*border-collapse: collapse;
+}
+.entryForm th,
+.entryForm td {
+	padding: .35em 8px;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+	*border-top: 1px solid #b9b9b9;
+	*border-left: 1px solid #b9b9b9;
+	font-weight: normal;
+	vertical-align: middle;
+}
+.entryForm thead th {
+	padding: .5em 8px;
+	border-top: 1px solid #b9b9b9;
+	background: #ddd;
+	line-height: 1.25;
+}
+.entryForm th:first-child,
+.entryForm td:first-child {
+	border-left: 1px solid #b9b9b9;
+}
+.entryForm tbody th,
+.entryForm tbody td {
+	background: #f7f7f7;
+}
+.entryForm tfoot th,
+.entryForm tfoot td {
+	background: #e3e3e3;
+}
+.entryForm thead th:first-child {
+	border-radius: 3px 0 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.entryForm thead th:last-child {
+	border-radius: 0 3px 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.entryForm tfoot th:first-child {
+	border-radius: 0 0 0 3px;
+	behavior: url(/assets/PIE.htc);
+}
+.entryForm tfoot td:last-child {
+	border-radius: 0 0 3px 0;
+	behavior: url(/assets/PIE.htc);
+}
+
+.entryForm input.addLine {
+	padding: 2px 10px;
+	border-top: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #a3a3a3;
+	border-bottom: 1px solid #a3a3a3;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+	background: #eee;
+	text-decoration: none;
+}
+.entryForm input.addLine:hover,
+.entryForm input.addLine:focus {
+	background: #e8e8e8;
+}
+
+.entryForm .button {
+	margin: 1.5em 0 1em;
+	padding-left: 200px;
+}
+.entryForm input[type="submit"] {
+	padding: 3px 0 3px 1em !important;
+	*padding-right: 1em !important;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-right: 1px solid #5b5b5b;
+	border-bottom: 1px solid #5b5b5b;
+	border-radius: 3px;
+	behavior: url(/assets/PIE.htc);
+	background: #666;
+	color: #fff;
+	letter-spacing: 1em;
+}
+.entryForm input[type="submit"]:hover,
+.entryForm input[type="submit"]:focus {
+	background: #767676;
+}
+.entryForm a.cancel {
+	margin-left: 1em;
+	color: #333;
+	font-size: 85.71%;
+}
+
+
+/* Error */
+
+.entryForm .errorMsg {
+	margin-left: 8px;
+	color: #c00;
+}
+.entryForm .errorMsg ul {
+	list-style: disc;
+	padding-left: 1.5em;
+}
+.entryForm .error {
+	border: 2px solid #c00 !important;
+	background: #fff5f5 !important;
+}
+
+
+/* MultiSelect Plugin */
+
+.ms-container .ms-selectable,
+.ms-container .ms-selection{
+  float: left;
+}
+.ms-container .ms-selectable{
+  margin-right: 2px;
+  padding-right: 38px;
+  background: transparent url('switch.png') no-repeat 100% 5em;
+}
+
+.ms-container ul.ms-list{
+  width: 12em;
+  height: 10.5em;
+  overflow-y: auto;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-radius: 0 0 3px 3px;
+	behavior: url(/assets/PIE.htc);
+  background: #fff;
+  color: #333;
+}
+.ms-selected{
+  display:none;
+}
+
+.ms-container .ms-selectable li.ms-elem-selectable,
+.ms-container .ms-selection li.ms-elem-selected{
+  border-bottom: 1px #eee solid;
+  padding: .25em 5px;
+  color: #333;
+}
+.ms-container .ms-selectable li.disabled,
+.ms-container .ms-selection li.disabled{
+  background-color: #eee;
+  color: #aaa;
+}
+
+.ms-container .ms-optgroup-label{
+  padding: 5px 0px 0px 5px;
+  cursor: pointer;
+  color: #999;
+}
+.ms-container li.ms-elem-selectable:not(.disabled).ms-hover,
+.ms-container .ms-selection li:not(.disabled).ms-hover{
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #0088cc;
+}
+
+.ms-list-header {
+	width: 12em;
+	padding: .25em 0;
+	border-top: 1px solid #a3a3a3;
+	border-left: 1px solid #a3a3a3;
+	border-right: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-radius: 3px 3px 0 0;
+	behavior: url(/assets/PIE.htc);
+	background: #e3e3e3;
+	text-align: center;
+}
+
+.entryForm .error + .ms-container .ms-list-header {
+	border-top: 2px solid #c00;
+	border-right: 2px solid #c00;
+	border-left: 2px solid #c00;
+}
+.entryForm .error + .ms-container .ms-list {
+	border-bottom: 2px solid #c00;
+	border-right: 2px solid #c00;
+	border-left: 2px solid #c00;
+	background: #fff5f5 !important;
+}
+
+
+/* Footer
+================================================== */
+
+#commonFooter {
+
+}
+#commonFooter .inner {
+	padding: 0 0;
+	background-image: url('footer_bg.png');
+	background-repeat: repeat-x;
+}
+#commonFooter .inner .inner-left {
+	float: left;
+}
+#commonFooter .inner .inner-right {
+	float: right;
+}
+
+/* Clearfix
+================================================== */
+
+.inner:after,
+.pageHeader:after,
+#mainNav ul:after,
+#subNav ul:after,
+.dataSearch:after,
+.entryForm dd:after,
+.ms-container:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.inner,
+.pageHeader,
+#mainNav ul,
+#subNav ul,
+.dataSearch,
+.entryForm dd,
+.ms-container {
+	*zoom: 1;
+}
+

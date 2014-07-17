@@ -1,0 +1,70 @@
+# encoding: utf-8
+<div id="indirect_cost_ratio_table">
+  <% unless @indirect_cost.indirect_cost_method_cd == INDIRECT_COST_METHOD_CODE[:method1] %>
+    <dt>
+      <label for="ratio">
+        <%= t('activerecord.attributes.indirect_cost_ratio.ratio') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= fields_for object do |f| %>
+        <table class="indirect-cost-ratio">
+          <thead>
+            <tr>
+              <th scope="col">
+                &nbsp;
+              </th>
+              <th scope="col">
+                <%= t('contract', :scope => 'order_type') %><%= t('common_label.percent') %>
+              </th>
+              <th scope="col">
+                <%= t('instrument', :scope => 'order_type') %><%= t('common_label.percent') %>
+              </th>
+              <th scope="col">
+                <%= t('maintenance', :scope => 'order_type') %><%= t('common_label.percent') %>
+              </th>
+              <th scope="col">
+                <%= t('investment', :scope => 'order_type') %><%= t('common_label.percent') %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @indirect_cost_ratios.each_with_index do |indirect_cost_ratio, index| %>
+              <%= f.fields_for :indirect_cost_ratios_attributes, indirect_cost_ratio,
+                  :index => (index = index) do |f2| %>
+                <% indirect_cost = f2.object %>
+                <% if index == 0 %>
+                  <tr>
+                    <th scope="row">
+                      <%= t('employee', :scope => 'indirect_cost_subject') %>
+                    </th>
+                <% elsif @indirect_cost.indirect_cost_method_cd == INDIRECT_COST_METHOD_CODE[:method3] &&
+                    index == 4 %>
+                  <tr>
+                    <th scope="row">
+                      <%= t('cooperative', :scope => 'indirect_cost_subject') %>
+                    </th>
+                <% end %>
+                <% unless @indirect_cost.indirect_cost_method_cd == INDIRECT_COST_METHOD_CODE[:method2] &&
+                    indirect_cost.indirect_cost_subject_cd == INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+                  <td>
+                    <%= f2.text_field :id, :type => 'hidden', :index => index %>
+                    <%= f2.text_field :indirect_cost_id, :type => 'hidden', :index => index %>
+                    <%= f2.text_field :indirect_cost_subject_cd, :type => 'hidden', :index => index %>
+                    <%= f2.text_field :order_type_cd, :type => 'hidden', :index => index %>
+                    <%= f2.text_field :ratio, :index => index, :class => 'text_field numeric ime_off',
+                        :size => '10', :maxlength => '10', :style => 'width:70px;' %>
+                  </td>
+                <% end %>
+                <% if index == 3 ||
+                    (@indirect_cost_method_cd == INDIRECT_COST_METHOD_CODE[:method3] && index == 7) %>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </dd>
+  <% end %>
+</div>

@@ -1,0 +1,66 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag "results" %>
+  <%= stylesheet_link_tag 'fullcalendar' %>
+<%- end -%>
+
+<nav id="subNav">
+  <div class="inner">
+    <ul id="localNav">
+      <li>
+        <%= link_to "#{t('web-app-theme.list', :default => 'List')}", mh_results_path %>
+      </li>
+      <li>
+        <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_mh_result_path %>
+      </li>
+      <% if can_show_result_sum? %>
+        <li>
+          <%= link_to "#{t('label.menu.sum_by_group', :default => 'Sum By Group')}", sum_by_group_mh_results_path %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", mh_csv_results_path %>
+      </li>
+      <li class="current">
+        <% if action_name == 'show' %>
+          <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", mh_result_path %>
+        <% else %>
+          <%= link_to "#{t('web-app-theme.show', :default => 'Show')}",
+            show_by_date_mh_results_path({:select_date => @result.result_date, :user_id => @result.user_id}) %>
+        <% end %>
+      </li>
+    </ul>
+  </div><!-- /.inner -->
+</nav><!-- /#subNav -->
+
+<section id="content">
+  <div class="inner">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+        <div class="message <%= type %>">
+          <p><%= message %></p>
+        </div>
+      <% end -%>
+    </div>
+
+    <header class="pageHeader">
+      <h1><%= t('common_label.browsing_model', :model => Result.model_name.human) %></h1>
+      <% if action_name == 'show' %>
+        <input id='user_id' name='user_id' type='hidden' value='<%= @result.user_id %>' >
+        <%= render :partial => 'mh/results/result_button', :locals=> {:result => @result} %>
+      <% end %>
+    </header>
+
+    <div id="pageContents">
+      <%= render 'calendar_agenda' %>
+      <% if action_name == 'show' %>
+        <div id="right">
+          <input id='user_id' name='user_id' type='hidden' value='<%= @result.user_id %>' >
+          <%= render :partial => 'mh/results/result_detail' %>
+        </div>
+      <% end %>
+    </div>
+  </div><!-- /.inner -->
+</section><!-- /#content -->

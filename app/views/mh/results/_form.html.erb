@@ -1,0 +1,89 @@
+# encoding: utf-8
+
+<% unless flash.blank? %>
+  <div class="errorMsg">
+    <% flash.each do |type, message| -%>
+      <p><%= message %></p>
+      <% if @result.errors.any?%>
+        <ul>
+          <% @result.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li> 
+          <% end %>
+        </ul>
+      <% end %>
+    <% end -%>
+  </div>
+<% end %>
+
+<div class="entryForm">
+  <dl>
+    <dt>
+    <label for="project_id">
+      <%= t('activerecord.attributes.project.name') %><%= essential %>
+    </label>
+    </dt>
+    <dd>
+      <%= f.select(:project_id, get_current_user_can_acccess_projects, {:include_blank => true}, {:class => 'project_select'}) %>
+    </dd>
+    <dt>
+    <label for="work_type_id">
+      <%= t('activerecord.models.work_type') %><%= essential %>
+    </label>
+    </dt>
+    <dd>
+      <%= render :partial => 'work_type_select_list', :locals => {:result => @result} %>
+    </dd>
+    <dt>
+    <label for="start_at">
+      <%= t('activerecord.attributes.result.start_at') %><%= essential %>
+    </label>
+    </dt>
+    <dd>
+      <%= f.hidden_field :result_date, :value => Date.today %>
+      <%= f.time_select :start_at, {:minute_step => 15, :prompt => true} %>
+    </dd>
+    <dt>
+    <label for="end_at">
+      <%= t('activerecord.attributes.result.end_at') %><%= essential %>
+    </label>
+    </dt>
+    <dd>
+      <%= f.time_select :end_at, {:minute_step => 15, :prompt => true} %>
+    </dd>
+    <dt>
+    <label for="user_id">
+        <%= t('label.result_reflection.select.member') %><%= essential %>
+    </label>
+    </dt>
+      <dd>
+        <%= render :partial => 'user_select_list', :locals => {:result => @result} %>
+      </dd>
+    <dt>
+    <label for="notes">
+      <%= t('activerecord.attributes.result.notes') %>
+    </label>
+    </dt>
+    <dd>
+      <%= f.text_area :notes, :rows => 4, :cols => 60 %>
+    </dd>
+  </dl>
+  <% params[:search] && params[:search].each do |key, value| %>
+    <% if key == 'start_at' || key == 'end_at' %>
+      <% params[:search][key].each do |key1, value1| %>
+        <%= hidden_field_tag "search[#{key}][#{key1}]", value1 %>
+      <% end %>
+    <% else %>
+      <%= hidden_field_tag "search[#{key}]", value %>
+    <% end %>
+  <% end %>
+  <%= hidden_field_tag 'from', params[:from] || 'index' %>
+  <div class="button">
+    <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), mh_results_path, :class => 'cancel') %>
+    <% else %>
+      <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), mh_results_path(search: params[:search]), :class => 'cancel') %>
+    <% end %>
+  </div>
+
+</div><!-- /.entryForm -->

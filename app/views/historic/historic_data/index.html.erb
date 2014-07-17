@@ -1,0 +1,116 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'historic_data' %>
+<%- end -%>
+    <nav id="subNav">
+      <div class="inner">
+       <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", historic_historic_data_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('label.historic_reflection.label.historic_data')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :option => {:class => 'form'}, :method => :get do |f| %>
+            <table style="width: 100%">
+              <tr>
+                <td style='width: 20%'>
+                  <div class="condition">
+                    <label for="cond1"><%= t('label.common.start_at') %>:&nbsp;&nbsp;</label>
+                    <%= select_year Date.civil(params[:search][:start_at][:year].to_i), :prefix => 'search[start_at]',
+                      :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                    <%= t('datetime.prompts.year') %>
+                    <%= select_month Date.civil(params[:search][:start_at][:year].to_i, params[:search][:start_at][:month].to_i),
+                      :prefix => 'search[start_at]', :use_month_numbers => true %>
+                    <%= t('datetime.prompts.month') %>
+                  </div>
+                </td>
+                <td style='width: 80%'>
+                  <div class="condition">
+                    <label for="cond2"><%= t('label.common.end_at') %>:&nbsp;&nbsp;</label>
+                    <%= select_year Date.civil(params[:search][:end_at][:year].to_i), :prefix => 'search[end_at]',
+                      :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                    <%= t('datetime.prompts.year') %>
+                    <%= select_month Date.civil(params[:search][:end_at][:year].to_i, params[:search][:end_at][:month].to_i),
+                      :prefix => 'search[end_at]', :use_month_numbers => true %>
+                    <%= t('datetime.prompts.month') %>
+                  </div>
+                  <div class="button">
+                    <input type="submit" accesskey="s" name="submit" value="<%= t('web-app-theme.select') %>" />
+                  </div>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div><!-- /.dataSearch -->
+
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="column1">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+                <th scope="col" class="column2 num">
+                  <%= t('label.historic_reflection.label.project_num') %>
+                </th>
+                <th scope="col" class="column3">
+                  <%= t('label.historic_reflection.label.project_total_amount') %>
+                </th>
+                <th scope="col" class="column4">
+                  <%= t('label.historic_reflection.label.project_surplus_persent') %>
+                </th>
+                <th scope="col" class="column5">
+                  &nbsp;&nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @historic_data.each do |data| -%>
+                <tr>
+                  <th scope="row">
+                    <%= data[:user].name %>
+                  </th>
+                  <td>
+                    <%= data[:project_num] %>
+                  </td>
+                  <td>
+                    <%= number_to_currency(data[:project_total_amount], unit: '') %>
+                  </td>
+                  <td>
+                    <%= number_to_percentage(data[:project_surplus_persent], precision: 0) %>
+                  </td>
+                  <td>
+                    <%= link_to t('web-app-theme.detail'), detail_historic_historic_data_path(user_id: data[:user].id, search: params[:search]) %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.dataList -->
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @historic_data %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

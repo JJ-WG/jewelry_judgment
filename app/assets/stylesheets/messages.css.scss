@@ -1,0 +1,16 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* お知らせ管理 お知らせ一覧 */
+div.list thead th.title {
+  width: 40%;
+}
+
+div.list thead th.message {
+  width: 30%;
+}
+
+div.list thead th.date {
+  width: 17%;
+}

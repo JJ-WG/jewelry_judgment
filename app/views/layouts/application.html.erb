@@ -1,0 +1,110 @@
+# encoding: utf-8
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('common_label.app_title') %></title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'styles', :media => 'screen, print' %>
+  <%= stylesheet_link_tag 'print', :media => 'print' %>
+  <%= stylesheet_link_tag 'common' %>
+
+  <script>
+    var app_name_for_url = '';
+  </script>
+  
+  <%= javascript_include_tag 'application' %>
+  <%= yield :header %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="wrapper">
+      <header id="commonHeader">
+        <div class="inner">
+          <div class="inner-left">
+            <%= link_to(image_tag('/assets/header_logo.png'), "#{root_url}top") %>
+          </div>
+          <div class="inner-right">
+            <div class="login-info">
+              ユーザー: <%= current_user.name %>
+              <br>
+              前回ログイン:
+              <% if current_user.last_login_at.blank? then %>
+                ログインなし
+              <% else %>
+                <%= current_user.last_login_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              <% end %>
+            </div>
+            <div class="logout">
+              <a href="<%= "#{root_url}logout" %>">ログアウト</a>
+            </div>
+          </div>
+        </div><!-- /.inner -->
+      </header><!-- /#commonHeader -->
+      
+      <div id="mainNav">
+        <div class="inner">
+          <ul id="globalNav">
+            <li <% if params[:controller] =~ /^notice\//i %>class="current"<% end %>>
+              <%= link_to(t('app_menu.notice'), :controller => 'notice/notices', :action => 'index') %>
+            </li>
+            <% unless parttimer? %>
+              <li <% if params[:controller] =~ /^nego\//i %>class="current"<% end %>>
+                <%= link_to(t('app_menu.negotiation_mng'), :controller => 'nego/deals', :action => 'index') %>
+              </li>
+              <li <% if params[:controller] =~ /^prj\//i %>class="current"<% end %>>
+                <%= link_to(t('app_menu.project_mng'), :controller => 'prj/projects', :action => 'index') %>
+              </li>
+              <li <% if params[:controller] =~ /^expense\//i %>class="current"<% end %>>
+                <%= link_to(t('app_menu.expense_mng'), :controller => 'expense/expenses', :action => 'index') %>
+              </li>
+            <% end %>
+            <li <% if params[:controller] =~ /^mh\//i %>class="current"<% end %>>
+              <%= link_to(t('app_menu.man_hour_mng'), :controller => 'mh/results', :action => 'index') %>
+            </li>
+            <li <% if params[:controller] =~ /^schedule\//i %>class="current"<% end %>>
+              <%= link_to(t('app_menu.schedule_mng'), :controller => 'schedule/schedules', :action => 'index') %>
+            </li>
+            <% if administrator? || manager? %>
+              <li <% if params[:controller] =~ /^historic\//i %>class="current"<% end %>>
+                <%= link_to(t('app_menu.historic_mng'), :controller => 'historic/historic_data', :action => 'index') %>
+              </li>
+            <% end %>
+            <li <% if params[:controller] =~ /^pwd\//i %>class="current"<% end %>>
+              <%= link_to(t('app_menu.change_password'), :controller => 'pwd/users', :action => 'edit') %>
+            </li>
+            <% if administrator? %>
+              <li <% if params[:controller] =~ /^admin\//i %>class="current"<% end %>>
+                <%= link_to(t('app_menu.administration'),:controller => 'admin/messages', :action => 'index') %>
+              </li>
+            <% elsif manager? %>
+              <li <% if params[:controller] =~ /^admin\//i %>class="current"<% end %>>
+                <%= link_to(t('app_menu.administration'),:controller => 'admin/customers', :action => 'index') %>
+              </li>
+            <% end %>
+          </ul>
+        </div><!-- /.inner -->
+      </div><!-- /#mainNav -->
+      
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+      <div id="main">
+        <%= yield %>
+      </div>
+      
+      <footer id="commonFooter">
+        <div class="inner">
+          <div class="inner-left">
+            <%= image_tag('/assets/footer_left.png') %>
+          </div>
+          <div class="inner-right">
+            <%= image_tag('/assets/footer_copyright.png') %>
+          </div>
+        </div><!-- /.inner -->
+      </footer><!-- /#commonFooter -->
+    </div><!-- /#wrapper -->
+  </div><!-- /#container -->
+</body>
+</html>

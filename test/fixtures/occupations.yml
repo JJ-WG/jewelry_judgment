@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+occupation_1:
+  id: 1
+  name: システムエンジニア
+  view_order: 1
+
+occupation_2:
+  id: 2
+  name: プログラマー
+  view_order: 2
+
+occupation_3:
+  id: 3
+  name: デザイナー
+  view_order: 3
+
+occupation_4:
+  id: 4
+  name: プランナー
+  view_order: 4
+
+occupation_5:
+  id: 5
+  name: 販売員
+  view_order: 5
+
+occupation_6:
+  id: 6
+  name: 事務員
+  view_order: 6
+
+occupation_7:
+  id: 7
+  name: マネージャー
+  view_order: 7

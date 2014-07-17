@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+expense_type_1:
+  id : 1
+  name: 出張経費
+  expense_item_cd: <%= EXPENSE_ITEM_CODE[:transportation_and_stay] %>
+  tax_division_id: 1
+  view_order: 1
+
+expense_type_2:
+  id : 2
+  name: 自己所有車
+  expense_item_cd: <%= EXPENSE_ITEM_CODE[:transportation_and_stay] %>
+  tax_division_id: 1
+  view_order: 2
+
+expense_type_3:
+  id : 3
+  name: 交通・宿泊費
+  expense_item_cd: <%= EXPENSE_ITEM_CODE[:transportation_and_stay] %>
+  tax_division_id: 1
+  view_order: 3
+
+expense_type_4:
+  id : 4
+  name: 外注費
+  expense_item_cd: <%= EXPENSE_ITEM_CODE[:subcontract] %>
+  tax_division_id: 2
+  view_order: 4
+
+expense_type_5:
+  id: 5
+  name: 会議費
+  expense_item_cd: <%= EXPENSE_ITEM_CODE[:other] %>
+  tax_division_id: 1
+  view_order: 5
+
+expense_type_6:
+  id: 6
+  name: その他経費
+  expense_item_cd: <%= EXPENSE_ITEM_CODE[:other] %>
+  tax_division_id: 1
+  view_order: 6

@@ -1,0 +1,26 @@
+# encoding: utf-8
+
+<div class="flash">
+  <% flash.each do |type, message| -%>
+    <div class="message <%= type %>">
+      <p><%= message %></p>
+    </div>
+  <% end -%>
+</div>
+
+<h1><%= t('authlogic.login') %></h1>
+<br />
+
+<%= form_for @user_session, :url => user_session_path do |f| %>
+  <p>
+    <%= f.label :login, t('activerecord.attributes.user.login') %><br />
+    <%= f.text_field :login, :maxlength => 20, :size => 30, :class => :ime_off %>
+  </p>
+  <p>
+    <%= f.label :login, t('activerecord.attributes.user.password') %><br />
+    <%= f.password_field :password, :maxlength => 20, :size => 30, :class => :ime_off %>
+  </p>
+  <p>
+    <%= f.submit t('authlogic.login') %>
+  </p>
+<% end %>

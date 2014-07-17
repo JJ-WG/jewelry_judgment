@@ -1,0 +1,402 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'projects' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+       <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", prj_projects_path %>
+          </li>
+          <% if creatable? %>
+            <li>
+              <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_prj_project_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.projects')) %></h1>
+          
+          <ul class="utilityNav">
+            <li class="print">
+              <a onclick="window.print();return false;" href="javascript:void(0)">印刷</a>
+            </li>
+            <% if outputtable_man_days? -%>
+              <li class="csv">
+                <%= link_to "#{t('activerecord.attributes.project.output_man_days')}",
+                    output_man_days_prj_projects_path %>
+              </li>
+            <% end -%>
+          </ul>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index},
+              :html => { :method => :get }, :option => {:class => 'form'} do |f| %>
+            <div class="condition">
+              <label for="cond1"><%= t('activerecord.attributes.project.project_code') %>:</label>
+              <%= f.text_field :project_code, :class => 'text', 
+                  :maxlength => '10', :style => 'width:100px;',
+                  :value => session[:project_condition][:project_code] %>
+            </div>
+            <div class="condition">
+              <label for="cond2"><%= t('activerecord.attributes.project.name') %>:</label>
+              <%= f.text_field :name, :class => 'text', 
+                  :maxlength => '40', :style => 'width:300px;',
+                  :value => session[:project_condition][:name] %>
+            </div>
+            <div class="condition">
+              <label for="cond3"><%= t('activerecord.models.customer') %>:</label>
+              <%= f.select(:customer_id, Customer.customers_list,
+                  {:prompt => 'すべて', :selected => session[:project_condition][:customer_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond4"><%= t('activerecord.attributes.project.manager') %>:</label>
+              <%= f.select(:manager_id,
+                  User.users_list(:include_deleted_user => true, :include_parttimer_user => false),
+                  {:prompt => 'すべて', :selected => session[:project_condition][:manager_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond5"><%= t('activerecord.attributes.project.leader') %>:</label>
+              <%= f.select(:leader_id,
+                  User.users_list(:include_deleted_user => true, :include_parttimer_user => false),
+                  {:prompt => 'すべて', :selected => session[:project_condition][:leader_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond6"><%= t('activerecord.attributes.project.staff') %>:</label>
+              <%= f.select(:staff_id,
+                  User.users_list(:include_deleted_user => true),
+                  {:prompt => 'すべて', :selected => session[:project_condition][:staff_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond7"><%= t('activerecord.attributes.project.status') %>:</label>
+              <%= f.select(:status_cd, search_status_items_list,
+                  {:selected => session[:project_condition][:status_cd]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond8">期間:</label>
+                開始年月：
+                <%= f.select(:term_start_year, project_term_year_list,
+                    {:include_blank => true,
+                     :selected => session[:project_condition][:term_start_year]}) %>年
+                <%= f.select(:term_start_month, numeric_list(1, 12),
+                    {:include_blank => true,
+                     :selected => session[:project_condition][:term_start_month]}) %>月
+                ～
+                終了年月：
+                <%= f.select(:term_finish_year, project_term_year_list,
+                    {:include_blank => true,
+                     :selected => session[:project_condition][:term_finish_year]}) %>年
+                <%= f.select(:term_finish_month, numeric_list(1, 12),
+                    {:include_blank => true,
+                     :selected => session[:project_condition][:term_finish_month]}) %>月
+            </div>
+            <div class="condition">
+              <label for="cond9">納期:</label>
+                  年月：
+                  <%= f.select(:finish_date_year, finish_date_year_list,
+                      {:include_blank => true,
+                       :selected => session[:project_condition][:finish_date_year]}) %>年
+                  <%= f.select(:finish_date_month, numeric_list(1, 12),
+                      {:include_blank => true,
+                       :selected => session[:project_condition][:finish_date_month]}) %>月
+            </div>
+            <div class="condition">
+              <label for="cond10"><%= t('activerecord.models.development_language') %>:</label>
+              <%= f.select(:dev_language_id, DevelopmentLanguage.development_languages_list,
+                  {:prompt => 'すべて',
+                  :selected => session[:project_condition][:dev_language_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond11"><%= t('activerecord.models.operating_system') %>:</label>
+              <%= f.select(:os_id, OperatingSystem.operating_systems_list,
+                  {:prompt => 'すべて',
+                  :selected => session[:project_condition][:os_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond12"><%= t('activerecord.models.database') %>:</label>
+              <%= f.select(:database_id, Database.databases_list,
+                  {:prompt => 'すべて',
+                  :selected => session[:project_condition][:database_id]}) %>
+            </div>
+            <div class="condition">
+              <%= f.check_box(:attention,
+                  :checked => (session[:project_condition][:attention] == '1')) %>
+              <label for="cond13"><%= t('activerecord.attributes.project.attention') %></label>
+            </div>
+            <div class="condition">
+              <label for="cond14"><%= t('activerecord.attributes.project.order') %>:</label>
+              <%= f.select(:order_id, search_order_items_list,
+                  {:prompt => 'すべて',
+                  :selected => session[:project_condition][:order_id]}) %>
+            </div>
+            
+            <div class="button">
+              <input type="submit" accesskey="s" value="検索" />
+            </div>
+          <% end %>
+        </div><!-- /.dataSearch -->
+        
+        <div class="list">
+          <div class="project-list-comment">
+            ※工数は人日単位、金額は千円単位、税抜きです。<br />
+          </div>
+          <div style="clear:both;"></div>
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="column1">
+                  <%= t('activerecord.attributes.customer.name') %>
+                  <br />
+                  <%= t('activerecord.attributes.project.name') %>
+                  <br />
+                  <%= t('activerecord.attributes.project.project_code') %>
+                </th>
+                <th scope="col" class="column2">
+                  <%= t('activerecord.attributes.project.manager_name') %>
+                  <br />
+                  <%= t('activerecord.attributes.project.leader_name') %>
+                  <br />
+                  <%= t('activerecord.attributes.project.member_count') %>
+                </th>
+                <th scope="col" class="column3 state">
+                  <%= t('activerecord.attributes.project.status') %>
+                </th>
+                <th scope="col" class="column4 date">
+                  <%= t('activerecord.attributes.project.start_date') %>
+                  <br />
+                  <%= t('activerecord.attributes.project.finish_date') %>
+                </th>
+                <th scope="col" class="column5 num">
+                  <%= t('activerecord.attributes.deal.order_volume') %>
+                  <br />
+                  <%= t('activerecord.attributes.project.sales_costs') %>
+                </th>
+                <th scope="col" class="column6 num">
+                  <%= multi_line(t('activerecord.attributes.project.man_day_label')) %>
+                </th>
+                <th scope="col" class="column7 num">
+                  <%= multi_line(t('activerecord.attributes.project.direct_labor_cost_label')) %>
+                </th>
+                <th scope="col" class="column8 num">
+                  <%= multi_line(t('activerecord.attributes.project.subcontract_cost_label')) %>
+                </th>
+                <th scope="col" class="column9 num">
+                  <%= multi_line(t('activerecord.attributes.project.expense_label')) %>
+                </th>
+                <th scope="col" class="column10 num">
+                  <%= multi_line(t('activerecord.attributes.project.indirect_labor_cost_label')) %>
+                </th>
+                <th scope="col" class="column11 num">
+                  <%= multi_line(t('activerecord.attributes.project.development_cost_label')) %>
+                </th>
+                <th scope="col" class="column12 num">
+                  <%= multi_line(t('activerecord.attributes.project.gross_profit_label')) %>
+                </th>
+                <th scope="col" class="column13 num">
+                  <%= multi_line(t('activerecord.attributes.project.profit_ratio_label')) %>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @projects.each do |project| -%>
+                <% project.totalize_all %>
+                <tr>
+                  <th scope="row">
+                    <div>
+                      <%= get_name(project.customer) %>
+                    </div>
+                    <div>
+                      <%= link_to project.name, prj_project_path(project) %>
+                    </div>
+                    <div>
+                      <%= project.project_code %>
+                    </div>
+                  </th>
+                  <td>
+                    <div>
+                      <%= get_user_name(project.manager_id) %>
+                    </div>
+                    <div>
+                      <%= get_user_name(project.leader_id) %>
+                    </div>
+                    <div>
+                      <%= get_prj_member_count(project.id).to_s + '人' %>
+                    </div>
+                  </td>
+                  <td class="state">
+                    <%= raw(include_status_span(project.status_cd, project.deleted)) %>
+                  </td>
+                  <td class="date">
+                    <div>
+                      <%= l localtime(project.start_date).to_date  %>
+                    </div>
+                    <div>
+                      <% em_result =
+                        (project.finished_date.nil? && (Date.today > project.finish_date)) ||
+                        (project.finished_date.present? && (project.finished_date > project.finish_date)) %>
+                      <%= conditional_tag(
+                          em_result,
+                          false,
+                          (l localtime(project.finish_date).to_date)) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 受注額、販売原価 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.order_volume)) %>
+                    </div>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.sales_cost)) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 開発工数 %>
+                    <div>
+                      <%= number_with_delimiter(project.planned_man_days) %>
+                    </div>
+                    <div class="right">
+                      <%# 実績工数が予定工数を超過している場合は、実績金額を赤 %>
+                      <%# それ以外で、実績工数がEV値（予定工数×進捗率）を超過している場合は、実績金額をピンク %>
+                      <% if project.planned_man_days == 0 || project.totalize_progress_rate == 0 %>
+                        <% ev = 0 %>
+                      <% else %>
+                        <% ev = (project.planned_man_days * project.totalize_progress_rate / 100.0) %>
+                      <% end %>
+                      <%= conditional_tag(
+                          project.result_man_days > project.planned_man_days,
+                          project.result_man_days > ev,
+                          number_with_delimiter(project.result_man_days.round(2))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 直接労務費 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.direct_labor_cost_budget)) %>
+                    </div>
+                    <div>
+                      <%# 実績金額が予算金額を超過している場合は、実績金額を赤 %>
+                      <%= conditional_tag(
+                          project.direct_labor_cost_result > project.direct_labor_cost_budget,
+                          false,
+                          number_with_delimiter(unit_thousand_yen(project.direct_labor_cost_result.to_i))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 外注費 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.subcontract_cost_budget)) %>
+                    </div>
+                    <div>
+                      <%# 実績金額が予算金額を超過している場合は、実績金額を赤 %>
+                      <%= conditional_tag(
+                          project.subcontract_cost_result > project.subcontract_cost_budget,
+                          false,
+                          number_with_delimiter(unit_thousand_yen(project.subcontract_cost_result))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 直接経費 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.direct_expense_budget)) %>
+                    </div>
+                    <div>
+                      <%# 実績金額が予算金額を超過している場合は、実績金額を赤 %>
+                      <%= conditional_tag(
+                          project.direct_expense_result > project.direct_expense_budget,
+                          false,
+                          number_with_delimiter(unit_thousand_yen(project.direct_expense_result))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 間接労務費 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.indirect_labor_cost_budget)) %>
+                    </div>
+                    <div class="right">
+                      <%# 実績金額が予算金額を超過している場合は、実績金額を赤 %>
+                      <%= conditional_tag(
+                          project.indirect_labor_cost_result > project.indirect_labor_cost_budget,
+                          false,
+                          number_with_delimiter(unit_thousand_yen(project.indirect_labor_cost_result))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 開発原価 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.development_cost_budget)) %>
+                    </div>
+                    <div>
+                      <%# 実績金額が予算金額を超過している場合は、実績金額を赤 %>
+                      <%= conditional_tag(
+                          project.development_cost_result > project.development_cost_budget,
+                          false,
+                          number_with_delimiter(unit_thousand_yen(project.development_cost_result.to_i))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 粗利 %>
+                    <div>
+                      <%= number_with_delimiter(unit_thousand_yen(project.gross_profit_budget)) %>
+                    </div>
+                    <div>
+                      <%# 粗利の実績金額がマイナスの場合は、実績金額を赤 %>
+                      <%# それ以外で、粗利の実績金額が予算を下回っている場合は、実績金額をピンク %>
+                      <%= conditional_tag(
+                          project.gross_profit_result < 0,
+                          project.gross_profit_result < project.gross_profit_budget,
+                          number_with_delimiter(unit_thousand_yen(project.gross_profit_result.to_i))) %>
+                    </div>
+                  </td>
+                  <td class="num">
+                    <%# 粗利率 %>
+                    <div>
+                      <%= project.profit_ratio_budget %>
+                    </div>
+                    <div>
+                      <%# 粗利率の実績値がマイナスの場合は、実績値を赤 %>
+                      <%# それ以外で、粗利率の実績値が計画値を下回っている場合は、実績値をピンク %>
+                      <%= conditional_tag(
+                          project.profit_ratio_result < 0,
+                          project.profit_ratio_result < project.profit_ratio_budget,
+                          number_with_delimiter(project.profit_ratio_result)) %>
+                    </div>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @projects %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

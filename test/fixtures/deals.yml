@@ -1,0 +1,79 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+deal_1:
+  id: 1
+  customer_id: 1
+  staff_user_id: 2
+  name: 案件１
+  budge_amount: 1000000000
+  anticipated_price: 1000000000
+  order_volume: 1000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
+  reliability_cd: <%= RELIABILITY_CODE[:start_deal] %>
+  prj_managed: true
+
+deal_2:
+  id: 2
+  customer_id: 2
+  staff_user_id: 2
+  name: 案件２
+  budge_amount: 2000000000
+  anticipated_price: 2000000000
+  order_volume: 2000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
+  reliability_cd: <%= RELIABILITY_CODE[:start_deal] %>
+  prj_managed: true
+
+deal_3:
+  id: 3
+  customer_id: 3
+  staff_user_id: 2
+  name: 案件３
+  budge_amount: 3000000000
+  anticipated_price: 3000000000
+  order_volume: 3000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
+  reliability_cd: <%= RELIABILITY_CODE[:appear_deal] %>
+  prj_managed: true
+
+deal_4:
+  id: 4
+  customer_id: 4
+  staff_user_id: 2
+  name: 案件４
+  budge_amount: 4000000000
+  anticipated_price: 4000000000
+  order_volume: 4000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
+  reliability_cd: <%= RELIABILITY_CODE[:strong] %>
+  prj_managed: true
+
+deal_5:
+  id: 5
+  customer_id: 5
+  staff_user_id: 2
+  name: 案件５
+  budge_amount: 5000000000
+  anticipated_price: 5000000000
+  order_volume: 5000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
+  reliability_cd: <%= RELIABILITY_CODE[:notification] %>
+  prj_managed: true
+
+deal_6:
+  id: 6
+  customer_id: 6
+  staff_user_id: 2
+  name: 案件６
+  budge_amount: 6000000000
+  anticipated_price: 6000000000
+  order_volume: 6000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
+  reliability_cd: <%= RELIABILITY_CODE[:decision] %>
+  prj_managed: true

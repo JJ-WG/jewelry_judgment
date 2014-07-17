@@ -1,0 +1,233 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'users' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_users_path  %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_user_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_user_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => User.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_admin_user_path(@user) %>
+            </li>
+            <li class="csv">
+              <% if @user.deleted %>
+                <%= link_to "#{t('web-app-theme.restore', :default=> 'Restore')}",
+                    restore_admin_user_path(@user), :method => :put,
+                    :confirm => "#{t('web-app-theme.restore_confirm', :default => 'Are you sure?')}" %>
+              <% else %>
+                <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                    admin_user_path(@user), :method => :delete,
+                    :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+              <% end %>
+            </li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @user.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.user_rank_name') %>
+            </dt>
+            <dd>
+              <%= user_rank_indication @user.user_rank_cd %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.section.name') %>
+            </dt>
+            <dd>
+              <%= get_name(@user.section) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.occupation.name') %>
+            </dt>
+            <dd>
+              <%= get_name(@user.occupation) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.official_position_name') %>
+            </dt>
+            <dd>
+              <%= @user.official_position %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.name') %>
+            </dt>
+            <dd>
+              <%= @user.name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.name_ruby') %>
+            </dt>
+            <dd>
+              <%= @user.name_ruby %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.user_code') %>
+            </dt>
+            <dd>
+              <%= @user.user_code %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.home_phome_no') %>
+            </dt>
+            <dd>
+              <%= @user.home_phome_no %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.mobile_phone_no') %>
+            </dt>
+            <dd>
+              <%= @user.mobile_phone_no %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.mail_address1') %>
+            </dt>
+            <dd>
+              <%= @user.mail_address1 %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.mail_address2') %>
+            </dt>
+            <dd>
+              <%= @user.mail_address2 %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.mail_address3') %>
+            </dt>
+            <dd>
+              <%= @user.mail_address3 %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.login') %>
+            </dt>
+            <dd>
+              <%= @user.login %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.unit_price_label') %>
+            </dt>
+            <dd>
+              <table class="show unit-price">
+                <thead>
+                  <tr>
+                    <th scope="col" class="start-date">
+                      <%= t('activerecord.attributes.unit_price.start_date') %>
+                    </th>
+                    <th scope="col" class="unit-price">
+                      <%= t('activerecord.attributes.unit_price.unit_price') %>
+                      <%= t('common_label.yen') %>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @unit_prices.each do |unit_price| %>
+                    <tr>
+                      <td class="date start-date">
+                        <%= l localtime(unit_price.start_date).to_date %>
+                      </td>
+                      <td class="unit-price">
+                        <%= number_with_delimiter(unit_price.unit_price) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.login_count') %>
+            </dt>
+            <dd>
+              <%= @user.login_count %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.current_login_at') %>
+            </dt>
+            <dd>
+              <%= localtime @user.current_login_at %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.user.last_login_at') %>
+            </dt>
+            <dd>
+              <%= localtime @user.last_login_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.deleted') %>
+            </dt>
+            <dd>
+              <%= (@user.deleted)? '削除済み' : '未削除' %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+            </dt>
+            <dd>
+              <%= localtime @user.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @user.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

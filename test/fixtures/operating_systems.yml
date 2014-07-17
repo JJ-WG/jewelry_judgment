@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+os_1:
+  id: 1
+  name: Windows Server
+  view_order: 1
+
+os_2:
+  id: 2
+  name: Linux
+  view_order: 2
+
+os_3:
+  id: 3
+  name: Windows7
+  view_order: 3
+
+os_4:
+  id: 4
+  name: Mac OS
+  view_order: 4
+
+os_5:
+  id: 5
+  name: Windows Vista
+  view_order: 5
+
+os_6:
+  id: 6
+  name: Windows XP
+  view_order: 6

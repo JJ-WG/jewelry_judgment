@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_dev_language_1:
+  id: 1
+  project_id: 1
+  development_language_id: 1
+
+prj_dev_language_2:
+  id: 2
+  project_id: 1
+  development_language_id: 2
+
+prj_dev_language_3:
+  id: 3
+  project_id: 2
+  development_language_id: 1
+
+prj_dev_language_4:
+  id: 4
+  project_id: 2
+  development_language_id: 2
+
+prj_dev_language_5:
+  id: 5
+  project_id: 3
+  development_language_id: 1
+
+prj_dev_language_6:
+  id: 6
+  project_id: 3
+  development_language_id: 2
+
+prj_dev_language_7:
+  id: 7
+  project_id: 4
+  development_language_id: 1
+
+prj_dev_language_8:
+  id: 8
+  project_id: 4
+  development_language_id: 2
+
+prj_dev_language_9:
+  id: 9
+  project_id: 5
+  development_language_id: 1
+
+prj_dev_language_10:
+  id: 10
+  project_id: 5
+  development_language_id: 2
+
+prj_dev_language_11:
+  id: 11
+  project_id: 6
+  development_language_id: 1
+
+prj_dev_language_12:
+  id: 12
+  project_id: 6
+  development_language_id: 2

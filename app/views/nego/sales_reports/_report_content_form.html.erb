@@ -1,0 +1,44 @@
+# encoding: utf-8
+
+    <section id="content">
+      <div class="inner">
+        
+        <% if action_name == 'new' || action_name == 'create' %>
+          <% submit_method = 'post' %>
+          <% submit_url = nego_deal_sales_reports_path %>
+        <% else %>
+          <% submit_method = 'put' %>
+          <% submit_url = nego_deal_sales_report_path(@deal, @sales_report) %>
+        <% end %>
+        <%= form_for @sales_report, :url => submit_url,
+          :html => {:class => :form, :method => submit_method, :remote => true } do |f| -%>
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>
+                  <p><%= message %></p>
+                <% end -%>
+                <% if @sales_report.errors.any? -%>
+                  <ul>
+                  <% @sales_report.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                <% end %>
+              <% end -%>
+              <% flash.clear -%>
+            </div>
+          <% end %>
+          <div class="entryForm">
+            <%= render :partial => 'form', :locals => {:f => f} %>
+          </div><!-- /.entryForm -->
+        <% end -%>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->
+

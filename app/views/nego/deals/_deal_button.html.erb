@@ -1,0 +1,14 @@
+# encoding: utf-8
+          <ul class="utilityNav">
+            <% if editable?(deal) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.edit', :default=> 'Edit'), edit_nego_deal_path(deal) %>
+              </li>
+            <% end %>
+            <% if deletable?(deal) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.delete', :default=> 'Delete'), [:nego, deal], 
+                  { method: :delete, :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" } %>
+              </li>
+            <% end %>
+          </ul>

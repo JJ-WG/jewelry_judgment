@@ -1,0 +1,98 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+admin:
+  id: 1
+  login: admin
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("password" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: システム管理者
+  name_ruby: システムカンリシャ
+  user_rank_cd: <%= USER_RANK_CODE[:system_admin] %>
+  mail_address1: test_admin@wacom-it.co.jp
+  user_code: admin
+  deleted: false
+
+nakai:
+  id: 2
+  login: nakai
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("masahiro" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 中居正広
+  name_ruby: ナカイ　マサヒロ
+  user_rank_cd: <%= USER_RANK_CODE[:employee] %>
+  section_id: 1
+  mail_address1: nakai@smap
+  user_code: nakai
+  deleted: false
+
+kimura:
+  id: 3
+  login: kimura
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("takuya" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 木村拓哉
+  name_ruby: キムラ　タクヤ
+  user_rank_cd: <%= USER_RANK_CODE[:employee] %>
+  section_id: 1
+  mail_address1: kimura@smap
+  user_code: kimura
+  deleted: false
+
+inagaki:
+  id: 4
+  login: inagaki
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("gorou" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 稲垣吾郎
+  name_ruby: イナガキ　ゴロウ
+  user_rank_cd: <%= USER_RANK_CODE[:employee] %>
+  section_id: 1
+  mail_address1: inagaki@smap
+  user_code: inagaki
+  deleted: false
+
+kusanagi:
+  id: 5
+  login: kusanagi
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("tsuyoshi" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 草彅剛
+  name_ruby: クサナギ　ツヨシ
+  user_rank_cd: <%= USER_RANK_CODE[:employee] %>
+  section_id: 1
+  mail_address1: kusanagi@smap
+  user_code: kusanagi
+  deleted: false
+
+katori:
+  id: 6
+  login: katori
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("shingo" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 香取慎吾
+  name_ruby: カトリ　シンゴ
+  user_rank_cd: <%= USER_RANK_CODE[:parttimer] %>
+  section_id: 1
+  mail_address1: katori@smap
+  user_code: katori
+  deleted: false
+
+mori:
+  id: 7
+  login: mori
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("katsuyuki" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 森且行
+  name_ruby: モリ　カツユキ
+  user_rank_cd: <%= USER_RANK_CODE[:parttimer] %>
+  section_id: 1
+  mail_address1: mori@smap
+  user_code: mori
+  deleted: true

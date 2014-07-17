@@ -1,0 +1,13 @@
+//
+// 顧客リスト、受注形態、受注額更新処理
+//
+$("#project_customer_id").html(
+  "<%= escape_javascript(select_tag('project[customer_id]',
+      options_for_select(@customer_list, :selected => @project.customer_id),
+      {:include_blank => true})) %>"
+);
+
+$("#project_order_volume_text_field").html(
+  "<%= escape_javascript(render :partial => 'order_volume_text_field',
+      :locals => {:object => @project}) %>"
+);

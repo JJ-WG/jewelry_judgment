@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+development_language_1:
+  id: 1
+  name: Ruby
+  view_order: 1
+
+development_language_2:
+  id: 2
+  name: PHP
+  view_order: 2
+
+development_language_3:
+  id: 3
+  name: Java
+  view_order: 3
+
+development_language_4:
+  id: 4
+  name: C#
+  view_order: 4
+
+development_language_5:
+  id: 5
+  name: C++
+  view_order: 5
+
+development_language_6:
+  id: 6
+  name: C
+  view_order: 6
+
+development_language_7:
+  id: 7
+  name: Basic
+  view_order: 7

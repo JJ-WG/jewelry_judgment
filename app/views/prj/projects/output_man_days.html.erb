@@ -1,0 +1,70 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag "projects" %>
+  <%= javascript_tag do -%>
+    $(function() {
+      var datepicker_options = {
+        showOn: "button"
+      };
+      $('#output_total_up_date').datepicker(datepicker_options);
+    });
+  <%- end -%>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", prj_projects_path %>
+          </li>
+          <li class="current">
+            <%=
+              link_to "#{t('activerecord.attributes.project.output_man_days')}",
+                  output_man_days_prj_projects_path
+            %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('activerecord.attributes.project.output_man_days') %></h1>
+        </header>
+        
+        <div class="output-csv">
+          <div>
+            プロジェクトメンバ別にプロジェクトの工数集計結果をCSV形式で出力します。<br />
+            集計日時点で進行中の全プロジェクトが対象になります。<br />
+            集計日を入力して下さい。
+          </div>
+          <div style="clear:both;"></div>
+          <br />
+          <%= form_for :output, :url => 'send_man_days',
+              :html => { :method => :put, :class => :form } do |f| %>
+            <%= t('label.project.output_man_days.total_up_date') %>:
+            <%= f.text_field :total_up_date, :class => 'date', :maxlength => '10', :style => 'width:100px;', :class => :ime_off %>
+            <input class="text_button" value="CSV出力" type="submit" onClick="">
+          <% end -%>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

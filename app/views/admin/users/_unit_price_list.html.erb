@@ -1,0 +1,42 @@
+# encoding: utf-8
+
+                      <%= fields_for object do |f| %>
+                        <table class="item-list" id="unit_price_list">
+                          <thead>
+                            <tr>
+                              <th class="start_date" nowrap>
+                                <%= t('activerecord.attributes.unit_price.start_date') %>
+                              </th>
+                              <th class="price num" nowrap>
+                                <%= t('activerecord.attributes.unit_price.unit_price') %>
+                                <%= t('common_label.yen') %>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% if @user_unit_prices.present? %>
+                              <% @user_unit_prices.each do |unit_price| %>
+                                <%= f.fields_for :unit_prices, unit_price do |f2| %>
+                                  <%= f2.text_field :id, :type => 'hidden' %>
+                                  <%= f2.text_field :user_id, :type => 'hidden' %>
+                                  <%= f2.text_field :start_date, :type => 'hidden' %>
+                                  <%= f2.text_field :unit_price, :type => 'hidden' %>
+                                  <tr>
+                                    <td class="date">
+                                      <%= l localtime(unit_price.start_date).to_date %>
+                                    </td>
+                                    <td class="unit_price num">
+                                      <%= number_with_delimiter(unit_price.unit_price) %>
+                                    </td>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <tr>
+                                <th scope="row" class="start_date">&nbsp;</th>
+                                <td class="unit_price">&nbsp;</td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      <% end %>

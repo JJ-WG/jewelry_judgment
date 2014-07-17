@@ -1,0 +1,76 @@
+# encoding: utf-8
+
+            <div class="data" style='margin-top: 0px;'>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.name') %>
+                </dt>
+                <dd>
+                  <%= @schedule.project.name %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.models.work_type') %>
+                </dt>
+                <dd>
+                  <%= @schedule.work_type_name %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.schedule.start_at') %>
+                </dt>
+                <dd>
+                  <%= l(@schedule.start_at, :format => :short_time) %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.schedule.end_at') %>
+                </dt>
+                <dd>
+                  <%= l(@schedule.end_at, :format => :short_time) %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.schedule.auto_reflect') %>
+                </dt>
+                <dd>
+                  <%= format_auto_reflect_show(@schedule.auto_reflect) %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.schedule.notes') %>
+                </dt>
+                <dd>
+                  <%= @schedule.notes %>
+                </dd>
+
+                <dt>
+                  <%= t('label.schedule_reflection.select.member') %>
+                </dt>
+                <dd>
+                  <table id='reflect_member_list'>
+                    <% @member_list_info.each do |member_info| %>
+                      <tr>
+                        <td class='member_name'><%= member_info[:user_info].blank? ? '' :  member_info[:user_info].name %></td>
+                        <td class='member_action'>
+                          <% if member_info[:result_info].blank? %>
+                            <% if member_info[:can_show_reflect] %>
+                              <ul class="utilityNav">
+                                <li>
+                                  <%= link_to t('web-app-theme.reflect'),
+                                    reflect_schedule_schedule_path(@schedule, :user_id => member_info[:user_info].id),
+                                    { confirm: t('label.schedule_reflection.label.result_reflect_confirm'), method: :put} %>
+                                </li>
+                              </ul>
+                            <% end %>
+                          <% else %>
+                            <%= link_to t('label.schedule_reflection.label.show_result'), mh_result_path(member_info[:result_info]) %>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <%# schedule_member_list(@schedule) %>
+                </dd>
+              </dl>
+            </div><!-- /.schData -->

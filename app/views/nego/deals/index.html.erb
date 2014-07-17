@@ -1,0 +1,191 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'deals' %>
+<%- end -%>
+    <nav id="subNav">
+      <div class="inner">
+       <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", nego_deals_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_nego_deal_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+          <% flash.clear -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.deals')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :option => {:class => 'form'}, :method => :get do |f| %>
+            <table style="width: 100%">
+              <tr>
+                <td style='width: 8%'>
+                  <label for="cond1"><%= t('activerecord.attributes.deal.name') %>:</label>
+                </td>
+                <td style='width: 27%'>
+                  <%= f.text_field :name, :class => 'text', :maxlength => '40', :style => 'width:300px;',
+                    :value => params[:search][:name]%>
+                </td>
+                <td style='width: 10%'>
+                  <label for="cond2"><%= t('label.common.place') %>:</label>
+                </td>
+                <td style='width: 55%'>
+                  <%= f.select(:pref_code, prefectures_list, {:include_blank => true, selected: params[:search][:pref_code] }) %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="cond3"><%= t('activerecord.attributes.customer.name') %>:</label>
+                </td>
+                <td>
+                  <%= f.select(:customer_id, Customer.customers_list, {:include_blank => true, selected: params[:search][:customer_id]}) %>
+                </td>
+                <td>
+                  <label for="cond4"><%= t('label.deal_reflection.label.status') %>:</label>
+                </td>
+                <td>
+                  <%= f.select(:deal_status_cd, deal_status_list, {:include_blank => true, selected: params[:search][:deal_status_cd]}) %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="cond5"><%= t('label.deal_reflection.label.staff_user_name') %>:</label>
+                </td>
+                <td>
+                  <%= f.text_field :staff_user_name, :class => 'text',
+                    :maxlength => '40', :style => 'width:300px;',
+                    :value => params[:search][:staff_user_name] %>
+                </td>
+                <td>
+                  <label for="cond6"><%= t('activerecord.attributes.deal.reliability') %>:</label>
+                </td>
+                <td>
+                  <%= f.select(:reliability_cd, reliability_list, {:include_blank => true, selected: params[:search][:reliability_cd]}) %>
+                  <div class="button">
+                    <input type="submit" accesskey="s" name="submit" value="<%= t('web-app-theme.select') %>" />
+                  </div>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div><!-- /.dataSearch -->
+
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="column1">
+                  <%= t('activerecord.attributes.deal.name') %>
+                </th>
+                <th scope="col" class="column2">
+                  <%= t('activerecord.attributes.customer.name') %>
+                </th>
+                <th scope="col" class="column3">
+                  <%= t('label.deal_reflection.label.staff_user_name') %>
+                </th>
+                <th scope="col" class="column4">
+                  <%= t('label.deal_reflection.label.status') %>
+                </th>
+                <th scope="col" class="column5 date">
+                  <%= t('label.deal_reflection.label.last_activity_date') %>
+                </th>
+                <th scope="col" class="column6 num">
+                  <%= t('label.deal_reflection.label.business_times') %>
+                </th>
+                <th scope="col" class="column7">
+                  <%= t('activerecord.attributes.deal.reliability') %>
+                </th>
+                <th scope="col" class="column8">
+                  <%= t('label.deal_reflection.label.order') %>
+                </th>
+                <th scope="col" class="column9">
+                  <%= t('label.common.attached') %>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @deals.each do |deal| -%>
+                <tr>
+                  <th scope="row">
+                    <%=link_to deal.name, nego_deal_path(deal) %>
+                  </th>
+                  <td>
+                    <%= deal.customer.name %>
+                  </td>
+                  <td>
+                    <%= deal.staff_user.name %>
+                  </td>
+                  <td>
+                    <%= deal_status_indication(deal.deal_status_cd) %>
+                  </td>
+                  <% if deal.deal_status_cd < DEAL_STATUS_CODE[:order_decision] && 
+                    deal.last_activity_date && deal.last_activity_date < Date.today.prev_month %>
+                  <td style='color: #CC0000;'>
+                  <% else %>
+                  <td>
+                  <% end %>
+                    <%= l(deal.last_activity_date) if deal.last_activity_date %>
+                  </td>
+                  <td>
+                    <%= deal.sales_reports.length %>
+                  </td>
+                  <td>
+                    <%= reliability_indication(deal.reliability_cd) %>
+                  </td>
+                  <td>
+                    <% if deal.project.present? %>
+                      <%= link_to deal.project.project_code, prj_project_path(deal.project) %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= t('label.common.has_one') if deal.has_related_file? %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.dealList -->
+        <div>
+          <% if @deals.length > 0 %>
+            <div class="button">
+              <ul class="utilityNav">
+                <li>
+                  <%= link_to t('web-app-theme.download'), csv_export_nego_deals_path(:search => params[:search]) %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @deals %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

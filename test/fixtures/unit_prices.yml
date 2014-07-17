@@ -1,0 +1,85 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+unit_price_1:
+  id: 1
+  user_id: 1
+  start_date: '2012-04-01'
+  unit_price: 9000.0
+
+unit_price_2:
+  id: 2
+  user_id: 1
+  start_date: '2012-09-01'
+  unit_price: 10000.0
+
+unit_price_3:
+  id: 3
+  user_id: 2
+  start_date: '2012-04-01'
+  unit_price: 9000.0
+
+unit_price_4:
+  id: 4
+  user_id: 2
+  start_date: '2012-09-01'
+  unit_price: 10000.0
+
+unit_price_5:
+  id: 5
+  user_id: 3
+  start_date: '2012-04-01'
+  unit_price: 9000.0
+
+unit_price_6:
+  id: 6
+  user_id: 3
+  start_date: '2012-09-01'
+  unit_price: 10000.0
+
+unit_price_7:
+  id: 7
+  user_id: 4
+  start_date: '2012-04-01'
+  unit_price: 8000.0
+
+unit_price_8:
+  id: 8
+  user_id: 4
+  start_date: '2012-09-01'
+  unit_price: 9000.0
+
+unit_price_9:
+  id: 9
+  user_id: 5
+  start_date: '2012-04-01'
+  unit_price: 8000.0
+
+unit_price_10:
+  id: 10
+  user_id: 5
+  start_date: '2012-09-01'
+  unit_price: 9000.0
+
+unit_price_11:
+  id: 11
+  user_id: 6
+  start_date: '2012-04-01'
+  unit_price: 8000.0
+
+unit_price_12:
+  id: 12
+  user_id: 6
+  start_date: '2012-09-01'
+  unit_price: 9000.0
+
+unit_price_13:
+  id: 13
+  user_id: 7
+  start_date: '2012-04-01'
+  unit_price: 8000.0
+
+unit_price_14:
+  id: 14
+  user_id: 7
+  start_date: '2012-09-01'
+  unit_price: 9000.0

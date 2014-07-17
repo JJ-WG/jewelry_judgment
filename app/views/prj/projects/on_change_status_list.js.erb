@@ -1,0 +1,12 @@
+//
+// 関連プロジェクト編集 プロジェクトリスト更新処理
+//
+$('#project_related_project_id_selection').html(
+  "<%= escape_javascript(render :partial => 'related_project_select_list',
+      :locals => {:object => @project}) %>"
+);
+
+$('#related_project_list').html(
+  "<%= escape_javascript(render :partial => 'related_project_list', 
+      :locals => {:object => @project}) %>"
+);

@@ -1,0 +1,11 @@
+# encoding: utf-8
+        <% if can_modified_schedule?(schedule) %>
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to t('web-app-theme.edit', :default=> 'Edit'), edit_schedule_schedule_path(schedule) %>
+            </li>
+            <li class="csv">
+              <%= link_to t('web-app-theme.delete', :default=> 'Delete'), [:schedule, schedule], { method: :delete, :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" } %>
+            </li>
+          </ul>
+        <% end %>

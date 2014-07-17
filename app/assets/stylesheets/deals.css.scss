@@ -1,0 +1,31 @@
+// Place all the styles related to the nego/deals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+
+.list thead th {
+  background-color: #666666;
+}
+
+
+.error_title {
+  color: #CC0000;
+}
+
+.entryForm dd dt:after {
+  content: "";
+}
+
+.entryForm dd dd {
+  text-align: left;
+}
+
+.data dd dt:after {
+  content: "";
+}
+
+.data dd dd {
+  text-align: left;
+}

@@ -1,0 +1,21 @@
+<% if action_name == 'on_change_project_list'  %>
+  //
+  // 作業工程コントロール更新処理
+  //
+  $('#schedule_work_type_id').parent().html(
+    "<%= escape_javascript(render :partial => 'work_type_select_list', :locals => {:schedule => @schedule}) %>"
+  );
+<% end %>
+//
+// 参加者編集用コントロール更新処理
+//
+$('#schedule_schedule_member_user_id').parent().html(
+  "<%= escape_javascript(render :partial => 'member_select_list', :locals => {:schedule => @schedule}) %>"
+);
+
+//
+// 選択した参加者リスト編集用コントロール更新処理
+//
+$('#schedule_sch_members').parent().html(
+  "<%= escape_javascript(render :partial => 'selected_member_list', :locals => {:schedule => @schedule}) %>"
+);

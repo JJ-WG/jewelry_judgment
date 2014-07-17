@@ -1,0 +1,65 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag "schedules" %>
+  <%= stylesheet_link_tag 'fullcalendar' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('label.menu.list_by_group', :default => 'List By Group')}", list_by_group_schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('label.menu.list_by_project', :default => 'List By Project')}", list_by_project_schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_schedule_schedule_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", schedule_csv_schedules_path %>
+          </li>
+          <li class="current">
+            <% if action_name == 'show' %>
+              <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", schedule_schedule_path %>
+            <% else %>
+              <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", show_by_date_schedule_schedules_path({:select_date => @schedule.schedule_date}) %>
+            <% end %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => Schedule.model_name.human) %></h1>
+          <% if action_name == 'show' %>
+            <%= render :partial => 'schedule/schedules/schedule_button', :locals=> {:schedule => @schedule} %>
+          <% end %>
+        </header>
+        
+        <div id="pageContents">
+          <%= render 'calendar_agenda' %>
+          <% if action_name == 'show' %>
+            <div id="right">
+                <%= render :partial => 'schedule/schedules/schedule_detail' %>
+                <%= render :partial => 'schedule/schedules/schedule_button', :locals=> {:schedule => @schedule} %>
+            </div>
+          <% end %>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

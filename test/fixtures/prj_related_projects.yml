@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_related_project_1:
+  id: 1
+  project_id: 1
+  related_project_id: 2
+
+prj_related_project_2:
+  id: 2
+  project_id: 1
+  related_project_id: 3
+
+prj_related_project_4:
+  id: 4
+  project_id: 2
+  related_project_id: 3
+
+prj_related_project_4:
+  id: 4
+  project_id: 2
+  related_project_id: 4
+
+prj_related_project_5:
+  id: 5
+  project_id: 3
+  related_project_id: 2
+
+prj_related_project_6:
+  id: 6
+  project_id: 3
+  related_project_id: 4
+
+prj_related_project_7:
+  id: 7
+  project_id: 4
+  related_project_id: 3
+
+prj_related_project_8:
+  id: 8
+  project_id: 4
+  related_project_id: 5
+
+prj_related_project_9:
+  id: 9
+  project_id: 5
+  related_project_id: 4
+
+prj_related_project_10:
+  id: 10
+  project_id: 5
+  related_project_id: 6
+
+prj_related_project_11:
+  id: 11
+  project_id: 6
+  related_project_id: 4
+
+prj_related_project_12:
+  id: 12
+  project_id: 6
+  related_project_id: 5

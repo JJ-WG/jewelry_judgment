@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+database_1:
+  id: 1
+  name: Oracle
+  view_order: 1
+
+database_2:
+  id: 2
+  name: SQL Server
+  view_order: 2
+
+database_3:
+  id: 3
+  name: MySQL
+  view_order: 3
+
+database_4:
+  id: 4
+  name: PostgreSQL
+  view_order: 4
+
+database_5:
+  id: 5
+  name: Access
+  view_order: 5
+
+database_6:
+  id: 6
+  name: HiRDB
+  view_order: 6

@@ -1,0 +1,11 @@
+# encoding: utf-8
+<% if can_modified_result?(result) %>
+  <ul class="utilityNav">
+    <li class="csv">
+      <%= link_to t('web-app-theme.edit', :default=> 'Edit'), edit_mh_result_path(result) %>
+    </li>
+    <li class="csv">
+      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}",[:mh, result], { method: :delete, :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" } %>
+    </li>
+  </ul>
+<% end %>

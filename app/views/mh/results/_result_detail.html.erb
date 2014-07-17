@@ -1,0 +1,51 @@
+# encoding: utf-8
+
+<div class="data" style='margin-top: 0px;'>
+  <dl>
+    <dt>
+    <%= t('activerecord.attributes.project.name') %>
+    </dt>
+    <dd>
+      <%= @result.project.name %>
+    </dd>
+
+    <dt>
+    <%= t('activerecord.models.work_type') %>
+    </dt>
+    <dd>
+      <%= @result.work_type_name %>
+    </dd>
+
+    <dt>
+    <%= t('label.result_reflection.label.manhour') %>
+    </dt>
+    <dd>
+      <%= format_real_date(@result.start_at, @result.end_at) %>
+    </dd>
+
+    <dt>
+    <%= t('label.result_reflection.label.relatedSchedule') %>
+    </dt>
+    <dd>
+      <% if @result.schedule_id.blank? %>
+        &nbsp
+      <% else %>
+        <%= link_to t('label.result_reflection.label.show_schedule'), schedule_schedule_path(:id => @result.schedule_id) %>
+      <% end %>
+    </dd>
+
+    <dt>
+    <%= t('label.result_reflection.select.member') %>
+    </dt>
+    <dd>
+      <%= @result.user.name %>
+    </dd>
+
+    <dt>
+    <%= t('activerecord.attributes.result.notes') %>
+    </dt>
+    <dd>
+      <%= @result.notes %>
+    </dd>
+  </dl>
+</div><!-- /.rstData -->

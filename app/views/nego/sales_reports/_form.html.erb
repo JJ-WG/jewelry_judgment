@@ -1,0 +1,105 @@
+# encoding: utf-8
+
+  <dl>
+    <dt>
+      <label>
+        <%= t('activerecord.attributes.deal.name') %>
+      </label>
+    </dt>
+    <dd>
+      <%= text_field_tag 'deal_name', @deal.name, {:class => 'largeText', :maxlength => '40', :disabled => true} %>
+    </dd>
+
+    <dt>
+      <label>
+        <%= t('activerecord.attributes.customer.name') %>
+      </label>
+    </dt>
+    <dd>
+      <%= text_field_tag 'customer_name', @deal.customer.name, {:class => 'largeText', :maxlength => '40', :disabled => true} %>
+    </dd>
+
+    <dt>
+      <label for="activity_date">
+        <%= t('activerecord.attributes.sales_report.activity_date') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <% activity_date = ((@sales_report.activity_date.blank?) ? Date.today : @sales_report.activity_date).strftime('%Y/%m/%d') %>
+      <%= f.text_field :activity_date, :class => 'date', :value => activity_date,
+        :maxlength => '10', :readonly => true, :style => 'width:100px;' %>
+    </dd>
+
+    <dt>
+      <label for="activity_method">
+        <%= t('activerecord.attributes.sales_report.activity_method') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.select(:activity_method, activity_method_list, {:include_blank => true }) %>
+    </dd>
+    
+    <dt>
+      <label for="main_staff">
+        <%= t('activerecord.attributes.sales_report.main_staff') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :main_staff, :class => 'largeText', :maxlength => '20' %>
+    </dd>
+    
+    <dt>
+      <label for="fellow_staff">
+        <%= t('activerecord.attributes.sales_report.fellow_staff') %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :fellow_staff, :class => 'largeText' %>
+    </dd>
+
+    <dt>
+      <label for="activity_objective">
+        <%= t('activerecord.attributes.sales_report.activity_objective') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :activity_objective, :class => 'largeText', :maxlength => '40' %>
+    </dd>
+
+    <dt>
+      <label for="destination">
+        <%= t('activerecord.attributes.sales_report.destination') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_field :destination, :class => 'largeText', :maxlength => '40' %>
+    </dd>
+
+    <dt>
+      <label for="reports">
+        <%= t('activerecord.attributes.sales_report.reports') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_area :reports, :rows => 4, :cols => 60 %>
+    </dd>
+    
+    <dt>
+      <label for="responses">
+        <%= t('activerecord.attributes.sales_report.responses') %><%= essential %>
+      </label>
+    </dt>
+    <dd>
+      <%= f.text_area :responses, :rows => 4, :cols => 60 %>
+    </dd>
+    
+  </dl>
+
+  <div class="button">
+    <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+    <a href='' class= 'cancel' onclick='$( "#sales_report_content" ).dialog("close"); return false;'>
+      <%= t('web-app-theme.cancel', :default => 'Cancel') %>
+    </a>
+
+  </div>
+

@@ -1,0 +1,204 @@
+/* 全機能共通CSS*/
+
+/* footer */
+#commonFooter {
+  clear: both;
+}
+
+/* box */
+#box {
+  width: 500px;
+  margin: 50px auto;  
+}
+
+#box .block {
+  background: #FFF;  
+  margin-bottom: 20px;
+}
+
+#box .block h2 {
+  color: #fff;
+  background: #3B5526;
+  border-bottom: 5px solid #81b953;
+  padding: 10px 15px;
+  margin: 0;  
+}
+
+#box .block .content {
+  border: 1px solid #81b953; border
+  padding: 10px 20px;
+}
+#login {
+  width:1024px;
+  height: 274px;
+  margin: 0 auto;
+}
+#login-form {
+  width: 250px;
+  float: left;
+  margin: 50px 50px 50px 387px;
+}
+#login-logo {
+  float: right;
+  margin: 30px 80px 30px 0;
+}
+
+/* pagination */
+.actions-bar .pagination {
+  width: 100%;
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+.pagination a, .pagination span, .pagination em {
+  width: 2em;
+  padding: 3px 8px;
+  border-top: 1px solid #CFCFCF;
+  border-left: 1px solid #CFCFCF;
+  border-right: 1px solid #A3A3A3;
+  border-bottom: 1px solid #A3A3A3;
+  border-radius: 3px;
+  behavior: url(/assets/PIE.htc);
+  position: relative;
+  background: #EEE;
+  cursor: pointer;
+}
+
+.pagination a:hover,
+.pagination span:hover,
+.pagination em:hover,
+.pagination a:focus,
+.pagination span:focus,
+.pagination em:focus {
+  background: #e8e8e8;
+}
+
+.pagination select {
+  padding: 3px;
+  border-top: 1px solid #a3a3a3;
+  border-left: 1px solid #a3a3a3;
+  border-right: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 3px;
+  behavior: url(/assets/PIE.htc);
+  position: relative;
+}
+
+.pagination span.page {
+  margin: 0 1em;
+}
+
+.pagination span.number {
+  margin-left: 1em;
+}
+
+/* flash-messages */
+.flash .message {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  text-align:center;
+  margin: 0 auto 15px;
+  color: #ffffff;
+}
+
+.flash .message p {
+  margin:8px;
+}
+
+.flash .error {
+  border: 1px solid #dd5e6d;
+  background-color: #d87074;
+}
+
+.flash .error_messages {
+  border: 1px solid #dd5e6d;
+  background-color: #d87074;
+}
+
+.flash .warning {
+  border: 1px solid #c59943;
+  background-color: #ca873c;
+}
+
+.flash .notice {
+  border: 1px solid #0c9cae;
+  background-color: #6db4c5;
+}
+
+.field_with_errors {
+
+}
+
+.field_with_errors input,
+.field_with_errors textarea,
+.field_with_errors select {
+  border: 2px solid #c00 !important;
+  background: #fff5f5 !important;
+}
+
+/* テキストボタン */
+.text_button {
+  font-size: 12px;
+  height: 20px;
+  width: 70px;
+}
+
+/* 数値入力テキストボックス */
+input.numeric {
+  text-align: right;
+}
+
+/* 入力条件*/
+.rule {
+  color: #FF0000;
+}
+
+/* 各種編集画面 リスト編集テーブル */
+table.edit-table td.edit-list,
+table.edit-table td.delete-button,
+table.edit-table td.add-button,
+table.edit-table td.input-form {
+  border: none;
+  background: transparent;
+  padding: 5px;
+}
+
+table.edit-table td.delete-button {
+  width: 50px;
+  vertical-align: bottom;
+}
+
+table.edit-table td.add-button {
+  width: 70px;
+  vertical-align: center;
+}
+
+table.edit-table td.input-form {
+  text-align: left;
+  vertical-align: top;
+  width: 350px;
+}
+
+table.edit-table td.edit-list table.item-list thead th {
+  background: #DDDDDD;
+}
+
+table.edit-table td.input-form div.item-name {
+  float: left;
+  margin-bottom: 5px;
+}
+
+table.edit-table td.input-form div.item-control {
+  float: left;
+  margin-bottom: 5px;
+}
+
+table.edit-table td.edit-list table.item-list tfoot td {
+  background: #E3E3E3;
+}
+
+/*  IME制御 */
+.ime_off { ime-mode: disabled; }
+.ime_on { ime-mode: active; }
+.ime_alpha { ime-mode: inactive; }
+

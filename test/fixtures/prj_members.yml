@@ -1,0 +1,181 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_member_1:
+  id: 1
+  project_id: 1
+  user_id: 1
+  planned_man_days: 4
+
+prj_member_2:
+  id: 2
+  project_id: 1
+  user_id: 2
+  planned_man_days: 10
+
+prj_member_3:
+  id: 3
+  project_id: 1
+  user_id: 3
+  planned_man_days: 12
+
+prj_member_4:
+  id: 4
+  project_id: 1
+  user_id: 4
+  planned_man_days: 12
+
+prj_member_5:
+  id: 5
+  project_id: 1
+  user_id: 6
+  planned_man_days: 12
+
+prj_member_6:
+  id: 6
+  project_id: 2
+  user_id: 1
+  planned_man_days: 4
+
+prj_member_7:
+  id: 7
+  project_id: 2
+  user_id: 2
+  planned_man_days: 10
+
+prj_member_8:
+  id: 8
+  project_id: 2
+  user_id: 3
+  planned_man_days: 12
+
+prj_member_9:
+  id: 9
+  project_id: 2
+  user_id: 4
+  planned_man_days: 12
+
+prj_member_10:
+  id: 10
+  project_id: 2
+  user_id: 6
+  planned_man_days: 12
+
+prj_member_11:
+  id: 11
+  project_id: 3
+  user_id: 1
+  planned_man_days: 4
+
+prj_member_12:
+  id: 12
+  project_id: 3
+  user_id: 2
+  planned_man_days: 10
+
+prj_member_13:
+  id: 13
+  project_id: 3
+  user_id: 3
+  planned_man_days: 12
+
+prj_member_14:
+  id: 14
+  project_id: 3
+  user_id: 4
+  planned_man_days: 12
+
+prj_member_15:
+  id: 15
+  project_id: 3
+  user_id: 6
+  planned_man_days: 12
+
+prj_member_16:
+  id: 16
+  project_id: 4
+  user_id: 1
+  planned_man_days: 4
+
+prj_member_17:
+  id: 17
+  project_id: 4
+  user_id: 2
+  planned_man_days: 10
+
+prj_member_18:
+  id: 18
+  project_id: 4
+  user_id: 3
+  planned_man_days: 12
+
+prj_member_19:
+  id: 19
+  project_id: 4
+  user_id: 4
+  planned_man_days: 12
+
+prj_member_20:
+  id: 20
+  project_id: 4
+  user_id: 6
+  planned_man_days: 12
+
+prj_member_21:
+  id: 21
+  project_id: 5
+  user_id: 1
+  planned_man_days: 4
+
+prj_member_22:
+  id: 22
+  project_id: 5
+  user_id: 2
+  planned_man_days: 10
+
+prj_member_23:
+  id: 23
+  project_id: 5
+  user_id: 3
+  planned_man_days: 12
+
+prj_member_24:
+  id: 24
+  project_id: 5
+  user_id: 4
+  planned_man_days: 12
+
+prj_member_25:
+  id: 25
+  project_id: 5
+  user_id: 6
+  planned_man_days: 12
+
+prj_member_26:
+  id: 26
+  project_id: 6
+  user_id: 1
+  planned_man_days: 4
+
+prj_member_27:
+  id: 27
+  project_id: 6
+  user_id: 2
+  planned_man_days: 10
+
+prj_member_28:
+  id: 28
+  project_id: 6
+  user_id: 3
+  planned_man_days: 12
+
+prj_member_29:
+  id: 29
+  project_id: 6
+  user_id: 4
+  planned_man_days: 12
+
+prj_member_30:
+  id: 30
+  project_id: 6
+  user_id: 6
+  planned_man_days: 12

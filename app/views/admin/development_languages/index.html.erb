@@ -1,0 +1,92 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'development_languages' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_development_languages_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_development_language_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+       
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.development_languages')) %></h1>
+        </header>
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="view-order">
+                  <%= t('activerecord.attributes.development_language.view_order')  %>
+                </th>
+                <th scope="col" class="name">
+                  <%= t('activerecord.attributes.development_language.name') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @development_languages.each do |development_language| -%>
+                <tr>
+                  <th scope="row" class="view-order">
+                    <%= development_language.view_order %>
+                  </th>
+                  <td>
+                    <%= link_to development_language.name, admin_development_language_path(development_language) %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_development_language_path(development_language) %> |
+                    <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_development_language_path(development_language) %>
+                    <% unless DevelopmentLanguage.project_dev_language?(development_language.id) %>
+                      |
+                      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}",
+                          admin_development_language_path(development_language), :method => :delete,
+                          :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @development_languages %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

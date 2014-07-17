@@ -1,0 +1,109 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_expense_budget_1:
+  id: 1
+  project_id: 1
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_2:
+  id: 2
+  project_id: 1
+  expense_item_cd: 30
+  expense_budget: 100000
+    
+prj_expense_budget_3:
+  id: 3
+  project_id: 1
+  expense_item_cd: 99
+  expense_budget: 100000
+
+prj_expense_budget_4:
+  id: 4
+  project_id: 2
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_5:
+  id: 5
+  project_id: 2
+  expense_item_cd: 30
+  expense_budget: 500000
+    
+prj_expense_budget_6:
+  id: 6
+  project_id: 2
+  expense_item_cd: 99
+  expense_budget: 100000
+
+prj_expense_budget_7:
+  id: 7
+  project_id: 3
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_8:
+  id: 8
+  project_id: 3
+  expense_item_cd: 30
+  expense_budget: 300000
+    
+prj_expense_budget_9:
+  id: 9
+  project_id: 3
+  expense_item_cd: 99
+  expense_budget: 100000
+
+prj_expense_budget_10:
+  id: 10
+  project_id: 4
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_11:
+  id: 11
+  project_id: 4
+  expense_item_cd: 30
+  expense_budget: 100000
+    
+prj_expense_budget_12:
+  id: 12
+  project_id: 4
+  expense_item_cd: 99
+  expense_budget: 100000
+
+prj_expense_budget_13:
+  id: 13
+  project_id: 5
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_14:
+  id: 14
+  project_id: 5
+  expense_item_cd: 30
+  expense_budget: 100000
+    
+prj_expense_budget_15:
+  id: 15
+  project_id: 5
+  expense_item_cd: 99
+  expense_budget: 100000
+
+prj_expense_budget_16:
+  id: 16
+  project_id: 6
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_17:
+  id: 17
+  project_id: 6
+  expense_item_cd: 30
+  expense_budget: 100000
+    
+prj_expense_budget_18:
+  id: 18
+  project_id: 6
+  expense_item_cd: 99
+  expense_budget: 100000

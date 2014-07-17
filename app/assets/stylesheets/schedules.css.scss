@@ -1,0 +1,376 @@
+// Place all the styles related to the schedule/schedules controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* SelectAll & UnselectAll 
+-------------------------------------------------- */
+a.select {
+  cursor:pointer;
+}
+
+/* MulList Table
+-------------------------------------------------- */
+
+.mul_list table {
+	width: 100%;
+	margin: 1.5em 0;
+	border-collapse: separate;
+	*border-collapse: collapse;
+}
+.mul_list th,
+.mul_list td {
+	padding: .5em 8px;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+	*border-top: 1px solid #b9b9b9;
+	*border-left: 1px solid #b9b9b9;
+	vertical-align: middle;
+}
+
+thead tr.fc-first.fc-last th,
+thead tr.fc-first.fc-last td {
+    background-color: #666666;
+    color: #FFFFFF;
+}
+
+.not_reflected {
+  color: red;
+}
+.reflected {
+  background-color: #C85FA1 !important;
+  color: #FFF;
+}
+.mul_list tr.reflected td:first-child {
+  background-color: white;
+}
+.mul_list td:first-child {
+	border-left: 1px solid #cfcfcf;
+}
+.mul_list td:last-child {
+	border-right: 1px solid #a3a3a3;
+}
+.mul_list tbody tr:first-child td {
+	border-top: 1px solid #b9b9b9;
+}
+.mul_list tbody tr:first-child td:first-child {
+	border-radius: 5px 0 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.mul_list tbody tr:first-child td:last-child {
+	border-radius: 0 5px 0 0;
+	behavior: url(/assets/PIE.htc);
+}
+.mul_list tbody tr:last-child td:first-child {
+	border-radius: 0 0 0 5px;
+	behavior: url(/assets/PIE.htc);
+}
+.mul_list tbody tr:last-child td:last-child {
+	border-radius: 0 0 5px 0;
+	behavior: url(/assets/PIE.htc);
+}
+.mul_list tr.month_header td {
+    background: #666;
+    color: #fff;
+}
+
+/* スケジュール管理 登録・編集画面 */
+
+/* Entry Form
+-------------------------------------------------- */
+
+form .entryForm  {
+  margin: 1.5em 0;
+  padding: 8px 15px;
+  border-top: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+  border-radius: 5px;
+  background: #eee;
+  margin-top: 0px;
+  behavior: url(/assets/PIE.htc);
+}
+
+form .entryForm dt  {
+  width: 160px;
+}
+
+form .entryForm dd  {
+  padding-left: 160px;
+}
+
+/* Error */
+
+form .errorMsg {
+  margin-left: 8px;
+  color: #c00;
+}
+form .errorMsg ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+form .error {
+  border: 2px solid #c00 !important;
+  background: #fff5f5 !important;
+}
+
+table div.item-name {
+  float: left;
+}
+
+table div.item-control {
+  float: left;
+}
+
+/* カレンダー部分
+-------------------------------------------------- */
+
+#left {
+  float: left;
+  padding-left: 10px;
+  width: 20%;
+}
+
+#center {
+  float: left;
+  padding-left: 65px;
+  width: 25%;
+}
+
+#right {
+  float: left;
+  padding-left: 10px;
+  width: 47%;
+}
+
+select.member_select {
+  // width: 196px;
+  width: 100%;
+}
+
+select.project_select {
+  width: 170px;
+}
+
+select.group_select {
+  width: 170px;
+}
+
+select.work_type_select {
+  width: 200px;
+}
+
+table#select_member_table,
+table#select_member_table tr,
+table#select_member_table td {
+  border: none;
+  background: #eee;
+}
+table#select_member_table,
+table#select_member_table .item-control, 
+table#select_member_table tr {
+  width: 100%;
+}
+
+/* 日表示部分(FullCalendar)
+-------------------------------------------------- */
+#calendar table.fc-agenda-days thead tr:first-child th:first-child {
+  border-radius: 5px 0 0 0;
+}
+#calendar table.fc-agenda-days thead tr:first-child th:last-child {
+  border-radius: 0 5px 0 0;
+}
+#calendar table.fc-agenda-days tbody tr:first-child th:first-child {
+  border-radius: 0 0 0 5px;
+}
+#calendar table.fc-agenda-days tbody tr:first-child th:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+/* プロジェクト・グループ別一覧のカレンダー(calendar_separate)
+-------------------------------------------------- */
+.calendar_separate {
+}
+
+.calendar_separate .cs_nav {
+  width: 100%;
+}
+
+.calendar_separate .cs_content {
+  width: 100%;
+  padding-top: 2.5em;
+}
+
+.calendar_separate .cs_content .cs_table {
+  width: 100%;
+  border-collapse: separate;
+  *border-collapse: collapse;
+}
+
+.calendar_separate .cs_content .cs_table th,
+.calendar_separate .cs_content .cs_table td {
+	padding: .5em 8px;
+	border-right: 1px solid #b9b9b9;
+	border-bottom: 1px solid #b9b9b9;
+	*border-top: 1px solid #b9b9b9;
+	*border-left: 1px solid #b9b9b9;
+	vertical-align: middle;
+}
+// ユーザ列
+.calendar_separate .cs_content .cs_table th.cs_table_column_user,
+.calendar_separate .cs_content .cs_table td.cs_table_column_user {
+  background-color: #E4E1E1;
+}
+
+
+// ヘッダー（他の日付）
+.calendar_separate .cs_content .cs_table th.cs_other_day {
+  background-color: #DDCFB3;
+}
+// ヘッダー（今日）
+.calendar_separate .cs_content .cs_table th.cs_today {
+  background-color: #DDCFB3;
+}
+// ヘッダー（土曜日）
+.calendar_separate .cs_content .cs_table th.cs_saturday {
+  background-color: #ABB5CE;
+}
+// ヘッダー（日曜日）
+.calendar_separate .cs_content .cs_table th.cs_sunday {
+  color: red;
+  background-color: #E4B6C5;
+}
+// 内容（他の日付）
+.calendar_separate .cs_content .cs_table td.cs_other_day {
+}
+// 内容（今日）
+.calendar_separate .cs_content .cs_table td.cs_today {
+  background-color:  #FCFBC5;
+}
+// 内容（土曜日）
+.calendar_separate .cs_content .cs_table td.cs_saturday {
+  background-color: #DFE4EF;
+}
+// 内容（日曜日）
+.calendar_separate .cs_content .cs_table td.cs_sunday {
+  background-color: #F1DFE1;
+}
+.calendar_separate .cs_content .cs_table td.cs_calendar_content {
+	vertical-align: top;
+}
+.calendar_separate .cs_content .cs_table th:first-child,
+.calendar_separate .cs_content .cs_table td:first-child {
+	border-left: 1px solid #cfcfcf;
+}
+.calendar_separate .cs_content .cs_table td:last-child {
+	border-right: 1px solid #a3a3a3;
+}
+.calendar_separate .cs_content .cs_table thead tr:first-child th {
+	border-top: 1px solid #b9b9b9;
+}
+.calendar_separate .cs_content .cs_table thead tr:first-child th:first-child {
+	border-radius: 5px 0 0 0;
+    behavior: url(/assets/PIE.htc);
+    background-color: #A9A8A8;
+}
+.calendar_separate .cs_content .cs_table thead tr:first-child th:last-child {
+	border-radius: 0 5px 0 0;
+    behavior: url(/assets/PIE.htc);
+}
+.calendar_separate .cs_content .cs_table tbody tr:last-child td:first-child {
+	border-radius: 0 0 0 5px;
+    behavior: url(/assets/PIE.htc);
+}
+.calendar_separate .cs_content .cs_table tbody tr:last-child td:last-child {
+	border-radius: 0 0 5px 0;
+    behavior: url(/assets/PIE.htc);
+}
+
+.calendar_separate .cs_button_calendar_show {
+  float: right;
+  height: 1.6em;
+}
+.calendar_separate .cs_button {
+  background: none repeat scroll 0 0 #EEEEEE;
+  float: right;
+  height: 1.6em;
+  line-height: 1.6em;
+  padding: 0 0.6em;
+  margin-left: 0.3em;
+  position: relative;
+  white-space: nowrap;
+  border-style: solid;
+  border-color: #A3A3A3;
+  border-width: 1px;
+}
+.calendar_separate .cs_button a {
+  text-decoration: none;
+}
+
+.calendar_separate .cs_button:hover {
+  background-color: #A3A3A3;
+  border-color: red;
+  cursor:pointer;
+}
+
+.calendar_separate .cs_event {
+  width:100%;
+  background-color: #6D7CC2;
+  margin:0px 3px 3px 0px;
+  padding-left: 3px;
+  border-radius: 5px;
+  color: #FFFFFF;
+}
+// add button
+.calendar_separate .cs_add {
+  margin:5px 0px 0px 0px;
+}
+.calendar_separate .cs_add_image:hover {
+  cursor: pointer;
+}
+// ユーザ列のユーザ情報部分
+td.cs_user_base_info {                                                                                                                             
+  background-color: #E4E1E1;                                                                                                                       
+}
+// ユーザ列
+.calendar_separate .cs_content .cs_table  table.cs_user tr th,
+.calendar_separate .cs_content .cs_table  table.cs_user tr td {
+  border: none;
+  background-color: #E4E1E1;
+}
+
+button.calendar_show {
+  margin: 0px;
+  padding: 0px;
+  width: 180px;
+}
+
+/* File upload
+-------------------------------------------------- */
+div.file_upload {
+  text-align: center;
+}
+div.file_upload table {
+  margin-left: auto;
+  margin-right: auto;
+}
+div.file_upload table td {
+  padding-right: 20px;
+}
+
+table#reflect_member_list {
+  border: none;
+  width: 100%;
+  tr, td, th {
+    border: none;
+    background: none;
+  }
+  td.member_name {
+    width: 40%;
+  }
+  td.member_action {
+  }
+  td.member_action .utilityNav {
+    float: left;
+  }
+}

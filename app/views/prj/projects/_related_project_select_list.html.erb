@@ -1,0 +1,10 @@
+# encoding: utf-8
+
+                        <%= fields_for object do |f| %>
+                          <div id="project_related_project_id_selection">
+                            <% unless @edit_progress_rate %>
+                              <%= f.select(:related_project_id,
+                                  @related_project_select_list, {}, {:size => 4}) %>
+                            <% end %>
+                          </div>
+                        <% end %>

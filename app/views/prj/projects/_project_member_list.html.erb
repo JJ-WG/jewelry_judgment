@@ -1,0 +1,106 @@
+# encoding: utf-8
+
+                      <%= fields_for object do |f| %>
+                        <table class="item-list" id="project_member_list">
+                          <thead>
+                            <tr>
+                              <th class="name">
+                                <%= t('activerecord.attributes.user.name') %>
+                              </th>
+                              <th class="unit-price">
+                                <%= t('activerecord.attributes.user.unit_price') %>
+                                <%= t('common_label.yen') %>
+                              </th>
+                              <th class="planned-man-days">
+                                <%= t('activerecord.attributes.prj_members.planned_man_days') %>
+                                <%= t('common_label.man_day') %>
+                              </th>
+                              <% unless @edit_progress_rate %>
+                                <th class="deleted"></th>
+                              <% end %>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <%= f.text_field :prj_member_size, :type => 'hidden',
+                                :value => @project_prj_members.size %>
+                              <% if @project_prj_members.present? %>
+                                <% @project_prj_members.each_with_index do |member, index| %>
+                                  <%= f.fields_for :prj_members_attributes, member,
+                                      :index => (index = index) do |f2| %>
+                                    <% member = f2.object %>
+                                    
+                                    <%= f2.text_field :id, :type => 'hidden', :index => index %>
+                                    <%= f2.text_field :project_id, :type => 'hidden', :index => index %>
+                                    <%= f2.text_field :user_id, :type => 'hidden', :index => index %>
+                                    <%= f2.text_field :unit_price, :type => 'hidden', :index => index,
+                                        :value => UnitPrice.unit_price(member.user_id) %>
+                                    <tr>
+                                      <th scope="row" class="name">
+                                        <%= User.get_name(member.user_id) %>
+                                      </th>
+                                      <td class="unit_price num">
+                                        <% if @project.present? %>
+                                          <%= number_with_delimiter(UnitPrice.unit_price(member.user_id)) %>
+                                        <% else%>
+                                          <%= number_with_delimiter(@project.member_unit_price(member.user_id)) %>
+                                        <% end%>
+                                      </td>
+                                      <td class="planned_man_days num">
+                                        <%= f2.text_field :planned_man_days, :index => index,
+                                            :class => "text numeric ime_off",
+                                            :size => "10",
+                                            :maxlength => "10",
+                                            :style => "width:50px;",
+                                            :readonly => @edit_progress_rate,
+                                            :onchange => "on_change_prj_member_planned_man_days(this)" %>
+                                      </td>
+                                      <% unless @edit_progress_rate %>
+                                        <td class="deleted">
+                                          <%= link_to('削除',
+                                              root_url + 'prj/projects/on_click_prj_member_delete?' +
+                                              'project_id=' + @project.id.to_s +
+                                              '&section_id=' + @section_id.to_s + 
+                                              '&user_id=' + member.user_id.to_s,
+                                              :remote => true) %>
+                                        </td>
+                                      <% end %>
+                                    </tr>
+                                  <% end %>
+                                <% end %>
+                              <% else %>
+                                <tr>
+                                  <th scope="row" class="name">&nbsp;</th>
+                                  <td class="unit_price">&nbsp;</td>
+                                  <td class="planned_man_days">&nbsp;</td>
+                                  <% unless @edit_progress_rate %>
+                                    <td class="deleted">&nbsp;</td>
+                                  <% end %>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <th colspan="2" scope="row">
+                                  <div>
+                                    合計
+                                    <% unless @edit_progress_rate %>
+                                      <input type="button" id="prj_member_total_button"
+                                          value="計算" onclick="on_click_prj_member_total()" />
+                                    <% end %>
+                                  </div>
+                                </th>
+                                <td>
+                                  <input type="text" id="project_prj_member_total"
+                                      name="project[prj_member_total]" class="price" 
+                                      value="<%= number_with_delimiter(@prj_member_total) %>"
+                                      readonly="readonly" />
+                                </td>
+                                <% unless @edit_progress_rate %>
+                                  <td>
+                                    &nbsp;
+                                  </td>
+                                <% end %>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        <% end %>

@@ -1,0 +1,96 @@
+# encoding: utf-8
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+          <% flash.clear -%>
+        </div>
+        
+        <header class="pageHeader">
+          <%= render :partial => 'nego/sales_reports/sales_report_button', :locals=> {:deal => @deal, :sales_report => @sales_report } %>
+        </header>
+        
+        <div id="pageContents">
+            <div class="data" style='margin-top: 0px;'>
+              <dl style="padding-bottom: 20px;">
+                <dt>
+                  <%= t('activerecord.attributes.deal.name') %>
+                </dt>
+                <dd>
+                  <%= @deal.name %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.customer.name') %>
+                </dt>
+                <dd>
+                  <%= @deal.customer.name %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.activity_date') %>
+                </dt>
+                <dd>
+                  <%= l(@sales_report.activity_date) %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.activity_method') %>
+                </dt>
+                <dd>
+                  <%= activity_method_indication(@sales_report.activity_method) %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.main_staff') %>
+                </dt>
+                <dd>
+                  <%= @sales_report.main_staff %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.fellow_staff') %>
+                </dt>
+                <dd>
+                  <%= @sales_report.fellow_staff %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.activity_objective') %>
+                </dt>
+                <dd>
+                  <%= @sales_report.activity_objective %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.destination') %>
+                </dt>
+                <dd>
+                  <%= @sales_report.destination %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.reports') %>
+                </dt>
+                <dd>
+                  <%= @sales_report.reports %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.sales_report.responses') %>
+                </dt>
+                <dd>
+                  <%= @sales_report.responses %>
+                </dd>
+
+              </dl>
+            </div><!-- /.dealData -->
+
+            <%= render :partial => 'nego/sales_reports/sales_report_button', :locals=> {:deal => @deal, :sales_report => @sales_report } %>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

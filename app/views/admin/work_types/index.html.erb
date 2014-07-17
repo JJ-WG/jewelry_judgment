@@ -1,0 +1,105 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'work_types' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_work_types_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_work_type_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.work_types')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :html => { :method => :get }, :option => {:class => 'form'} do |f| %>
+            <div class="condition">
+              <label for="cond1"><%= t('activerecord.attributes.work_type.office_job_label') %>:</label>
+              <%= f.select(:office_job, office_job_items_list,
+                  :selected => session[:work_type_condition][:office_job]) %>
+            </div>
+            
+            <div class="button">
+              <input type="submit" accesskey="s" value="検索" />
+            </div>
+          <% end %>
+        </div><!-- /.dataSearch -->
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="view-order">
+                  <%= t('activerecord.attributes.work_type.view_order') %>
+                </th>
+                <th scope="col" class="name">
+                  <%= t('activerecord.attributes.work_type.name') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @work_types.each do |work_type| -%>
+                <tr>
+                  <th scope="row" class="view-order">
+                    <%= work_type.view_order %>
+                  </th>
+                  <td>
+                    <%= link_to work_type.name, admin_work_type_path(work_type) %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_work_type_path(work_type) %> |
+                    <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_work_type_path(work_type) %>
+                    <% unless WorkType.project_work_type?(work_type.id) %>
+                       |
+                      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}", admin_work_type_path(work_type),
+                          :method => :delete, :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @work_types %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

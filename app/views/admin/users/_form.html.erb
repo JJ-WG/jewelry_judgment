@@ -1,0 +1,227 @@
+# encoding: utf-8
+
+            <%= f.text_field :id, :type => 'hidden' %>
+            
+            <dl>
+              <dt>
+                <label for="user_rank">
+                  <%= t('activerecord.attributes.user.user_rank') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%
+                  if @user.user_rank_cd.blank?
+                    @user.user_rank_cd = USER_RANK_CODE[:employee]
+                  end
+                %>
+                <%= f.select(:user_rank_cd, user_ranks_list) %>
+              </dd>
+              
+              <dt>
+                <label for="section">
+                  <%= t('activerecord.attributes.user.section') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:section_id, @sections_list, {:include_blank => true}) %>
+              </dd>
+              
+              <dt>
+                <label for="occupation">
+                  <%= t('activerecord.models.occupation') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:occupation_id, Occupation.occupations_list,
+                    {:include_blank => true}) %>
+              </dd>
+              
+              <dt>
+                <label for="official_position">
+                  <%= t('activerecord.attributes.user.official_position') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :official_position, :class => 'text_field ime_on',
+                    :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.user.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'text_field ime_on',
+                    :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="name_ruby">
+                  <%= t('activerecord.attributes.user.name_ruby') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name_ruby, :class => 'text_field ime_on',
+                    :maxlength => '40', :style => 'width:400px;' %>
+                <div class="rule"><%= t('activerecord.attributes.user.name_ruby_rule') %></div>    
+              </dd>
+              
+              <dt>
+                <label for="name_ruby">
+                  <%= t('activerecord.attributes.user.user_code') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :user_code, :class => 'text_field ime_off',
+                    :maxlength => '10', :style => 'width:100px;' %>
+              </dd>
+              
+              <dt>
+                <label for="home_phome_no">
+                  <%= t('activerecord.attributes.user.home_phome_no') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :home_phome_no, :class => 'text_field ime_off',
+                    :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="mobile_phone_no">
+                  <%= t('activerecord.attributes.user.mobile_phone_no') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :mobile_phone_no, :class => 'text_field ime_off',
+                    :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="mail_address1">
+                  <%= t('activerecord.attributes.user.mail_address1') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :mail_address1, :class => 'text_field ime_off',
+                    :maxlength => '40', :style => 'width:400px;' %>
+              </dd>
+              
+              <dt>
+                <label for="mail_address2">
+                  <%= t('activerecord.attributes.user.mail_address2') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :mail_address2, :class => 'text_field ime_off',
+                    :maxlength => '40', :style => 'width:400px;' %>
+              </dd>
+              
+              <dt>
+                <label for="mail_address3">
+                  <%= t('activerecord.attributes.user.mail_address3') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :mail_address3, :class => 'text_field ime_off',
+                    :maxlength => '40', :style => 'width:400px;' %>
+              </dd>
+              
+              <dt>
+                <label for="login">
+                  <%= t('activerecord.attributes.user.login') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :login, :class => 'text_field ime_off',
+                    :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="password">
+                  <%= t('activerecord.attributes.user.password') %>
+                  <%= essential unless action_name == 'edit' %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.password_field :password, :class => 'password_field ime_off',
+                    :maxlength => '20' %>
+                <div class="rule"><%= t('activerecord.attributes.user.password_rule') %></div>
+              </dd>
+              
+              <dt>
+                <label for="password_confirmation">
+                  <%= t('activerecord.attributes.user.password_confirmation') %>
+                  <%= essential unless action_name == 'edit' %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.password_field :password_confirmation,
+                    :class => 'password_field ime_off', :maxlength => '20' %>
+              </dd>
+              
+              <dt>
+                <label for="unit_price">
+                  <%= t('activerecord.attributes.user.unit_price_label') %>
+                </label>
+              </dt>
+              <dd>
+                <div class="rule">工数単価を1件も登録しなかった場合、システム設定の工数単価初期値が使用されます。</div>
+                <table class="edit-table">
+                  <tr>
+                    <td class="edit-list">
+                      <%= render :partial => 'unit_price_list', 
+                          :locals => {:object => @user} %>
+                    </td>
+                    <td class="delete-button">
+                      <div id="unit_price_delete_button">
+                        <%= render :partial => 'unit_price_delete_button', 
+                            :locals => {:object => @user} %>
+                      </div>
+                    </td>
+                    <td class="add-button">
+                      <div id="unit_price_add_button">
+                        <input type="button" value="< 追加" />
+                      </div>
+                    </td>
+                    <td class="input-form">
+                      <div class="group">
+                        <div class="item-name">
+                          <%= t('activerecord.attributes.unit_price.start_date') %>:
+                          <%= essential %>
+                          <div id="unit_price_start_date_error" style="color:#CC0000"></div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="item-control">
+                          <%= f.text_field :unit_price_start_date, 
+                              :class => 'text ime_off', :size => '10', :maxlength => '10',
+                              :style => 'width:100px;' %>
+                        </div>
+                      </div>
+                      <div style="clear:both;"></div>
+                      <div class="group">
+                        <div class="item-name">
+                          <%= t('activerecord.attributes.unit_price.unit_price') %>
+                          <%= t('common_label.yen') %>:
+                          <%= essential %>
+                          <div id="unit_price_unit_price_error" style="color:#CC0000"></div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="item-control">
+                          <%= f.text_field :unit_price_unit_price, 
+                              :class => 'text numeric ime_off', :size => '10', :maxlength => '10',
+                              :style => 'width:100px;' %>
+                        </div>
+                      </div>
+                      <div style="clear:both;"></div>
+                    </td>
+                  </tr>
+                </table>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_users_path,
+                  :class => 'cancel') %>
+            </div>

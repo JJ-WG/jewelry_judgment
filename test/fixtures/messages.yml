@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+message_1:
+  id: 1
+  title: 社内管理システムの運用開始
+  message: |-
+    社内管理システムの運用を開始しました。
+    ご意見、不具合、不明な点などがございましたら
+    担当の○○までご連絡いただけますようお願いいたします。
+
+message_2:
+  id: 2
+  title: システムメンテナンスのご案内
+  message: ○月○日、システムのメンテナンスを実施します。

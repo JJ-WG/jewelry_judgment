@@ -1,0 +1,47 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="view_order">
+                  <%= t('activerecord.attributes.tax_division.view_order') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.number_field :view_order, :class => 'number_field ime_off' %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.tax_division.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'text_field ime_on', :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="tax_type">
+                  <%= t('activerecord.attributes.tax_division.tax_type') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:tax_type_cd, tax_types_list) %>
+              </dd>
+              
+              <dt>
+                <label for="tax_rate">
+                  <%= t('activerecord.attributes.tax_division.tax_rate') %>
+                  <%= t('common_label.percent') %>
+                  <%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :tax_rate, :class => 'text_field numeric ime_off', :maxlength => '10', :style => 'width:50px;' %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_tax_divisions_path,
+                  :class => 'cancel') %>
+            </div>

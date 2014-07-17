@@ -1,0 +1,12 @@
+//
+// プロジェクトメンバー編集用コントロール更新処理
+//
+$('#project_prj_member_user_id_selection').html(
+  "<%= escape_javascript(render :partial => 'member_select_list',
+      :locals => {:object => @project}) %>"
+);
+
+$('#project_member_list').html(
+  "<%= escape_javascript(render :partial => 'project_member_list',
+      :locals => {:object => @project}) %>"
+);

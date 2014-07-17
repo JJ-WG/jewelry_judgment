@@ -1,0 +1,13 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 部署管理 部署一覧 */
+div.list thead th.view-order {
+  width: 10%;
+  text-align: center;
+}
+
+div.list thead th.name {
+  width: 77%;
+}

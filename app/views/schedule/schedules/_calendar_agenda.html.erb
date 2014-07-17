@@ -1,0 +1,70 @@
+# encoding: utf-8
+
+  <script>
+    $(function() {
+      function select_date_process() {
+        var selectDate = $( "#datepicker" ).datepicker( "getDate" );
+        $('#calendar').fullCalendar('gotoDate', selectDate);
+        // スケジュール日付の設定
+        $('#schedule_schedule_date').val(selectDate);
+        $('#schedule_start_at_1i').val(selectDate.getFullYear());
+        $('#schedule_start_at_2i').val(selectDate.getMonth()+1);
+        $('#schedule_start_at_3i').val(selectDate.getDate());
+        $('#schedule_end_at_1i').val(selectDate.getFullYear());
+        $('#schedule_end_at_2i').val(selectDate.getMonth()+1);
+        $('#schedule_end_at_3i').val(selectDate.getDate());
+      }
+      $("#datepicker").datepicker({
+        autoSize: true,
+        dateFormat: "yy-mm-dd",
+        onSelect: function(dateText, inst){
+            select_date_process();
+            <% if action_name != 'new' && action_name != 'create' %>
+              var selectDate = $( "#datepicker" ).datepicker( "getDate" );
+              window.location.replace(app_name_for_url + '/schedule/schedules/show_by_date?select_date=' + $.fullCalendar.formatDate(selectDate, 'yyyy-MM-dd'));
+            <% end %>
+          }
+      });
+
+      $('#calendar').fullCalendar({
+        header: false,
+        allDaySlot: false,
+        defaultView: 'agendaDay',
+        eventSources: [{
+            url: app_name_for_url + '/schedule/schedules/get_schedules_by_day',
+            color: 'blue',
+            textColor: 'black',
+            ignoreTimezone: true,
+            lazyFetching: false
+          }],
+        firstDay: 1,
+        axisFormat: 'HH:mm',
+        timeFormat: {
+          agenda: 'HH:mm{ ～ HH:mm}'
+          },
+        columnFormat: {
+            month: 'ddd',
+            week: 'MM/dd ddd',
+            day: 'MM/dd' + '（' + 'dddd' + '）'
+          },
+        dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        ignoreTimezone: false,
+        contentHeight: 550,
+        eventClick: function(event, jsEvent, view){
+            window.location.replace(app_name_for_url + "/schedule/schedules/" + event.id);
+          }
+      });
+
+      // 初期設定
+      $( "#datepicker" ).datepicker( "setDate", "<%= @schedule.schedule_date.to_s(:db) %>" );
+      select_date_process();
+
+    });
+  </script>
+          <div id="left">
+            <div id="datepicker"></div>
+          </div>
+          <div id="center">
+            <div id='calendar'></div>
+          </div>

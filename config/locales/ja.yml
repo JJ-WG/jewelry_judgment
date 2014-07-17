@@ -1,0 +1,595 @@
+ja:
+  date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    - 
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: ! '%Y/%m/%d'
+      long: ! '%Y年%m月%d日(%a)'
+      short: ! '%m/%d'
+      local_date: '%Y年%m月%d日'
+      local_date2: '%Y年%-m月%-d日'
+      local_date3: ! '%m/%d(%a)'
+      local_date4: ! '%d日(%a)'
+      local_date5: '%Y/%m'
+    month_names:
+    - 
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 約1時間
+        other: 約%{count}時間
+      about_x_months:
+        one: 約1ヶ月
+        other: 約%{count}ヶ月
+      about_x_years:
+        one: 約1年
+        other: 約%{count}年
+      almost_x_years:
+        one: 1年弱
+        other: ! '%{count}年弱'
+      half_a_minute: 30秒前後
+      less_than_x_minutes:
+        one: 1分以内
+        other: ! '%{count}分以内'
+      less_than_x_seconds:
+        one: 1秒以内
+        other: ! '%{count}秒以内'
+      over_x_years:
+        one: 1年以上
+        other: ! '%{count}年以上'
+      x_days:
+        one: 1日
+        other: ! '%{count}日'
+      x_minutes:
+        one: 1分
+        other: ! '%{count}分'
+      x_months:
+        one: 1ヶ月
+        other: ! '%{count}ヶ月'
+      x_seconds:
+        one: 1秒
+        other: ! '%{count}秒'
+    prompts:
+      day: 日
+      hour: 時
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  errors: &errors
+    format: ! '%{attribute}%{message}'
+    messages:
+      accepted: を受諾してください。
+      blank: を入力してください。
+      confirmation: と確認の入力が一致しません。
+      empty: を入力してください。
+      equal_to: は%{count}にしてください。
+      even: は偶数にしてください。
+      exclusion: は予約されています。
+      greater_than: は%{count}より大きい値にしてください。
+      greater_than_or_equal_to: は%{count}以上の値にしてください。
+      inclusion: は一覧にありません。
+      invalid: は不正な値です。
+      less_than: は%{count}より小さい値にしてください。
+      less_than_or_equal_to: は%{count}以下の値にしてください。
+      not_a_number: は数値で入力してください。
+      not_an_integer: は整数で入力してください。
+      odd: は奇数にしてください。
+      record_invalid: バリデーションに失敗しました。 %{errors}
+      taken: はすでに存在します。
+      too_long: は%{count}文字以内で入力してください。
+      too_short: は%{count}文字以上で入力してください。
+      wrong_length: は%{count}文字で入力してください。
+      datetime_compare_error: 'は%{start_at}以降の時間を入力してください。'
+      deleted: は削除されています。
+      finished: は完了しています。
+      not_exist: は存在しません。
+      no_data: 対象のデータが存在しません。
+      not_permitted: 操作権限がありません。
+      model_is_deleted: '%{model}は削除されています。'
+      model_is_alive: '%{model}は削除されていません。'
+      model_is_started: '%{model}は既に開始しています。'
+      model_is_finished: '%{model}は既に完了しています。'
+      model_is_uncompleted: '%{model}は完了していません。'
+      model_is_locked: "%{model}がロックされています。"
+      project_finished: '完了プロジェクトの%{model}は%{action}できません。'
+      operable_restriction: 'この%{model}に関連する%{associations}がある場合は、それらを先に削除してください。'
+      inoperable_restriction: 'この%{model}に関連する%{associations}がある場合は、削除できません。'
+      create_error: "%{model}を登録できませんでした。"
+      update_error: "%{model}を更新できませんでした。"
+      delete_error: "%{model}を削除できませんでした。"
+      download_error: "ファイルをダウンロードできませんでした。"
+      csv_model_create_error: "%{model}仮データを登録できませんでした。"
+      actual_data_create_error: "%{model}実データを登録できませんでした。"
+      selected_zero_error: "対象レコードを選択してください。"
+      csv_suffix_error: "拡張子はcsvであるファイルを選択してください。"
+      csv_header_error: "ファイルのヘッダは間違いです。"
+      csv_file_blank_error: "CSVファイルを選択してください。"
+    template:
+      body: 次の項目を確認してください。
+      header:
+        one: ! '%{model}にエラーが発生しました。'
+        other: ! '%{model}に%{count}つのエラーが発生しました。'
+        original1: '%{model}[%{item}]を%{action}できませんでした。'
+        original2: '%{model}を%{action}できませんでした。'
+  helpers:
+    select:
+      prompt: 選択してください。
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%n%u'
+        precision: 0
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ! ','
+      precision: 2
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n%u'
+        units:
+          byte: バイト
+          gb: ギガバイト
+          kb: キロバイト
+          mb: メガバイト
+          tb: テラバイト
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: と
+      two_words_connector: と
+      words_connector: と
+  time:
+    am: 午前
+    formats:
+      default: ! '%Y/%m/%d %H:%M:%S'
+      long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
+      short: ! '%y/%m/%d %H:%M'
+      local_date: '%Y年%m月%d日'
+      date_only: '%Y/%m/%d'
+      time_only: '%H:%M:%S'
+      short_time: '%H:%M'
+    pm: 午後
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
+
+  web-app-theme: 
+    save: 保存
+    cancel: キャンセル
+    list: 一覧
+    edit: 変更
+    input: 入力
+    new: 登録
+    reflect: 反映
+    csv_new: CSV登録
+    csv_data_create: 仮データ登録
+    actual_data_create: 実データ登録
+    select: 検索
+    csv_export: CSV出力
+    download: ダウンロード
+    show: 表示
+    detail: 詳細
+    delete: 削除
+    restore: 復活
+    back: 戻る
+    finish: 完了
+    start: 開始
+    restart: 再開
+    lock: ロック
+    unlock: ロック解除
+    reflection: 振り返り情報
+    confirm: 削除します。よろしいですか？
+    created_at: 登録日時
+    all: 一覧
+    logout: ログアウト
+    start_confirm: プロジェクトを開始します。よろしいですか？
+    finish_confirm: プロジェクトを完了します。よろしいですか？
+    restore_confirm: 復活させます。よろしいですか？
+    lock_confirm: プロジェクトをロックします。よろしいですか？
+    unlock_confirm: プロジェクトのロックを解除します。よろしいですか？
+    edit_progress_rate_confirm: プロジェクトがロック中です。進捗率のみ編集しますか？
+
+  will_paginate:
+    previous_label: 前へ
+    next_label: 次へ
+    page_gap: …
+
+  authlogic:
+    login: ログイン
+    please_login: ログインしてください。
+    please_logout: ログアウトしてください。
+    logged_in: ログインしました。
+    logged_out: ログアウトしました。
+    login_failed: ログインに失敗しました。
+
+  common_label:
+    app_title: 社内管理システム
+    listing_model: "%{model}一覧"
+    new_model: "%{model}登録"
+    csv_new_model: "%{model}CSV登録"
+    editing_model: "%{model}変更"
+    inputting_model: "%{model}入力"
+    browsing_model: "%{model}閲覧"
+    information_model: "%{model}情報"
+    model_was_created: "%{model}が登録されました。"
+    model_was_updated: "%{model}が更新されました。"
+    model_was_finished: "%{model}が完了されました。"
+    model_was_started: "%{model}が開始されました。"
+    model_was_locked: "%{model}がロックされました。"
+    model_was_unlocked: "%{model}がロック解除されました。"
+    model_was_deleted: "%{model}が削除されました。"
+    model_was_restored: "%{model}が復活されました。"
+    csv_model_was_created: "%{model}仮データが登録されました。"
+    actual_data_was_created: "%{model}実データが登録されました。"
+    actual_data_confirm: 実データ登録しますか？
+    id: 識別番号
+    deleted: 削除状態
+    created_at: 登録日時
+    updated_at: 更新日時
+    occurred_date: 発生日
+    without_tax: （税抜）
+    percent: （％）
+    yen: （円）
+    man_day: （人日）
+    all: すべて
+
+  user_rank:
+    parttimer: 外注、アルバイト
+    employee: 一般社員 
+    manager: マネージャー 
+    system_admin: システム管理者
+
+  expense_item:
+    transportation_and_stay: 交通・宿泊費
+    subcontract: 外注費
+    other: その他
+
+  order_type:
+    contract: 請負
+    instrument: 機器
+    maintenance: 保守
+    investment: 投資開発
+
+  indirect_cost_subject:
+    employee: 社員間労費率
+    cooperative: 協力会社間労費率
+
+  tax_type:
+    tax_exempt: 非課税
+    tax_exclusive: 外税
+    tax_inclusive: 内税
+
+  status:
+    preparation: 準備中
+    progress: 進行中
+    finished: 完了
+
+  indirect_cost_method:
+    method1: 間接労務費を0とする
+    method2: 受注額に間接労務費率を掛ける
+    method3: 直接労務費、外注費に間接労務費率を掛ける
+
+  deal_status:
+    under_negotiation: 商談中
+    demo_request: デモ依頼
+    making_estimate: 見積中
+    being_proposed: 提案中
+    order_decision: 受注決定
+    pj_progress: PJ進行中
+    accepted: 検収済
+    declinature: 辞退
+    failure_order: 失注
+
+  reliability:
+    appear_deal: 商談登場
+    start_deal: 商談開始
+    strong: 濃厚
+    notification: 内示
+    decision: 確定
+
+  activity_method:
+    visit: 訪問
+    telephone: 電話
+    mail: メール
+    other: その他
+
+  project_search_status:
+    not_include_deleted: 削除済み以外すべて
+    preparation_or_progress: 準備中または進行中
+    preparation: 準備中
+    progress: 進行中
+    completed: 完了
+    deleted: 削除済み
+
+  project_search_order:
+    preorder: プレオーダー
+    normal: 通常
+    nothing: オーダー無し
+
+  office_job:
+    development: 開発業務
+    office_job: 社内業務
+
+  app_menu:
+    notice: お知らせ
+    negotiation_mng: 商談管理
+    project_mng: プロジェクト管理
+    expense_mng: 経費管理
+    man_hour_mng: 工数管理
+    schedule_mng: スケジュール管理
+    historic_mng: 年間実績
+    change_password: パスワード変更
+    administration: システム管理
+ 
+  admin_menu:
+    title: 管理メニュー
+    user_mng: ユーザー管理
+    section_mng: 部署管理
+    occupation_mng: 職種管理
+    customer_mng: 顧客管理
+    message_mng: お知らせ管理
+    language_mng: 開発言語管理
+    os_mng: ＯＳ管理
+    database_mng: データベース管理
+    work_type_mng: 工程管理
+    expense_type_mng: 経費種類管理
+    tax_division_mng: 税区分管理
+    indirect_cost_mng: 間接労務費管理
+    system_settings: システム設定
+ 
+  top_list:
+    notice: プロジェクト関連通知
+    message: 管理者からのお知らせ
+    schedule: 今日のスケジュール
+    
+  notice_message:
+    start_project: プロジェクトが開始されました。
+    finish_project: プロジェクトが終了されました。
+    restart_project: プロジェクトが再開されました。
+    delete_project: プロジェクトが削除されました。
+    restore_project: プロジェクトが復活しました。
+    leader_assign: プロジェクトのリーダーに任命されました。
+    relieve_leader: プロジェクトのリーダーを解任されました。
+    manager_assign: プロジェクトのマネージャーに任命されました。
+    relieve_manager: プロジェクトのマネージャーを解任されました。
+    assign_member: プロジェクトのメンバーに選任されました。
+    relieve_member: プロジェクトのメンバーを解任されました。
+    man_days_over: プロジェクトの作業工数が予定工数を超過しました。
+    cancel_man_days_over: プロジェクトの工数超過が解消しました。
+    behind_schedule: プロジェクトの終了予定日が経過しました。
+    cancel_behind_schedule: プロジェクトの期間超過が解消しました。
+    cost_over: プロジェクトの経費が予算をオーバーしました。
+    cancel_cost_over: プロジェクトの経費超過が解消しました。
+    profit_shortage: プロジェクトの粗利が計画値を下回りました。
+    cancel_profit_shortage: プロジェクトの利益不足が解消しました。
+    deficit: プロジェクトの利益が赤字に転落しました。
+    surplus: プロジェクトの利益が黒字に復帰しました。
+
+  notice_message_with_name:
+    leader_assign: '%{name}がプロジェクトのリーダーに任命されました。'
+    relieve_leader: '%{name}がプロジェクトのリーダーを解任されました。'
+    manager_assign: '%{name}がプロジェクトのマネージャーに任命されました。'
+    relieve_manager: '%{name}がプロジェクトのマネージャーを解任されました。'
+    assign_member: '%{name}がプロジェクトのメンバーに選任されました。'
+    relieve_member: '%{name}がプロジェクトのメンバーを解任されました。'
+
+  label:
+    circle: ◯
+    cross: Ｘ
+    with: 有
+    without: 無
+    target: 対象
+    target_out: 対象外
+    csv_file: CSVファイル
+    common:
+      start_at: 開始年・月
+      end_at: 終了年・月
+      year_month: 年・月
+      select_all: 全選択
+      unselect_all: 全解除
+      group: グループ
+      calendar_show: カレンダー表示
+      attached: 添付
+      place: 地域（都道府県）
+      has_one: 有り
+    menu:
+      list_by_project: プロジェクト別一覧
+      list_by_group: グループ別一覧
+      sum_by_group: 集計
+    project:
+      output_man_days:
+        total_up_date: 集計日
+    project_reflection:
+      report:
+        closing_report: 完了報告書
+        title: プロジェクト完了報告書
+        creation_date: 作成日
+        list_mark: ■
+        project_result: プロジェクトの結果
+        schedule_evaluation: スケジュールに対する評価
+        man_days_evaluation: 工数に対する評価
+        expense_evaluation: 経費に対する評価
+        lessons_learned: 学んだこと
+        finished_date: 実績終了日
+        result_man_days: 実績工数
+        result_expense: 経費実績
+    schedule_reflection:
+      select:
+        member: 参加者
+      title:
+        project_no: プロジェクト番号
+        plan_time: 予定時間
+      label:
+        has_schedule: 予定あり
+        show_result: 実績表示
+        result_bundle_reflect_menu: 工数一括反映結果
+        result_bundle_reflect: 工数一括反映
+        result_bundle_reflect_confirm: 工数一括反映しますか？
+        result_bundle_reflect_success: 工数が一括反映されました。
+        result_reflect_confirm: 工数反映しますか？
+        result_reflect_success: 工数が反映されました。
+      errors:
+        result_bundle_reflect_error: 一括工数反映に失敗しました。
+        result_bundle_reflect_validation_error: 工数反映できないスケジュールがあります。
+        result_reflect_error: 工数反映に失敗しました。
+        work_type_error: "スケジュール(%{id})の作業工程を入力してください。"
+        employee_member_list_error: "に外注・アルバイトのみ選択する場合以外、参加者に自身が入っている必要があります。"
+        parttimer_member_list_error: "に自身が入っている必要があります。"
+    csv_schedule_reflection:
+      check_error:
+        size_error: 列数が不正です。
+        project_not_exist: プロジェクトが存在しません。
+        work_type_not_exist: 作業工程が存在しません。
+        date_format_error: '%{item}は有効ではありません。(YYYY-MM-DD)'
+        time_format_error: '%{item}は有効ではありません。(hh:mm)'
+        time_greater_than_error: '%{item_end}は%{item_start}以降の日付を入力してください。'
+        auto_reflect_error: 自動反映処理フラグは0(反映しない)または1(反映)を入力してください。
+        user_code_not_exist: 'ユーザコード(%{code})が存在しません。'
+        user_code_schedule_exist: 'ユーザ(%{code})に対して、この時間帯にスケジュールが既に登録されています。'
+        user_code_not_member_of_project: 'ユーザ(%{code})はこのプロジェクトのメンバーではありません。'
+    result_reflection:
+      select:
+        member: ユーザー
+      title:
+        project_no: プロジェクト番号
+        real_time: 実績時間
+        code: コード
+        total: 合計
+      label:
+        manhour: 工数
+        relatedSchedule: 関係スケジュール
+        show_schedule: スケジュールへのリンク
+        result_reflect_confirm: 工数反映しますか？
+        result_reflect_success: 工数が反映されました。
+        result_no_datas: 入力されていません。
+      errors:
+        result_reflect_error: 工数反映に失敗しました。
+        work_type_error: "工数(%{id})の作業工程を入力してください。"
+        employee_member_list_error: "に外注・アルバイトのみ選択する場合以外、参加者に自身が入っている必要があります。"
+        parttimer_member_list_error: "に自身が入っている必要があります。"
+    csv_result_reflection:
+      check_error:
+        size_error: 列数が不正です。
+        project_not_exist: プロジェクトが存在しません。
+        work_type_not_exist: 作業工程が存在しません。
+        date_format_error: '%{item}は有効ではありません。(YYYY-MM-DD)'
+        time_format_error: '%{item}は有効ではありません。(hh:mm)'
+        time_greater_than_error: '%{item_end}は%{item_start}以降の時間を入力してください。'
+        user_code_not_exist: 'ユーザコード(%{code})が存在しません。'
+        user_code_result_exist: 'ユーザ(%{code})に対して、この時間帯に工数実績が既に登録されています。'
+        user_code_not_member_of_project: 'ユーザ(%{code})はこのプロジェクトのメンバーではありません。'
+    calendar_nav:
+      pre_month: 前月
+      pre_week: 前週
+      pre_day: 前日
+      today: 今日
+      next_day: 翌日
+      next_week: 翌週
+      next_month: 翌月
+    deal_reflection:
+      label:
+        staff_user_name: 担当営業名
+        staff_user: 営業担当者
+        status: ステータス
+        last_activity_date: 最終営業日
+        business_times: 営業回数
+        order: オーダー
+        budge_dimension: 予算規模
+        schedule: スケジュール
+        date_about: 頃
+        notes_tip: 営業メモ等
+        related_file: 関連資料
+        uploaded_related_file: 添付済みファイル
+        sales_report_create: 商談報告入力
+      errors:
+        related_file_server_exist_error: 'ファイル(%{filename})が既にサーバに存在します。'
+        related_file_size_error: 'ファイル(%{filename})のサイズが%{size}Mより大きいです。'
+        related_file_duplication_select_error: 'ファイル(%{filename})が複数選択します。'
+    historic_reflection:
+      label:
+        historic_data: 年間実績
+        project_num: プロジェクト数
+        project_total_amount: プロジェクト総額
+        project_surplus_persent: 黒字プロジェクト率
+        show_detail: 詳細表示
+        project_amount: プロジェクト額
+        project_no: プロジェクト番号

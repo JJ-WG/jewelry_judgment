@@ -1,0 +1,36 @@
+# encoding: utf-8
+            
+            <%= f.text_field :id, :type => 'hidden' %>
+            
+            <dl>
+              <dt>
+                <label for="start_date">
+                  <%= t('activerecord.attributes.indirect_cost.start_date') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%=
+                  f.text_field :start_date, :class => 'text_field ime_off', :value => @start_date, 
+                      :maxlength => '10', :style => 'width:100px;'
+                %>
+              </dd>
+              
+              <dt>
+                <label for="indirect_cost_method">
+                  <%= t('activerecord.attributes.indirect_cost_ratio.indirect_cost_method') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= raw(indirect_cost_method_radio_button(@indirect_cost.indirect_cost_method_cd)) %>
+              </dd>
+              
+              <%= render :partial => 'indirect_cost_ratio_table', :locals => {:object => @indirect_cost} %>
+              
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save'),
+                  :onClick => 'return saveConfirm(this.form);') %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_indirect_costs_path,
+                  :class => 'cancel') %>
+            </div>

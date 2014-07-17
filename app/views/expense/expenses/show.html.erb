@@ -1,0 +1,142 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'expenses' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", expense_expenses_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_expense_expense_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", expense_expense_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => Expense.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <% if deputy_operable?(@expense) && !@expense.project_finished? %>
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_expense_expense_path(@expense) %>
+            </li>
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                  expense_expense_path(@expense), :method => :delete,
+                  :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+            </li>
+            <% end %>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @expense.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense.user_name',
+                  :default => t('activerecord.labels.user_id', :default => 'User id')) %>
+            </dt>
+            <dd>
+              <%= get_name(@expense.user) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.name',
+                  :default => t('activerecord.labels.project_id', :default => 'Project id')) %>
+            </dt>
+            <dd>
+              <%= get_name(@expense.project) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense.adjusted_date',
+                  :default => t('activerecord.labels.adjusted_date', :default => 'Adjusted date')) %>
+            </dt>
+            <dd>
+              <%= @expense.adjusted_date.strftime('%Y/%m/%d') %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense_type.name',
+                  :default => t('activerecord.labels.expense_type_id', :default => 'Expense type_id')) %>
+            </dt>
+            <dd>
+              <%= get_name(@expense.expense_type) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense.item_name',
+                  :default => t('activerecord.labels.item_name', :default => 'Name')) %>
+            </dt>
+            <dd>
+              <%= @expense.item_name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense.amount_paid',
+                  :default => t('activerecord.labels.amount_paid', :default => 'Amount paid')) %>
+            </dt>
+            <dd>
+              <%= number_to_currency(@expense.amount_paid) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.tax_division.name',
+                  :default => t('activerecord.labels.name', :default => 'Tax division')) %>
+            </dt>
+            <dd>
+              <%= get_name(@expense.tax_division) %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+              </dt>
+            <dd>
+              <%= localtime @expense.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @expense.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

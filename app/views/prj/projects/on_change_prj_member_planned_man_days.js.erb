@@ -1,0 +1,11 @@
+//
+// プロジェクトメンバー編集用コントロール更新処理
+// 
+$('#project_member_list').html(
+  "<%= escape_javascript(render :partial => 'project_member_list',
+      :locals => {:object => @project}) %>"
+);
+
+$('#direct_labor_cost_budget').html(
+  "<%= number_to_currency(@direct_labor_cost_budget) %>"
+);

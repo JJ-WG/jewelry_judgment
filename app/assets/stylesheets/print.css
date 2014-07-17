@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+body {
+	background: #fff;
+	color: #000;
+	font-family: serif;
+	font-size: 10pt;
+}
+.inner {
+	padding: 0;
+	max-width: none;
+	min-width: none;
+	width: 100%;
+}
+
+#guideNav,
+#mainNav,
+#subNav
+.actionNav,
+.utilityNav,
+.dataSearch,
+.pagination input,
+.pagination .number {
+	display: none;
+}
+
+#commonHeader {
+	background: #fff;
+}
+#brand {
+	float: none;
+	font-size: 14pt;
+	text-shadow: none;
+}
+#commonFooter {
+	background: #fff;
+}
+#content {
+	padding-bottom: 1em;
+}
+#content h1 {
+	font-size: 12pt;
+}
+
+
+/* Table
+-------------------------------------------------- */
+
+th {
+	background: #dfdfdf;
+	color: #000;
+}
+th.edit,
+td.edit {
+	display: none;
+}
+.tablesorter th.header {
+	padding-right: 8px;
+	background-image: none;
+}
+.tablesorter th.headerSortDown,
+.tablesorter th.headerSortUp {
+	background-color: #ccc;
+	color: #000;
+}
+.tablesorter th.headerSortUp:after {
+	content: " ▼";
+	font-size: 6pt; 
+}
+.tablesorter th.headerSortDown:after {
+	content: " ▲";
+	font-size: 6pt; 
+}
+

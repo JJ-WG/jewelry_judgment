@@ -1,0 +1,19 @@
+//
+// 販売原価編集用コントロール更新処理
+//
+$('#sales_cost_list').html(
+  "<%= escape_javascript(render :partial => 'sales_cost_list', 
+      :locals => {:object => @project}) %>"
+);
+
+$('#sales_cost_item_name_error').html(
+  "<%= @sales_cost_item_name_error %>"
+);
+
+$('#sales_cost_price_error').html(
+  "<%= @sales_cost_price_error %>"
+);
+
+$('#sales_cost_tax_division_cd_error').html(
+  "<%= @sales_cost_tax_division_cd_error %>"
+);

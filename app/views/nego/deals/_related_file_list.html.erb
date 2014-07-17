@@ -1,0 +1,43 @@
+# encoding: utf-8
+      <div id='deal_related_file_list' style='width: 65%'>
+        <% if @deal_delete_file_error_message && @deal_delete_file_error_message.length > 0 %>
+          <div class="message error_title">
+            <ul>
+              <% @deal_delete_file_error_message.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="list">
+          <table border="1" class="tablesorter" style="margin-top:5px;">
+            <thead>
+              <tr>
+                <th scope="col" class="column1">
+                  <%= t('label.deal_reflection.label.uploaded_related_file') %>
+                </th>
+                <th scope="col" class="column2" style="width: 10%">
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% deal.related_file_list.each do |f| %>
+                <tr>
+                  <td>
+                    <% if action_name == 'show' %>
+                      <%= link_to f, download_related_file_nego_deal_path(deal, filename: f, src_action: 'show'), method: :get %>
+                    <% else %>
+                      <%= link_to f, download_related_file_nego_deal_path(deal, filename: f), method: :get %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to t('web-app-theme.delete'), delete_related_file_nego_deal_path(deal, filename: f),
+                      method: :delete, remote: true, 
+                      :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>

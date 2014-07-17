@@ -1,0 +1,12 @@
+// Place all the styles related to the customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 顧客管理 顧客一覧 */
+div.list thead th.name {
+  width: 60%;
+}
+
+div.list thead th.code {
+  width: 17%;
+}

@@ -1,0 +1,76 @@
+# encoding: utf-8
+
+<div class="block">
+  <h3><%= t('admin_menu.title', :default=>'Admin Menu') %></h3>
+  <ul class="navigation">
+    <% if administrator? %>
+      <li <% if params[:controller] == 'admin/messages' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.message_mng'),
+         :controller => 'messages', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/users' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.user_mng'),
+         :controller => 'users', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/sections' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.section_mng'),
+         :controller => 'sections', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/occupations' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.occupation_mng'),
+         :controller => 'occupations', :action => 'index') %>
+      </li>
+    <% end %>
+    <% if administrator? || manager? %>
+      <% li_param = '' %>
+      <% if administrator? %>
+        <% li_param = 'class="active"' if params[:controller] == 'admin/customers' %>
+      <% elsif manager? %>
+        <% if params[:controller] == 'admin/customers' %>
+          <% li_param = 'class="active bottom"' %>
+        <% else %>
+          <% li_param = 'class="bottom' %>
+        <% end %>
+      <% end %>
+      
+      <li <%= raw(li_param) %>>
+        <%= link_to(t('admin_menu.customer_mng'),
+         :controller => 'customers', :action => 'index') %>
+      </li>
+    <% end %>
+    <% if administrator? %>
+      <li <% if params[:controller] == 'admin/development_languages' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.language_mng'),
+         :controller => 'development_languages', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/operating_systems' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.os_mng'),
+         :controller => 'operating_systems', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/databases' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.database_mng'),
+         :controller => 'databases', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/work_types' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.work_type_mng'),
+         :controller => 'work_types', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/expense_types' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.expense_type_mng'),
+         :controller => 'expense_types', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/tax_divisions' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.tax_division_mng'),
+         :controller => 'tax_divisions', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/indirect_costs' %>class="active"<% end %>>
+        <%= link_to(t('admin_menu.indirect_cost_mng'),
+         :controller => 'indirect_costs', :action => 'index') %>
+      </li>
+      <li <% if params[:controller] == 'admin/system_settings' %>class="active bottom"<% else %>class="bottom"<% end %>>
+        <%= link_to(t('admin_menu.system_settings'),
+         :controller => 'system_settings', :action => 'edit') %>
+      </li>
+    <% end %>
+  </ul>
+</div>

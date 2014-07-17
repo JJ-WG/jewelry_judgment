@@ -1,0 +1,171 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+indirect_cost_ratio_1:
+  id: 1
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  ratio: 0.0
+
+indirect_cost_ratio_2:
+  id: 2
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  ratio: 0.0
+
+indirect_cost_ratio_3:
+  id: 3
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  ratio: 0.0
+
+indirect_cost_ratio_4:
+  id: 4
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  ratio: 0.0
+
+indirect_cost_ratio_5:
+  id: 5
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  ratio: 0.0
+
+indirect_cost_ratio_6:
+  id: 6
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  ratio: 0.0
+
+indirect_cost_ratio_7:
+  id: 7
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  ratio: 0.0
+
+indirect_cost_ratio_8:
+  id: 8
+  indirect_cost_id: 1
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  ratio: 0.0
+
+
+indirect_cost_ratio_9:
+  id: 9
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  ratio: 0.0
+
+indirect_cost_ratio_10:
+  id: 10
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  ratio: 0.0
+
+indirect_cost_ratio_11:
+  id: 11
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  ratio: 0.0
+
+indirect_cost_ratio_12:
+  id: 12
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  ratio: 0.0
+
+indirect_cost_ratio_13:
+  id: 13
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  ratio: 0.0
+
+indirect_cost_ratio_14:
+  id: 14
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  ratio: 0.0
+
+indirect_cost_ratio_15:
+  id: 15
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  ratio: 0.0
+
+indirect_cost_ratio_16:
+  id: 16
+  indirect_cost_id: 2
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  ratio: 0.0
+
+
+indirect_cost_ratio_17:
+  id: 17
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  ratio: 25.0
+
+indirect_cost_ratio_18:
+  id: 18
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  ratio: 25.0
+
+indirect_cost_ratio_19:
+  id: 19
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  ratio: 25.0
+
+indirect_cost_ratio_20:
+  id: 20
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:employee] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  ratio: 25.0
+
+indirect_cost_ratio_21:
+  id: 21
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  ratio: 0.0
+
+indirect_cost_ratio_22:
+  id: 22
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:instrument] %>
+  ratio: 0.0
+
+indirect_cost_ratio_23:
+  id: 23
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:maintenance] %>
+  ratio: 0.0
+
+indirect_cost_ratio_24:
+  id: 24
+  indirect_cost_id: 3
+  indirect_cost_subject_cd: <%= INDIRECT_COST_SUBJECT_CODE[:cooperative] %>
+  order_type_cd: <%= ORDER_TYPE_CODE[:investment] %>
+  ratio: 0.0

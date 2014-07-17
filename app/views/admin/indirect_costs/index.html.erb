@@ -1,0 +1,98 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'indirect_costs' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_indirect_costs_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_indirect_cost_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+       
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.indirect_costs')) %></h1>
+        </header>
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="start-date">
+                  <%= t('activerecord.attributes.indirect_cost.start_date') %>
+                </th>
+                <th scope="col" class="indirect-cost-method">
+                  <%= t('activerecord.attributes.indirect_cost_ratio.indirect_cost_method') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @indirect_costs.each do |indirect_cost| -%>
+                <tr>
+                  <td class="date">
+                    <%= link_to (l localtime(indirect_cost.start_date).to_date), admin_indirect_cost_path(indirect_cost) %>
+                  </td>
+                  <td>
+                    <%= indirect_cost_method_indication(indirect_cost.indirect_cost_method_cd) %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_indirect_cost_path(indirect_cost) %>
+                    <% if IndirectCost.start_date_latest?(indirect_cost.id) %>
+                       |
+                      <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_indirect_cost_path(indirect_cost) %> |
+                      
+                      <% confirm = "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                      <% if indirect_cost.id == @indirect_costs.first.id &&
+                          indirect_cost.start_date <= Date.today %>
+                        <% confirm = 'プロジェクトの損益が変更されてしまう恐れがあります。本当に削除しますか？' %>
+                      <% end %>
+                      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}",
+                          admin_indirect_cost_path(indirect_cost), :method => :delete,
+                          :confirm => confirm %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @indirect_costs %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

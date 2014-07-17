@@ -1,0 +1,135 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'users' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_users_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_user_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.users')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :html => { :method => :get }, :option => {:class => 'form'} do |f| %>
+            <div class="condition">
+              <label for="cond1"><%= t('activerecord.attributes.user.section') %>:</label>
+              <%= f.select(:section_id, Section.sections_list(true),
+                  {:prompt => 'すべて', :selected => session[:user_condition][:section_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond2"><%= t('activerecord.attributes.user.name') %>:</label>
+              <%= f.text_field :name, :class => 'text_field', :maxlength => '20', :style => 'width:200px;',
+                  :value => session[:user_condition][:name] %>
+            </div>
+            <div class="condition">
+              <label for="cond3"><%= t('common_label.deleted') %>:</label>
+              <%= raw(include_deleted_flag_selector(session[:user_condition][:deleted])) %>
+            </div>
+            <div class="condition">
+              <label for="cond4"><%= t('activerecord.attributes.user.user_code') %>:</label>
+              <%= f.text_field :user_code, :class => 'text_field', :maxlength => '10', :style => 'width:100px;',
+                  :value => session[:user_condition][:user_code] %>
+            </div>
+            
+            <div class="button">
+              <input type="submit" accesskey="s" value="検索" />
+            </div>
+          <% end %>
+        </div><!-- /.dataSearch -->
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="name">
+                  <%= t('activerecord.attributes.user.name') %>
+                </th>
+                <th scope="col" class="section">
+                  <%= t('activerecord.attributes.section.name') %>
+                </th>
+                <th scope="col" class="login">
+                  <%= t('activerecord.attributes.user.login') %>
+                </th>
+                <th scope="col" class="rank">
+                  <%= t('activerecord.attributes.user.user_rank_name') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| -%>
+                <tr>
+                  <th scope="row">
+                    <%= link_to user.name, admin_user_path(user) %>
+                  </th>
+                  <td>
+                    <%= get_name(user.section) %>
+                  </td>
+                  <td>
+                    <%= user.login %>
+                  </td>
+                  <td>
+                    <%= user_rank_indication user.user_rank_cd %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_user_path(user) %> |
+                    <% if user.deleted == false %>
+                      <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_user_path(user) %> |
+                      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}",
+                          admin_user_path(user), :method => :delete,
+                          :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                    <% else %>
+                      <%= link_to "#{t('web-app-theme.restore', :default => 'Restore')}",
+                          restore_admin_user_path(user), :method => :put,
+                          :confirm => "#{t('web-app-theme.restore_confirm', :default => 'Are you sure?')}" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @users %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

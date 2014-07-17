@@ -1,0 +1,7 @@
+# encoding: utf-8
+
+                <%= fields_for object do |f| %>
+                  <input type="text" id="project_expense_budget_total"
+                      name="project[expense_budget_total]" class="price"
+                      value="<%= number_with_delimiter(@expense_budget_total) %>" readonly="readonly" />
+                <% end %>

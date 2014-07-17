@@ -1,0 +1,9 @@
+<% if !defined?(has_opened_dialog) || has_opened_dialog %>
+  $( "#sales_report_content" ).dialog("close");
+<% end %>
+
+$('#sales_report_content').html("");
+
+$('#sales_report_list').html(
+  "<%= escape_javascript(render :partial => 'list', :locals => {:sales_reports => (@deal ? @deal.sales_reports : [])}) %>"
+);

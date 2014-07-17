@@ -1,0 +1,125 @@
+# encoding: utf-8
+
+  <% unless flash.blank? %>
+    <div class="errorMsg">
+      <% flash.each do |type, message| -%>
+        <p><%= message %></p>
+        <% if @schedule.errors.any?%>
+          <ul>
+          <% @schedule.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li> 
+          <% end %>
+          </ul>
+        <% end %>
+      <% end -%>
+    </div>
+  <% end %>
+  
+  <div class="entryForm">
+    <dl>
+      <dt>
+        <label for="project_id">
+          <%= t('activerecord.attributes.project.name') %><%= essential %>
+        </label>
+      </dt>
+      <dd>
+          <%= f.select(:project_id, get_current_user_can_acccess_projects, {:include_blank => true}, {:class => 'project_select'}) %>
+      </dd>
+      <dt>
+        <label for="work_type_id">
+          <%= t('activerecord.models.work_type') %>
+        </label>
+      </dt>
+      <dd>
+        <%= render :partial => 'work_type_select_list', :locals => {:schedule => @schedule} %>
+      </dd>
+      <dt>
+        <label for="start_at">
+          <%= t('activerecord.attributes.schedule.start_at') %><%= essential %>
+        </label>
+      </dt>
+      <dd>
+        <%= f.hidden_field :schedule_date, :value => Date.today %>
+        <%= f.time_select :start_at, {:minute_step => 15, :prompt => true} %>
+      </dd>
+      <dt>
+        <label for="end_at">
+          <%= t('activerecord.attributes.schedule.end_at') %><%= essential %>
+        </label>
+      </dt>
+      <dd>
+        <%= f.time_select :end_at, {:minute_step => 15, :prompt => true} %>
+      </dd>
+      <dt>
+        <label for="auto_reflect">
+          <%= t('activerecord.attributes.schedule.auto_reflect') %>
+        </label>
+      </dt>
+      <dd>
+        <%= f.check_box :auto_reflect %>
+      </dd>
+      <dt>
+        <label for="notes">
+          <%= t('activerecord.attributes.schedule.notes') %>
+        </label>
+      </dt>
+      <dd>
+        <%= f.text_area :notes, :rows => 4, :cols => 60 %>
+      </dd>
+      <dt>
+        <label for="members">
+          <%= t('label.schedule_reflection.select.member') %><%= essential %>
+        </label>
+      </dt>
+      <dd>
+        <table id='select_member_table' class="edit-table">
+          <tr>
+            <td style='width:40%;'>
+              <div class="item-control">
+                <%= render :partial => 'member_select_list',
+                              :locals => {:schedule => @schedule} %>
+              </div>
+            </td>
+            <td style='width:20%; text-align:center;'>
+              <input type="button" id="schedule_member_add_button" value="追加 >" />
+              <br />
+              <input type="button" id="schedule_member_remove_button" value="< 削除" />
+            </td>
+            <td style='width:40%;'>
+              <div class="item-control">
+                <%= render :partial => 'selected_member_list',
+                              :locals => {:schedule => @schedule} %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </dd>
+    </dl>
+    <% params[:search] && params[:search].each do |key, value| %>
+      <% if key == 'start_at' || key == 'end_at' %>
+        <% params[:search][key].each do |key1, value1| %>
+          <%= hidden_field_tag "search[#{key}][#{key1}]", value1 %>
+        <% end %>
+      <% else %>
+        <%= hidden_field_tag "search[#{key}]", value %>
+      <% end %>
+    <% end %>
+    <%= hidden_field_tag 'from', params[:from] || 'index' %>
+    <div class="button">
+      <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+      <% if action_name == 'new' || action_name == 'create' %>
+        <% if params[:from] && params[:from] == 'project' %>
+          <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), list_by_project_schedule_schedules_path(search: params[:search]),
+                      :class => 'cancel') %>
+        <% elsif params[:from] && params[:from] == 'group' %>
+          <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), list_by_group_schedule_schedules_path(search: params[:search]),
+                      :class => 'cancel') %>
+        <% else %>
+          <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), schedule_schedules_path, :class => 'cancel') %>
+        <% end %>
+      <% else %>
+        <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), schedule_schedules_path(search: params[:search]), :class => 'cancel') %>
+      <% end %>
+    </div>
+
+  </div><!-- /.entryForm -->

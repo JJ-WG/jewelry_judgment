@@ -1,0 +1,58 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'work_types' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_work_types_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_work_type_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <header class="pageHeader">
+          <h1><%= t('common_label.new_model', :model => WorkType.model_name.human) %></h1>
+        </header>
+        
+        <%= form_for :work_type, :url => admin_work_types_path, :html => { :class => :form } do |f| -%>
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>               
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>               
+                  <p><%= message %></p>
+                <% end -%>                
+                <% if @work_type.errors.any? -%>
+                  <ul>
+                  <% @work_type.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                <% end %>
+              <% end -%>
+            </div>
+          <% end %>
+          
+          <div class="entryForm">
+            <%= render :partial => 'form', :locals => {:f => f} %>
+          </div><!-- /.entryForm -->
+        <% end -%>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

@@ -1,0 +1,114 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'admin' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_sections_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_section_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_section_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => Section.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_admin_section_path(@section) %>
+            </li>
+            <li class="csv">
+              <% if @section.deleted %>
+                <%= link_to "#{t('web-app-theme.restore', :default=> 'Restore')}",
+                    restore_admin_section_path(@section), :method => :put,
+                    :confirm => "#{t('web-app-theme.restore_confirm', :default => 'Are you sure?')}" %>
+              <% else %>
+                <% unless Section.user_section?(@section) %>
+                  <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                      admin_section_path(@section), :method => :delete,
+                      :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                <% end %>
+              <% end %>
+            </li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @section.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.section.view_order') %>
+            </dt>
+            <dd>
+              <%= @section.view_order %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.section.name') %>
+            </dt>
+            <dd>
+              <%= @section.name %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.deleted') %>
+            </dt>
+            <dd>
+              <%= (@section.deleted)? '削除済み' : '未削除' %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+            </dt>
+            <dd>
+              <%= localtime @section.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @section.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

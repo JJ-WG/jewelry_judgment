@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_sales_cost_1:
+  id: 1
+  project_id: 2
+  tax_division_id: 1
+  item_name: Webサーバ本体
+  price: 180000
+
+prj_sales_cost_2:
+  id: 2
+  project_id: 2
+  tax_division_id: 1
+  item_name: クライアントPC
+  price: 50000
+
+prj_sales_cost_3:
+  id: 3
+  project_id: 3
+  tax_division_id: 1
+  item_name: Webサーバ本体
+  price: 150000
+
+prj_sales_cost_4:
+  id: 4
+  project_id: 3
+  tax_division_id: 1
+  item_name: クライアントPC
+  price: 65000

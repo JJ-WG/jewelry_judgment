@@ -1,0 +1,74 @@
+# encoding: utf-8
+
+  <%= javascript_tag do -%>
+    $(function() {
+      $('#show_calendar').datepicker({
+        onSelect: function(dateText) {
+          window.location.replace(app_name_for_url + '/schedule/schedules/list_by_project?search[project_id]=' 
+              + '<%= (params[:search].blank? || params[:search][:project_id].blank?) ? '' : params[:search][:project_id] %>'
+              + '&search[start_date]=' + dateText);
+        }
+      });
+      // カレンダー表示の処理
+      var calendar_is_open = false;
+      $('#calendar_btn').click(function(){
+        if(calendar_is_open == false) {
+          $('#show_calendar').datepicker("show");
+          calendar_is_open = true;
+        } else {
+          $('#show_calendar').datepicker("hide");
+          calendar_is_open = false;
+        }
+      });
+      // Addボタン押下処理
+      $('.cs_add_image').click(function(){
+        window.location.replace(app_name_for_url + '/schedule/schedules/new?user_id=' + $(this).attr('user_id')
+          + '&schedule_date=' + $(this).attr('schedule_date')
+          + '&from=project'
+          + '&search[project_id]=<%= params[:search][:project_id] %>'
+          + '&search[start_date]=<%= params[:search][:start_date] %>'
+          + '&project_id=' + $(this).attr('project_id'));
+      });
+    });
+  <%- end -%>
+
+        <div class='calendar_separate'>
+          <div class='cs_nav'>
+            <div id='' class="cs_button_calendar_show">
+              <input id='show_calendar' type='text' style='width:0;border:none;' />
+              <button id='calendar_btn' type='button' class='calendar_show'><%= t('label.common.calendar_show') %></button>
+            </div>
+            <% temp_dates = get_cs_nav_dates(@week_schedules[:first_day]) %>
+            <div class="cs_button">
+              <%= link_to t('label.calendar_nav.next_month'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_month]})) %>
+            </div>
+            <div class="cs_button">
+              <%= link_to t('label.calendar_nav.next_week'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_week]})) %>
+            </div>
+            <div class="cs_button">
+              <%= link_to t('label.calendar_nav.next_day'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_day]})) %>
+            </div>
+            <div class="cs_button" style='width:70px; text-align:center;'>
+              <%= link_to t('label.calendar_nav.today'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:today]})) %>
+            </div>
+            <div class="cs_button">
+              <%= link_to t('label.calendar_nav.pre_day'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_day]})) %>
+            </div>
+            <div class="cs_button">
+              <%= link_to t('label.calendar_nav.pre_week'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_week]})) %>
+            </div>
+            <div class="cs_button">
+              <%= link_to t('label.calendar_nav.pre_month'), 
+                list_by_project_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_month]})) %>
+            </div>
+          </div>
+
+          <%= render :partial => 'calendar_separate_content' %>
+
+        </div><!-- /.calendar_separate -->

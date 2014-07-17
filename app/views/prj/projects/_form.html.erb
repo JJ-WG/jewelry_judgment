@@ -1,0 +1,600 @@
+# encoding: utf-8
+
+            <%= f.text_field :id, :type => 'hidden' %>
+            <% if action_name == 'edit' || action_name == 'update' %>
+              <%= f.text_field :status_cd, :type => 'hidden' %>
+              <%= f.text_field :deleted, :type => 'hidden' %>
+              <%= f.text_field :locked, :type => 'hidden' %>
+            <% end %>
+            
+            <dl>
+              <dt>
+                <label for="project-code">
+                  <%= t('activerecord.attributes.project.project_code') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :project_code, :class => 'largeText ime_off', :maxlength => '10',
+                    :style => 'width:100px;', :readonly => @edit_progress_rate %>
+              </dd>
+              
+              <dt>
+                <label for="project-name">
+                  <%= t('activerecord.attributes.project.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'largeText ime_on', :maxlength => '40',
+                    :style => 'width:300px;', :readonly => @edit_progress_rate %>
+              </dd>
+              
+              <dt>
+                <label for="deal">
+                  <%= t('activerecord.attributes.project.deal_list') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:deal_id, @deals_list, {:include_blank => true},
+                    :disabled => @edit_progress_rate) %>
+              </dd>
+              
+              <dt>
+                <label for="customer">
+                  <%= t('activerecord.models.customer') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:customer_id, @customer_list, {:include_blank => true},
+                    :disabled => @edit_progress_rate) %>
+              </dd>
+              
+              <dt>
+                <label for="order">
+                  <%= t('activerecord.attributes.indirect_cost_ratio.order_type') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:order_type_cd, order_types_list, {},
+                    {:disabled => @edit_progress_rate}) %>
+              </dd>
+              
+              <dt>
+                <label for="order-volume">
+                  <%= t('activerecord.attributes.project.order_volume') %>
+                  <%= t('common_label.without_tax') %>
+                  <%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <div id="project_order_volume_text_field">
+                  <%= render :partial => 'order_volume_text_field',
+                      :locals => {:object => @project} %>
+                </div>
+              </dd>
+              
+              <dt>
+                <label for="manager">
+                  <%= t('activerecord.attributes.project.manager') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:manager_id, @managers_list, {:include_blank => true},
+                    :disabled => @edit_progress_rate) %>
+              </dd>
+              
+              <dt>
+                <label for="leader">
+                  <%= t('activerecord.attributes.project.leader') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:leader_id, @leaders_list, {:include_blank => true},
+                    :disabled => @edit_progress_rate) %>
+              </dd>
+              
+              <dt>
+                <label for="member">
+                  <%= t('activerecord.attributes.project.member') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <table class="edit-table">
+                  <tr>
+                    <td class="edit-list">
+                      <%= render :partial => 'project_member_list',
+                          :locals => {:object => @project} %>
+                    </td>
+                    <td class="add-button">
+                      <% unless @edit_progress_rate %>
+                        <input type="button" id="member_add_button" value="< 追加" />
+                      <% end %>
+                    </td>
+                    <td class="input-form">
+                      <% unless @edit_progress_rate %>
+                        <div class="group">
+                          <div class="item-name">
+                            <%= t('activerecord.models.section') %>:
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                             <%= f.select(:section_id, Section.sections_list,
+                                {:prompt => '(部署なし)'}) %>
+                          </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="group">
+                          <div class="item-name">
+                            <%= t('activerecord.attributes.project.member_label') %>:
+                            <%= essential %>
+                            <div id="member_select_list_error" style="color:#CC0000"></div>
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                            <%= render :partial => 'member_select_list',
+                                :locals => {:object => @project} %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                
+                <div style="float:left">
+                  <%= t('activerecord.attributes.project.direct_labor_cost') %>
+                  <%= t('activerecord.attributes.project.budget') %>:
+                </div>
+                <div id="direct_labor_cost_budget" style="float:left">
+                  <%= number_to_currency(@direct_labor_cost_budget.to_i) %>
+                </div>
+                <div style="clear:both;"></div>
+              </dd>
+              
+              <dt>
+                <label for="term">
+                  期間（予定）<%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <div class="term">
+                  <label for="start-date">
+                    <%= t('activerecord.attributes.project.start_date') %>:
+                  </label>
+                  <%=
+                    start_date = (@project.start_date.blank?)?
+                        '' : @project.start_date.strftime('%Y/%m/%d')
+                    f.text_field :start_date, :class => 'date ime_off', :value => start_date, 
+                        :maxlength => '10', :style => 'width:100px;',
+                        :readonly => @edit_progress_rate
+                  %>
+                  <label>
+                  　～　
+                  </label>
+                  <label for="end-date">
+                    <%= t('activerecord.attributes.project.finish_date') %>:
+                  </label>
+                  <%=
+                    finish_date = (@project.finish_date.blank?)?
+                        '' : @project.finish_date.strftime('%Y/%m/%d')
+                    f.text_field :finish_date, :class => 'date ime_off', :value => finish_date, 
+                        :maxlength => '10', :style => 'width:100px;',
+                        :readonly => @edit_progress_rate
+                  %>
+                </div>
+              </dd>
+              
+              <% if action_name == 'edit' || action_name == 'update' %>
+                <dt>
+                  <label for="term">
+                    期間（実績）
+                  </label>
+                </dt>
+                <dd>
+                  <div class="term">
+                    <label for="start-date">
+                      <%= t('activerecord.attributes.project.started_date') %>:
+                    </label>
+                    <%=
+                      started_date = (@project.started_date.blank?)?
+                          '' : @project.started_date.strftime('%Y/%m/%d')
+                      f.text_field :started_date, :class => 'date ime_off', :value => started_date, 
+                          :maxlength => '10', :style => 'width:100px;',
+                          :readonly => @edit_progress_rate
+                    %>
+                  </div>
+                </dd>
+              <% end %>
+              
+              <dt>
+                <label for="attention">
+                  <%= t('activerecord.attributes.project.attention') %>
+                </label>
+              </dt>
+              <dd>
+                <input id="project_attention" name="project[attention]" type="checkbox"
+                    <%= @edit_progress_rate? raw(' onclick="return false;"') : '' %> />
+              </dd>
+              
+              <dt>
+                <label for="man-hour">
+                  <%= t('activerecord.attributes.project.man_hour') %>
+                </label>
+              </dt>
+              <dd>
+                <% if action_name == 'edit' || action_name == 'update' %>
+                  <table class="man-hour-edit">
+                <% else %>
+                  <table class="man-hour-new">
+                <% end %>
+                  <thead>
+                    <tr>
+                      <th scope="col" class="work-type">
+                        <%= t('activerecord.attributes.work_type.name') %>
+                      </th>
+                      <th scope="col" class="man-days num">
+                        <%= multi_line(t('activerecord.attributes.prj_work_type.planned_man_days')) %>
+                      </th>
+                      <th scope="col" class="man-days num">
+                        <%= multi_line(t('activerecord.attributes.prj_work_type.presented_man_days')) %>
+                      </th>
+                      <%# 編集画面のみの項目 %>
+                      <% if action_name == 'edit' || action_name == 'update' %>
+                        <th scope="col" class="progress-rate num">
+                          <%= multi_line(t('activerecord.attributes.prj_work_type.progress_rate')) %>
+                        </th>
+                      <% end %>
+                      <th scope="col" class="work-type-check num">
+                        <%= multi_line(t('activerecord.attributes.project.work_type_check')) %>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= f.text_field :prj_work_type_size, :type => 'hidden',
+                        :value => @work_types.size %>
+                    <% if @work_types.size == 0 %>
+                      <tr>
+                        <th scope="row" class="work-type">&nbsp;</th>
+                        <td class="man-days prj_work_types_man_days">&nbsp;</td>
+                        <td class="man-days prj_work_types_man_days">&nbsp;</td>
+                        <% if action_name == 'edit' || action_name == 'update' %>
+                          <td class="progress-rate prj_work_types_progress_rate">&nbsp;</td>
+                        <% end %>
+                        <td class="work_type_check">&nbsp;</td>
+                      </tr>
+                    <% else %>
+                      <% @work_types.each_with_index do |work_type, index| %>
+                        <%= f.fields_for :prj_work_types_attributes, work_type,
+                            :index => (index = index) do |f2| %>
+                          <% work_type = f2.object %>
+                          
+                          <%= f2.text_field :id, :type => 'hidden', :index => index %>
+                          <%= f2.text_field :project_id, :type => 'hidden', :index => index %>
+                          <%= f2.text_field :work_type_id, :type => 'hidden', :index => index %>
+                          <tr>
+                            <th scope="row" class="work-type">
+                              <%= WorkType.get_name_by_id(work_type.work_type_id) %>
+                            </th>
+                            <td class="man-days prj_work_types_man_days">
+                              <%= f2.text_field :planned_man_days, :index => index,
+                                  :class => 'text numeric ime_off', :size => '10', :maxlength => '10',
+                                  :style => 'width:50px;', :readonly => @edit_progress_rate %>
+                            </td>
+                            <td class="man-days prj_work_types_man_days">
+                              <%= f2.text_field :presented_man_days, :index => index,
+                                  :class => 'text numeric ime_off', :size => '10', :maxlength => '10',
+                                  :style => 'width:50px;', :readonly => @edit_progress_rate %>
+                            </td>
+                            <% if action_name == 'edit' || action_name == 'update' %>
+                              <td class="progress-rate prj_work_types_progress_rate">
+                                <%= f2.text_field :progress_rate, :index => index,
+                                    :class => 'text numeric ime_off', :size => '10', :maxlength => '10',
+                                    :style => 'width:50px;' %>
+                              </td>
+                            <% end %>
+                            <td class="work_type_check">
+                              <% onclick = '' %>
+                              <% if @edit_progress_rate %>
+                                <% onclick = 'return false;' %>
+                              <% end %>
+                              <%= f2.text_field :work_type_check, :index => index,
+                                  :type => 'checkbox', :value => index,
+                                  :checked => work_type.work_type_check,
+                                  :onclick => "#{onclick}" %>
+                            </td>
+                          </tr>
+                        <% end -%>
+                      <% end -%>
+                    <% end %>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th scope="row">
+                        <div>
+                          合計
+                          <input type="button" id="work_type_total_button" value="計算" />
+                        </div>
+                      </th>
+                      <td class="total">
+                        <div id="planned_man_days_total_field">
+                          <%= render :partial => 'planned_man_days_total_text_field',
+                              :locals => {:object => @project} %>
+                        </div>
+                      </td>
+                      <td class="total">
+                        <div id="presented_man_days_total_field">
+                          <%= render :partial => 'presented_man_days_total_text_field',
+                              :locals => {:object => @project} %>
+                        </div>
+                      </td>
+                      <% if action_name == 'edit' || action_name == 'update' %>
+                        <td class="total">
+                          <div id="progress_rate_total_field">
+                            <%= render :partial => 'progress_rate_total_text_field',
+                                :locals => {:object => @project} %>
+                          </div>
+                        </td>
+                      <% end %>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </dd>
+              
+              <dt>
+                <label for="expense-budget">
+                  <%= t('activerecord.attributes.prj_expense_budget.expense_budget') %>
+                  <%= t('common_label.without_tax') %>
+                </label>
+              </dt>
+              <dd>
+                <table class="expense-budget">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="item">
+                        <%= t('activerecord.attributes.expense_type.expense_item_name') %>
+                      </th>
+                      <th scope="col" class="budget num">
+                        <%= t('activerecord.attributes.prj_expense_budget.expense_budget') %>
+                        <%= t('common_label.yen') %>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th scope="row">
+                        <div>
+                          合計
+                          <% unless @edit_progress_rate %>
+                            <input type="button" id="expense_budget_total_button" value="計算"　/>
+                          <% end %>
+                        </div>
+                      </th>
+                      <td>
+                        <div id="expense_budget_total">
+                          <%= render :partial => 'expense_budget_total_text_field',
+                              :locals => {:object => @project} %>
+                        </div>
+                      </td>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% if @project_prj_expense_budgets.size == 0 %>
+                     　<tr>
+                        <th scope="row">
+                          <label for="expense">&nbsp;</label>
+                        </th>
+                        <td>&nbsp;</td>
+                      </tr>
+                    <% else %>
+                      <% @project_prj_expense_budgets.each_with_index do |expense_budget, index| %>
+                        <%= f.fields_for :prj_expense_budgets_attributes,
+                            expense_budget, :index => (index = index) do |f2| %>
+                          <% expense_budget = f2.object %>
+                          
+                          <tr>
+                            <th scope="row">
+                              <label for="expense">
+                                <%= expense_item_indication(expense_budget.expense_item_cd) %>
+                              </label>
+                            </th>
+                            <td>
+                              <%= f2.text_field :id, :type => 'hidden', :index => index %>
+                              <%= f2.text_field :project_id, :type => 'hidden', :index => index %>
+                              <%= f2.text_field :expense_item_cd, :type => 'hidden', :index => index %>
+                              <%= f2.text_field :expense_budget, :index => index,
+                                  :value => expense_budget.expense_budget.to_i,
+                                  :class => 'text numeric prj_expense_budgets_expense_budget  ime_off',
+                                  :size => '10', :maxlength => '10', :style => 'width:100px;',
+                                  :readonly => @edit_progress_rate %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      <% end %>
+                    <% end -%>
+                    </tr>
+                  </tbody>
+                </table>
+              </dd>
+              
+              <dt>
+                <label for="sales-cost">
+                  <%= t('activerecord.attributes.project.sales_costs') %>
+                </label>
+              </dt>
+              <dd>
+                <table class="edit-table">
+                  <tr>
+                    <td class="edit-list">
+                      <%= render :partial => 'sales_cost_list',
+                          :locals => {:object => @project} %>
+                    </td>
+                    <td class="add-button">
+                      <% unless @edit_progress_rate %>
+                        <input type="button" id="sales_cost_add_button" value="< 追加" />
+                      <% end %>
+                    </td>
+                    <td class="input-form">
+                      <% unless @edit_progress_rate %>
+                        <div class="group">
+                          <div class="item-name">
+                            <%= t('activerecord.attributes.prj_sales_cost.item_name') %>:
+                            <%= essential %>
+                            <div id="sales_cost_item_name_error" style="color:#CC0000"></div>
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                            <%= f.text_field :sales_cost_item_name, 
+                                :class => 'text ime_on', :size => '40', :maxlength => '40',
+                                :style => 'width:300px;' %>
+                          </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="group">
+                          <div class="item-name">
+                            <%= t('activerecord.attributes.prj_sales_cost.price') %>:
+                            <%= essential %>
+                            <div id="sales_cost_price_error" style="color:#CC0000"></div>
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                            <%= f.text_field :sales_cost_price, 
+                                :class => 'text numeric ime_off', :size => '10', :maxlength => '10',
+                                :style => 'width:100px;' %>
+                          </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="group">
+                          <div class="item-name">
+                            <%= t('activerecord.models.tax_division') %>:
+                            <%= essential %>
+                            <div id="sales_cost_tax_division_cd_error" style="color:#CC0000"></div>
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                            <%= f.select(:sales_cost_tax_division_cd, TaxDivision.tax_divisions_list,
+                                {}, {:selected => @sales_cost_tax_division_cd}) %>
+                          </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              </dd>
+              
+              <dt>
+                <label for="related-project">
+                  <%= t('activerecord.attributes.prj_related_project.related_project') %>
+                </label>
+              </dt>
+              <dd>
+                <table class="edit-table">
+                  <tr>
+                    <td class="edit-list">
+                      <%= render :partial => 'related_project_list',
+                          :locals => {:object => @project} %>
+                    </td>
+                    <td class="add-button">
+                      <% unless @edit_progress_rate %>
+                        <input type="button" id="related_project_add_button" value="< 追加" />
+                      <% end %>
+                    </td>
+                    <td class="input-form">
+                      <% unless @edit_progress_rate %>
+                        <div class="group">
+                          <div class="item-name">
+                            状態:
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                            <%= f.select(:related_project_status_cd, statuses_list) %>
+                          </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="group">
+                          <div class="item-name">
+                            <%= t('activerecord.models.project') %>:
+                            <%= essential %>
+                            <div id="related_project_select_list_error" style="color:#CC0000"></div>
+                          </div>
+                          <div style="clear:both;"></div>
+                          <div class="item-control">
+                            <%= render :partial => 'related_project_select_list',
+                                :locals => {:object => @project} %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              </dd>
+              
+              <dt>
+                <label for="development-language">
+                  <%= t('activerecord.models.development_language') %>
+                </label>
+              </dt>
+              <dd>
+                <% @dev_languages.each do |dev_language| -%>
+                  <input id="project_development_language_ids" 
+                      name="project[development_language_ids][]" type="checkbox" 
+                      value="<%= dev_language.id %>" 
+                      <%= (@project.development_languages.include?(dev_language))?
+                          raw(' checked="checked"') : '' %>
+                      <%= @edit_progress_rate?
+                          raw(' onclick="return false;"') : '' %> />
+                  <%= dev_language.name %>
+                <% end %>
+              </dd>
+              
+              <dt>
+                <label for="os">
+                  <%= t('activerecord.models.operating_system') %>
+                </label>
+              </dt>
+              <dd>
+                <% @operating_systems.each do |os| -%>
+                  <input id="project_operating_system_ids" 
+                      name="project[operating_system_ids][]" type="checkbox"
+                      value="<%= os.id %>" 
+                      <%= (@project.operating_systems.include?(os))?
+                          raw(' checked="checked"') : '' %>
+                      <%= @edit_progress_rate?
+                          raw(' onclick="return false;"') : '' %> />
+                  <%= os.name %>
+                <% end %>
+              </dd>
+              
+              <dt>
+                <label for="database">
+                  <%= t('activerecord.models.database') %>
+                </label>
+              </dt>
+              <dd>
+                <% @databases.each do |database| -%>
+                  <input id="project_database_ids" 
+                      name="project[database_ids][]" type="checkbox" 
+                      value="<%= database.id %>" 
+                      <%= (@project.databases.include?(database))?
+                          raw(' checked="checked"') : '' %>
+                      <%= @edit_progress_rate?
+                          raw(' onclick="return false;"') : '' %> />
+                  <%= database.name %>
+                <% end %>
+              </dd>
+              
+              <dt>
+                <label for="remarks">
+                  <%= t('activerecord.attributes.project.remarks') %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_area :remarks, :class => 'ime_on', :rows => '8', :cols => '60',
+                    :readonly => @edit_progress_rate %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), prj_projects_path,
+                  :class => 'cancel') %>
+            </div>

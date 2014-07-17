@@ -1,0 +1,8 @@
+# encoding: utf-8
+
+                        <%= fields_for schedule do |f| %>
+                          <% member_select_users_list =
+                              @member_select_users.map{|user| [user.name, user.id]} %>
+                          <%= f.select(:schedule_member_user_id, member_select_users_list,
+                                       {}, {:multiple => true, :class => "member_select", :size => 5}) %>
+                        <% end %>

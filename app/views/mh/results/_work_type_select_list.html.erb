@@ -1,0 +1,7 @@
+# encoding: utf-8
+
+<%= fields_for result do |f| %>
+  <% work_type_select_list = @work_type_select_list.map{|work_type| [work_type.name, work_type.id]} %>
+  <%= f.select(:work_type_id, work_type_select_list,
+    {:include_blank => true}, {:class => 'work_type_select'}) %>
+<% end %>

@@ -1,0 +1,8 @@
+# encoding: utf-8
+
+                          <%= fields_for object do |f| %>
+                            <input type="text" id="project_presented_man_days_total"
+                                name="project[presented_man_days_total]" class="hour"
+                                value="<%= number_with_delimiter(@presented_man_days_total.to_f.round(2)) %>"
+                                readonly="readonly" />
+                          <% end %>

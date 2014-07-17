@@ -1,0 +1,7 @@
+# encoding: utf-8
+
+                <%= fields_for object do |f| %>
+                  <%= f.text_field :order_volume, :value => @project.order_volume.to_i,
+                      :class => 'text numeric ime_off', :maxlength => '10', :style => 'width:100px;',
+                      :readonly => @edit_progress_rate %>
+                <% end %>

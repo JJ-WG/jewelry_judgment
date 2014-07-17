@@ -1,0 +1,7 @@
+//
+// 経費予算合計更新処理
+//
+$('#expense_budget_total').html(
+  "<%= escape_javascript(render :partial => 'expense_budget_total_text_field',
+      :locals => {:object => @project}) %>"
+);

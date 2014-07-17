@@ -1,0 +1,64 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'expenses' %>
+  <%= javascript_tag do -%>
+    $(function() {
+      var datepicker_options = {
+        showOn: "button"
+      };
+      $('#expense_adjusted_date').datepicker(datepicker_options);
+    });
+  <%- end -%>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", expense_expenses_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_expense_expense_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <header class="pageHeader">
+          <h1><%= t('common_label.new_model', :model => Expense.model_name.human) %></h1>
+        </header>
+        
+        <%= form_for :expense, :url => expense_expenses_path, :html => { :class => :form } do |f| -%>
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>               
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>               
+                  <p><%= message %></p>
+                <% end -%>                
+                <% if @expense.errors.any? -%>
+                  <ul>
+                  <% @expense.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                <% end %>
+              <% end -%>
+            </div>
+          <% end %>
+
+          <div class="entryForm">
+            <%= render :partial => 'form', :locals => {:f => f} %>
+          </div><!-- /.entryForm -->
+        <% end -%>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

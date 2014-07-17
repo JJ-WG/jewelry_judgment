@@ -1,0 +1,97 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'messages' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_messages_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_message_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+       
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.messages')) %></h1>
+        </header>
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="title">
+                  <%= t('activerecord.attributes.message.title',
+                      :default => t('activerecord.labels.title', :default => 'Title')) %>
+                </th>
+                <th scope="col" class="message">
+                  <%= t('activerecord.attributes.message.message',
+                    :default => t('activerecord.labels.message', :default => 'Message')) %>
+                </th>
+                <th scope="col" class="date">
+                  <%= t('web-app-theme.created_at', :default => 'Created at') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @messages.each do |message| -%>
+                <tr>
+                  <th scope="row">
+                    <%= link_to message.title, admin_message_path(message) %>
+                  </th>
+                  <td>
+                    <%= truncate(message.message, :omission => '...') %>
+                  </td>
+                  <td>
+                    <%= message.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_message_path(message) %> |
+                    <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_message_path(message) %> |
+                    <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}",
+                        admin_message_path(message), :method => :delete,
+                        :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @messages %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

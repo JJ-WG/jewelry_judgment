@@ -1,0 +1,69 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'users' %>
+  <%= javascript_tag do -%>
+    $(function() {
+      var datepicker_options = {
+        showOn: "button"
+      };
+      $('#user_unit_price_start_date').datepicker(datepicker_options);
+    });
+  <%- end -%>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_users_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_user_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_user_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <header class="pageHeader">
+          <h1><%= t('common_label.editing_model', :model => User.model_name.human) %></h1>
+        </header>
+        
+        <%= form_for @user, :url => admin_user_path(@user), :html => { :class => :form } do |f| -%>
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>               
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>               
+                  <p><%= message %></p>
+                <% end -%>                
+                <% if @user.errors.any? -%>
+                  <ul>
+                  <% @user.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% end -%>
+              <% end -%>
+            </div>
+          <% end %>
+          
+          <div class="entryForm">
+            <%= render :partial => 'form', :locals => {:f => f} %>
+          </div><!-- /.entryForm -->
+        <% end -%>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

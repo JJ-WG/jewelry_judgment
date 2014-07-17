@@ -1,0 +1,7 @@
+//
+// 間接労務比率表更新処理
+//
+$("#indirect_cost_ratio_table").html(
+  "<%= escape_javascript(render :partial => 'indirect_cost_ratio_table',
+      :locals => {:object => @indirect_cost}) %>"
+);

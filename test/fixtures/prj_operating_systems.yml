@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_operating_system_1:
+  id: 1
+  project_id: 1
+  operating_system_id: 1
+
+prj_operating_system_2:
+  id: 2
+  project_id: 1
+  operating_system_id: 2
+
+prj_operating_system_3:
+  id: 3
+  project_id: 2
+  operating_system_id: 1
+
+prj_operating_system_4:
+  id: 4
+  project_id: 2
+  operating_system_id: 2
+
+prj_operating_system_5:
+  id: 5
+  project_id: 3
+  operating_system_id: 1
+
+prj_operating_system_6:
+  id: 6
+  project_id: 3
+  operating_system_id: 2
+
+prj_operating_system_7:
+  id: 7
+  project_id: 4
+  operating_system_id: 1
+
+prj_operating_system_8:
+  id: 8
+  project_id: 4
+  operating_system_id: 2
+
+prj_operating_system_9:
+  id: 9
+  project_id: 5
+  operating_system_id: 1
+
+prj_operating_system_10:
+  id: 10
+  project_id: 5
+  operating_system_id: 2
+
+prj_operating_system_11:
+  id: 11
+  project_id: 6
+  operating_system_id: 1
+
+prj_operating_system_12:
+  id: 12
+  project_id: 6
+  operating_system_id: 2

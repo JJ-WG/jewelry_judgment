@@ -1,0 +1,173 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'expenses' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+       <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", expense_expenses_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_expense_expense_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.expenses')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :html => { :method => :get }, :option => {:class => 'form'} do |f| %>
+            <div class="condition">
+              <label for="cond1"><%= t('activerecord.attributes.expense.user_id') %>:</label>
+              <%=
+                if (administrator? || manager?)
+                  f.select(:user_id, User.users_list(:include_deleted_user => true), 
+                          {:prompt => t('common_label.all'),
+                           :selected => session[:expense_condition][:user_id]})
+                else
+                  f.select(:user_id, current_user.my_project_members_list(:include_deleted_user => true),
+                          {:prompt => t('common_label.all'),
+                           :selected => session[:expense_condition][:user_id]})
+                end
+              %>
+            </div>
+            <div class="condition">
+              <label for="cond2"><%= t('activerecord.attributes.project.name') %>:</label>
+              <%= f.text_field :project_name, :class => 'text', 
+                  :maxlength => '40', :style => 'width:300px;',
+                  :value => session[:expense_condition][:project_name] %>
+            </div>
+            <div class="condition">
+              <label for="cond3">
+                <%= t('activerecord.models.projects') %><%= t('activerecord.attributes.project.status') %>:
+              </label>
+              <%= f.select(:project_status_cd, search_status_items_list,
+                  {:selected => session[:expense_condition][:project_status_cd]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond4"><%= t('activerecord.models.expense_types') %>:</label>
+              <%= f.select(:expense_type_id, ExpenseType.expense_types_list,
+                          {:prompt => t('common_label.all'),
+                           :selected => session[:expense_condition][:expense_type_id]}) %>
+            </div>
+            <div class="condition">
+              <label for="cond5">期間:</label>
+                開始年月：
+                <%= f.select(:term_start_year, expense_term_year_list,
+                    {:include_blank => true,
+                     :selected => session[:expense_condition][:term_start_year]}) %>年
+                <%= f.select(:term_start_month, numeric_list(1, 12),
+                    {:include_blank => true,
+                     :selected => session[:expense_condition][:term_start_month]}) %>月
+                ～
+                終了年月：
+                <%= f.select(:term_finish_year, expense_term_year_list,
+                    {:include_blank => true,
+                     :selected => session[:expense_condition][:term_finish_year]}) %>年
+                <%= f.select(:term_finish_month, numeric_list(1, 12),
+                    {:include_blank => true,
+                     :selected => session[:expense_condition][:term_finish_month]}) %>月
+            </div>
+            
+            <div class="button">
+              <input type="submit" accesskey="s" value="検索" />
+            </div>
+          <% end %>
+        </div><!-- /.dataSearch -->
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="adjusted-date">
+                  <%= t('activerecord.attributes.expense.adjusted_date') %>
+                </th>
+                <th scope="col" class="expense-type">
+                  <%= t('activerecord.attributes.expense_type.name') %>
+                </th>
+                <th scope="col" class="project">
+                  <%= t('activerecord.attributes.project.name') %>
+                </th>
+                <th scope="col" class="expense-name">
+                  <%= t('activerecord.attributes.expense.item_name') %>
+                </th>
+                <th scope="col" class="amount-paid num">
+                  <%= t('activerecord.attributes.expense.amount_paid') %>
+                  <%= t('common_label.yen') %>
+                </th>
+                <th scope="col" class="tax-division">
+                  <%= t('activerecord.attributes.tax_division.name') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @expenses.each do |expense| -%>
+                <tr>
+                  <td class="date">
+                    <%= expense.adjusted_date.strftime('%Y/%m/%d') %>
+                  </td>
+                  <td>
+                    <%= get_name(expense.expense_type) %>
+                  </td>
+                  <td>
+                    <%= get_name(expense.project) %>
+                  </td>
+                  <td>
+                    <%= link_to expense.item_name, expense_expense_path(expense) %>
+                  </td>
+                  <td class="amount-paid">
+                    <%= number_with_delimiter(expense.amount_paid) %>
+                  </td>
+                  <td>
+                    <%= get_name(expense.tax_division) %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", expense_expense_path(expense) %> |
+                    <% if !(expense.project.present? && expense.project.finished?) %>
+                      <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_expense_expense_path(expense) %> |
+                      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}", expense_expense_path(expense),
+                          :method => :delete, :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @expenses %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

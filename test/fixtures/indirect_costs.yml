@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+indirect_cost_1:
+  id: 1
+  start_date: 2011-09-01
+  indirect_cost_method_cd: <%= INDIRECT_COST_METHOD_CODE[:method1] %>
+
+indirect_cost_2:
+  id: 2
+  start_date: 2012-04-01
+  indirect_cost_method_cd: <%= INDIRECT_COST_METHOD_CODE[:method3] %>
+
+indirect_cost_3:
+  id: 3
+  start_date: 2012-09-01
+  indirect_cost_method_cd: <%= INDIRECT_COST_METHOD_CODE[:method2] %>

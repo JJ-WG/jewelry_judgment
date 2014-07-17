@@ -1,0 +1,2 @@
+module Historic::HistoricDataHelper
+end

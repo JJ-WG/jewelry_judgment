@@ -1,0 +1,478 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* プロジェクト管理 一覧画面 一覧コメント */
+.project-list-comment {
+  width: 330px;
+  float: right;
+  text-align: right;
+}
+
+/* プロジェクト管理 一覧画面 一覧テーブル */
+.table .right {
+  text-align: right;
+}
+
+div.list thead th {
+  font-size: 11px;
+}
+
+div.list thead th.column1 {
+  width: 12%;
+}
+
+div.list thead th.column2 {
+  width: 13%;
+}
+
+div.list thead th.column3 {
+  width: 4%;
+  text-align: center;
+}
+
+div.list thead th.column4 {
+  width: 7%;
+}
+
+div.list thead th.column5 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column6 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column7 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column8 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column9 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column10 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column11 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column12 {
+  width: 6%;
+  text-align: center;
+}
+
+div.list thead th.column13 {
+  width: 6%;
+  text-align: center;
+}
+
+/* プロジェクト管理 登録・編集画面 */
+
+/* Entry Form
+-------------------------------------------------- */
+
+form .entryForm  {
+  margin: 1.5em 0;
+  padding: 8px 15px;
+  border-top: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+  border-radius: 5px;
+  background: #eee;
+  behavior: url(/assets/PIE.htc);
+}
+
+/* Error */
+
+form .errorMsg {
+  margin-left: 8px;
+  color: #c00;
+}
+form .errorMsg ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+form .error {
+  border: 2px solid #c00 !important;
+  background: #fff5f5 !important;
+}
+
+table div.item-name {
+  float: left;
+  margin-bottom: 5px;
+}
+
+table div.item-control {
+  float: left;
+  margin-bottom: 5px;
+}
+
+/* プロジェクト管理 登録・編集・閲覧画面 プロジェクトメンバーテーブル */
+#project_member_list thead tr th {
+  text-align: center;
+}
+
+#project_member_list tfoot tr th {
+  text-align: center;
+}
+
+/* プロジェクト管理 登録・編集画面 期間 */
+.term label,
+.term input,
+.term button {
+  float:left;
+}
+
+/* プロジェクト管理 登録・編集・閲覧画面 工数テーブル */
+table.man-hour-new {
+  width: 370px;
+  table-layout: fixed;
+}
+
+table.man-hour-edit {
+  width: 440px;
+  table-layout: fixed;
+}
+
+table.man-hour-show {
+  width: 520px;
+  table-layout: fixed;
+}
+
+table.man-hour-new th.work-type,
+table.man-hour-edit th.work-type,
+table.man-hour-show th.work-type {
+  width: 160px;
+}
+
+table.man-hour-new th.man-days,
+table.man-hour-edit th.man-days,
+table.man-hour-show th.man-days {
+  width: 70px;
+  text-align: center;
+}
+
+table.man-hour-new th.work-type-check,
+table.man-hour-edit th.work-type-check {
+  width: 70px;
+  text-align: center;
+}
+
+table.man-hour-edit th.progress-rate,
+table.man-hour-show th.progress-rate {
+  width: 70px;
+  text-align: center;
+}
+
+table.man-hour-show th.earned-value {
+  width: 70px;
+  text-align: center;
+}
+
+table.man-hour-new td.man-days,
+table.man-hour-edit td.man-days,
+table.man-hour-show td.man-days {
+  text-align: right;
+}
+
+table.man-hour-edit td.progress-rate,
+table.man-hour-show td.progress-rate {
+  text-align: right;
+}
+
+table.man-hour-show td.earned-value {
+  text-align: right;
+}
+
+table.man-hour-new td.work-type-check,
+table.man-hour-edit td.work-type-check {
+  text-align: center;
+}
+
+table.man-hour-new tfoot tr th,
+table.man-hour-edit tfoot tr th,
+{
+  text-align: center;
+}
+
+table.man-hour-new td.total,
+table.man-hour-edit td.total,
+table.man-hour-show td.total {
+  text-align: right;
+}
+
+/* プロジェクト管理 登録・編集画面 経費予算テーブル */
+table.expense-budget {
+  width: 350px;
+}
+
+table.expense-budget th.item {
+  width: 50%;
+}
+
+table.expense-budget th.budget {
+  width: 50%;
+  text-align: center;
+}
+
+table.expense-budget td.item  {
+}
+
+table.expense-budget td.budget {
+  text-align: right;
+}
+
+table.expense-budget td.total {
+}
+
+table.expense-budget tfoot tr th,
+{
+  text-align: center;
+}
+
+/* プロジェクト管理 登録・編集・閲覧画面 販売原価テーブル */
+#sales_cost_list thead tr th {
+  text-align: center;
+}
+
+#sales_cost_list tfoot tr th,
+{
+  text-align: center;
+}
+
+/* プロジェクト管理 登録・編集・閲覧画面 関連プロジェクトテーブル */
+#related_project_list thead tr th {
+  text-align: center;
+}
+
+#related_project_list tfoot tr th,
+{
+  text-align: center;
+}
+
+/* プロジェクト管理 閲覧画面 共通 　*/
+table.show {
+  border-collapse: separate;
+}
+
+table.show thead th:first-child {
+  border-radius: 3px 0 0 0;
+}
+
+table.show thead th:last-child {
+  border-radius: 0 3px 0 0;
+}
+
+table.show tfoot th:first-child {
+  border-radius: 0 0 0 3px;
+}
+
+table.show tfoot td:last-child {
+  border-radius: 0 0 3px 0;
+}
+
+/* プロジェクト管理 閲覧画面 プロジェクトメンバー 　*/
+table.prj-member {
+  width: 450px;
+  table-layout:fixed;
+}
+
+table.prj-member th.name {
+  width: 40%;
+}
+
+table.prj-member th.unit-price {
+  width: 30%;
+}
+
+table.prj-member th.man-days {
+  width: 30%;
+}
+
+table.prj-member td.name {
+}
+
+table.prj-member td.unit-price {
+  text-align: right;
+}
+
+table.prj-member td.man-days {
+  text-align: right;
+}
+
+table.prj-member td.total {
+  text-align: right;
+}
+
+/* プロジェクト管理 閲覧画面 工数実績詳細 　*/
+div.results-man-days-detail {
+  overflow: scroll;
+  width: 1024px;
+  height: 220px
+}
+
+table.results-man-days-detail {
+  table-layout:fixed;
+}
+
+table.results-man-days-detail th.name {
+  width: 130px;
+}
+
+table.results-man-days-detail th.work-type {
+  width: 140px;
+  text-align: center;
+}
+
+table.results-man-days-detail th.total {
+  width: 60px;
+  text-align: center;
+}
+
+table.results-man-days-detail td.name {
+}
+
+table.results-man-days-detail td.man-days {
+  text-align: right;
+}
+
+table.results-man-days-detail td.total {
+  text-align: right;
+}
+
+/* プロジェクト管理 閲覧画面 販売原価テーブル */
+table.sales-cost {
+  width: 420px;
+}
+
+table.sales-cost th.name {
+  width: 70%;
+}
+
+table.sales-cost th.cost {
+  width: 30%;
+  text-align: center;
+}
+
+table.sales-cost td.name {
+}
+
+table.sales-cost td.cost {
+  text-align: right;
+}
+
+table.sales-cost td.total {
+  text-align: right;
+}
+
+/* プロジェクト管理 閲覧画面 経費詳細　*/
+table.expense-detail {
+  width: 870px;
+  table-layout: fixed;
+}
+
+table.expense-detail th.date {
+  width: 11%;
+}
+
+table.expense-detail th.name {
+  width: 20%;
+}
+
+table.expense-detail th.expense-type {
+  width: 21%;
+}
+
+table.expense-detail th.expense-name {
+  width: 36%;
+}
+
+table.expense-detail th.cost {
+  width: 14%;
+  text-align: center;
+}
+
+table.expense-detail td.date {
+}
+
+table.expense-detail td.name {
+}
+
+table.expense-detail td.expense-type {
+}
+
+table.expense-detail td.expense-name {
+}
+
+table.expense-detail td.cost {
+  text-align: right;
+}
+
+table.expense-detail td.total {
+  border-bottom: none;
+}
+
+/* プロジェクト管理 振り返り情報入力画面 */
+.entryForm dd dt {
+  float: none;
+  width: auto;
+  padding: 0;
+  display: inline-block;
+  *display: inline;
+  font-weight: normal;
+}
+.entryForm dd dt:after {
+  content: ":"
+}
+.entryForm dd dd {
+  padding: 0;
+  border-bottom: 0;
+  display: inline-block;
+  *display: inline;
+  width: 9em;
+  min-height: 0;
+  _height: auto;
+  margin-right: 3em;
+  text-align: right;
+}
+
+/* プロジェクト管理 振り返り情報入力・閲覧画面 */
+h4.item-title {
+  padding: 5px;
+  margin: 0px 0;
+  background: #B4B4B4;
+  color: #fff;
+  border-radius: 3px;
+}
+
+div.item-group {
+  margin-left: 15px;
+}
+
+/* 工数集計出力画面 */
+.output-csv {
+  margin: 1.5em 0;
+  padding: 10px 15px 0;
+  border-top: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+  border-radius: 5px;
+  background: #eee;
+  behavior: url(/assets/PIE.htc);
+}

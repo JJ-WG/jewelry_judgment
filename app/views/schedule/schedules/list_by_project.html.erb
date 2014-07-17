@@ -1,0 +1,60 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'schedules' %>
+<%- end -%>
+    <nav id="subNav">
+      <div class="inner">
+       <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('label.menu.list_by_group', :default => 'List By Group')}", list_by_group_schedule_schedules_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('label.menu.list_by_project', :default => 'List By Project')}", list_by_project_schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_schedule_schedule_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", schedule_csv_schedules_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('label.menu.list_by_project') %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :list_by_project}, :option => {:class => 'form'}, :method => :get do |f| %>
+            <div class="condition">
+              <label for="cond1"><%= t('activerecord.attributes.project.name') %>:&nbsp;&nbsp;</label>
+              <%= f.select(:project_id, get_current_user_can_acccess_projects,
+                           {:include_blank => true, selected: params[:search][:project_id]}, {:class => 'project_select'}) %>
+              <%= hidden_field_tag 'search[start_date]', @week_schedules[:first_day] %>
+            </div>
+
+            <div class="button">
+              <input type="submit" accesskey="s" name="submit" value="<%= t('web-app-theme.select') %>" />
+            </div>
+          <% end %>
+        </div><!-- /.dataSearch -->
+        <%= render 'calendar_separate_project' %>
+
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

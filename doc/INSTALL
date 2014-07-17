@@ -1,0 +1,63 @@
+= Jewelry Judgment インストール手順
+
+== 必要条件
+  * Ruby 1.9.3
+  * RubyGems (RubyGems 1.8.24 で動作確認)
+  * Bundler >= 1.0
+  * MySQL (MySQL 5.1 で動作確認)
+
+
+== インストール手順
+  1. プログラムの圧縮ファイルを解凍する。
+
+  2. MySQL上に文字コードUTF-8のDBを1つ作成する。（例： "jj_db"）
+
+  3. config/database.yml にてDB接続の設定を行う。
+
+  4. 必要なgemsライブラリをインストールする。
+    アプリケーションディレクトリ配下で下記コマンドを実行する。
+    $ bundle install --without development test
+
+  5. DB上にテーブルを作成する。
+    アプリケーションディレクトリ配下で下記コマンドを実行する。
+    $ rake db:migrate RAILS_ENV=production
+
+  6. DBに初期データを投入する。
+    アプリケーションディレクトリ配下で下記コマンドを実行する。
+    $ rake db:seed RAILS_ENV=production
+
+  7. WEBrick Webサーバを起動して動作を確認する。
+    アプリケーションディレクトリ配下で下記コマンドを実行する。
+    $ rails s -e production
+
+    WEBrickが起動した後、Webブラウザで下記URLにアクセスする。
+    http://localhost:3000/
+
+  8. デフォルトの管理ユーザでログインする。
+    ログインID: admin
+    パスワード: password
+
+
+== 補足事項
+  * 実際の稼働環境では Apache + Passenger などを設定して動作させてください。
+  * http://example.com/jj/　のようなサブディレクトリ配下で動作させる場合には、下記ファイルに
+    サブディレクトリ名を追記する必要があります。
+
+      app/views/layouts/application.html.erb
+
+      変更前）
+        12  <script>
+        13    var app_name_for_url = '';
+        14  </script>
+
+      変更後）
+        12  <script>
+        13    var app_name_for_url = '/jj';
+        14  </script>
+
+  * 下記のバッチ処理をcrontab等で夜間に定期実行するよう設定してください。
+    scripts/
+      notice_update.sh            プロジェクト関連通知メッセージ更新処理バッチ
+      schedule_auto_reflect.sh    スケジュール自動反映処理バッチ
+
+    ※シェルスクリプト内のアプリケーション配置ディレクトリパスは、インストールパスに合わせて変更する必要があります。

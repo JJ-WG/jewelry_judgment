@@ -1,0 +1,116 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'work_types' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_work_types_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_work_type_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_work_type_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => WorkType.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_admin_work_type_path(@work_type) %>
+            </li>
+            <li class="csv">
+              <% unless WorkType.project_work_type?(@work_type) %>
+                <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                    admin_work_type_path(@work_type), :method => :delete,
+                    :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+              <% end %>
+            </li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @work_type.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.work_type.view_order') %>
+            </dt>
+            <dd>
+              <%= @work_type.view_order %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.work_type.name') %>
+            </dt>
+            <dd>
+              <%= @work_type.name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.work_type.office_job_name',
+                  :default => t('activerecord.labels.office_job', :default => 'Office Job')) %>
+            </dt>
+            <dd>
+              <%= office_job_item_indication((@work_type.office_job)? 1 : 0) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.work_type.work_type_code') %>
+            </dt>
+            <dd>
+              <%= @work_type.work_type_code %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+            </dt>
+            <dd>
+              <%= localtime @work_type.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @work_type.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

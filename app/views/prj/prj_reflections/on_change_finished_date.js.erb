@@ -1,0 +1,13 @@
+//
+// 遅れ日数、スケジュール評価再計算、表示更新処理
+//
+$("#delay_days").html(
+"<%= @prj_reflection.present? && escape_javascript(
+  conditional_tag(@prj_reflection.delay_days > 0, false,
+                  @prj_reflection.delay_days.to_s + t('datetime.prompts.day'))
+  ) %>"
+);
+
+$("#schedule_rank").html(
+"<%= @prj_reflection.present? && escape_javascript(EVALUATION_RANK_CODE[@prj_reflection.schedule_rank]) %>"
+);

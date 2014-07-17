@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+customer_1:
+  id: 1
+  code: 001
+  name: ＡＢＣ工業
+  name_ruby: ＡＢＣコウギョウ
+  pref_cd: 1
+
+customer_2:
+  id: 2
+  code: 002
+  name: △△△商店
+  name_ruby: △△△ショウテン
+  pref_cd: 13
+
+customer_3:
+  id: 3
+  code: 003
+  name: 島根県
+  name_ruby: シマネケン
+  pref_cd: 32
+
+customer_4:
+  id: 4
+  code: 004
+  name: 鳥取県
+  name_ruby: トットリケン
+  pref_cd: 31
+
+customer_5:
+  id: 5
+  code: 005
+  name: 山口県
+  name_ruby: ヤマグチケン
+  pref_cd: 35
+
+customer_6:
+  id: 6
+  code: 006
+  name: 広島県
+  name_ruby: ヒロシマケン
+  pref_cd: 34

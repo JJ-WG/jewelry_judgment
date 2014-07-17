@@ -1,0 +1,61 @@
+// Place all the styles related to the notices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* プロジェクト関連通知テーブル */
+table.top-notices
+{
+}
+
+div.list table.top-notices thead th.date {
+  width: 10%;
+}
+
+div.list table.top-notices thead th.name {
+  width: 25%;
+}
+
+div.list table.top-notices thead th.message {
+  width: 65%;
+}
+
+/* 管理者からのお知らせ、今日のスケジュールテーブル */
+div.top-messages {
+  float: left;
+  width: 50%;
+}
+
+div.top-schedules {
+  float: left;
+  width: 50%;
+}
+
+table.top-messages, table.top-schedules {
+  table-layout: fixed;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* 管理者からのお知らせ */
+div.list table.top-messages thead th.date {
+  width: 20%;
+}
+
+div.list table.top-messages thead th.title {
+  width: 80%;
+}
+
+/* 今日のスケジュール */
+div.list table.top-schedules thead th.name {
+  width: 75%;
+}
+
+div.list table.top-schedules thead th.work_hours {
+  width: 25%;
+  text-align: center;
+}
+
+div.list table.top-schedules tbody td.work_hours {
+  text-align: center;
+}

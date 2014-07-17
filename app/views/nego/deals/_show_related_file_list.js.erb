@@ -1,0 +1,4 @@
+// 関連ファイルリストの更新
+$('#deal_related_file_list').parent().html(
+  "<%= escape_javascript(render :partial => 'related_file_list', :locals => {:deal => @deal}) %>"
+);

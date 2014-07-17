@@ -1,0 +1,85 @@
+# encoding: utf-8
+
+                      <%= fields_for object do |f| %>
+                        <table class="item-list" id="sales_cost_list">
+                          <thead>
+                            <tr>
+                              <th class="name">
+                                <%= t('activerecord.attributes.prj_sales_cost.item_name') %>
+                              </th>
+                              <th class="cost num">
+                                <%= t('activerecord.attributes.prj_sales_cost.price') %>
+                                <%= t('common_label.yen') %>
+                              </th>
+                              <th class="tax">
+                                <%= t('activerecord.models.tax_division') %>
+                              </th>
+                              <% unless @edit_progress_rate %>
+                                <th class="deleted"></th>
+                              <% end %>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th scope="row">
+                                <div>
+                                合計
+                                </div>
+                              </td>
+                              <td class="price">
+                                <input type="text" id="expense" name=""
+                                    class="price" value="<%= number_with_delimiter(@sales_costs_total.to_i) %>" readonly="readonly" />
+                              </td>
+                              <td></td>
+                              <% unless @edit_progress_rate %>
+                                <td></td>
+                              <% end %>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <% if @project_prj_sales_costs.present? %>
+                              <% @project_prj_sales_costs.each_with_index do |prj_sales_cost, index| %>
+                                <%= f.fields_for :prj_sales_costs_attributes, prj_sales_cost,
+                                    :index => (index = index) do |f2| %>
+                                  <% prj_sales_cost = f2.object %>
+                                  
+                                  <%= f2.text_field :id, :type => 'hidden', :index => index %>
+                                  <%= f2.text_field :project_id, :type => 'hidden', :index => index %>
+                                  <%= f2.text_field :item_name, :type => 'hidden', :index => index %>
+                                  <%= f2.text_field :price, :type => 'hidden', :index => index %>
+                                  <%= f2.text_field :tax_division_id, :type => 'hidden', :index => index %>
+                                  <tr>
+                                    <th scope="row" class="name">
+                                      <%= prj_sales_cost.item_name %>
+                                    </th>
+                                    <td class="cost num">
+                                      <%= number_with_delimiter(prj_sales_cost.price) %>
+                                    </td>
+                                    <td class="tax">
+                                      <%= get_name(prj_sales_cost.tax_division) %>
+                                    </td>
+                                    <% unless @edit_progress_rate %>
+                                      <td class="deleted">
+                                        <%= link_to('削除',
+                                            root_url + 'prj/projects/on_click_sales_cost_delete?' +
+                                            'project_id=' + @project.id.to_s +
+                                            '&sales_cost_index=' + index.to_s,
+                                            :remote => true) %>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <tr>
+                                <th scope="row" class="name">&nbsp;</th>
+                                <td class="price">&nbsp;</td>
+                                <td class="tax">&nbsp;</td>
+                                <% unless @edit_progress_rate %>
+                                  <td class="deleted">&nbsp;</td>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      <% end %>

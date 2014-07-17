@@ -1,0 +1,167 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'results' %>
+<%- end -%>
+<nav id="subNav">
+  <div class="inner">
+    <ul id="localNav">
+      <li class="current">
+        <%= link_to "#{t('web-app-theme.list', :default => 'List')}", mh_results_path %>
+      </li>
+      <li>
+        <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_mh_result_path %>
+      </li>
+      <% if can_show_result_sum? %>
+        <li>
+          <%= link_to "#{t('label.menu.sum_by_group', :default => 'Sum By Group')}", sum_by_group_mh_results_path %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", mh_csv_results_path %>
+      </li>
+    </ul>
+  </div><!-- /.inner -->
+</nav><!-- /#subNav -->
+
+<section id="content">
+  <div class="inner">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+        <div class="message <%= type %>">
+          <p><%= message %></p>
+        </div>
+      <% end -%>
+    </div>
+
+    <header class="pageHeader">
+      <h1><%= t('common_label.listing_model', :model => t('activerecord.models.results')) %></h1>
+    </header>
+
+    <div class="dataSearch">
+      <%= form_for :search, :url => {:action => :index}, :option => {:class => 'form'}, :method => :get do |f| %>
+        <table style="width: 100%">
+          <tr>
+            <td>
+              <div class="condition">
+                <label for="cond1"><%= t('label.common.start_at') %>:&nbsp;&nbsp;</label>
+                <%= select_year Date.civil(params[:search][:start_at][:year].to_i), :prefix => 'search[start_at]',
+                  :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                <%= t('datetime.prompts.year') %>
+                <%= select_month Date.civil(params[:search][:start_at][:year].to_i, params[:search][:start_at][:month].to_i),
+                  :prefix => 'search[start_at]', :use_month_numbers => true %>
+                <%= t('datetime.prompts.month') %>
+              </div>
+              <div class="condition">
+                <label for="cond2"><%= t('label.common.end_at') %>:&nbsp;&nbsp;</label>
+                <%= select_year Date.civil(params[:search][:end_at][:year].to_i), :prefix => 'search[end_at]',
+                  :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                <%= t('datetime.prompts.year') %>
+                <%= select_month Date.civil(params[:search][:end_at][:year].to_i, params[:search][:end_at][:month].to_i),
+                  :prefix => 'search[end_at]', :use_month_numbers => true %>
+                <%= t('datetime.prompts.month') %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="condition">
+                <label for="cond3"><%= t('activerecord.attributes.project.name') %>:&nbsp;&nbsp;</label>
+                <%= f.select(:project_id, all_project_list, {:prompt => 'すべて', selected: params[:search][:project_id]}) %>
+              </div>
+              <div class="condition">
+                <label for="cond4"><%= t('activerecord.models.work_type') %>:&nbsp;&nbsp;</label>
+                <%= f.select(:work_type_id, WorkType.work_types_list, {:prompt => 'すべて', selected: params[:search][:work_type_id]}) %>
+              </div>
+              <% if administrator? || manager? || project_manager? %>
+                <div class="condition">
+                  <label for="cond5"><%= t('label.result_reflection.select.member') %>:&nbsp;&nbsp;</label>
+                  <% if administrator? || manager? %>
+                    <%= f.select(:member_id, User.users_list, {:prompt => 'すべて', selected: params[:search][:member_id]}) %>
+                  <% else %>
+                    <%= f.select(:member_id, current_user.my_relation_members_list, {:prompt => 'すべて', selected: params[:search][:member_id]}) %>
+                  <% end %>
+                </div>
+              <% end %>
+
+              <div class="button" style="padding-left: 10px;">
+                <input type="submit" accesskey="c" name="submit" value="<%= t('web-app-theme.csv_export') %>" />
+              </div>
+              <div class="button">
+                <input type="submit" accesskey="s" name="submit" value="<%= t('web-app-theme.select') %>" />
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div><!-- /.dataSearch -->
+
+    <div class="mul_list">
+      <table border="1" class="tablesorter">
+        <tbody>
+          <% pre_result = nil -%>
+          <% @results.each do |result| -%>
+            <% if pre_result.nil? || pre_result.result_date.year != result.result_date.year || 
+                pre_result.result_date.month != result.result_date.month %>
+              <tr class="month_header">
+                <td scope="col" class="column1">
+                  <%= l(result.result_date, :format => :local_date5) %>
+                </td>
+                <td scope="col" class="column2">
+                  <%= t('label.result_reflection.title.project_no') %>
+                </td>
+                <td scope="col" class="column3">
+                  <%= t('activerecord.attributes.project.name') %>
+                </td>
+                <td scope="col" class="column4">
+                  <%= t('activerecord.models.work_type') %>
+                </td>
+                <td scope="col" class="column5">
+                  <%= t('label.result_reflection.title.real_time') %>
+                </td>
+                <td scope="col" class="column6">
+                  <%= t('label.result_reflection.select.member') %>
+                </td>
+                <td scope="col" class="column7">
+                </td>
+              </tr>
+            <% end %>
+            <tr >
+              <td>
+                <%= l(result.result_date) %>
+              </td>
+              <td>
+                <%= result.project.project_code %>
+              </td>
+              <td>
+                <%= result.project.name %>
+              </td>
+              <td>
+                <%= result.work_type_name %>
+              </td>
+              <td>
+                <%= format_real_date(result.start_at, result.end_at) %>
+              </td>
+              <td>
+                <%= result.user.name %>
+              </td>
+              <td>
+                <%= link_to t('web-app-theme.show'), mh_result_path(result) %> |
+                <%= link_to t('web-app-theme.edit'), edit_mh_result_path(result, :search => params[:search]) %> |
+                <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}", [:mh, result], { method: :delete, :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" } %>
+              </td>
+            </tr>
+            <% pre_result = result %>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- /.pjList -->
+    <div class="actions-bar wat-cf">
+      <div class="actions">
+        <%= will_paginate @results %>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </div><!-- /.inner -->
+</section><!-- /#content -->

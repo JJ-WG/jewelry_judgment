@@ -1,0 +1,289 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+prj_work_type_1:
+  id: 1
+  project_id: 1
+  work_type_id: 1
+  planned_man_days: 2
+  presented_man_days: 4
+  progress_rate: 0
+
+prj_work_type_2:
+  id: 2
+  project_id: 1
+  work_type_id: 2
+  planned_man_days: 3
+  presented_man_days: 5
+  progress_rate: 0
+
+prj_work_type_3:
+  id: 3
+  project_id: 1
+  work_type_id: 3
+  planned_man_days: 5
+  presented_man_days: 8
+  progress_rate: 0
+
+prj_work_type_4:
+  id: 4
+  project_id: 1
+  work_type_id: 4
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 0
+
+prj_work_type_5:
+  id: 5
+  project_id: 1
+  work_type_id: 5
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_6:
+  id: 6
+  project_id: 1
+  work_type_id: 6
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_7:
+  id: 7
+  project_id: 2
+  work_type_id: 1
+  planned_man_days: 2
+  presented_man_days: 4
+  progress_rate: 100
+
+prj_work_type_8:
+  id: 8
+  project_id: 2
+  work_type_id: 2
+  planned_man_days: 3
+  presented_man_days: 5
+  progress_rate: 100
+
+prj_work_type_9:
+  id: 9
+  project_id: 2
+  work_type_id: 3
+  planned_man_days: 5
+  presented_man_days: 8
+  progress_rate: 100
+
+prj_work_type_10:
+  id: 10
+  project_id: 2
+  work_type_id: 4
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 50
+
+prj_work_type_11:
+  id: 11
+  project_id: 2
+  work_type_id: 5
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_12:
+  id: 12
+  project_id: 2
+  work_type_id: 6
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_13:
+  id: 13
+  project_id: 3
+  work_type_id: 1
+  planned_man_days: 2
+  presented_man_days: 4
+  progress_rate: 100
+
+prj_work_type_14:
+  id: 14
+  project_id: 3
+  work_type_id: 2
+  planned_man_days: 3
+  presented_man_days: 5
+  progress_rate: 100
+
+prj_work_type_15:
+  id: 15
+  project_id: 3
+  work_type_id: 3
+  planned_man_days: 5
+  presented_man_days: 8
+  progress_rate: 100
+
+prj_work_type_16:
+  id: 16
+  project_id: 3
+  work_type_id: 4
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 100
+
+prj_work_type_17:
+  id: 17
+  project_id: 3
+  work_type_id: 5
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 100
+
+prj_work_type_18:
+  id: 18
+  project_id: 3
+  work_type_id: 6
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 100
+
+prj_work_type_19:
+  id: 19
+  project_id: 4
+  work_type_id: 1
+  planned_man_days: 2
+  presented_man_days: 4
+  progress_rate: 0
+
+prj_work_type_20:
+  id: 20
+  project_id: 4
+  work_type_id: 2
+  planned_man_days: 3
+  presented_man_days: 5
+  progress_rate: 0
+
+prj_work_type_21:
+  id: 21
+  project_id: 4
+  work_type_id: 3
+  planned_man_days: 5
+  presented_man_days: 8
+  progress_rate: 0
+
+prj_work_type_22:
+  id: 22
+  project_id: 4
+  work_type_id: 4
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 0
+
+prj_work_type_23:
+  id: 23
+  project_id: 4
+  work_type_id: 5
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_24:
+  id: 24
+  project_id: 4
+  work_type_id: 6
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_25:
+  id: 25
+  project_id: 5
+  work_type_id: 1
+  planned_man_days: 2
+  presented_man_days: 4
+  progress_rate: 0
+
+prj_work_type_26:
+  id: 26
+  project_id: 5
+  work_type_id: 2
+  planned_man_days: 3
+  presented_man_days: 5
+  progress_rate: 0
+
+prj_work_type_27:
+  id: 27
+  project_id: 5
+  work_type_id: 3
+  planned_man_days: 5
+  presented_man_days: 8
+  progress_rate: 0
+
+prj_work_type_28:
+  id: 28
+  project_id: 5
+  work_type_id: 4
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 0
+
+prj_work_type_29:
+  id: 29
+  project_id: 5
+  work_type_id: 5
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_30:
+  id: 30
+  project_id: 5
+  work_type_id: 6
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_31:
+  id: 31
+  project_id: 6
+  work_type_id: 1
+  planned_man_days: 2
+  presented_man_days: 4
+  progress_rate: 0
+
+prj_work_type_32:
+  id: 32
+  project_id: 6
+  work_type_id: 2
+  planned_man_days: 3
+  presented_man_days: 5
+  progress_rate: 0
+
+prj_work_type_33:
+  id: 33
+  project_id: 6
+  work_type_id: 3
+  planned_man_days: 5
+  presented_man_days: 8
+  progress_rate: 0
+
+prj_work_type_34:
+  id: 34
+  project_id: 6
+  work_type_id: 4
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 0
+
+prj_work_type_35:
+  id: 35
+  project_id: 6
+  work_type_id: 5
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_36:
+  id: 36
+  project_id: 6
+  work_type_id: 6
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0

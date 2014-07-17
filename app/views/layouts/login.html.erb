@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Management System</title>
+  <%= stylesheet_link_tag 'styles', :media => 'screen, print' %>
+  <%= stylesheet_link_tag 'print', :media => 'print' %>
+  <%= stylesheet_link_tag 'common' %>
+  
+  <%= javascript_include_tag 'application' %>
+  <%= yield :header %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="wrapper">
+      <header id="commonHeader">
+        <div class="inner">
+          <div class="inner-left">
+            <%= link_to(image_tag('/assets/header_logo.png'), "#{root_url}top") %>
+          </div>
+          <div class="login-inner-right">
+            <%= image_tag("/assets/header_right.png") %>
+          </div>
+        </div><!-- /.inner -->
+      </header><!-- /#commonHeader -->
+      
+      <div id="login">
+        <div id="login-form">
+          <%= yield %>
+        </div>
+        <div id="login-logo">
+          <%= image_tag("/assets/login_logo.png") %>
+        </div>
+      </div>
+      
+      <footer id="commonFooter">
+        <div class="inner">
+          <div class="inner-left">
+            <%= image_tag("/assets/footer_left.png") %>
+          </div>
+          <div class="inner-right">
+            <%= image_tag("/assets/footer_copyright.png") %>
+          </div>
+        </div><!-- /.inner -->
+        </footer><!-- /#commonFooter -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'results' %>
+<%- end -%>
+<nav id="subNav">
+  <div class="inner">
+    <ul id="localNav">
+      <li>
+        <%= link_to "#{t('web-app-theme.list', :default => 'List')}", mh_results_path %>
+      </li>
+      <li>
+        <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_mh_result_path %>
+      </li>
+      <% if can_show_result_sum? %>
+        <li>
+          <%= link_to "#{t('label.menu.sum_by_group', :default => 'Sum By Group')}", sum_by_group_mh_results_path %>
+        </li>
+      <% end %>
+      <li class="current">
+        <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", mh_csv_results_path %>
+      </li>
+    </ul>
+  </div><!-- /.inner -->
+</nav><!-- /#subNav -->
+
+<section id="content">
+  <div class="inner">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+        <div class="message <%= type %>">
+          <p><%= message %></p>
+        </div>
+      <% end -%>
+    </div>
+
+    <header class="pageHeader">
+      <h1><%= t('common_label.csv_new_model', :model => t('activerecord.models.results')) %></h1>
+    </header>
+
+    <div class='dataSearch file_upload'>
+      <%= form_tag csv_data_create_mh_csv_results_path, :multipart => true do -%>
+        <table>
+          <tr>
+            <td><label for="file"><%= t('label.csv_file') %>：</label></td>
+            <td ><%= file_field_tag "file", :accept => ".csv", :size => '50' -%></td>
+            <td><%= submit_tag t('web-app-theme.csv_data_create') -%></td>
+          </tr>
+        </table>
+      <% end -%><!-- end form -->
+    </div><!-- end div.file_upload -->
+
+    <div class="mul_list">
+      <table border="1" class="tablesorter">
+        <tbody>
+          <% pre_result = nil -%>
+          <% @csv_results.each do |result| -%>
+            <% if pre_result.nil? || pre_result.result_date.year != result.result_date.year || 
+                pre_result.result_date.month != result.result_date.month %>
+              <tr class="month_header">
+                <td scope="col" class="column1">
+                  <%= l(result.result_date, :format => :local_date5) %>
+                </td>
+                <td scope="col" class="column2">
+                  <%= t('label.result_reflection.title.project_no') %>
+                </td>
+                <td scope="col" class="column3">
+                  <%= t('activerecord.attributes.project.name') %>
+                </td>
+                <td scope="col" class="column4">
+                  <%= t('activerecord.models.work_type') %>
+                </td>
+                <td scope="col" class="column5">
+                  <%= t('label.result_reflection.title.real_time') %>
+                </td>
+                <td scope="col" class="column6">
+                  <%= t('label.result_reflection.select.member') %>
+                </td>
+                <td scope="col" class="column7">
+                  <%= t('activerecord.attributes.result.notes') %>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td>
+                <%= l(result.result_date) %>
+              </td>
+              <td>
+                <%= result.project.project_code %>
+              </td>
+              <td>
+                <%= result.project.name %>
+              </td>
+              <td>
+                <%= result.work_type_name %>
+              </td>
+              <td>
+                <%= format_real_date(result.start_at, result.end_at) %>
+              </td>
+              <td>
+                <%= result.user.name %>
+              </td>
+              <td>
+                <%= result.notes %>
+              </td>
+            </tr>
+            <% pre_result = result %>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- /.pjList -->
+    <div>
+      <% if @csv_results.length > 0 %>
+        <div class="button">
+          <ul class="utilityNav">
+            <li>
+              <%= link_to t('web-app-theme.actual_data_create'),
+                actual_data_create_mh_csv_results_path,
+                { confirm: t('common_label.actual_data_confirm'), method: :put} %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div><!-- /.inner -->
+</section><!-- /#content -->

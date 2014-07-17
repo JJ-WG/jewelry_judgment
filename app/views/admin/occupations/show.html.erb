@@ -1,0 +1,101 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'occupations' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_occupations_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_occupation_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_occupation_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => Occupation.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_admin_occupation_path(@occupation) %>
+            </li>
+            <li class="csv">
+              <% unless Occupation.user_occupation?(@occupation) %>
+                <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                    admin_occupation_path(@occupation), :method => :delete,
+                    :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+              <% end %>
+            </li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @occupation.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.occupation.view_order') %>
+            </dt>
+            <dd>
+              <%= @occupation.view_order %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.occupation.name') %>
+            </dt>
+            <dd>
+              <%= @occupation.name %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+            </dt>
+            <dd>
+              <%= localtime @occupation.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @occupation.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

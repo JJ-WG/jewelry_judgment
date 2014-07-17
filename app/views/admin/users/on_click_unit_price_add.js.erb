@@ -1,0 +1,20 @@
+//
+// 工数単価編集用コントロール更新処理
+//
+$('#unit_price_list').html(
+  "<%= escape_javascript(render :partial => 'unit_price_list', 
+      :locals => {:object => @user}) %>"
+);
+
+$('#unit_price_delete_button').html(
+  "<%= escape_javascript(render :partial => 'unit_price_delete_button', 
+      :locals => {:object => @user}) %>"
+);
+
+$('#unit_price_start_date_error').html(
+  "<%= @unit_price_start_date_error %>"
+);
+
+$('#unit_price_unit_price_error').html(
+  "<%= @unit_price_unit_price_error %>"
+);

@@ -1,0 +1,188 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'indirect_costs' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}",
+                admin_indirect_costs_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}",
+                new_admin_indirect_cost_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}",
+                admin_indirect_cost_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1>
+            <%= t('common_label.browsing_model', :model => IndirectCost.model_name.human) %>
+          </h1>
+          
+          <ul class="utilityNav">
+            <% if IndirectCost.start_date_latest?(@indirect_cost.id) %>
+              <li class="csv">
+                <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                    edit_admin_indirect_cost_path(@indirect_cost) %>
+              </li>
+              <li class="csv">
+                <% if @indirect_cost.start_date <= Date.today %>
+                  <% confirm = 'プロジェクトの損益が変更されてしまう恐れがあります。本当に削除しますか？' %>
+                <% else %>
+                  <% confirm = "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                <% end %>
+                <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                    admin_indirect_cost_path(@indirect_cost), :method => :delete,
+                    :confirm => confirm %>
+              </li>
+            <% end %>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @indirect_cost.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.indirect_cost.start_date',
+                  :default => t('activerecord.labels.start_date', :default => 'Start Date')) %>:
+            </dt>
+            <dd>
+              <%= l localtime(@indirect_cost.start_date).to_date %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.indirect_cost_ratio.indirect_cost_method',
+                  :default => t('activerecord.labels.name', :default => 'IndirectCostMethod')) %>:
+            </dt>
+            <dd>
+              <%= indirect_cost_method_indication(@indirect_cost.indirect_cost_method_cd) %>
+            </dd>
+            
+            <% unless @indirect_cost.indirect_cost_method_cd == INDIRECT_COST_METHOD_CODE[:method1] %>
+              <dt>
+                <%= t('activerecord.attributes.indirect_cost_ratio.ratio') %>
+              </dt>
+              <dd class="table">
+                <table class="show">
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        &nbsp;
+                      </th>
+                      <th scope="col">
+                        <%= t('contract', :scope => 'order_type') %><%= t('common_label.percent') %>
+                      </th>
+                      <th scope="col">
+                        <%= t('instrument', :scope => 'order_type') %><%= t('common_label.percent') %>
+                      </th>
+                      <th scope="col">
+                        <%= t('maintenance', :scope => 'order_type') %><%= t('common_label.percent') %>
+                      </th>
+                      <th scope="col">
+                        <%= t('investment', :scope => 'order_type') %><%= t('common_label.percent') %>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <%= t('employee', :scope => 'indirect_cost_subject') %>
+                      </th>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:contract],
+                            INDIRECT_COST_SUBJECT_CODE[:employee]) %>
+                      </td>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:instrument],
+                            INDIRECT_COST_SUBJECT_CODE[:employee]) %>
+                      </td>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:maintenance],
+                            INDIRECT_COST_SUBJECT_CODE[:employee]) %>
+                      </td>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:investment],
+                            INDIRECT_COST_SUBJECT_CODE[:employee]) %>
+                      </td>
+                    </tr>
+                    <% unless @indirect_cost.indirect_cost_method_cd == INDIRECT_COST_METHOD_CODE[:method2] %>
+                      <tr>
+                        <th scope="row">
+                          <%= t('cooperative', :scope => 'indirect_cost_subject') %>
+                        </th>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:contract],
+                            INDIRECT_COST_SUBJECT_CODE[:cooperative]) %>
+                      </td>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:instrument],
+                            INDIRECT_COST_SUBJECT_CODE[:cooperative]) %>
+                      </td>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:maintenance],
+                            INDIRECT_COST_SUBJECT_CODE[:cooperative]) %>
+                      </td>
+                      <td class="num">
+                        <%= @indirect_cost.ratio(ORDER_TYPE_CODE[:investment],
+                            INDIRECT_COST_SUBJECT_CODE[:cooperative]) %>
+                      </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </dd>
+            <% end %>
+              
+            <dt>
+              <%= t('common_label.created_at') %>
+            </dt>
+            <dd>
+              <%= localtime @indirect_cost.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @indirect_cost.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

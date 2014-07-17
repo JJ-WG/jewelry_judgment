@@ -1,0 +1,43 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'change_pwd' %>
+<%- end -%>
+
+    <section id="content">
+      <div class="inner">
+        <header class="pageHeader">
+          <h1>パスワード変更</h1>
+        </header>
+        
+        <%= form_for @user, :url => pwd_user_path(@user), :html => { :class => :form } do |f| -%>
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>               
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>               
+                  <p><%= message %></p>
+                <% end -%>
+                <% if @user.errors.any? -%>
+                  <ul>
+                  <% @user.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% end -%>
+              <% end -%>
+            </div>
+          <% end %>
+          
+          <div class="entryForm">
+            <%= render :partial => 'form', :locals => {:f => f} %>
+          </div><!-- /.entryForm -->
+        <% end -%>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

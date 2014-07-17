@@ -1,0 +1,14 @@
+# encoding: UTF-8
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+notice_1:
+  user_id: 2
+  project_id: 2
+  message_cd: 11
+  message: 'プロジェクトのリーダーに任命されました。'
+
+notice_2:
+  user_id: 2
+  project_id: 3
+  message_cd: 31
+  message: 'プロジェクトの作業工数が予定工数を超過しました。'

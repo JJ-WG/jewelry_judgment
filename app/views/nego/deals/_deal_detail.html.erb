@@ -1,0 +1,155 @@
+# encoding: utf-8
+
+            <div class="data" style='margin-top: 0px;'>
+              <dl style="padding-bottom: 20px;">
+                <dt>
+                  <%= t('activerecord.attributes.deal.name') %>
+                </dt>
+                <dd>
+                  <%= @deal.name %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.customer.name') %>
+                </dt>
+                <dd>
+                  <%= @deal.customer.name %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.deal.contact_person_name') %>
+                </dt>
+                <dd>
+                  <%= @deal.contact_person_name %>
+                </dd>
+
+                <dt>
+                  <%= t('label.deal_reflection.label.staff_user') %>
+                </dt>
+                <dd>
+                  <%= @deal.staff_user.name %>
+                </dd>
+                
+                <dt>
+                  <%= t('label.deal_reflection.label.budge_dimension') %>
+                </dt>
+                <dd>
+                  <dl>
+                    <dt style='width: 8%'>
+                      (<%= t('activerecord.attributes.deal.budge_amount') %>)
+                    </dt>
+                    <dd>
+                      <%= number_with_delimiter(@deal.budge_amount) %>
+                    </dd>
+                    <br />
+                    <dt style='width: 8%'>
+                      (<%= t('activerecord.attributes.deal.anticipated_price') %>)
+                    </dt>
+                    <dd>
+                      <%= number_with_delimiter(@deal.anticipated_price) %>
+                    </dd>
+                  </dl>
+                </dd>
+
+                <dt>
+                  <%= t('label.deal_reflection.label.schedule') %>
+                </dt>
+                <dd>
+                  <dl>
+                    <dt style='width: 8%'>
+                      (<%= t('activerecord.attributes.deal.adoption_period') %>)
+                    </dt>
+                    <dd>
+                      <%= @deal.adoption_period %>
+                    </dd>
+                    <br />
+                    <dt style='width: 8%'>
+                      (<%= t('activerecord.attributes.deal.delivery_period') %>)
+                    </dt>
+                    <dd>
+                      <%= @deal.delivery_period %>
+                    </dd>
+                  </dl>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.deal.selection_method') %>
+                </dt>
+                <dd>
+                  <%= @deal.selection_method %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.deal.order_type') %>
+                </dt>
+                <dd>
+                  <%= order_type_indication @deal.order_type_cd %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.deal.billing_destination') %>
+                </dt>
+                <dd>
+                  <%= @deal.billing_destination %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.deal.reliability') %>
+                </dt>
+                <dd>
+                  <%= reliability_indication(@deal.reliability_cd) %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.deal.prj_managed') %>
+                </dt>
+                <dd>
+                  <%= prj_managed_label(@deal.prj_managed) %>
+                </dd>
+                
+                <dt>
+                  <%= t('activerecord.attributes.deal.deal_status') %>
+                </dt>
+                <dd>
+                  <%= @deal.deal_status %>
+                </dd>
+
+                <dt>
+                  <%= t('activerecord.attributes.deal.order_volume') %>
+                </dt>
+                <dd>
+                  <%= number_with_delimiter(@deal.order_volume) %>
+                </dd>
+
+                <dt>
+                  <%= SalesReport.model_name.human %>
+                </dt>
+                <dd>
+                  <div id="sales_report_content">
+                  </div>
+                  <div id="sales_report_list" style='width: 65%'>
+                    <%= render :partial => 'nego/sales_reports/list', :locals => {:sales_reports => @deal.sales_reports} %>
+                  </div>
+                </dd>
+
+                <dt>
+                    <%= t('activerecord.attributes.deal.notes') %>
+                    (<%= t('label.deal_reflection.label.notes_tip') %>)
+                </dt>
+                <dd>
+                  <%= @deal.notes %>
+                </dd>
+
+                <dt>
+                  <label>
+                    <%= t('label.deal_reflection.label.related_file') %>
+                  </label>
+                </dt>
+                <dd>
+                  <div>
+                    <%= render :partial => 'related_file_list', :locals=> {:deal => @deal } %>
+                  </div>
+                </dd>
+
+              </dl>
+            </div><!-- /.dealData -->

@@ -1,0 +1,11 @@
+# encoding: utf-8
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to t('web-app-theme.edit', :default=> 'Edit'), edit_nego_deal_sales_report_path(deal, sales_report),
+                    :remote => true %>
+            </li>
+            <li class="csv">
+              <%= link_to t('web-app-theme.delete', :default=> 'Delete'), [:nego, deal, sales_report], 
+                { method: :delete, :remote => true, :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" } %>
+            </li>
+          </ul>

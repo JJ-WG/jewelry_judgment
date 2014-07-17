@@ -1,0 +1,50 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+member1:
+  id: 1
+  schedule_id: 1
+  user_id: 1
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member2:
+  id: 2
+  schedule_id: 1
+  user_id: 2
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member3:
+  id: 3
+  schedule_id: 1
+  user_id: 3
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member4:
+  id: 4
+  schedule_id: 1
+  user_id: 4
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member5:
+  id: 5
+  schedule_id: 1
+  user_id: 5
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member6:
+  id: 6
+  schedule_id: 2
+  user_id: 2
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member7:
+  id: 7
+  schedule_id: 2
+  user_id: 3
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+member8:
+  id: 8
+  schedule_id: 3
+  user_id: 1
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

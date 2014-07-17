@@ -1,0 +1,102 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="user">
+                  <%= t('activerecord.attributes.expense.user_id') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%=
+                  if (administrator? || manager?)
+                    users_list = User.users_list(:include_deleted_user => false)
+                  else
+                    users_list =
+                        current_user.my_project_members_list(:include_deleted_user => false)
+                  end
+                  unless @expense.new_record? 
+                    users_list = User.add_to_list(users_list, @expense.user_id)
+                  end
+                  f.select(:user_id, users_list)
+                %>
+              </dd>
+              
+              <dt>
+                <label for="project">
+                  <%= t('activerecord.models.projects') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%=
+                  if (administrator? || manager?)
+                    projects_list = Project.projects_list(:include_finished_project => false)
+                  else
+                    projects_list = current_user.my_project_list(:include_finished_project => false)
+                  end
+                  unless @expense.new_record? 
+                    projects_list = Project.add_to_list(projects_list, @expense.project_id)
+                  end
+                  f.select(:project_id, projects_list, {:include_blank => true})
+                %>
+              </dd>
+             
+              <dt>
+                <label for="adjusted_date">
+                  <%= t('activerecord.attributes.expense.adjusted_date') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%=
+                adjusted_date =
+                    (@expense.adjusted_date.blank?)? '' : @expense.adjusted_date.strftime('%Y/%m/%d')
+                f.text_field :adjusted_date, :class => 'text_field', :value => adjusted_date, 
+                    :maxlength => '10', :style => 'width:100px;', :class => :ime_off
+                %>
+              </dd>
+             
+              <dt>
+                <label for="expense_types">
+                  <%= t('activerecord.models.expense_types') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:expense_type_id, ExpenseType.expense_types_list) %>
+              </dd>
+             
+              <dt>
+                <label for="item_name">
+                  <%= t('activerecord.attributes.expense.item_name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :item_name, :class => 'text_field',
+                    :maxlength => '40', :style => 'width:400px;', :class => :ime_on %>
+              </dd>
+             
+              <dt>
+                <label for="amount_paid">
+                  <%= t('activerecord.attributes.expense.amount_paid') %>
+                  <%= t('common_label.yen') %>
+                  <%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :amount_paid, :value => @expense.amount_paid.to_i,
+                    :class => 'text_field numeric ime_off',
+                    :maxlength => '10', :style => 'width:100px;' %>
+              </dd>
+             
+              <dt>
+                <label for="tax_divisions">
+                  <%= t('activerecord.models.tax_divisions') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:tax_division_id, TaxDivision.tax_divisions_list) %>
+              </dd>
+             
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), expense_expenses_path,
+                  :class => 'cancel') %>
+            </div>

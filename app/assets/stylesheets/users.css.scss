@@ -1,0 +1,49 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ユーザー一覧 */
+div.list thead th.name {
+  width: 20%;
+}
+
+div.list thead th.section {
+  width: 35%;
+}
+
+div.list thead th.login {
+  width: 15%;
+}
+
+div.list thead th.rank {
+  width: 17%;
+}
+
+/* ユーザー管理 閲覧画面 工数単価テーブル */
+table.show tbody tr:last-child th:first-child {
+  border-radius: 0 0 0 3px;
+}
+
+table.show tbody tr:last-child td:last-child {
+  border-radius: 0 0 3px 0;
+}
+
+table.unit-price {
+  width: 200px;
+}
+
+table.unit-price th.sart-date {
+  width: 40%;
+}
+
+table.unit-price th.unit-price {
+  width: 60%;
+  text-align: center;
+}
+
+table.unit-price td.sart-date {
+}
+
+table.unit-price td.unit-price {
+  text-align: right;
+}

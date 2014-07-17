@@ -1,0 +1,64 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag "projects" %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", prj_projects_path  %>
+          </li>
+          <% if creatable? %>
+            <li>
+              <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_prj_project_path %>
+            </li>
+          <% end %>
+          <% if editable?(@project) %>
+            <li class="current">
+              <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_prj_project_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <header class="pageHeader">
+          <h1><%= t('common_label.editing_model', :model => PrjMember.model_name.human) %></h1>
+        </header>
+        
+        <div class="entryForm">
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>
+                  <p><%= message %></p>
+                <% end -%>
+                <% if @project.errors.any? -%>
+                  <ul>
+                  <% @project.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                <% end %>
+              <% end -%>
+            </div>
+          <% end %>
+          
+          <%= form_for :project, :url => {:action => 'update_prj_members'},
+              :html => { :method => :put, :class => :form } do |f| -%>
+            <%= render :partial => 'edit_prj_members_form', :locals => {:f => f} %>
+          <% end -%>
+        </div><!-- /.entryForm -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

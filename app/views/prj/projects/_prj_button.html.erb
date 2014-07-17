@@ -1,0 +1,72 @@
+# encoding: utf-8
+
+          <ul class="utilityNav">
+            <% if editable?(@project) %>
+              <li class="csv">
+                <% if manager? &&
+                    !(@project.project_leader?(current_user) || @project.project_manager?(current_user)) %>
+                  <% confirm = '' %>
+                <% else %>
+                  <% confirm = @edit_progress_rate?
+                      "#{t('web-app-theme.edit_progress_rate_confirm', :default=> 'EditProgressRate')}" : '' %>
+                <% end %>
+                <%= link_to t('web-app-theme.edit', :default=> 'Edit'),
+                    edit_prj_project_path(@project), :method => :get, :confirm => confirm %>
+              </li>
+            <% end %>
+            <% if unlockable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.unlock', :default=> 'Unlock'),
+                    unlock_prj_project_path(@project), :method => :put,
+                    :confirm => "#{t('web-app-theme.unlock_confirm', :default=> 'Unlock')}" %>
+              </li>
+            <% end %>
+            <% if lockable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.lock', :default=> 'Lock'),
+                    lock_prj_project_path(@project), :method => :put,
+                    :confirm => "#{t('web-app-theme.lock_confirm', :default=> 'Lock')}" %>
+              </li>
+            <% end %>
+            <% if restorable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.restore', :default=> 'Restore'),
+                    restore_prj_project_path(@project), :method => :put,
+                    :confirm => "#{t('web-app-theme.restore_confirm', :default=> 'Restore')}" %>
+              </li>
+            <% end %>
+            <% if deletable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.delete', :default=> 'Delete'),
+                    prj_project_path(@project), :method => :delete,
+                    :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" %>
+              </li>
+            <% end %>
+            <% if statable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.start', :default=> 'Start'),
+                    start_prj_project_path(@project), :method => :put,
+                    :confirm => "#{t('web-app-theme.start_confirm', :default=> 'Start')}" %>
+              </li>
+            <% end %>
+            <% if finishable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.finish', :default=> 'Finish'),
+                    finish_prj_project_path(@project), :method => :put,
+                    :onclick => "#{t('web-app-theme.finish_confirm', :default=> 'Finish')}" %>
+              </li>
+            <% end %>
+            <% if restartable?(@project) %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.restart', :default=> 'Restart'),
+                    restart_prj_project_path(@project), :method => :put,
+                    :confirm => "#{t('web-app-theme.start_confirm', :default=> 'Start')}" %>
+                </li>
+            <% end %>
+            <% if @project.finished? && prj_reflection_id.present? %>
+              <li class="csv">
+                <%= link_to t('web-app-theme.reflection', :default=> 'Reflection'),
+                    prj_prj_reflection_path(prj_reflection_id) %>
+              </li>
+            <% end %>
+          </ul>

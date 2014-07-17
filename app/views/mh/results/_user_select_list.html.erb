@@ -1,0 +1,7 @@
+# encoding: utf-8
+
+<%= fields_for result do |f| %>
+  <% user_select_list = @user_select_list.map{|user| [user.name, user.id]} %>
+  <%= f.select(:user_id, user_select_list,
+    {:include_blank => true}, {:class => 'member_select'}) %>
+<% end %>

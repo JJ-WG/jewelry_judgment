@@ -1,0 +1,27 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="view_order">
+                  <%= t('activerecord.attributes.section.view_order') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.number_field :view_order, :class => 'number_field ime_off' %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.section.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'text_field ime_on', :maxlength => '40', :style => 'width:400px;' %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_sections_path,
+                  :class => 'cancel') %>
+            </div>

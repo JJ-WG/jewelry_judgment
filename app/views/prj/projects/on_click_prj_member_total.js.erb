@@ -1,0 +1,15 @@
+//
+// 予定工数合計、直接労務費予算更新処理
+//
+$('#member_select_list_error').html(
+  "<%= @project_member_list_error %>"
+);
+
+$('#project_member_list').html(
+  "<%= escape_javascript(render :partial => 'project_member_list', 
+      :locals => {:object => @project}) %>"
+);
+
+$('#direct_labor_cost_budget').html(
+  "<%= number_to_currency(@direct_labor_cost_budget) %>"
+);

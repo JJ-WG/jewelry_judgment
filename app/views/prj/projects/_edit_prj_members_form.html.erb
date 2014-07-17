@@ -1,0 +1,105 @@
+# encoding: utf-8
+
+            <%= f.text_field :id, :type => 'hidden' %>
+            <%= f.text_field :status_cd, :type => 'hidden' %>
+            <%= f.text_field :deleted, :type => 'hidden' %>
+            <%= f.text_field :locked, :type => 'hidden' %>
+            <%#= order_volumeは更新しないが、小数エラーが発生するため追加（原因不明） %>
+            <%= f.text_field :order_volume, :type => 'hidden',
+                :value => @project.order_volume.to_i %>
+            
+            <dl>
+              <dt>
+                <label for="project-name">
+                  <%= t('activerecord.attributes.project.name') %>
+                </label>
+              </dt>
+              <dd>
+                <%= @project.name %>
+              </dd>
+              
+              <dt>
+                <label for="manager">
+                  <%= t('activerecord.attributes.project.manager') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:manager_id, @managers_list, {:include_blank => true}) %>
+              </dd>
+              
+              <dt>
+                <label for="leader">
+                  <%= t('activerecord.attributes.project.leader') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:leader_id, @leaders_list, {:include_blank => true}) %>
+              </dd>
+              
+              <dt>
+                <label for="member">
+                  <%= t('activerecord.attributes.project.member') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <table class="edit-table">
+                  <tr>
+                    <td class="edit-list">
+                      <%= render :partial => 'project_member_list',
+                          :locals => {:object => @project} %>
+                    </td>
+                    <td class="add-button">
+                      <input type="button" id="member_add_button" value="< 追加" />
+                    </td>
+                    <td class="input-form">
+                      <div class="group">
+                        <div class="item-name">
+                          <%= t('activerecord.models.section') %>:
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="item-control">
+                           <%= f.select(:section_id, Section.sections_list,
+                              {:prompt => '(部署なし)'}) %>
+                        </div>
+                      </div>
+                      <div style="clear:both;"></div>
+                      <div class="group">
+                        <div class="item-name">
+                          <%= t('activerecord.attributes.project.member_label') %>:
+                          <%= essential %>
+                          <div id="member_select_list_error" style="color:#CC0000"></div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="item-control">
+                          <%= render :partial => 'member_select_list',
+                              :locals => {:object => @project} %>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                
+                <div style="float:left">
+                  <%= t('activerecord.attributes.project.direct_labor_cost') %>
+                  <%= t('activerecord.attributes.project.budget') %>:
+                </div>
+                <div id="direct_labor_cost_budget" style="float:left">
+                  <%= number_to_currency(@direct_labor_cost_budget.to_i) %>
+                </div>
+                <div style="clear:both;"></div>
+                <br />
+                <div style="float:left">
+                  <%= t('activerecord.attributes.project.total_man_days_by_work_type') %>:
+                </div>
+                <div id="" style="float:left">
+                  <%= number_with_delimiter(@project.planned_man_days) %>人日
+                </div>
+                <div style="clear:both;"></div>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), prj_projects_path,
+                  :class => 'cancel') %>
+            </div>

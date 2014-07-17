@@ -1,0 +1,27 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="title">
+                  <%= t('activerecord.attributes.message.title') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :title, :class => 'text_field ime_on', :maxlength => '50', :style => 'width:500px;' %>
+              </dd>
+              
+              <dt>
+                <label for="message">
+                  <%= t('activerecord.attributes.message.message') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_area :message, :class => 'text_area ime_on', :style => 'width:700px;' %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_messages_path,
+                  :class => 'cancel') %>
+            </div>

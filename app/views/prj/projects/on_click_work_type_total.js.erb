@@ -1,0 +1,17 @@
+//
+// 工数合計更新処理
+//
+$('#planned_man_days_total_field').html(
+  "<%= escape_javascript(render :partial => 'planned_man_days_total_text_field',
+      :locals => {:object => @project}) %>"
+);
+
+$('#presented_man_days_total_field').html(
+  "<%= escape_javascript(render :partial => 'presented_man_days_total_text_field',
+      :locals => {:object => @project}) %>"
+);
+
+$('#progress_rate_total_field').html(
+  "<%= escape_javascript(render :partial => 'progress_rate_total_text_field',
+      :locals => {:object => @project}) %>"
+);

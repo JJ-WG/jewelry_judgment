@@ -1,0 +1,31 @@
+/* パスワード変更機能 CSS*/
+
+/* Entry Form
+-------------------------------------------------- */
+
+form .entryForm  {
+  margin: 1.5em 0;
+  padding: 8px 15px;
+  border-top: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+  border-radius: 5px;
+  background: #eee;
+  behavior: url(/assets/PIE.htc);
+}
+
+/* Error */
+
+form .errorMsg {
+  margin-left: 8px;
+  color: #c00;
+}
+form .errorMsg ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+form .error {
+  border: 2px solid #c00 !important;
+  background: #fff5f5 !important;
+}

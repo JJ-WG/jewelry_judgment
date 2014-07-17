@@ -1,0 +1,385 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag "projects" %>
+<%- end -%>
+
+     <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to t('common_label.information_model', :model => Project.model_name.human), prj_project_path(@project) %>
+          </li>
+          <li class="current">            
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", prj_prj_reflection_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => PrjReflection.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <% if editable?(@project) -%>
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_prj_prj_reflection_path(@prj_reflection) %>
+            </li>
+            <% end -%>
+            <li class="csv">
+              <%= link_to "#{t('label.project_reflection.report.closing_report', :default=> 'Closing report')}",
+                  project_report_prj_prj_reflection_path(@prj_reflection, :format => :pdf),
+                  :target => :_blank %>
+            </li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('activerecord.attributes.project.name') %>
+            </dt>
+            <dd>
+              <%= get_name(@project) %>
+            </dd>
+            
+            <h4 class="item-title"><%= t('label.project_reflection.report.project_result') %></h4>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.deal.order_volume') %><%= t('common_label.without_tax') %>
+              </div>
+            </dt>
+            <dd>
+              <%= number_to_currency(@prj_reflection.order_volume) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.development_cost') %><%= t('common_label.without_tax') %>
+              </div>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd><%= number_to_currency(@project.development_cost_budget) %></dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd><%= conditional_tag(@prj_reflection.development_cost > @project.development_cost_budget,
+                          false, number_to_currency(@prj_reflection.development_cost)) %></dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.gross_profit') %><%= t('common_label.without_tax') %>
+              </div>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd><%= number_to_currency(@project.gross_profit_budget) %></dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd><%= conditional_tag(@prj_reflection.gross_profit < 0,
+                          @prj_reflection.gross_profit < @project.gross_profit_budget,
+                          number_to_currency(@prj_reflection.gross_profit)) %></dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.profit_ratio') %>
+              </div>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd><%= number_to_percentage(@project.profit_ratio_budget) %></dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd><%= conditional_tag(@prj_reflection.profit_ratio < 0,
+                          @prj_reflection.profit_ratio < @project.profit_ratio_budget,
+                          number_to_percentage(@prj_reflection.profit_ratio)) %></dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.project.rank_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= EVALUATION_RANK_CODE[@prj_reflection.overall_rank] %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.reasons_for_termination') %>
+              </div>
+            </dt>
+            <dd>
+              <%= multi_line(@prj_reflection.reasons_for_termination) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.self_evaluation') %>
+              </div>
+            </dt>
+            <dd>
+              <%= multi_line(@prj_reflection.self_evaluation) %>
+            </dd>
+            
+            <h4 class="item-title"><%= t('label.project_reflection.report.schedule_evaluation') %></h4>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.delay_days') %>
+              </div>
+            </dt>
+            <dd>
+              <%= conditional_tag(@prj_reflection.delay_days > 0, false,
+                    @prj_reflection.delay_days.to_s + t('datetime.prompts.day')) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.project.rank_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= EVALUATION_RANK_CODE[@prj_reflection.schedule_rank] %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.finished_date_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= l(@prj_reflection.finished_date, :format => :local_date) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.planned_finish_date_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= l(@prj_reflection.planned_finish_date, :format => :local_date) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.reasons_for_dalay') %>
+              </div>
+            </dt>
+            <dd>
+              <%= multi_line(@prj_reflection.reasons_for_dalay) %>
+            </dd>
+            
+            <h4 class="item-title"><%= t('label.project_reflection.report.man_days_evaluation') %></h4>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.project.man_day') %>
+              </div>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd><%= number_with_precision(@project.planned_man_days) + t('datetime.prompts.day') %></dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd><%= number_with_precision(@prj_reflection.man_day) + t('datetime.prompts.day') %></dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.exceeded_man_days') %>
+              </div>
+            </dt>
+            <dd>
+              <%= conditional_tag(@prj_reflection.exceeded_man_days > 0, false,
+                    number_with_precision(@prj_reflection.exceeded_man_days) + t('datetime.prompts.day')) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.project.rank_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= EVALUATION_RANK_CODE[@prj_reflection.man_days_rank] %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.reasons_for_overtime_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= multi_line(@prj_reflection.reasons_for_overtime) %>
+            </dd>
+            
+            <h4 class="item-title"><%= t('label.project_reflection.report.expense_evaluation') %></h4>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.project.expense') %><%= t('common_label.without_tax') %>
+              </div>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd><%= number_to_currency(@project.direct_expense_budget) %></dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd><%= number_to_currency(@prj_reflection.expense) %></dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.exceeded_expense') %><%= t('common_label.without_tax') %>
+              </div>
+            </dt>
+            <dd>
+              <%= conditional_tag(@prj_reflection.exceeded_expense > 0, false,
+                    number_to_currency(@prj_reflection.exceeded_expense)) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.project.rank_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= EVALUATION_RANK_CODE[@prj_reflection.expense_rank] %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('activerecord.attributes.prj_reflection.reasons_for_over_budget_label') %>
+              </div>
+            </dt>
+            <dd>
+              <%= multi_line(@prj_reflection.reasons_for_over_budget) %>
+            </dd>
+            
+            <h4 class="item-title"><%= t('label.project_reflection.report.lessons_learned') %></h4>
+            
+            <dt>
+              <div class="item-group">
+                <%= multi_line(t('activerecord.attributes.prj_reflection.successful_things_label')) %>
+              </div>
+            </dt>
+            <dd>
+              <%= @prj_reflection.successful_things %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= multi_line(t('activerecord.attributes.prj_reflection.failed_things_label')) %>
+              </div>
+            </dt>
+            <dd class="two-lines">
+              <%= multi_line(@prj_reflection.failed_things) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= multi_line(t('activerecord.attributes.prj_reflection.improvable_things_label')) %>
+              </div>
+            </dt>
+            <dd>
+              <%= @prj_reflection.improvable_things %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= multi_line(t('activerecord.attributes.prj_reflection.next_actions_label')) %>
+              </div>
+            </dt>
+            <dd class="two-lines">
+              <%= multi_line(@prj_reflection.next_actions) %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= multi_line(t('activerecord.attributes.prj_reflection.learned_skills_label')) %>
+              </div>
+            </dt>
+            <dd class="two-lines">
+              <%= multi_line(@prj_reflection.learned_skills) %>
+            </dd>
+            
+            <h4 class="item-title">管理情報</h4>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('common_label.id') %>
+              </div>
+            </dt>
+            <dd>
+              <%= @prj_reflection.id %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('common_label.created_at') %>
+              </div>
+            </dt>
+            <dd>
+              <%= localtime @prj_reflection.created_at %>
+            </dd>
+            
+            <dt>
+              <div class="item-group">
+                <%= t('common_label.updated_at') %>
+              </div>
+            </dt>
+            <dd>
+              <%= localtime @prj_reflection.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

@@ -1,0 +1,161 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+expense_1:
+  id: 1
+  user_id: 3
+  project_id: 2
+  expense_type_id: 1
+  tax_division_id: 1
+  adjusted_date: 2012-07-10
+  item_name: 東京出張
+  amount_paid: 68460
+
+expense_2:
+  id: 2
+  user_id: 3
+  project_id: 2
+  expense_type_id: 2
+  tax_division_id: 1
+  adjusted_date: 2012-07-13
+  item_name: 岡山へ移動
+  amount_paid: 5040
+
+expense_3:
+  id: 3
+  user_id: 3
+  project_id: 2
+  expense_type_id: 3
+  tax_division_id: 1
+  adjusted_date: 2012-07-10
+  item_name: 東京出張
+  amount_paid: 8000
+
+expense_4:
+  id: 4
+  user_id: 2
+  project_id: 2
+  expense_type_id: 4
+  tax_division_id: 1
+  adjusted_date: 2012-11-30
+  item_name: 11月分外注費
+  amount_paid: 300000
+
+expense_5:
+  id: 5
+  user_id: 2
+  project_id: 2
+  expense_type_id: 4
+  tax_division_id: 1
+  adjusted_date: 2012-12-28
+  item_name: 12月分外注費
+  amount_paid: 300000
+
+expense_6:
+  id: 6
+  user_id: 2
+  project_id: 2
+  expense_type_id: 5
+  tax_division_id: 1
+  adjusted_date: 2012-07-15
+  item_name: 会場費用
+  amount_paid: 5000
+
+expense_7:
+  id: 7
+  user_id: 4
+  project_id: 2
+  expense_type_id: 6
+  tax_division_id: 1
+  adjusted_date: 2012-07-13
+  item_name: SDKライセンス料
+  amount_paid: 52500
+
+expense_8:
+  id: 8
+  user_id: 4
+  project_id: 2
+  expense_type_id: 6
+  tax_division_id: 1
+  adjusted_date: 2012-07-10
+  item_name: 開発ツール購入
+  amount_paid: 5290
+
+expense_9:
+  id: 9
+  user_id: 3
+  project_id: 3
+  expense_type_id: 1
+  tax_division_id: 1
+  adjusted_date: 2012-07-10
+  item_name: 東京出張
+  amount_paid: 68460
+
+expense_10:
+  id: 10
+  user_id: 3
+  project_id: 3
+  expense_type_id: 2
+  tax_division_id: 1
+  adjusted_date: 2012-07-13
+  item_name: 岡山へ移動
+  amount_paid: 5040
+
+expense_11:
+  id: 11
+  user_id: 3
+  project_id: 3
+  expense_type_id: 3
+  tax_division_id: 1
+  adjusted_date: 2012-07-10
+  item_name: 東京出張
+  amount_paid: 8000
+
+expense_12:
+  id: 12
+  user_id: 2
+  project_id: 3
+  expense_type_id: 4
+  tax_division_id: 1
+  adjusted_date: 2012-10-31
+  item_name: 10月分外注費
+  amount_paid: 150000
+
+expense_13:
+  id: 13
+  user_id: 2
+  project_id: 3
+  expense_type_id: 4
+  tax_division_id: 1
+  adjusted_date: 2012-11-30
+  item_name: 11月分外注費
+  amount_paid: 150000
+
+expense_14:
+  id: 14
+  user_id: 2
+  project_id: 3
+  expense_type_id: 5
+  tax_division_id: 1
+  adjusted_date: 2012-07-15
+  item_name: 会場費用
+  amount_paid: 5000
+
+expense_15:
+  id: 15
+  user_id: 4
+  project_id: 3
+  expense_type_id: 6
+  tax_division_id: 1
+  adjusted_date: 2012-07-13
+  item_name: SDKライセンス料
+  amount_paid: 52500
+
+expense_16:
+  id: 16
+  user_id: 4
+  project_id: 3
+  expense_type_id: 6
+  tax_division_id: 1
+  adjusted_date: 2012-07-10
+  item_name: 開発ツール購入
+  amount_paid: 5290

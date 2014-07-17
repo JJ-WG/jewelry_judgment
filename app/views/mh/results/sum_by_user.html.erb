@@ -1,0 +1,93 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'fullcalendar' %>
+  <%= stylesheet_link_tag 'results' %>
+<%- end -%>
+<nav id="subNav">
+  <div class="inner">
+    <ul id="localNav">
+      <li>
+        <%= link_to "#{t('web-app-theme.list', :default => 'List')}", mh_results_path %>
+      </li>
+      <li>
+        <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_mh_result_path %>
+      </li>
+      <% if can_show_result_sum? %>
+        <li>
+          <%= link_to "#{t('label.menu.sum_by_group', :default => 'Sum By Group')}", sum_by_group_mh_results_path %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", mh_csv_results_path %>
+      </li>
+    </ul>
+  </div><!-- /.inner -->
+</nav><!-- /#subNav -->
+
+<section id="content">
+  <div class="inner">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+        <div class="message <%= type %>">
+          <p><%= message %></p>
+        </div>
+      <% end -%>
+    </div>
+
+    <header class="pageHeader">
+      <h1><font size="4"><%= @user ? @user.name : ''  %></font></h1>
+    </header>
+
+    <div class="dataSearch">
+      <%= form_for :search, :url => {:action => :sum_by_user}, :option => {:class => 'form'}, :method => :get do |f| %>
+        <input id='user_id' name='user_id' type='hidden' value='<%= params[:user_id] %>' >
+        <table style="width: 100%">
+          <tr>
+            <td>
+              <div class="condition">
+                <label for="cond1"><%= t('label.common.year_month') %>:&nbsp;&nbsp;</label>
+                <%= select_year Date.civil(params[:search][:start_at][:year].to_i), :prefix => 'search[start_at]',
+                  :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                <%= t('datetime.prompts.year') %>
+                <%= select_month Date.civil(params[:search][:start_at][:year].to_i, params[:search][:start_at][:month].to_i),
+                  :prefix => 'search[start_at]', :use_month_numbers => true %>
+                <%= t('datetime.prompts.month') %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="condition">
+                <label for="cond2"><%= t('activerecord.attributes.project.name') %>:&nbsp;&nbsp;</label>
+                <% if administrator? || manager? %>
+                  <%= f.select(:project_id, all_project_list, {:prompt => 'すべて', selected: params[:search][:project_id]}) %>
+                <% else %>
+                  <%= f.select(:project_id, @manage_project_list, {:prompt => 'すべて', selected: params[:search][:project_id]}) %>
+                <% end %>
+              </div>
+              <div class="condition">
+                <label for="cond3"><%= t('activerecord.models.work_type') %>:&nbsp;&nbsp;</label>
+                  <% if administrator? || manager? %>
+                     <%= f.select(:work_type_id, WorkType.work_types_list, {:prompt => 'すべて', selected: params[:search][:work_type_id]}) %>
+                  <% else %>
+                     <%= f.select(:work_type_id, @manage_work_types_list, {:prompt => 'すべて', selected: params[:search][:work_type_id]}) %>
+                  <% end %>
+              </div>
+
+              <div class="button">
+                <input type="submit" accesskey="s" name="submit" value="<%= t('web-app-theme.select') %>" />
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div><!-- /.dataSearch -->
+    <% unless @user_month_results[:user_results].empty? %>
+      <div id="pageContents">
+        <%= render 'calendar_agenda_sum_by_user', :locals=> { :get_date => params[:search][:start_at] } %>
+      </div>
+    <% end %>
+  </div><!-- /.inner -->
+</section><!-- /#content -->

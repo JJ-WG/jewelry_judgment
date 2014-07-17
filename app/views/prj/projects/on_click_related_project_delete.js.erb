@@ -1,0 +1,16 @@
+//
+// 関連プロジェクト編集用コントロール更新処理
+//
+$('#related_project_select_list_error').html(
+  "<%= @related_project_select_list_error %>"
+);
+
+$('#project_related_project_id_selection').html(
+  "<%= escape_javascript(render :partial => 'related_project_select_list', 
+      :locals => {:object => @project}) %>"
+);
+
+$('#related_project_list').html(
+  "<%= escape_javascript(render :partial => 'related_project_list', 
+      :locals => {:object => @project}) %>"
+);

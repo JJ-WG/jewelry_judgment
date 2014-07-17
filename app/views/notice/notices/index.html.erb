@@ -1,0 +1,119 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'notices' %>
+<%- end -%>
+
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <div class="top-notices">
+          <header class="pageHeader">
+            <h1><%= t('top_list.notice') %></h1>
+          </header>
+          
+          <div class="list">
+            <table border="1" class="tablesorter top-notices">
+              <thead>
+                <tr>
+                  <th scope="col" class="date"><%= t('common_label.occurred_date') %></th>
+                  <th scope="col" class="name"><%= t('activerecord.attributes.notice.project.name') %></th>
+                  <th scope="col" class="message"><%= t('activerecord.attributes.notice.message') %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notices.each do |notice| -%>
+                  <tr>
+                    <td><%= l(notice.created_at, :format => :date_only) %></td>
+                    <td><%= get_name(notice.project) %></td>
+                    <td><%= multi_line(notice.message) %></td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+            
+            <div class="actions-bar wat-cf">
+              <div class="actions">
+                <%= will_paginate @notices %>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+          </div><!-- /.pjList -->
+        </div>
+        
+        <div class="top-messages">
+          <div class="pageHeader">
+            <h1><%= t('top_list.message') %></h1>
+          </div>
+          
+          <div class="list">
+            <table border="1" class="tablesorter top-messages">
+              <thead>
+                <tr>
+                  <th scope="col" class="date"><%= t('activerecord.attributes.message.create_at') %></th>
+                  <th scope="col" class="title"><%= t('activerecord.attributes.message.title') %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @messages.each do |message| -%>
+                  <tr>
+                    <td><%= l(message.created_at, :format => :date_only) %></td>
+                    <td><%= link_to(message.title, :action => :show_message, :id => message.id) %></td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div><!-- /.pjList -->
+        </div>
+        
+        <div class="top-schedules">
+          <div class="pageHeader">
+            <h1><%= t('top_list.schedule') %></h1>
+          </div>
+          
+          <div class="list">
+            <table border="1" class="tablesorter top-schedules">
+              <thead>
+                <tr>
+                  <th scope="col" class="work_hours">
+                    <%= t('activerecord.attributes.schedule.work_hours') %>
+                  </th>
+                  <th scope="col" class="name">
+                    <%= t('activerecord.attributes.project.name') +
+                        '（' + t('activerecord.attributes.work_type.name') + '）' %>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @schedules.each do |schedule| -%>
+                  <tr>
+                    <td>
+                      <%= l(schedule.start_at, :format => :short_time) %> ～ <%= l(schedule.end_at, :format => :short_time) %>
+                    </td>
+                    <td>
+                      <%= get_name(schedule.project) + '（' + get_name(schedule.work_type) + '）'%>
+                    </td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div><!-- /.pjList -->
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

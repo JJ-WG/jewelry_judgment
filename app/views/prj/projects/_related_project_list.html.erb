@@ -1,0 +1,52 @@
+# encoding: utf-8
+
+                      <%= fields_for object do |f| %>
+                        <table class="item-list" id="related_project_list">
+                          <thead>
+                            <tr>
+                              <th class="name">
+                                <%= t('activerecord.attributes.project.name') %>
+                              </th>
+                              <% unless @edit_progress_rate %>
+                                <th class="deleted"></th>
+                              <% end %>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% if @project_prj_related_projects.present? %>
+                              <% @project_prj_related_projects.each_with_index do |prj_related_project, index| %>
+                                <%= f.fields_for :prj_related_projects_attributes, prj_related_project,
+                                    :index => (index = index) do |f2| %>
+                                  <% prj_related_project = f2.object %>
+                                  
+                                  <%= f2.text_field :id, :type => 'hidden', :index => index %>
+                                  <%= f2.text_field :project_id, :type => 'hidden', :index => index %>
+                                  <%= f2.text_field :related_project_id, :type => 'hidden', :index => index %>
+                                  <tr>
+                                    <th scope="row" class="name">
+                                      <%= Project.get_name(prj_related_project.related_project_id) %>
+                                    </th>
+                                    <% unless @edit_progress_rate %>
+                                      <td class="deleted">
+                                        <%= link_to('削除',
+                                            root_url + 'prj/projects/on_click_related_project_delete?' +
+                                            'project_id=' + @project.id.to_s +
+                                            '&related_project_status_cd=' + @related_project_status_cd.to_s +
+                                            '&related_project_id=' + prj_related_project.related_project_id.to_s,
+                                            :remote => true) %>
+                                      </td>
+                                    <% end %>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                            <% else %>
+                              <tr>
+                                <th scope="row" class="name">&nbsp;</th>
+                                <% unless @edit_progress_rate %>
+                                  <td class="deleted">&nbsp;</td>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      <% end %>

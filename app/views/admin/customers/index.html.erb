@@ -1,0 +1,110 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'customers' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_customers_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_customer_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.customers')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :html => { :method => :get }, :option => {:class => 'form'} do |f| %>
+            <div class="condition">
+              <label for="cond1"><%= t('activerecord.attributes.customer.code') %>:</label>
+              <%= f.text_field :code, :class => 'text_field', :maxlength => '20', :style => 'width:200px;',
+                  :value => session[:customer_condition][:code] %>
+            </div>
+            <div class="condition">
+              <label for="cond2"><%= t('activerecord.attributes.customer.name') %>:</label>
+              <%= f.text_field :name, :class => 'text_field', :maxlength => '20', :style => 'width:200px;',
+                  :value => session[:customer_condition][:name] %>
+            </div>
+            
+            <div class="button">
+              <input type="submit" accesskey="s" value="検索" />
+            </div>
+          <% end %>
+        </div><!-- /.dataSearch -->
+        
+        <div class="list">
+          <table border="1" class="tablesorter">
+            <thead>
+              <tr>
+                <th scope="col" class="name">
+                  <%= t('activerecord.attributes.customer.name') %>
+                </th>
+                <th scope="col" class="code">
+                  <%= t('activerecord.attributes.customer.code') %>
+                </th>
+                <th scope="col" class="link">
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @customers.each do |customer| -%>
+                <tr>
+                  <th scope="row">
+                    <%= link_to customer.name, admin_customer_path(customer) %>
+                  </th>
+                  <td>
+                    <%= customer.code %>
+                  </td>
+                  <td>
+                    <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_customer_path(customer) %> |
+                    <%= link_to "#{t('web-app-theme.edit', :default => 'Edit')}", edit_admin_customer_path(customer) %>
+                    <% unless Customer.project_customer?(customer.id) || Customer.deal_customer?(customer.id) %>
+                       |
+                      <%= link_to "#{t('web-app-theme.delete', :default => 'Delete')}", admin_customer_path(customer),
+                          :method => :delete, :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @customers %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

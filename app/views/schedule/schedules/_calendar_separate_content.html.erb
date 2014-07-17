@@ -1,0 +1,70 @@
+          <div class='cs_content'>
+            <table border="1" class="cs_table">
+              <thead>
+                <tr>
+                  <th scope="col" class="cs_table_column_user" style="width: 23%;">
+                    <%= t('activerecord.models.user') %>
+                  </th>
+                  <% 7.times do |day| %>
+                    <th scope="col" class="<%= get_backcolor_class_by_date(@week_schedules[:first_day]+day) %>" style="width: 11%;">
+                      <%= l(@week_schedules[:first_day]+day, :format => :local_date3) %>
+                    </th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <% @week_schedules[:users].each do |user| %>
+                  <tr class="">
+                    <td class='cs_user_base_info'>
+                      <table class="cs_user">
+                        <tr>
+                          <td rowspan="2">
+                            <%= image_tag("/assets/user.png", :size => "64x64", :alt => "User Image") %>
+                          </td>
+                          <td>
+                            <%= user[:user_info].name %>(<%= user[:user_info].user_code %>)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                        </tr>
+                      </table>
+                    </td>
+                    <% 7.times do |i| %>
+                      <td class="cs_calendar_content <%= get_backcolor_class_by_date(@week_schedules[:first_day]+i) %>">
+                        <% user[:user_week_schedules][i].each do |sch_info| %>
+                          <div class='<%= get_schedule_backcolor_class(sch_info[:schedule]) %> cs_event'>
+                            <%= l(sch_info[:schedule].start_at, :format => :short_time) %>
+                            －
+                            <%= l(sch_info[:schedule].end_at, :format => :short_time) %>
+                            <br>
+                            <% if sch_info[:can_show_detail] %>
+                              <%= sch_info[:schedule].project.name %>
+                            <% else %>
+                              <%= t('label.schedule_reflection.label.has_schedule') %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <div class='cs_add'>
+                          <% if action_name == 'list_by_project' %>
+                            <%= image_tag("/assets/add.png", :size => "24x24", :alt => "Add",
+                                          :class => 'cs_add_image',
+                                          :user_id => user[:user_info].id,
+                                          :project_id => params[:search][:project_id] || '',
+                                          :schedule_date => (@week_schedules[:first_day]+i)) %>
+                          <% else %>
+                            <% if can_add_schedule_for_user?(user[:user_info]) %>
+                              <%= image_tag("/assets/add.png", :size => "24x24", :alt => "Add",
+                                            :class => 'cs_add_image',
+                                            :user_id => user[:user_info].id,
+                                            :schedule_date => (@week_schedules[:first_day]+i)) %>
+                            <% end %>
+                          <% end %>
+                        <div>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>

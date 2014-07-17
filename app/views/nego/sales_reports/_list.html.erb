@@ -1,0 +1,51 @@
+# encoding: utf-8
+
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+          <% flash.clear -%>
+        </div>
+
+        <div class="list">
+          <table border="1" class="tablesorter" style="margin-top:5px;">
+            <thead>
+              <tr>
+                <th scope="col" class="column1">
+                  <%= t('activerecord.attributes.sales_report.activity_date') %>
+                </th>
+                <th scope="col" class="column2">
+                  <%= t('activerecord.attributes.sales_report.activity_method') %>
+                </th>
+                <th scope="col" class="column3">
+                  <%= t('activerecord.attributes.sales_report.activity_objective') %>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% sales_reports.each do |report| -%>
+                <tr>
+                  <th scope="row">
+                    <%= link_to l(report.activity_date), nego_deal_sales_report_path(report.deal,report), :remote => true %>
+                  </th>
+                  <td>
+                    <%= activity_method_indication(report.activity_method) %>
+                  </td>
+                  <td>
+                    <%= report.activity_objective %>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div><!-- /.dealList -->

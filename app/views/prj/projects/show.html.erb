@@ -1,0 +1,976 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'projects' %>
+  <%= javascript_tag do -%>
+    /* 状態ボタンクリック時の処理 */
+    function projectStatusConfirm(status) {
+      message = "";
+      lock_button_form.action ="";
+      switch (status){
+      case "Lock":
+        message = "<%= "#{t('web-app-theme.lock_confirm', :default=> 'Lock')}" %>";
+        lock_button_form.action = "<%= lock_prj_project_path(@project) %>";
+        break;
+      case "Unlock":
+        message = "<%= "#{t('web-app-theme.unlock_confirm', :default=> 'Unlock')}" %>";
+        lock_button_form.action = "<%= unlock_prj_project_path(@project) %>";
+        break;
+      case "Restore":
+        message = "<%= "#{t('web-app-theme.restore_confirm', :default=> 'Restore')}" %>";
+        status_button_form.action = "<%= restore_prj_project_path(@project) %>";
+        break;
+      case "Start":
+        message = "<%= "#{t('web-app-theme.start_confirm', :default=> 'Start')}" %>";
+        status_button_form.action = "<%= start_prj_project_path(@project) %>";
+        break;
+      case "Finish":
+        message = "<%= "#{t('web-app-theme.finish_confirm', :default=> 'Finish')}" %>";
+        status_button_form.action = "<%= finish_prj_project_path(@project) %>";
+        break;
+      case "Restart":
+        message = "<%= "#{t('web-app-theme.start_confirm', :default=> 'Start')}" %>";
+        status_button_form.action = "<%= restart_prj_project_path(@project) %>";
+        break;
+      }
+      if (message == "" || lock_button_form.action == ""){
+        return false;
+      }
+      if (!confirm(message)){
+        return false;
+      }
+    }
+  <%- end -%>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li>
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}",
+                prj_projects_path %>
+          </li>
+          <% if creatable? %>
+            <li>
+              <%= link_to "#{t('web-app-theme.new', :default => 'New')}", 
+                  new_prj_project_path %>
+            </li>
+          <% end %>
+          <% if viewable?(@project) %>
+            <li class="current">
+              <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", 
+                  prj_project_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1>
+            <%= t('common_label.browsing_model', :model => Project.model_name.human) %>
+          </h1>
+          
+          <% if @project.prj_reflection.present? %>
+            <%= render :partial => 'prj/projects/prj_button',
+                :locals=> {:project => @project,
+                           :prj_reflection_id => @project.prj_reflection.id} %>
+          <% else %>
+            <%= render :partial => 'prj/projects/prj_button',
+                :locals=> {:project => @project, :prj_reflection_id => nil} %>
+          <% end %>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @project.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.project_code',
+                  :default =>
+                      t('activerecord.labels.project.project_code', :default => 'Project Code')) %>
+            </dt>
+            <dd>
+              <%= @project.project_code %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.name',
+                  :default => t('activerecord.labels.project.name', :default => 'Name')) %>
+            </dt>
+            <dd>
+              <%= @project.name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.deal_name') %>
+            </dt>
+            <dd>
+              <% if @project.deal.present? %>
+                <%= link_to get_name(@project.deal), nego_deal_path(@project.deal_id) %>
+              <% else %>
+                &nbsp;
+              <% end %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.deal.deal_status') %>
+            </dt>
+            <dd>
+              <%= @project.deal.deal_status if @project.deal_id.present? %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.customer.name') %>
+            </dt>
+            <dd>
+              <%= get_name(@project.customer) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.indirect_cost_ratio.order_type') %>
+            </dt>
+            <dd>
+              <%= order_type_indication @project.order_type_cd%>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.deal.order_volume') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd>
+              <%= number_to_currency(@project.order_volume) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.manager') %>
+            </dt>
+            <dd>
+              <%= @project.manager_name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.leader') %>
+            </dt>
+            <dd>
+              <%= @project.leader_name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.member') %>
+            </dt>
+            <dd class="table">
+              <table class="show prj-member">
+                <thead>
+                  <tr>
+                    <th scope="col" class="name">
+                      <%= t('activerecord.attributes.user.name') %>
+                    </th>
+                    <th scope="col" class="unit-price num">
+                      <%= t('activerecord.attributes.user.unit_price') %>
+                      <%= t('common_label.yen') %>
+                    </th>
+                    <th scope="col" class="man-days num">
+                      <%= t('activerecord.attributes.prj_members.planned_man_days') %>
+                      <%= t('common_label.man_day') %>
+                    </th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="2" scope="row">
+                      合計
+                    </th>
+                    <td class="total">
+                      <%= number_with_delimiter(@project.planned_man_days) %>
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <% if @project.prj_members.size == 0%>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="unit-price">&nbsp;</td>
+                      <td class="man-days">&nbsp;</td>
+                    </tr>
+                  <% else %>
+                    <% @project.prj_members.each do |prj_member| -%>
+                      <% unit_price = @project.member_unit_price(prj_member.user_id) %>
+                      <tr>
+                        <td>
+                          <%= User.get_name(prj_member.user_id) %>
+                        </td>
+                        <td class="unit-price">
+                          <%= number_with_delimiter(unit_price) %>
+                        </td>
+                        <td class="man-days">
+                          <%= number_with_delimiter(prj_member.planned_man_days) %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.status',
+                  :default => t('activerecord.labels.project.status', :default => 'Status')) %>
+            </dt>
+            <dd>
+              <%= form_tag('#', {:method => :put, :name => 'status_button_form'}) do %>
+                <% if @project.deleted %>
+                  削除済み
+                  <% if restorable?(@project) %>
+                    <input type="submit"
+                        value="<%= t('web-app-theme.restore', :default=> 'Restore') %>"
+                        onclick="return projectStatusConfirm('Restore')" />
+                  <% end %>
+                <% else %>
+                  <%= status_indication @project.status_cd %>
+                  <% if statable?(@project) %>
+                    <input type="submit"
+                        value="<%= t('web-app-theme.start', :default=> 'Start') %>"
+                        onclick="return projectStatusConfirm('Start')" />
+                  <% end %>
+                  <% if finishable?(@project) %>
+                    <input type="submit"
+                        value="<%= t('web-app-theme.finish', :default=> 'Finish') %>"
+                        onclick="return projectStatusConfirm('Finish')" />
+                  <% end %>
+                  <% if restartable?(@project) %>
+                    <input type="submit"
+                        value="<%= t('web-app-theme.restart', :default=> 'Restart') %>"
+                        onclick="return projectStatusConfirm('Restart')" />
+                  <% end %>
+                <% end %>
+              <% end %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.locked',
+                  :default => t('activerecord.labels.project.locked', :default => 'Locked')) %>
+            </dt>
+            <dd>
+              <%= form_tag('#', {:method => :put, :name => 'lock_button_form'}) do %>
+                <% if @project.locked %>
+                  ロック中
+                  <% if unlockable?(@project) %>
+                    <input type="submit"
+                        value="<%= t('web-app-theme.unlock', :default=> 'Unlock') %>"
+                        onclick="return projectStatusConfirm('Unlock')" />
+                  <% end %>
+                <% else %>
+                  解除中
+                  <% if lockable?(@project) %>
+                    <input type="submit"
+                        value="<%= t('web-app-theme.lock', :default=> 'Lock') %>"
+                        onclick="return projectStatusConfirm('Lock')" />
+                  <% end %>
+                <% end %>
+              <% end %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.start_date') %>
+            </dt>
+            <dd>
+              <%= l localtime(@project.start_date).to_date %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.finish_date') %>
+            </dt>
+            <dd>
+              <% em_result =
+                (@project.finished_date.nil? && (Date.today > @project.finish_date)) ||
+                (@project.finished_date.present? && (@project.finished_date > @project.finish_date)) %>
+              <%= conditional_tag(
+                  em_result,
+                  false,
+                 (l localtime(@project.finish_date).to_date)) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.started_date') %>
+            </dt>
+            <dd>
+              <%= l localtime(@project.started_date).to_date if @project.started_date.present? %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.finished_date') %>
+            </dt>
+            <dd>
+              <%= l localtime(@project.finished_date).to_date if @project.finished_date.present? %> 
+            </dd>
+            
+            <dt class="table">
+              <%= t('activerecord.attributes.project.man_hour') %>
+            </dt>
+            <dd class="table">
+              <table class="show man-hour-show">
+                <thead>
+                  <tr>
+                    <th scope="col" class="work-type">
+                      <%= t('activerecord.attributes.work_type.name') %>
+                    </th>
+                    <th scope="col" class="man-days num">
+                      <%= multi_line(t('activerecord.attributes.prj_work_type.planned_man_days')) %>
+                    </th>
+                    <th scope="col" class="man-days num">
+                      <%= multi_line(t('activerecord.attributes.prj_work_type.presented_man_days')) %>
+                    </th>
+                    <th scope="col" class="progress-rate num">
+                      <%= multi_line(t('activerecord.attributes.prj_work_type.progress_rate')) %>
+                    </th>
+                    <th scope="col" class="earned-value num">
+                      <%= multi_line(t('activerecord.attributes.project.earned_value')) %>
+                    </th>
+                    <th scope="col" class="man-days num">
+                      <%= multi_line(t('activerecord.attributes.project.results_man_days_label')) %>
+                    </th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th scope="row" class="total">合計</th>
+                    <td class="total">
+                      <%= number_with_delimiter(@project.planned_man_days.round(2)) %>
+                    </td>
+                    <td class="total">
+                      <%= number_with_delimiter(@project.presented_man_days.round(2)) %>
+                    </td>
+                    <td class="total">
+                      <%= number_with_delimiter(@progress_rate_total.round(2)) %>
+                    </td>
+                    <td class="total">
+                      <%= number_with_delimiter(@earned_value_total.round(2)) %>
+                    </td>
+                    <td class="total">
+                      <%= conditional_tag(@project.result_man_days > @project.planned_man_days,
+                          false, number_with_delimiter(@project.result_man_days.round(2))) %>
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <% if @project.prj_work_types.size == 0 %>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                <% else %>
+                  <% @project.prj_work_types.each do |prj_work_type| -%>
+                    <tr>
+                      <td>
+                        <%= WorkType.get_name_by_id(prj_work_type.work_type_id) %>
+                      </td>
+                      <td class="man-days num">
+                        <%= prj_work_type.planned_man_days.round(2) %>
+                      </td>
+                      <td class="man-days num">
+                        <%= prj_work_type.presented_man_days.round(2) %>
+                      </td>
+                      <td class="man-days num">
+                        <%= prj_work_type.progress_rate.round(2) %>
+                      </td>
+                      <td class="man-days num">
+                        <%= number_with_delimiter(
+                            (prj_work_type.planned_man_days * prj_work_type.progress_rate / 100.0).round(2)) %>
+                      </td>
+                      <td class="man-days num">
+                        <% result_man_days_by_work_type =
+                            @project.result_man_days_by_work_type(prj_work_type.work_type_id).round(2)
+                        %>
+                        <%= conditional_tag(
+                            result_man_days_by_work_type > prj_work_type.planned_man_days,
+                            false, number_with_delimiter(result_man_days_by_work_type)) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt class="table">
+              <%= t('activerecord.attributes.project.results_man_days_detail') %>
+              <%= t('common_label.man_day') %>
+            </dt>
+            <dd class="table">
+              <div class="results-man-days-detail">
+                <table class="show results-man-days-detail">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="name">氏名</th>
+                      <% if @project.prj_work_types.size == 0 %>
+                        <th scope="col" class="name">&nbsp;</th>
+                      <% else %>
+                        <% @project.prj_work_types.each do |work_type| -%>
+                          <th scope="col" class="work-type num">
+                            <%= WorkType.get_name_by_id(work_type.work_type_id) %>
+                          </th>
+                        <% end %>
+                      <% end %>
+                      <th scope="col" class="total num">合計</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th scope="row">合計</th>
+                      <% if @project.prj_work_types.size == 0 %>
+                        <td class="total">&nbsp;</td>
+                      <% else %>
+                        <% @project.prj_work_types.each do |work_type| %>
+                          <td class="total">
+                            <% result_man_days_by_work_type =
+                                @project.result_man_days_by_work_type(work_type.work_type_id).round(2) %>
+                            <%= conditional_tag(result_man_days_by_work_type > work_type.planned_man_days,
+                                false, number_with_delimiter(result_man_days_by_work_type)) %>
+                          </td>
+                        <% end %>
+                      <% end %>
+                      <td class="total">
+                        <%= number_with_delimiter(@project.result_man_days.round(2)) %>
+                      </td>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% if @project.prj_members.size == 0 %>
+                      <tr>
+                        <td class="name">&nbsp;</td>
+                        <td class="man-days">&nbsp;</td>
+                        <td class="man-days">&nbsp;</td>
+                      </tr>
+                    <% else %>
+                      <% @project.prj_members.each do |member| %>
+                        <tr>
+                          <td class="name">
+                            <%= User.get_name(member.user_id) %>
+                          </td>
+                          <% if @project.prj_work_types.size == 0 %>
+                            <td class="man-days">&nbsp;</td>
+                          <% else %>
+                            <% @project.prj_work_types.each do |work_type| -%>
+                              <td class="man-days">
+                                <%= number_with_delimiter(
+                                    @project.result_man_days_by_prj_member_and_work_type(
+                                    member.user_id, work_type.work_type_id).round(2)) %>
+                              </td>
+                            <% end %>
+                          <% end %>
+                          <td class="man-days">
+                            <%= number_with_delimiter(
+                                @project.result_man_days_by_prj_member(member.user_id).round(2)) %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% end%>
+                  </tbody>
+                </table>
+              </div>
+            </dd>
+            
+            <dt class="table">
+              <%= t('activerecord.attributes.project.sales_costs') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd class="table">
+              <table class="show sales-cost">
+                <thead>
+                  <tr>
+                    <th scope="col" class="name">
+                      <%= t('activerecord.attributes.prj_sales_cost.item_name') %>
+                    </th>
+                    <th scope="col" class="cost num">
+                      <%= t('activerecord.attributes.prj_sales_cost.price') %>
+                      <%= t('common_label.yen') %>
+                    </th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th scope="row">合計</th>
+                    <td class="total">
+                      <%= number_with_delimiter(@project.sales_cost.to_i) %>
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <% if @project.prj_sales_costs.size == 0 %>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td class="cost">&nbsp;</td>
+                  </tr>
+                <% else %>
+                  <% @project.prj_sales_costs.each do |prj_sales_cost| -%>
+                    <tr>
+                      <td>
+                        <%= prj_sales_cost.item_name %>
+                      </td>
+                      <td class="cost">
+                        <%= number_with_delimiter(TaxDivision.without_tax_price(
+                            prj_sales_cost.price,
+                            prj_sales_cost.tax_division_id)) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt><%= t('activerecord.attributes.project.direct_labor_cost') %>
+              <%= t('common_label.without_tax') %></dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd>
+                  <%= number_to_currency(@project.direct_labor_cost_budget.to_i) %>
+                </dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd>
+                  <%= conditional_tag(@project.direct_labor_cost_result > @project.direct_labor_cost_budget,
+                      false, number_to_currency(@project.direct_labor_cost_result.to_i)) %>
+                </dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.prj_reflection.subcontract_cost') %>
+              <%= t('activerecord.attributes.project.budget') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd>
+              <%= number_to_currency(@project.subcontract_cost_budget) %>
+            </dd>
+            
+            <dt class="table">
+              <%= t('activerecord.attributes.prj_reflection.subcontract_cost') %>
+              <%= t('activerecord.attributes.project.results_cost') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd class="table">
+              <table class="show expense-detail">
+                <thead>
+                  <tr>
+                    <th scope="col" class="date">
+                      <%= t('activerecord.attributes.project.date') %>
+                    </th>
+                    <th scope="col" class="name">
+                      <%= t('activerecord.attributes.user.name') %>
+                    </th>
+                    <th scope="col" class="expense-type">
+                      <%= t('activerecord.attributes.expense_type.name') %>
+                    </th>
+                    <th scope="col" class="expense-name">
+                      <%= t('activerecord.attributes.project.expense_name') %>
+                    </th>
+                    <th scope="col" class="cost num">
+                      <%= t('activerecord.attributes.project.expense_cost') %>
+                    </th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="4" scope="row">合計</th>
+                    <td class="num">
+                      <% expense_result =
+                          @project.expense_result(EXPENSE_ITEM_CODE[:subcontract]) %>
+                      <%= conditional_tag(expense_result > @project.subcontract_cost_budget,
+                          false, number_with_delimiter(expense_result.to_i)) %>
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <% if @subcontract_expenses.size == 0 %>
+                  <tr>
+                    <td class="date">&nbsp;</td>
+                    <td class="name">&nbsp;</td>
+                    <td class="expense-type">&nbsp;</td>
+                    <td class="expense-name">&nbsp;</td>
+                    <td class="cost">&nbsp;</td>
+                  </tr>
+                <% else %>
+                  <% @subcontract_expenses.each do |expense| %>
+                    <tr>
+                      <td class="date">
+                        <%= l localtime(expense.adjusted_date).to_date %>
+                      </td>
+                      <td class="name">
+                        <%= User.get_name(expense.user_id) %>
+                      </td>
+                      <td class="expense-type">
+                        <%= ExpenseType.get_name(expense.expense_type_id) %>
+                      </td>
+                      <td class="expense-name">
+                        <%= expense.item_name %>
+                      </td>
+                      <td class="cost">
+                        <%= number_with_delimiter(TaxDivision.without_tax_price(
+                            expense.amount_paid,
+                            expense.tax_division_id)) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.transportation_and_stay') %>
+              <%= t('activerecord.attributes.project.budget') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd>
+              <% transportation_and_stay_cost_budget = PrjExpenseBudget.expense_budget(
+                  @project.id, EXPENSE_ITEM_CODE[:transportation_and_stay]) %>
+              <%= number_to_currency(transportation_and_stay_cost_budget) %>
+            </dd>
+            
+            <dt class="table">
+              <%= t('activerecord.attributes.project.transportation_and_stay') %>
+              <%= t('activerecord.attributes.project.results_cost') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd class="table">
+              <table class="show expense-detail">
+                <thead>
+                  <tr>
+                    <th scope="col" class="date">
+                      <%= t('activerecord.attributes.project.date') %>
+                    </th>
+                    <th scope="col" class="name">
+                      <%= t('activerecord.attributes.user.name') %>
+                    </th>
+                    <th scope="col" class="expense-typename">
+                      <%= t('activerecord.attributes.expense_type.name') %>
+                    </th>
+                    <th scope="col" class="expense-name">
+                      <%= t('activerecord.attributes.project.expense_name') %>
+                    </th>
+                    <th scope="col" class="cost num">
+                      <%= t('activerecord.attributes.project.expense_cost') %>
+                    </th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="4" scope="row">合計</th>
+                    <td class="num">
+                      <% expense_result =
+                          @project.expense_result(EXPENSE_ITEM_CODE[:transportation_and_stay]) %>
+                      <%= conditional_tag(expense_result > transportation_and_stay_cost_budget,
+                          false, number_with_delimiter(expense_result.to_i)) %>
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <% if @transportation_and_stay_expenses.size == 0 %>
+                  <tr>
+                    <td class="date">&nbsp;</td>
+                    <td class="name">&nbsp;</td>
+                    <td class="expense-type">&nbsp;</td>
+                    <td class="expense-name">&nbsp;</td>
+                    <td class="cost">&nbsp;</td>
+                  </tr>
+                <% else %>
+                  <% @transportation_and_stay_expenses.each do |expense| %>
+                    <tr>
+                      <td class="date">
+                        <%= l localtime(expense.adjusted_date).to_date %>
+                      </td>
+                      <td class="name">
+                        <%= User.get_name(expense.user_id) %>
+                      </td>
+                      <td class="expense-type">
+                        <%= ExpenseType.get_name(expense.expense_type_id) %>
+                      </td>
+                      <td class="expense-name">
+                        <%= expense.item_name %>
+                      </td>
+                      <td class="cost">
+                        <%= number_with_delimiter(TaxDivision.without_tax_price(
+                            expense.amount_paid,
+                            expense.tax_division_id)) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.other_expense') %>
+              <%= t('activerecord.attributes.project.budget') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd>
+              <% other_cost_budget = PrjExpenseBudget.expense_budget(
+                  @project.id, EXPENSE_ITEM_CODE[:other ]) %>
+              <%= number_to_currency(other_cost_budget) %>
+            </dd>
+            
+            <dt class="table">
+              <%= t('activerecord.attributes.project.other_expense') %>
+              <%= t('activerecord.attributes.project.results_cost') %>
+              <%= t('common_label.without_tax') %>
+            </dt>
+            <dd class="table">
+              <table class="show expense-detail">
+                <thead>
+                  <tr>
+                    <th scope="col" class="date">
+                      <%= t('activerecord.attributes.project.date') %>
+                    </th>
+                    <th scope="col" class="name">
+                      <%= t('activerecord.attributes.user.name') %>
+                    </th>
+                    <th scope="col" class="expense-type">
+                      <%= t('activerecord.attributes.expense_type.name') %>
+                    </th>
+                    <th scope="col" class="expense-name">
+                      <%= t('activerecord.attributes.project.expense_name') %>
+                    </th>
+                    <th scope="col" class="cost num">
+                      <%= t('activerecord.attributes.project.expense_cost') %>
+                    </th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th colspan="4" scope="row">合計</th>
+                    <td class="num">
+                      <% expense_result =
+                          @project.expense_result(EXPENSE_ITEM_CODE[:other]) %>
+                      <%= conditional_tag(expense_result > other_cost_budget,
+                          false, number_with_delimiter(expense_result.to_i)) %>
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <% if @other_expenses.size == 0 %>
+                  <tr>
+                    <td class="date">&nbsp;</td>
+                    <td class="name">&nbsp;</td>
+                    <td class="expense-type">&nbsp;</td>
+                    <td class="expense-name">&nbsp;</td>
+                    <td class="cost">&nbsp;</td>
+                  </tr>
+                <% else %>
+                  <% @other_expenses.each do |expense| %>
+                    <tr>
+                      <td class="date">
+                        <%= l localtime(expense.adjusted_date).to_date %>
+                      </td>
+                      <td class="name">
+                        <%= User.get_name(expense.user_id) %>
+                      </td>
+                      <td class="expense-type">
+                        <%= ExpenseType.get_name(expense.expense_type_id) %>
+                      </td>
+                      <td class="expense-name">
+                        <%= expense.item_name %>
+                      </td>
+                      <td class="cost">
+                        <%= number_with_delimiter(TaxDivision.without_tax_price(
+                            expense.amount_paid,
+                            expense.tax_division_id)) %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </dd>
+            
+            <dt><%= t('activerecord.attributes.project.indirect_cost') %></dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd>
+                  <%= number_to_currency(@project.indirect_labor_cost_budget.to_i) %>
+                </dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd>
+                  <%= conditional_tag(@project.indirect_labor_cost_result > @project.indirect_labor_cost_budget,
+                      false, number_to_currency(@project.indirect_labor_cost_result)) %>
+                </dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.prj_reflection.development_cost') %>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd>
+                  <%= number_to_currency(@project.development_cost_budget.to_i) %>
+                </dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd>
+                  <%= conditional_tag(@project.development_cost_result > @project.development_cost_budget,
+                      false, number_to_currency(@project.development_cost_result.to_i)) %>
+                </dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.prj_reflection.gross_profit') %>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd>
+                  <%= number_to_currency(@project.gross_profit_budget.to_i) %>
+                </dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd>
+                  <%= conditional_tag(
+                      @project.gross_profit_result < 0,
+                      @project.gross_profit_result < @project.gross_profit_budget,
+                      number_to_currency(@project.gross_profit_result.to_i)) %>
+                </dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.prj_reflection.profit_ratio') %>
+            </dt>
+            <dd>
+              <dl>
+                <dt>
+                  <%= t('activerecord.attributes.project.budget') %>
+                </dt>
+                <dd>
+                  <%= number_to_percentage(@project.profit_ratio_budget) %>
+                </dd>
+                <dt>
+                  <%= t('activerecord.attributes.project.results_cost') %>
+                </dt>
+                <dd>
+                  <%= conditional_tag(
+                      @project.profit_ratio_result < 0,
+                      @project.profit_ratio_result < @project.profit_ratio_budget,
+                      number_to_percentage(@project.profit_ratio_result)) %>
+                </dd>
+              </dl>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.prj_related_project.related_project') %>
+            </dt>
+            <dd>
+              <%= @project.prj_related_projects.map{|related_project| 
+                  Project.get_name(related_project.related_project_id)}.join('、') %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.models.development_language') %>
+            </dt>
+            <dd>
+              <%= @project.development_languages.map{|development_language| 
+                  get_name(development_language)}.join('、') %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.models.operating_system') %>
+            </dt>
+            <dd>
+              <%= @project.operating_systems.map{|os| get_name(os)}.join('、') %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.models.database') %>
+            </dt>
+            <dd>
+              <%= @project.databases.map{|database| get_name(database)}.join('、') %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.attention') %>
+            </dt>
+            <dd>
+              <%= @project.attention ? '☆☆☆' : '-' %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.project.remarks') %>
+            </dt>
+            <dd>
+              <%= multi_line(@project.remarks) %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+              </dt>
+            <dd>
+              <%= localtime @project.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @project.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+        
+        <% if @project.prj_reflection.present? %>
+          <%= render :partial => 'prj/projects/prj_button',
+              :locals=> {:project => @project,
+                         :prj_reflection_id => @project.prj_reflection.id} %>
+        <% else %>
+          <%= render :partial => 'prj/projects/prj_button',
+              :locals=> {:project => @project, :prj_reflection_id => nil} %>
+        <% end %>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

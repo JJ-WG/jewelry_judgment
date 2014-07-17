@@ -1,0 +1,81 @@
+# encoding: utf-8
+
+
+<table class="list" border="1">
+  <thead>
+    <tr>
+      <th scope="col" class="header" style="width:20%"><%= ja_wm(@user_month_results[:first_day]) %></th>
+      <% if @user_month_results[:user_results].empty? %>
+        <th scope="col" class="header" style="width:20%">&nbsp;</th>
+      <% else %>
+        <% @user_month_results[:user_results].each_key do |result| -%>
+          <th scope="col" class="header" style="width:20%">
+            <%= result.project.name %>
+          </th>
+        <% end %>
+      <% end %>
+      <th scope="col" class="header" style='width:10%' >合計</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th scope="row" class="total">合計</th>
+      <% if @user_month_results[:user_results].empty? %>
+        <td class="total">&nbsp;</td>
+      <% else %>
+        <% @user_month_results[:user_results].each_key do |rst| %>
+          <td class="num">
+            <% prj_sum = 0.00 %>
+            <% @user_month_results[:user_results][rst].each do |rst_detail| -%>
+              <% prj_sum += "#{rst_detail.day_work_hours}".to_f %>
+            <% end unless @user_month_results[:user_results][rst].nil? -%>
+            <%= number_with_precision(prj_sum, :precision => 2) %>
+          </td>
+        <% end %>
+      <% end %>
+      <td class="num">
+        <% sum = 0.00 %>
+        <% @user_month_results[:day_results].each do |rst|  %>
+          <% sum += "#{rst[0].day_work_hours}".to_f unless rst[0].nil? %>
+        <% end %>
+        <%= number_with_precision(sum, :precision => 2) %>
+      </td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <% @user_month_results[:month_days].times do |day| %>
+      <tr>
+        <td scope="row">
+          <%= l((@user_month_results[:first_day] + day)) %>
+        </td>
+        <% if @user_month_results[:day_results][day][0].nil? || @user_month_results[:day_results][day][0].day_work_hours == 0 %>
+          <td class="num" style='text-align: center;background: yellow;' colspan="<%= @user_month_results[:user_results].keys.length+1 %>">
+            <%= t('label.result_reflection.label.result_no_datas') %>
+          </td>
+        <% else %>
+          <% @user_month_results[:user_results].each_key do |rst| -%>
+            <td class="num">
+              <% match_flag = false %>
+              <% @user_month_results[:user_results][rst].each do |rst_detail| -%>
+                <% if (rst_detail.result_date - @user_month_results[:first_day]).to_i == day  %>
+                  <% match_flag = true %>
+                  <%= number_with_precision("#{rst_detail.day_work_hours}".to_f, :precision => 2)%>
+                <% end %>
+              <% end unless @user_month_results[:user_results][rst].nil? -%>
+              <% if match_flag == false %>
+                0.00 
+              <% end %>
+            </td>
+          <% end %>
+          <td class="num">
+            <% if @user_month_results[:day_results][day][0].nil? %>
+              0.00
+            <% else %>
+              <%= number_with_precision("#{@user_month_results[:day_results][day][0].day_work_hours}".to_f, :precision => 2) %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

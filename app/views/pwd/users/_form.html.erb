@@ -1,0 +1,46 @@
+# encoding: utf-8
+
+            <%= f.text_field :id, :type => 'hidden' %>
+            
+            <dl>
+              <dt>
+                <label for="login">
+                  <%= f.label :login, t('activerecord.attributes.user.login'), :class => :label %>
+                </label>
+              </dt>
+              <dd>
+                <%= @user.login %>
+              </dd>
+              
+              <dt>
+                <label for="now_password">
+                  <%= t('現在のパスワード') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.password_field :now_password, :class => 'password_field ime_off' %>
+              </dd>
+              
+              <dt>
+                <label for="password">
+                  <%= t('activerecord.attributes.user.password') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.password_field :password, :class => 'password_field ime_off' %>
+                <div class="rule"><%= t('activerecord.attributes.user.password_rule') %></div>
+              </dd>
+              
+              <dt>
+                <label for="password_confirmation">
+                  <%= t('activerecord.attributes.user.password_confirmation') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.password_field :password_confirmation, :class => 'password_field ime_off' %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+            </div>

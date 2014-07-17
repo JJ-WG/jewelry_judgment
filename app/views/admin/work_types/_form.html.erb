@@ -1,0 +1,46 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="view_order">
+                  <%= t('activerecord.attributes.work_type.view_order') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.number_field :view_order, :class => 'number_field ime_off' %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.work_type.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'text_field ime_on', :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="office_job">
+                  <%= t('activerecord.attributes.work_type.office_job_label') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:office_job, office_job_items_list,
+                    :selected => (@work_type.office_job)? 1 : 0) %>
+              </dd>
+              
+              <dt>
+                <label for="work_type_code">
+                  <%= t('activerecord.attributes.work_type.work_type_code') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :work_type_code, :class => 'text_field ime_off', :maxlength => '10', :style => 'width:100px;' %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_work_types_path,
+                  :class => 'cancel') %>
+            </div>

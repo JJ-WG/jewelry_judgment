@@ -1,0 +1,117 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'expense_types' %>
+<%- end -%>
+
+    <nav id="subNav">
+      <div class="inner">
+        <ul id="localNav">
+          <li class="first">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", admin_expense_types_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_admin_expense_type_path %>
+          </li>
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.show', :default => 'Show')}", admin_expense_type_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+    
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <% if message.is_a?(Enumerable) && message.any? -%>
+                <ul>               
+                <% message.each do |msg| -%>
+                  <li><%= msg %></li>
+                <% end -%>
+                </ul>
+              <% else -%>
+                <p><%= message %></p>
+              <% end -%>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.browsing_model', :model => ExpenseType.model_name.human) %></h1>
+          
+          <ul class="utilityNav">
+            <li class="csv">
+              <%= link_to "#{t('web-app-theme.edit', :default=> 'Edit')}",
+                  edit_admin_expense_type_path(@expense_type) %>
+            </li>
+            <li class="csv">
+              <% unless ExpenseType.expense_expense_type?(@expense_type) %>
+                <%= link_to "#{t('web-app-theme.delete', :default=> 'Delete')}",
+                    admin_expense_type_path(@expense_type), :method => :delete,
+                    :confirm => "#{t('web-app-theme.confirm', :default => 'Are you sure?')}" %>
+              <% end %>
+            </li>
+          </ul>
+        </header>
+        
+        <div class="data">
+          <dl>
+            <dt>
+              <%= t('common_label.id') %>
+            </dt>
+            <dd>
+              <%= @expense_type.id %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense_type.view_order') %>
+            </dt>
+            <dd>
+              <%= @expense_type.view_order %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense_type.expense_item_name',
+                  :default => t('activerecord.labels.expense_item', :default => 'Expense item')) %>
+            </dt>
+            <dd>
+              <%= expense_item_indication(@expense_type.expense_item_cd) %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense_type.name') %>
+            </dt>
+            <dd>
+              <%= @expense_type.name %>
+            </dd>
+            
+            <dt>
+              <%= t('activerecord.attributes.expense_type.tax_division_id_label',
+                  :default => t('activerecord.labels.tax_division_id', :default => 'Tax division id')) %>
+            </dt>
+            <dd>
+              <%= get_name(@expense_type.tax_division) %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.created_at') %>
+            </dt>
+            <dd>
+              <%= localtime @expense_type.created_at %>
+            </dd>
+            
+            <dt>
+              <%= t('common_label.updated_at') %>
+            </dt>
+            <dd>
+              <%= localtime @expense_type.updated_at %>
+            </dd>
+          </dl>
+        </div><!-- /.pjData -->
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

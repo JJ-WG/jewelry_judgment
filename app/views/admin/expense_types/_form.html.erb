@@ -1,0 +1,45 @@
+# encoding: utf-8
+
+            <dl>
+              <dt>
+                <label for="view_order">
+                  <%= t('activerecord.attributes.expense_type.view_order') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.number_field :view_order, :class => 'number_field ime_off' %>
+              </dd>
+              
+              <dt>
+                <label for="expense_item">
+                  <%= t('activerecord.attributes.expense_type.expense_item') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:expense_item_cd, expense_items_list) %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.expense_type.name') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.text_field :name, :class => 'text_field ime_on', :maxlength => '20', :style => 'width:200px;' %>
+              </dd>
+              
+              <dt>
+                <label for="name">
+                  <%= t('activerecord.attributes.expense_type.tax_division_id_label') %><%= essential %>
+                </label>
+              </dt>
+              <dd>
+                <%= f.select(:tax_division_id, TaxDivision.tax_divisions_list) %>
+              </dd>
+            </dl>
+            
+            <div class="button">
+              <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
+              <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), admin_expense_types_path,
+                  :class => 'cancel') %>
+            </div>

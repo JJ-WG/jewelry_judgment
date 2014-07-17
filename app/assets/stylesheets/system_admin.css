@@ -1,0 +1,141 @@
+/* システム管理機能 共通CSS*/
+
+/* main */
+
+#main {
+  width: 80%;
+  float: left;
+}
+
+/* subNav */
+
+#subNav .inner {
+  margin: 0px 5px;
+  padding: 0;
+}
+
+/* sidebar */
+
+#sidebar {
+  width: 19%;
+  float: left;
+}
+
+#sidebar .block {
+  padding: 10px 0px 10px 15px;
+}
+
+#sidebar h3 {
+  padding: 10px 15px;
+  margin: 0;
+  font-size: 13px;
+  background: #686868;
+  color: #EAEAEA;
+  border-top: 1px solid #666;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #686868;
+  border-radius: 5px 5px 0 0;
+}
+
+#sidebar .block .content {
+
+}
+
+#sidebar ul.navigation li a:link, #sidebar ul.navigation li a:visited {
+  color: #666;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  display: block;
+  padding: 10px 15px;
+}
+
+#sidebar ul.navigation li.bottom {
+  border-bottom: 1px solid #666;
+  border-radius: 0 0 5px 5px;
+}
+
+#sidebar ul.navigation li.bottom{
+  border-bottom: 1px solid #666;
+/*  border-radius: 0 0 5px 5px; */
+}
+
+#sidebar ul.navigation li.bottom a{
+  border-radius: 0 0 5px 5px;
+}
+
+#sidebar ul.navigation li a:hover,
+#sidebar ul.navigation li a:focus {
+  background: #d9cfc7;
+  color: #333;
+}
+
+#sidebar ul.navigation li.active a {
+  background: #ecbc5c;
+  color: #333;
+}
+
+#sidebar .block .sidebar-block, #sidebar .notice {
+  padding:10px;
+}
+
+/* Error */
+
+form .errorMsg {
+  margin-left: 8px;
+  color: #c00;
+}
+form .errorMsg ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+form .error {
+  border: 2px solid #c00 !important;
+  background: #fff5f5 !important;
+}
+
+/* 一覧表 */
+div.list thead th.link {
+  width: 13%;
+}
+
+div.list tbody th.view-order {
+  text-align: right;
+}
+
+/* 登録・編集画面 */
+/* Entry Form
+-------------------------------------------------- */
+
+form .entryForm  {
+  margin: 1.5em 0;
+  padding: 8px 15px;
+  border-top: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+  border-radius: 5px;
+  background: #eee;
+  behavior: url(/assets/PIE.htc);
+}
+
+/* 閲覧画面 共通 　*/
+table.show {
+  border-collapse: separate;
+}
+
+table.show thead th:first-child {
+  border-radius: 3px 0 0 0;
+}
+
+table.show thead th:last-child {
+  border-radius: 0 3px 0 0;
+}
+
+table.show tfoot th:first-child {
+  border-radius: 0 0 0 3px;
+}
+
+table.show tfoot td:last-child {
+  border-radius: 0 0 3px 0;
+}

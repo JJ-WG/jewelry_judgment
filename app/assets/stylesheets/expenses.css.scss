@@ -1,0 +1,74 @@
+// Place all the styles related to the expenses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 経費管理 一覧画面 一覧テーブル */
+div.list thead th {
+  font-size: 11px;
+}
+
+div.list thead th.adjusted-date {
+  width: 8%;
+}
+
+div.list thead th.expense-type {
+  width: 14%;
+}
+
+div.list thead th.project {
+  width: 21%;
+}
+
+div.list thead th.expense-name {
+  width: 23%;
+}
+
+div.list thead th.amount-paid {
+  width: 9%;
+  text-align: center;
+}
+
+div.list thead th.tax-division {
+  width: 13%；
+}
+
+div.list thead th.link {
+  width: 12%;
+  text-align: center;
+}
+
+div.list tbody td.amount-paid {
+  text-align: right;
+}
+
+/* 経費管理 登録・編集画面 */
+
+/* Entry Form
+-------------------------------------------------- */
+
+form .entryForm  {
+  margin: 1.5em 0;
+  padding: 8px 15px;
+  border-top: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #a3a3a3;
+  border-bottom: 1px solid #a3a3a3;
+  border-radius: 5px;
+  background: #eee;
+  behavior: url(/assets/PIE.htc);
+}
+
+/* Error */
+
+form .errorMsg {
+  margin-left: 8px;
+  color: #c00;
+}
+form .errorMsg ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+form .error {
+  border: 2px solid #c00 !important;
+  background: #fff5f5 !important;
+}

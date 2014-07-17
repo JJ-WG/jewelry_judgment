@@ -1,0 +1,46 @@
+# encoding: utf-8
+
+<% render_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'system_settings' %>
+<%- end -%>
+
+    <% render_menu -%>
+    
+    <section id="content">
+      <div class="inner">
+        <header class="pageHeader">
+          <h1><%= t('common_label.editing_model', :model => SystemSetting.model_name.human) %></h1>
+        </header>
+        
+        <%= form_for @system_setting, :url => admin_system_setting_path(@system_setting),
+            :html => { :method => :put, :class => :form } do |f| -%>
+          <% unless flash.blank? -%>
+            <div class="errorMsg">
+              <% flash.each do |type, message| -%>
+                <% if message.is_a?(Enumerable) && message.any? -%>
+                  <ul>               
+                  <% message.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% else -%>               
+                  <p><%= message %></p>
+                <% end -%>                
+                <% if @system_setting.errors.any? -%>
+                  <ul>
+                  <% @system_setting.errors.full_messages.each do |msg| -%>
+                    <li><%= msg %></li>
+                  <% end -%>
+                  </ul>
+                <% end -%>
+              <% end -%>
+            </div>
+          <% end %>
+          
+          <div class="entryForm">
+            <%= render :partial => 'form', :locals => {:f => f} %>
+          </div><!-- /.entryForm -->
+        <% end -%>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

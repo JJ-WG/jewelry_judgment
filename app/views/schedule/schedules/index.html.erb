@@ -1,0 +1,191 @@
+# encoding: utf-8
+
+<% render_main_header -%>
+<%- content_for(:header) do -%>
+  <%= stylesheet_link_tag 'schedules' %>
+<%- end -%>
+    <nav id="subNav">
+      <div class="inner">
+       <ul id="localNav">
+          <li class="current">
+            <%= link_to "#{t('web-app-theme.list', :default => 'List')}", schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('label.menu.list_by_group', :default => 'List By Group')}", list_by_group_schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('label.menu.list_by_project', :default => 'List By Project')}", list_by_project_schedule_schedules_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.new', :default => 'New')}", new_schedule_schedule_path %>
+          </li>
+          <li>
+            <%= link_to "#{t('web-app-theme.csv_new', :default => 'CSV New')}", schedule_csv_schedules_path %>
+          </li>
+        </ul>
+      </div><!-- /.inner -->
+    </nav><!-- /#subNav -->
+
+    <section id="content">
+      <div class="inner">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div>
+        
+        <header class="pageHeader">
+          <h1><%= t('common_label.listing_model', :model => t('activerecord.models.schedules')) %></h1>
+        </header>
+        
+        <div class="dataSearch">
+          <%= form_for :search, :url => {:action => :index}, :option => {:class => 'form'}, :method => :get do |f| %>
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <div class="condition">
+                    <label for="cond1"><%= t('label.common.start_at') %>:&nbsp;&nbsp;</label>
+                    <%= select_year Date.civil(params[:search][:start_at][:year].to_i), :prefix => 'search[start_at]',
+                      :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                    <%= t('datetime.prompts.year') %>
+                    <%= select_month Date.civil(params[:search][:start_at][:year].to_i, params[:search][:start_at][:month].to_i),
+                      :prefix => 'search[start_at]', :use_month_numbers => true %>
+                    <%= t('datetime.prompts.month') %>
+                  </div>
+                  <div class="condition">
+                    <label for="cond2"><%= t('label.common.end_at') %>:&nbsp;&nbsp;</label>
+                    <%= select_year Date.civil(params[:search][:end_at][:year].to_i), :prefix => 'search[end_at]',
+                      :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
+                    <%= t('datetime.prompts.year') %>
+                    <%= select_month Date.civil(params[:search][:end_at][:year].to_i, params[:search][:end_at][:month].to_i),
+                      :prefix => 'search[end_at]', :use_month_numbers => true %>
+                    <%= t('datetime.prompts.month') %>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="condition">
+                    <label for="cond3"><%= t('activerecord.attributes.project.name') %>:&nbsp;&nbsp;</label>
+                    <%= f.select(:project_id, all_project_list, {:prompt => 'すべて', selected: params[:search][:project_id]}) %>
+                  </div>
+                  <div class="condition">
+                    <label for="cond4"><%= t('activerecord.models.work_type') %>:&nbsp;&nbsp;</label>
+                    <%= f.select(:work_type_id, WorkType.work_types_list, {:prompt => 'すべて', selected: params[:search][:work_type_id]}) %>
+                  </div>
+                  <% if administrator? || manager? || project_manager? %>
+                    <div class="condition">
+                      <label for="cond5"><%= t('label.schedule_reflection.select.member') %>:&nbsp;&nbsp;</label>
+                      <% if administrator? || manager? %>
+                        <%= f.select(:member_id, User.users_list, {:prompt => 'すべて', selected: params[:search][:member_id]}) %>
+                      <% else %>
+                        <%= f.select(:member_id, current_user.my_relation_members_list, {:prompt => 'すべて', selected: params[:search][:member_id]}) %>
+                      <% end %>
+                    </div>
+                  <% end %>
+
+                  <div class="button" style="padding-left: 10px;">
+                    <input type="submit" accesskey="c" name="submit" value="<%= t('web-app-theme.csv_export') %>" />
+                  </div>
+                  <div class="button">
+                    <input type="submit" accesskey="s" name="submit" value="<%= t('web-app-theme.select') %>" />
+                  </div>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div><!-- /.dataSearch -->
+
+        <%= form_tag({:action => 'bundle_reflect'}, {:method => :post, :class => "businessForm"}) do %>
+        <div class="mul_list">
+          <table border="1" class="tablesorter">
+            <tbody>
+              <% pre_schedule = nil -%>
+              <% @schedules.each do |schedule| -%>
+                <% if pre_schedule.nil? || pre_schedule.schedule_date.year != schedule.schedule_date.year || 
+                  pre_schedule.schedule_date.month != schedule.schedule_date.month %>
+                  <tr class="month_header">
+                    <td scope="col" class="column1"></td>
+                    <td scope="col" class="column2">
+                      <%=  l(schedule.schedule_date, :format => :local_date5) %>
+                    </td>
+                    <td scope="col" class="column3">
+                      <%= t('label.schedule_reflection.title.project_no') %>
+                    </td>
+                    <td scope="col" class="column4">
+                      <%= t('activerecord.attributes.project.name') %>
+                    </td>
+                    <td scope="col" class="column5">
+                      <%= t('activerecord.models.work_type') %>
+                    </td>
+                    <td scope="col" class="column6">
+                      <%= t('label.schedule_reflection.title.plan_time') %>
+                    </td>
+                    <td scope="col" class="column7">
+                      <%= t('activerecord.attributes.schedule.auto_reflect') %>
+                    </td>
+                    <td scope="col" class="column8">
+                      <%= t('label.schedule_reflection.select.member') %>
+                    </td>
+                    <td scope="col" class="column9">
+                    </td>
+                  </tr>
+                <% end %>
+                <tr class='<%= get_schedule_backcolor_class(schedule) %>'>
+                  <td>
+                  <%= check_box_tag 'select_ids[]', schedule.id  %> 
+                  </td>
+                  <td>
+                    <%= l(schedule.schedule_date) %>
+                  </td>
+                  <td>
+                    <%= schedule.project.project_code %>
+                  </td>
+                  <td>
+                    <%= schedule.project.name %>
+                  </td>
+                  <td>
+                    <%= schedule.work_type_name %>
+                  </td>
+                  <td>
+                    <%= format_plan_date(schedule.start_at, schedule.end_at) %>
+                  </td>
+                  <td>
+                    <%= format_auto_reflect(schedule.auto_reflect) %>
+                  </td>
+                  <td>
+                    <%= schedule_member_list(schedule) %>
+                  </td>
+                  <td>
+                    <%= link_to t('web-app-theme.show'), schedule_schedule_path(schedule) %> |
+                    <%= link_to t('web-app-theme.edit'), edit_schedule_schedule_path(schedule, :search => params[:search]) %> |
+                    <%= link_to t('web-app-theme.delete', :default=> 'Delete'), [:schedule, schedule], { method: :delete, :confirm => "#{t('web-app-theme.confirm', :default=> 'Delete')}" } %>
+                  </td>
+                </tr>
+                <% pre_schedule = schedule %>
+              <% end %>
+            </tbody>
+          </table>
+        </div><!-- /.pjList -->
+        <div>
+          <% if @schedules.length > 0 %>
+            <div class="button">
+              <%= submit_tag t('label.schedule_reflection.label.result_bundle_reflect'), { confirm: t('label.schedule_reflection.label.result_bundle_reflect_confirm')} %>
+              &nbsp;&nbsp;
+              <a id="selectAll" class="select"><%= t('label.common.select_all') %></a>
+              &nbsp;&nbsp;
+              <a id="unselectAll" class="select"><%= t('label.common.unselect_all') %></a>
+            </div>
+          <% end %>
+        </div>
+        <div class="actions-bar wat-cf">
+          <div class="actions">
+            <%= will_paginate @schedules %>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+        <% end %> <%# end form %>
+      </div><!-- /.inner -->
+    </section><!-- /#content -->

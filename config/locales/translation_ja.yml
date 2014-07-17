@@ -1,0 +1,439 @@
+ja:
+  activerecord:
+    models:
+      section: 部署  #g
+      sections: 部署  #g
+      user: ユーザー  #g
+      users: ユーザー  #g
+      customer: 顧客  #g
+      customers: 顧客  #g
+      notice: 通知  #g
+      notices: 通知  #g
+      development_language: 開発言語  #g
+      development_languages: 開発言語  #g
+      message: お知らせ  #g
+      messages: お知らせ  #g
+      operating_systems: OS  #g
+      operating_system: OS  #g
+      databases: データベース  #g
+      database: データベース  #g
+      tax_divisions: 税区分  #g
+      tax_division: 税区分 #g
+      expense_types: 経費種類  #g
+      expense_type: 経費種類 #g
+      work_types: 工程 #g
+      work_type: 工程 #g
+      indirect_cost_ratios: 間接労務費 #g
+      indirect_cost_ratio: 間接労務費 #g
+      expenses: 経費 #g
+      expense: 経費 #g
+      projects: プロジェクト #g
+      project: プロジェクト #g
+      schedules: スケジュール #g
+      schedule: スケジュール #g
+      occupations: 職種 #g
+      occupation: 職種 #g
+      deals: 商談案件 #g
+      deal: 商談案件 #g
+      sales_reports: 商談報告 #g
+      sales_report: 商談報告 #g
+      system_settings: システム設定 #g
+      system_setting: システム設定 #g
+      prj_reflections: 振り返り情報 #g
+      prj_reflection: 振り返り情報 #g
+      unit_prices: 工数単価 #g
+      unit_price: 工数単価 #g
+      indirect_costs: 間接労務費 #g
+      indirect_cost: 間接労務費 #g
+      prj_expense_budget: 経費予算 #g
+      prj_expense_budgets: 経費予算 #g
+      prj_work_type: 作業工程 #g
+      prj_work_types: 作業工程 #g
+      prj_member: 要員 #g
+      prj_members: 要員 #g
+      result: 工数実績 #g
+      results: 工数実績 #g
+
+    attributes:
+      section:
+        name: 部署名  #g
+        users: ユーザー  #g
+        view_order: 表示順  #g
+        deleted: deleted  #g
+
+      user:
+        official_position: 役職  #g
+        official_position_name: 役職名  #g
+        name: 氏名  #g
+        name_ruby: フリガナ  #g
+        name_ruby_rule: 全角カナを入力  #g
+        user_code: ユーザーコード  #g
+        login: ログインID  #g
+        password: パスワード  #g
+        password_rule: 半角英数6文字以上を入力  #g
+        password_confirmation: パスワード（再入力）  #g
+        section: :activerecord.models.section  #g
+        occupation_id: 職種ID  #g
+        unit_price: 工数単価  #g
+        unit_price_label: 1日あたりの工数単価
+        unit_price_rule: 工数単価を1件も登録しなかった場合、システム設定の工数単価初期値が使用されます。  #g
+        user_rank_cd: ユーザー区分コード  #g
+        user_rank_name: ユーザー区分名  #g
+        user_rank: ユーザー区分  #g
+        home_phome_no: 自宅電話番号  #g
+        mobile_phone_no: 携帯番号  #g
+        mail_address1: メールアドレス１  #g
+        mail_address2: メールアドレス２  #g
+        mail_address3: メールアドレス３  #g
+        login_count: ログイン回数  #g
+        current_login_at: ログイン日時  #g
+        last_login_at: 最終ログイン日時  #g
+        crypted_password: crypted_password  #g
+        deleted: deleted  #g
+        password_salt: password_salt  #g
+        persistence_token: persistence_token  #g
+        now_password: 現在のパスワード  #g
+
+      customer:
+        code: 顧客コード  #g
+        name: 顧客名  #g
+        name_ruby: フリガナ  #g
+        name_ruby_rule: 全角カナを入力  #g
+        pref_cd: 都道府県コード  #g
+        pref: 都道府県  #g
+        location: 所在地  #g
+
+      notice:
+        message: メッセージ  #g
+        message_cd: メッセージコード  #g
+
+        #project: :activerecord.models.project  #g
+        project:
+          name: プロジェクト名
+
+      development_language:
+        name: 言語名  #g
+        view_order: 表示順  #g
+
+      message:
+        message: メッセージ  #g
+        title: タイトル  #g
+        create_at: 登録日  #g
+
+      operating_system:
+        name: OS名  #g
+        view_order: 表示順  #g
+
+      database:
+        name: データベース名  #g
+        view_order: 表示順  #g
+        
+      tax_division:
+        name: 税区分名  #g
+        view_order: 表示順  #g
+        tax_type_cd: 税種別コード  #g
+        tax_type_name: 税種別名  #g
+        tax_type: 税種別  #g
+        tax_rate: 税率  #g
+
+      expense_type:
+        expense_item_cd: 経費科目コード  #g
+        expense_item: 経費科目  #g
+        expense_item_name: 経費科目名  #g
+        name: 経費種類名  #g
+        tax_division_id: デフォルト税区分ID  #g
+        tax_division_id_label: 税区分の初期値  #g
+        view_order: 表示順  #g
+
+      work_type:
+        name: 工程名  #g
+        view_order: 表示順  #g
+        office_job: 社内業務  #g
+        office_job_label: 業務区分  #g
+        office_job_name: 業務区分名  #g
+        work_type_code: 工程コード  #g
+
+      indirect_cost_ratios:
+        ratio: 間接労務費率  #g
+        
+      indirect_cost_ratio:
+        indirect_cost_subject_cd: 対象区分  #g
+        order_type_cd: 受注形態コード  #g
+        order_type: 受注形態  #g
+        ratio: 間接労務費率  #g
+        indirect_cost_method: 計算方法  #g
+
+      expense:
+        user_id: 精算者  #g
+        user_name: 精算者名  #g
+        project_id: プロジェクト  #g
+        expense_type_id: 経費種類  #g
+        tax_division_id: 税区分  #g
+        adjusted_date: 精算日  #g
+        item_name: 経費内容  #g
+        amount_paid: 精算金額  #g
+
+      project:
+        project_code: プロジェクトコード  #g
+        customer_id: 顧客  #g
+        manager_id: プロジェクトマネージャー  #g
+        manager_name: マネージャー名  #g
+        manager: プロジェクトマネージャー  #g
+        leader_id: プロジェクトリーダー  #g
+        leader_name: リーダー名  #g
+        leader: プロジェクトリーダー  #g
+        member_count: 参加人数  #g
+        deal_id: 商談情報  #g
+        deal_list: 商談管理案件  #g
+        deal_name: 商談管理案件名  #g
+        order_type_cd: 受注形態コード  #g
+        status_cd: 状態コード  #g
+        status: 状態  #g
+        order_volume: 受注額  #g
+        locked: ロック状態  #g
+        name: プロジェクト  #g
+        start_date: 開始予定日  #g
+        started_date: 開始日  #g
+        finish_date: 終了予定日  #g
+        finished_date: 終了日  #g
+        direct_labor_cost: 直接労務費  #g
+        direct_labor_cost_budget_check: 直接労務費予算をプロジェクト参加メンバーの平均工数単価で自動計算する
+        direct_labor_cost_budget_auto: 直接労務費予算を自動計算する  #g
+        direct_labor_cost_budget_manual: 直接労務費予算として、直接入力された金額を使用する  #g
+        man_day: 開発工数
+        expense: 直接経費
+        indirect_cost: 間接労務費  #g
+        transportation_and_stay: 交通・宿泊費
+        other_expense: その他経費
+        remarks: 備考  #g
+        attention: 注目プロジェクト  #g
+        deleted: 削除プラグ  #g
+        sales_costs: 販売原価  #g
+        man_day_label: |-
+          開発工数
+          （予/実）
+        direct_labor_cost_label: |-
+          直労費
+          （予/実）
+        subcontract_cost_label: |-
+          外注費
+          （予/実）
+        expense_label: |-
+          直接経費
+          （予/実）
+        indirect_labor_cost_label: |-
+          間労費
+          （予/実）
+        development_cost_label: |-
+          開発原価
+          （予/実）
+        gross_profit_label: |-
+          粗利
+          （予/実）
+        profit_ratio_label: |-
+          粗利率
+          （予/実）
+        staff: 担当者  #g
+        order: オーダー種別  #g
+        member: プロジェクトメンバー  #g
+        member_label: メンバー  #g
+        man_hour: 工数  #g
+        work_type_check: |-
+          工程の
+          有無
+        earned_value: |-
+          EV
+          （人日）
+        results_man_days: 実績工数
+        results_man_days_label: |-
+          実績工数
+          （人日）
+        results_man_days_detail: 工数実績詳細
+        budget: 予算
+        results_cost: 実績
+        date: 日付
+        expense_name: 内容
+        expense_cost: 金額（円）
+        rank_label: 評価
+        output_man_days: 工数集計出力
+#        prj_expense_budgets: 経費予算  #g
+#        prj_work_types: 作業工数  #g
+#        prj_members: プロジェクトメンバー  #g
+        total_man_days_by_work_type: 作業工程別合計工数  #g
+
+      schedule:
+        user_id: ユーザー  #g
+        project_id: プロジェクト  #g
+        work_type_id: 作業工程  #g
+        schedule_date: 日付  #g
+        work_hours: 予定作業時間  #g
+        notes: 備考  #g
+        auto_reflect: 自動反映  #g
+        start_at: 開始時間  #g
+        end_at: 終了時間  #g
+        sch_members: 参加者  #g
+
+      occupation:
+        name: 職種名  #g
+        view_order: 表示順  #g
+
+      deal:
+        customer_id: 顧客ID  #g
+        staff_user_id: 営業担当者ユーザーID  #g
+        solution_name: ソリューション名  #g
+        name: 案件名  #g
+        customer_section: 顧客所属名  #g
+        contact_person_name: 顧客担当者名  #g
+        budge_amount: 予算額  #g
+        anticipated_price: 予定価格  #g
+        order_volume: 受注額  #g
+        adoption_period: 選定時期  #g
+        delivery_period: 導入時期  #g
+        selection_method: 選定方法  #g
+        order_type: 契約形態  #g
+        reliability_cd: 受注確度コード  #g
+        reliability: 受注確度  #g
+        billing_destination: 請求先  #g
+        deal_status_cd: 商談ステータスコード  #g
+        deal_status: 商談ステータス  #g
+        prj_managed: PJ管理対象フラグ  #g
+        notes: 備考  #g
+
+      sales_report:
+        activity_date: 営業日 #g
+        activity_method: 営業方法 #g
+        main_staff: 対応者 #g
+        fellow_staff: 同行者 #g
+        activity_objective: 営業目的 #g
+        destination: 訪問先 #g
+        reliability_cd: 受注確度コード #g
+        reports: 報告内容 #g
+        responses: 顧客反応 #g
+        summary: 報告に対する総括 #g
+
+      system_setting:
+        notice_indication_days: 通知メッセージ表示日数  #g
+        default_unit_price: 工数単価初期値  #g
+        lock_project_after_editing: |-
+          プロジェクト変更時
+          自動ロックフラグ
+
+      unit_price:
+        user_id: ユーザーID  #g
+        start_date: 適用開始日  #g
+        unit_price: 工数単価  #g
+
+      indirect_cost:
+        start_date: 適用開始日  #g
+        indirect_cost_method_cd: 間接労務費計算方式コード  #g
+        ratio: 間接労務費率  #g
+
+      prj_members:
+        planned_man_days: 予定工数  #g
+
+      prj_member:
+        project_id: プロジェクトID  #g
+        user_id: ユーザーID  #g
+        planned_man_days: 予定工数  #g
+
+      prj_work_types:
+        planned_man_days: 社内工数
+        presented_man_days: 客先工数
+        progress_rate: 進捗率
+
+      prj_work_type:
+        project_id: プロジェクトID
+        work_type_id: 作業工程ID  #g
+        planned_man_days: |-
+          社内工数
+          （人日）
+        presented_man_days: |-
+          客先工数
+          （人日）
+        progress_rate: |-
+          進捗率
+          （％）
+
+      prj_expense_budgets:
+        expense_budget: 経費予算  #g
+
+      prj_expense_budget:
+        project_id: プロジェクトID  #g
+        expense_item_cd: 経費科目コード  #g
+        expense_budget: 経費予算  #g
+
+      prj_related_project:
+        project_id: プロジェクトID  #g
+        related_project_id: 関連プロジェクトID  #g
+        related_project: 関連プロジェクト  #g
+
+      prj_sales_cost:
+        project_id: プロジェクトID  #g
+        tax_division_id: 税区分ID  #g
+        item_name: 品目名  #g
+        price: 価格  #g
+        item: 品目  #g
+
+      prj_reflection:
+        project_id: プロジェクト  #g
+        order_volume: 受注額  #g
+        sales_cost: 販売原価
+        man_day: 開発工数  #g
+        direct_labor_cost: 直接労務費  #g
+        subcontract_cost: 外注費  #g
+        expense: 直接経費  #g
+        indirect_labor_cost: 間接労務費  #g
+        development_cost: 開発原価  #g
+        gross_profit: 粗利  #g
+        profit_ratio: 粗利率  #g
+        overall_rank: 総合評価ランク  #g
+        reasons_for_termination: プロジェクト終了の理由  #g
+        self_evaluation: 自己評価  #g
+        finished_date: プロジェクト終了日  #g
+        finished_date_label: プロジェクト終了日  #g
+        planned_finish_date: 終了予定日  #g
+        planned_finish_date_label: 終了予定日  #g
+        delay_days: 遅れ日数  #g
+        schedule_rank: スケジュール評価ランク  #g
+        reasons_for_dalay: 遅れの主な要因  #g
+        planned_man_days: 予定工数  #g
+        exceeded_man_days: 超過工数  #g
+        man_days_rank: 工数評価ランク  #g
+        reasons_for_overtime: 工数超過の主な要因  #g
+        reasons_for_overtime_label: 超過の主な要因  #g
+        expense_budget: 経費予算  #g
+        exceeded_expense: 超過金額  #g
+        expense_rank: 経費評価ランク  #g
+        reasons_for_over_budget: 経費超過の主な要因  #g
+        reasons_for_over_budget_label: 超過の主な要因  #g
+        successful_things: うまく行ったことは何か  #g
+        successful_things_label: うまく行ったことは何か  #g
+        failed_things: うまく行かなかったことは何か  #g
+        failed_things_label: |-
+          うまく行かなかったことは
+          何か
+        improvable_things: 改善できることは何か  #g
+        improvable_things_label: 改善できることは何か  #g
+        next_actions: 今後のために必要なアクション  #g
+        next_actions_label: |-
+          今後のために必要な
+          アクション
+        learned_skills: プロジェクトを通して学習したスキル  #g
+        learned_skills_label: |-
+          プロジェクトを通して
+          学習したスキル
+
+      prj_work_type:
+        planned_man_days: 社内予定工数  #g
+        presented_man_days: 客先提示工数  #g
+        progress_rate: 進捗率  #g
+
+      result:
+        schedule_id: スケジュールID  #g
+        user_id : ユーザー  #g
+        project_id: プロジェクト  #g
+        work_type_id: 作業工程  #g
+        result_date: 日付  #g
+        start_at: 開始時間  #g
+        end_at: 終了時間  #g
+        notes: 備考  #g

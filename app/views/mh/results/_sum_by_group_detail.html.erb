@@ -1,0 +1,72 @@
+<div>
+  <% pre_rst = nil -%>
+  <% @month_results[:user_results].each_key do |rst| -%>
+    <% if pre_rst.nil? || (pre_rst.user.section_id != rst.user.section_id) %>
+      <% if !pre_rst.nil? %>
+      </tbody>
+      </table>
+      </div>
+    <% end %>
+    <div class="">
+      <%= rst.user.section.name unless rst.user.section_id == nil %>
+    </div>
+    <div class="result_list">
+      <table class="tablesorter">
+        <tbody>
+          <tr class="month_header">
+            <td scope="col" class="column1" style="width: 5%;">
+              <%= t('activerecord.attributes.user.name') %>
+            </td>
+            <td scope="col" class="column2" style="width: 3%;">
+              <%= t('label.result_reflection.title.code') %>
+            </td>
+            <td scope="col" class="column3" style="width: 3%; background-color:#ECBC5C; color: #000;">
+              <%= t('label.result_reflection.title.total') %>
+            </td>
+            <% @month_results[:month_days].times do |day| -%>
+              <td scope="col" class="<%= get_backcolor_class_by_result_date(@month_results[:first_day]+day) %>">
+                <%= l(@month_results[:first_day]+day, :format => :local_date4) %>
+              </td>
+            <% end -%>
+            <td scope="col" class="column14" style="width: 3%;">
+            </td>
+          </tr>
+        <% end %>
+        <tr class="month_body">
+          <td>
+            <%= rst.user.name %>
+          </td>
+          <td>
+            <%= rst.user.user_code %>
+          </td>
+          <td>
+            <%= number_with_precision("#{rst.day_work_hours}".to_f, :precision => 2) %>
+          </td>
+          <% @month_results[:month_days].times do |day| -%>
+            <td scope="col" class="<%= get_backcolor_class_by_result_date(@month_results[:first_day]+day) %>">
+              <% match_flag = false %>
+              <% @month_results[:user_results][rst].each do |rst_detail| -%>
+                <% if (rst_detail.result_date - @month_results[:first_day]).to_i == day %>
+                  <% match_flag = true %>
+                  <%= number_with_precision("#{rst_detail.day_work_hours}".to_f, :precision => 2)%>
+                <% end %>
+              <% end unless @month_results[:user_results][rst].nil? -%>
+              <% if match_flag == false %>
+                0.00 
+              <% end %>
+            </td>
+          <% end -%>
+          <td>
+            <%= link_to t('web-app-theme.show'), sum_by_user_mh_results_path({:search => params[:search], :user_id => rst.user_id}) %>
+          </td>
+        </tr>
+        <% pre_rst = rst %>
+      <% end unless @month_results[:user_results].nil? -%>
+      <% if !@month_results[:user_results].nil? %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+</div><!-- /.pjList -->
+</div><!-- /.inner -->
+

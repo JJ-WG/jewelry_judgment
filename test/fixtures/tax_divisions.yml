@@ -1,0 +1,50 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+tax_division_1:
+  id: 1
+  name: 税込5%
+  tax_rate: 5.00
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_inclusive] %>
+  view_order: 1
+
+tax_division_2:
+  id: 2
+  name: 税抜5%
+  tax_rate: 5.00
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_exclusive] %>
+  view_order: 2
+
+tax_division_3:
+  id: 3
+  name: 税込3%
+  tax_rate: 3.00
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_inclusive] %>
+  view_order: 3
+
+tax_division_4:
+  id: 4
+  name: 税抜3%
+  tax_rate: 3.00
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_exclusive] %>
+  view_order: 4
+
+tax_division_5:
+  id: 5
+  name: 税込8%
+  tax_rate: 8.00
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_inclusive] %>
+  view_order: 5
+
+tax_division_6:
+  id: 6
+  name: 税抜8%
+  tax_rate: 8.00
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_exclusive] %>
+  view_order: 6
+
+tax_division_7:
+  id: 7
+  name: 非課税
+  tax_rate: 0.0
+  tax_type_cd: <%= TAX_TYPE_CODE[:tax_exempt] %>
+  view_order: 7

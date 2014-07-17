@@ -1,0 +1,2 @@
+module Mh::MhHelper
+end

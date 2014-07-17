@@ -1,0 +1,14 @@
+// Place all the styles related to the development_languages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* 開発言語管理 開発言語一覧 */
+div.list thead th.view-order {
+  width: 10%;
+  text-align: center;
+}
+
+div.list thead th.name {
+  width: 77%;
+}
+

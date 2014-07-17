@@ -1,0 +1,99 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+work_type_1:
+  id: 1
+  name: 要件定義
+  work_type_code: DR
+  office_job: false
+  view_order: 1
+
+work_type_2:
+  id: 2
+  name: 基本設計
+  work_type_code: BD
+  office_job: false
+  view_order: 2
+
+work_type_3:
+  id: 3
+  name: 詳細設計
+  work_type_code: DD
+  office_job: false
+  view_order: 3
+
+work_type_4:
+  id: 4
+  name: PG開発
+  work_type_code: PGD
+  office_job: false
+  view_order: 4
+
+work_type_5:
+  id: 5
+  name: 単体テスト
+  work_type_code: UT'
+  office_job: false
+  view_order: 5
+
+work_type_6:
+  id: 6
+  name: 結合テスト
+  work_type_code: CT'
+  office_job: false
+  view_order: 6
+
+work_type_7:
+  id: 7
+  name: システムテスト
+  work_type_code: ST
+  office_job: false
+  view_order: 7
+
+work_type_8:
+  id: 8
+  name: 社内事務作業
+  work_type_code: OW
+  office_job: true
+  view_order: 8
+
+work_type_9:
+  id: 9
+  name: 社内会議
+  work_type_code: OM
+  office_job: true
+  view_order: 9
+
+work_type_10:
+  id: 10
+  name: 社内サーバ管理
+  work_type_code: OSM
+  office_job: true
+  view_order: 10
+
+work_type_11:
+  id: 11
+  name: 社内レビュー
+  work_type_code: OR
+  office_job: true
+  view_order: 11
+
+work_type_12:
+  id: 12
+  name: プロジェクト外営業活動
+  work_type_code: PBA
+  office_job: true
+  view_order: 12
+
+work_type_13:
+  id: 13
+  name: 学習・教育
+  work_type_code: ED
+  office_job: true
+  view_order: 13
+
+work_type_14:
+  id: 14
+  name: 移動
+  work_type_code: MV
+  office_job: true
+  view_order: 14
