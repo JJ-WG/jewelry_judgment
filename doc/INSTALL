@@ -40,20 +40,6 @@
 
 == 補足事項
   * 実際の稼働環境では Apache + Passenger などを設定して動作させてください。
-  * http://example.com/jj/　のようなサブディレクトリ配下で動作させる場合には、下記ファイルに
-    サブディレクトリ名を追記する必要があります。
-
-      app/views/layouts/application.html.erb
-
-      変更前）
-        12  <script>
-        13    var app_name_for_url = '';
-        14  </script>
-
-      変更後）
-        12  <script>
-        13    var app_name_for_url = '/jj';
-        14  </script>
 
   * 下記のバッチ処理をcrontab等で夜間に定期実行するよう設定してください。
     scripts/
