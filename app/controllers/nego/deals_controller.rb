@@ -3,20 +3,22 @@
 #
 #= Nego::Dealsコントローラクラス
 #
+# Authors:: 代　如剛
 # Created:: 2013/01/07
 #
 class Nego::DealsController < Nego::NegoController
-
-  # コントローラのメソッドをviewでも使えるように設定
-  helper_method :creatable?, :viewable?, :editable?, :deletable?
-
   ##
   # 商談管理機能 一覧画面
   # GET /nego/deals
   #
   def index
-    create_search_detail
-    @deals = @deals.paginate(:page => params[:page], :per_page => DEAL_ITEMS_PER_PAGE)
+    if params[:submit] == t('web-app-theme.csv_export')
+      # CSV出力
+      csv_export
+    else
+      create_search_detail
+      @deals = @deals.paginate(:page => params[:page], :per_page => DEAL_ITEMS_PER_PAGE)
+    end
   end
 
   ##
@@ -343,58 +345,6 @@ private
       relation = relation.where(:reliability_cd => params[:search][:reliability_cd])
     end
     @deals = relation.list
-  end
-
-  ##
-  # ログインユーザが新規作成可能か
-  #
-  # 戻り値::
-  #   ログインユーザのユーザ権限が「一般社員以上」かつロール権限が「営業担当」の場合、trueを返す。
-  # 
-  def creatable?
-    # TODO dairg QA7 保留 営業担当の判断
-    current_user && (current_user.user_rank_cd >= USER_RANK_CODE[:employee])
-  end
-
-  ##
-  # ログインユーザが編集可能か
-  #
-  # deal:
-  #   対象商談情報
-  #
-  # 戻り値::
-  #   ログインユーザのユーザ権限が「一般社員以上」かつロール権限が「営業担当」の場合、trueを返す。
-  # 
-  def editable?(deal)
-    # TODO dairg QA7 保留 営業担当の判断
-    current_user && (current_user.user_rank_cd >= USER_RANK_CODE[:employee])
-  end
-
-  ##
-  # ログインユーザが閲覧可能か
-  #
-  # deal:
-  #   対象商談情報
-  #
-  # 戻り値::
-  #   ログインユーザのユーザ権限が「一般社員以上」かつロール権限が「営業担当」の場合、または
-  #   ログインユーザのユーザ権限が「マネージャー」以上の場合、trueを返す。
-  # 
-  def viewable?(deal)
-    return true if (administrator? || manager?)
-    # TODO dairg QA7 保留 営業担当の判断
-    return current_user && (current_user.user_rank_cd >= USER_RANK_CODE[:employee])
-  end
-
-  ##
-  # ログインユーザが削除可能か
-  #
-  # deal:
-  #   対象商談情報
-  #
-  def deletable?(deal)
-    return false if deal && deal.project.present?
-    current_user && (current_user.user_rank_cd >= USER_RANK_CODE[:employee])
   end
 
   ##

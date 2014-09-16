@@ -27,3 +27,10 @@ prj_sales_cost_4:
   tax_division_id: 1
   item_name: クライアントPC
   price: 65000
+
+prj_sales_cost_5:
+  id: 5
+  project_id: 7
+  tax_division_id: 1
+  item_name: クライアントPC
+  price: 90000

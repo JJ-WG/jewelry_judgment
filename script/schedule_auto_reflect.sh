@@ -14,8 +14,7 @@ logger()
 
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
-cd /opt/jj/
-
+cd /opt/jj/current/
 logger "スケジュール自動反映処理が開始します"
 
 bundle exec rails runner -e production "Schedule.auto_reflect"

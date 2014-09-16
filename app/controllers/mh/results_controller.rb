@@ -3,6 +3,7 @@
 #
 #= Mh::Resultsコントローラクラス
 #
+# Authors:: 兪　春芳
 # Created:: 2012/12/11
 #
 class Mh::ResultsController < Mh::MhController
@@ -44,6 +45,9 @@ class Mh::ResultsController < Mh::MhController
     # 作業工程コントロールの設定
     set_work_type_select_control(params[:project_id])
     set_result_user_select_control(@result.project_id)
+
+    # 当月の工数実績入力日リストを取得
+    @result_date_list = Result.result_date_list(@current_user.id, @result.result_date)
   end
 
   ##
@@ -53,6 +57,9 @@ class Mh::ResultsController < Mh::MhController
   def show
     @result = Result.find_by_id(params[:id])
     render(:file => File.join(Rails.root, 'public', '403'), :status => 403, :layout => false) unless can_show_result?(@result)
+    
+    # 当月の工数実績入力日リストを取得
+    @result_date_list = Result.result_date_list(@current_user.id, @result.result_date)
   end
 
   ##
@@ -72,6 +79,9 @@ class Mh::ResultsController < Mh::MhController
       return
     end
     @result = Result.new(:result_date => select_date)
+    
+    # 当月の工数実績入力日リストを取得
+    @result_date_list = Result.result_date_list(@current_user.id, @result.result_date)
     render 'show'
   end
 
@@ -90,6 +100,16 @@ class Mh::ResultsController < Mh::MhController
       @select_project_list = get_current_user_can_acccess_projects(include_internal: false)
     end
     
+    # 作業開始時間と作業終了時間の初期値設定
+    unless @result.start_at.blank?
+      @result.start_at_hour = @result.start_at.strftime('%H')
+      @result.start_at_minute = @result.start_at.strftime('%M')
+    end
+    unless @result.end_at.blank?
+      @result.end_at_hour = @result.end_at.strftime('%H')
+      @result.end_at_minute = @result.end_at.strftime('%M')
+    end
+    
     @select_user_list = select_user_list
     if !administrator? && !manager? && project_manager?
       @select_user_list = current_user.my_relation_members_list
@@ -99,6 +119,9 @@ class Mh::ResultsController < Mh::MhController
     set_work_type_select_control(@result.project_id)
 
     set_result_user_select_control(@result.project_id)
+
+    # 当月の工数実績入力日リストを取得
+    @result_date_list = Result.result_date_list(@current_user.id, @result.result_date)
   end
 
   ##
@@ -108,14 +131,23 @@ class Mh::ResultsController < Mh::MhController
   def create
     begin
       result_attributes = params[:result]
-      # もし、時間または分が選択されてない場合、開始時間・終了時間をNULLに設定して、Validationを行う
-      if result_attributes["start_at(4i)"].blank? || result_attributes["start_at(5i)"].blank?
-        result_attributes.delete_if {|key, value| /start_at\([1-6]i\)/ =~ key}
-        result_attributes[:start_at] = nil
-      end
-      if result_attributes["end_at(4i)"].blank? || result_attributes["end_at(5i)"].blank?
-        result_attributes.delete_if {|key, value| /end_at\([1-6]i\)/ =~ key}
-        result_attributes[:end_at] = nil
+      
+      # 開始時間と終了時間のデータ作成
+      result_date = DateTime.parse(result_attributes[:result_date])
+      if result_date.present?
+        if result_attributes["start_at_hour"].present? && result_attributes["start_at_minute"].present?
+          start_at = DateTime.new(result_date.year, result_date.month, result_date.day,
+              result_attributes["start_at_hour"].to_i, result_attributes["start_at_minute"].to_i, 0)
+          result_attributes[:start_at] = start_at.strftime('%Y%m%d%H%M%S')
+        end
+        if result_attributes["end_at_hour"].present? && result_attributes["end_at_minute"].present?
+          end_at = DateTime.new(result_date.year, result_date.month, result_date.day,
+              result_attributes["end_at_hour"].to_i, result_attributes["end_at_minute"].to_i, 0)
+          result_attributes[:end_at] = end_at.strftime('%Y%m%d%H%M%S')
+        end
+        
+        # 当月の工数実績入力日リストを取得
+        @result_date_list = Result.result_date_list(@current_user.id, result_date)
       end
       
       # 工数実績情報のDB登録
@@ -135,7 +167,7 @@ class Mh::ResultsController < Mh::MhController
         if !administrator? && !manager? && project_manager?
           @select_user_list = current_user.my_relation_members_list
         end
-        redirect_to mh_result_path(@result),
+        redirect_to new_mh_result_path(:result_date => @result.result_date),
           notice: t('common_label.model_was_created', :model => Result.model_name.human)
       else
         raise 'validate error!' 
@@ -172,7 +204,7 @@ class Mh::ResultsController < Mh::MhController
       else
         @select_project_list = get_current_user_can_acccess_projects(include_internal: false)
       end
-    
+      
       @select_user_list = select_user_list
       if !administrator? && !manager? && project_manager?
         @select_user_list = current_user.my_relation_members_list
@@ -180,14 +212,24 @@ class Mh::ResultsController < Mh::MhController
       @result = Result.find(params[:id])
       result_attributes = params[:result]
       
-      # もし、時間または分が選択されてない場合、開始時間・終了時間をNULLに設定して、Validationを行う
-      if result_attributes["start_at(4i)"].blank? || result_attributes["start_at(5i)"].blank?
-        result_attributes.delete_if {|key, value| /start_at\([1-6]i\)/ =~ key}
-        result_attributes[:start_at] = nil
-      end
-      if result_attributes["end_at(4i)"].blank? || result_attributes["end_at(5i)"].blank?
-        result_attributes.delete_if {|key, value| /end_at\([1-6]i\)/ =~ key}
-        result_attributes[:end_at] = nil
+      # 開始時間と終了時間のデータを一旦クリアし再度作成
+      result_attributes[:start_at] = ""
+      result_attributes[:end_at] = ""
+      result_date = DateTime.parse(result_attributes[:result_date])
+      if result_date.present?
+        if result_attributes["start_at_hour"].present? && result_attributes["start_at_minute"].present?
+          start_at = DateTime.new(result_date.year, result_date.month, result_date.day,
+              result_attributes["start_at_hour"].to_i, result_attributes["start_at_minute"].to_i, 0)
+          result_attributes[:start_at] = start_at.strftime('%Y%m%d%H%M%S')
+        end
+        if result_attributes["end_at_hour"].present? && result_attributes["end_at_minute"].present?
+          end_at = DateTime.new(result_date.year, result_date.month, result_date.day,
+              result_attributes["end_at_hour"].to_i, result_attributes["end_at_minute"].to_i, 0)
+          result_attributes[:end_at] = end_at.strftime('%Y%m%d%H%M%S')
+        end
+        
+        # 当月の工数実績入力日リストを取得
+        @result_date_list = Result.result_date_list(@current_user.id, result_date)
       end
       
       @result.attributes = result_attributes
@@ -233,7 +275,14 @@ class Mh::ResultsController < Mh::MhController
     
     if can_modified_result?(@result)
       begin
-        @result.update_attributes!(deleted: 1)
+        # 削除フラグのみ更新するとバリデーションエラーが発生するため、
+        # 時間選択セレクトボックスの値（start_at_hour ～ end_at_minute）も渡して
+        # 削除フラグを変更
+        @result.update_attributes!(deleted: 1,
+                                   start_at_hour: @result.start_at.strftime("%H"),
+                                   start_at_minute: @result.start_at.strftime("%M"),
+                                   end_at_hour: @result.end_at.strftime("%H"),
+                                   end_at_minute: @result.end_at.strftime("%M"))
         flash[:notice] = I18n.t('common_label.model_was_deleted', :model => Result.model_name.human)
       rescue Exception => e
         flash[:warning] = I18n.t('errors.messages.delete_error', :model => Result.model_name.human)
@@ -242,7 +291,11 @@ class Mh::ResultsController < Mh::MhController
     else
       flash[:warning] = I18n.t('errors.messages.not_permitted')
     end
-    redirect_to mh_results_path
+    if Rails.application.routes.recognize_path(request.referrer)[:action] == 'index'
+      redirect_to mh_results_path
+    else
+      redirect_to new_mh_result_path(:result_date => @result.result_date)
+    end
   end
 
   ##
@@ -251,6 +304,7 @@ class Mh::ResultsController < Mh::MhController
   #
   def on_change_project_list
     @result = Result.new
+    @result.user_id = current_user.id
 
     # 作業工程コントロールの設定
     set_work_type_select_control(params[:project_id])
@@ -304,12 +358,23 @@ class Mh::ResultsController < Mh::MhController
     .order('start_at ASC, end_at ASC').all;
     results = []
     @results.each do |result|
+      title = ""
+      # 工程、備考も表示する
+      if result.project.present?
+        title = result.project.name + "(" + result.work_type_name
+        title += ":" + result.notes if result.notes.present?
+        title += ")"
+      end
+      # ツールチップ表示内容
+      tooltip = "#{result.start_at.strftime("%H:%M")}～#{result.end_at.strftime("%H:%M")} #{title}"
+      
       results << { :id => result.id, 
-        :title => result.project.name || '',
+        :title => title,
+        :tooltip => tooltip,
         :start => "#{result.start_at.iso8601}",
         :end => "#{result.end_at.iso8601}",
-        :allDay => false, 
-        :color => '#7985C5', 
+        :allDay => false,
+        :color => '#7985C5',
         :recurring => false
       }
     end
@@ -413,21 +478,29 @@ class Mh::ResultsController < Mh::MhController
 
   ## 
   # 工数実績ユーザー選択コントロールの表示
+  # * 自身にシステム管理者またはマネージャの権限がある場合
+  #   ⇒ 社内業務では全メンバを、それ以外のプロジェクトでは全参加メンバをセット
+  # * 社内業務以外で、かつ自身(一般ユーザ)がプロジェクトマネージャとなっている場合
+  #   ⇒ 該当プロジェクトは全参加メンバをセット
+  # * 上記以外の場合
+  #   ⇒ 自身のみを選択肢としてセット
   #
-  def set_result_user_select_control(project_id=nil)
+  def set_result_user_select_control(project_id = nil)
     @user_select_list = []
-    if !project_id.blank?
-      if project_id.to_i == Project::INTERNAL_BUSSINESS_PRJ[:id]
-        # 社内業務の場合
-        #@user_select_list = User.alive.order('user_code ASC')
+    return if project_id.blank?
+
+    if project_id.to_i == Project::INTERNAL_BUSSINESS_PRJ[:id]
+      if administrator? || manager?
         @user_select_list = User.where(:deleted => 0).order('user_code ASC')
-      else
-        project = Project.find_by_id(project_id.to_i)
-        if project.present?
-          @user_select_list = project.users
-        end
+      end
+    else
+      project = Project.find_by_id(project_id.to_i)
+      if project.present? && (administrator? || manager? || current_user.project_manager?({:project_id => project_id}))
+        @user_select_list = project.users
       end
     end
+
+    @user_select_list << current_user if @user_select_list.blank?
   end
 
   ## 
@@ -666,6 +739,7 @@ class Mh::ResultsController < Mh::MhController
     end
     
   end
+
   ##
   # 個別集計画面・検索処理
   #
@@ -740,6 +814,7 @@ class Mh::ResultsController < Mh::MhController
     #カレンダーに設定します
     params[:first_result_date] = user_day_results[0].result_date.strftime("%Y-%m-%d") unless user_day_results.blank?
   end
+
   ##
   # 選択した参加者の業務チェック
   #

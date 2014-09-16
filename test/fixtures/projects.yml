@@ -104,3 +104,20 @@ project_6:
   locked: false
   deleted: false
   order_volume: 6000000
+
+project_7:
+  id: 7
+  customer_id: 7
+  manager_id: 8
+  leader_id: 9
+  deal_id: 10
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  status_cd: <%= STATUS_CODE[:progress] %>
+  name: 一刻館　家賃催促管理システム
+  project_code: PJI001
+  start_date: 2013-07-01
+  finish_date: 2013-08-30
+  attention: true
+  locked: false
+  deleted: false
+  order_volume: 6000000

@@ -70,5 +70,8 @@ module Proman
 
     # 商談情報CSV出力ファイル名
     config.deal_csv_file_name = '商談情報一覧'
+
+    # プロジェクトCSV出力ファイル名
+    config.project_csv_file_name = 'プロジェクト一覧'
   end
 end

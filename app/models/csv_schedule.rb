@@ -3,6 +3,7 @@
 #
 #= CsvScheduleモデルクラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/24
 #
 class CsvSchedule < ActiveRecord::Base

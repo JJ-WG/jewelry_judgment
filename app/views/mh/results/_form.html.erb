@@ -2,16 +2,13 @@
 
 <% unless flash.blank? %>
   <div class="errorMsg">
-    <% flash.each do |type, message| -%>
-      <p><%= message %></p>
-      <% if @result.errors.any?%>
-        <ul>
-          <% @result.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li> 
-          <% end %>
-        </ul>
-      <% end %>
-    <% end -%>
+    <% if @result.errors.any?%>
+      <ul>
+        <% @result.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li> 
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 <% end %>
 
@@ -40,7 +37,19 @@
     </dt>
     <dd>
       <%= f.hidden_field :result_date, :value => Date.today %>
-      <%= f.time_select :start_at, {:minute_step => 15, :prompt => true} %>
+      <ul class="start-at">
+        <li>
+          <%= f.select(:start_at_hour, hour_select_list,
+              {:include_blank => "時", :selected => @result.start_at_hour}) %>
+        </li>
+        <li>
+          :
+        </li>
+        <li>
+          <%= f.select(:start_at_minute, minute_select_list(15),
+              {:include_blank => "分", :selected => @result.start_at_minute}) %>
+        </li>
+      </ul>
     </dd>
     <dt>
     <label for="end_at">
@@ -48,7 +57,19 @@
     </label>
     </dt>
     <dd>
-      <%= f.time_select :end_at, {:minute_step => 15, :prompt => true} %>
+      <ul class="end-at">
+        <li>
+          <%= f.select(:end_at_hour, hour_select_list,
+              {:include_blank => "時", :selected => @result.end_at_hour}) %>
+        </li>
+          :
+        <li>
+        </li>
+        <li>
+          <%= f.select(:end_at_minute, minute_select_list(15),
+              {:include_blank => "分", :selected => @result.end_at_minute}) %>
+        </li>
+      </ul>
     </dd>
     <dt>
     <label for="user_id">
@@ -79,11 +100,6 @@
   <%= hidden_field_tag 'from', params[:from] || 'index' %>
   <div class="button">
     <%= f.submit(t('web-app-theme.save', :default => 'Save')) %>
-    <% if action_name == 'new' || action_name == 'create' %>
-      <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), mh_results_path, :class => 'cancel') %>
-    <% else %>
-      <%= link_to(t('web-app-theme.cancel', :default => 'Cancel'), mh_results_path(search: params[:search]), :class => 'cancel') %>
-    <% end %>
   </div>
 
 </div><!-- /.entryForm -->

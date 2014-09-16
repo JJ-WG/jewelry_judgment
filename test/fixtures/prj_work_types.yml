@@ -287,3 +287,51 @@ prj_work_type_36:
   planned_man_days: 15
   presented_man_days: 20
   progress_rate: 0
+
+prj_work_type_37:
+  id: 37
+  project_id: 7
+  work_type_id: 1
+  planned_man_days: 10
+  presented_man_days: 15
+  progress_rate: 0
+
+prj_work_type_38:
+  id: 38
+  project_id: 7
+  work_type_id: 2
+  planned_man_days: 15
+  presented_man_days: 20
+  progress_rate: 0
+
+prj_work_type_39:
+  id: 39
+  project_id: 7
+  work_type_id: 3
+  planned_man_days: 20
+  presented_man_days: 30
+  progress_rate: 0
+
+prj_work_type_40:
+  id: 40
+  project_id: 7
+  work_type_id: 4
+  planned_man_days: 50
+  presented_man_days: 70
+  progress_rate: 0
+
+prj_work_type_41:
+  id: 41
+  project_id: 7
+  work_type_id: 5
+  planned_man_days: 5
+  presented_man_days: 10
+  progress_rate: 0
+
+prj_work_type_42:
+  id: 42
+  project_id: 7
+  work_type_id: 6
+  planned_man_days: 20
+  presented_man_days: 50
+  progress_rate: 0

@@ -1,0 +1,98 @@
+# encoding: utf-8
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('common_label.app_title') %></title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'styles', :media => 'screen, print' %>
+  <%= stylesheet_link_tag 'print', :media => 'print' %>
+  <%= stylesheet_link_tag 'common' %>
+  
+  <%= javascript_include_tag 'application' %>
+  <%= yield :header %>
+  <%= csrf_meta_tag %>
+  
+  <%= stylesheet_link_tag 'common' %>
+  <%= stylesheet_link_tag 'main' %>
+  <%= stylesheet_link_tag 'projects' %>
+</head>
+
+<body style="background:#EEEEEE;">
+  <div class="data" style="border:none;line-height:1.5;margin:0;padding:0">
+    <dl>
+      <dd class="table">
+        <table class="show results-man-days-detail">
+          <thead>
+            <tr>
+              <th scope="col" class="name">氏名</th>
+              <% if @project.prj_work_types.size == 0 %>
+                <th scope="col" style="width:6em;" class="num">&nbsp;</th>
+              <% else %>
+                <% @project.prj_work_types.each do |work_type| -%>
+                  <th scope="col" style="width:6em;" class="num">
+                    <%= WorkType.get_name_by_id(work_type.work_type_id) %>
+                  </th>
+                <% end %>
+              <% end %>
+              <th scope="col" class="total num">合計</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th scope="row">合計</th>
+              <% if @project.prj_work_types.size == 0 %>
+                <td class="total">&nbsp;</td>
+              <% else %>
+                <% @project.prj_work_types.each do |work_type| %>
+                  <td class="total">
+                    <% result_man_days_by_work_type =
+                        @project.result_man_days_by_work_type(work_type.work_type_id).round(2) %>
+                    <%= conditional_tag(result_man_days_by_work_type > work_type.planned_man_days,
+                        false, number_with_delimiter(result_man_days_by_work_type)) %>
+                  </td>
+                <% end %>
+              <% end %>
+              <td class="total">
+                <%= number_with_delimiter(@project.result_man_days.round(2)) %>
+              </td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% if @project.prj_members.size == 0 %>
+              <tr>
+                <th scope="row" class="name">&nbsp;</th>
+                <td class="man-days">&nbsp;</td>
+                <td class="man-days">&nbsp;</td>
+              </tr>
+            <% else %>
+              <% @project.prj_members.each do |member| %>
+                <tr>
+                  <th scope="row" class="name">
+                    <%= User.get_name(member.user_id) %>
+                  </th>
+                  <% if @project.prj_work_types.size == 0 %>
+                    <td class="man-days">&nbsp;</td>
+                  <% else %>
+                    <% @project.prj_work_types.each do |work_type| -%>
+                      <td class="man-days">
+                        <%= number_with_delimiter(
+                            @project.result_man_days_by_prj_member_and_work_type(
+                            member.user_id, work_type.work_type_id).round(2)) %>
+                      </td>
+                    <% end %>
+                  <% end %>
+                  <td class="man-days">
+                    <%= number_with_delimiter(
+                        @project.result_man_days_by_prj_member(member.user_id).round(2)) %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end%>
+          </tbody>
+        </table>
+      </dd>
+    </dl>
+  </div>
+</body>
+</html>

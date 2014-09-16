@@ -3,6 +3,7 @@
 #
 #= Nego::Dealsヘルパークラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/5
 #
 module Nego::DealsHelper
@@ -57,7 +58,7 @@ module Nego::DealsHelper
   #
   def deal_staff_user_list
     return User.select('name, id')
-               .where({deleted: false, user_rank_cd: [USER_RANK_CODE[:employee], USER_RANK_CODE[:manager]]})
+               .where({deleted: false, user_rank_cd: [USER_RANK_CODE[:employee], USER_RANK_CODE[:manager], USER_RANK_CODE[:system_admin]]})
                .list_order
                .collect{|user| [user.name, user.id]}
   end

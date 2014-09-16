@@ -437,3 +437,7 @@ ja:
         start_at: 開始時間  #g
         end_at: 終了時間  #g
         notes: 備考  #g
+        start_at_hour: 開始時間（時）  #g
+        start_at_minute: 開始時間（分）  #g
+        end_at_hour: 終了時間（時）  #g
+        end_at_minute: 終了時間（分）  #g

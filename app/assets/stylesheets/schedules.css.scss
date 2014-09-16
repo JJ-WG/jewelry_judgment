@@ -8,8 +8,56 @@ a.select {
   cursor:pointer;
 }
 
+
+/* sample Table
+-------------------------------------------------- */
+div.sample{
+width: 100%;
+overflow: auto;
+}
+.sample textarea{
+width: 99%;
+height: 5em;
+}
+
+.sample thead{
+background: #666;
+color: #fff;
+}
+.sample th,
+.sample td {
+padding: .5em 8px;
+border-right: 1px solid #b9b9b9;
+border-bottom: 1px solid #b9b9b9;
+border-top: 1px solid #b9b9b9;
+border-left: 1px solid #b9b9b9;
+vertical-align: middle;
+}
+.sample table {
+width: 100%;
+border-collapse: separate;
+}
+
+.sample thead tr:first-child th:first-child {
+border-radius: 5px 0 0 0;
+}
+.sample thead tr:first-child th:last-child {
+border-radius: 0 5px 0 0;
+}
+.sample tbody tr:last-child td:first-child {
+border-radius: 0 0 0 5px;
+}
+.sample tbody tr:last-child td:last-child {
+border-radius: 0 0 5px 0;
+}
+.sample tr.month_header td {
+background: #666;
+color: #fff;
+}
+
 /* MulList Table
 -------------------------------------------------- */
+
 
 .mul_list table {
 	width: 100%;
@@ -133,13 +181,13 @@ table div.item-control {
 
 #center {
   float: left;
-  padding-left: 65px;
+  padding-left: 40px;
   width: 25%;
 }
 
 #right {
   float: left;
-  padding-left: 10px;
+  padding-left: 40px;
   width: 47%;
 }
 
@@ -196,9 +244,21 @@ table#select_member_table tr {
   width: 100%;
 }
 
+.calendar_separate .cs_nav_right {
+  float: right;
+}
+
+.calendar_separate .cs_nav_left {
+  float: left;
+}
+
+.calendar_separate .cs_nav_clear {
+  clear: both;
+}
+
 .calendar_separate .cs_content {
   width: 100%;
-  padding-top: 2.5em;
+  padding-top: 0.7em;
 }
 
 .calendar_separate .cs_content .cs_table {
@@ -284,6 +344,11 @@ table#select_member_table tr {
 .calendar_separate .cs_content .cs_table tbody tr:last-child td:last-child {
 	border-radius: 0 0 5px 0;
     behavior: url(/assets/PIE.htc);
+}
+
+.calendar_separate .cs_title {
+  margin-left: 0.9em;
+  font-size: 120%;
 }
 
 .calendar_separate .cs_button_calendar_show {

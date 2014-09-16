@@ -3,6 +3,7 @@
 #
 #= Mh::Resultsヘルパークラス
 #
+# Authors:: 兪　春芳
 # Created:: 2012/12/11
 #
 module Mh::ResultsHelper
@@ -66,5 +67,36 @@ module Mh::ResultsHelper
       end
     end
     return result
+  end
+
+  ##
+  # 時間選択用リスト（時）を取得する
+  # 
+  # 戻り値::
+  #   時間リスト（時）
+  #
+  def hour_select_list
+    return (0..23).map{|i| [sprintf("%02d", i), sprintf("%02d", i)]}
+  end
+
+  ##
+  # 時間選択用リスト（分）を取得する
+  # 
+  # minute_step:: 
+  #   刻み時間（分）
+  #
+  # 戻り値::
+  #   時間リスト（分）
+  #
+  def minute_select_list(minute_step = 1)
+    minute_list = []
+    (0..59).each do |minute|
+      if minute == 0
+        minute_list << minute
+      elsif (minute % minute_step) == 0
+        minute_list << minute
+      end
+    end
+    return minute_list.map{|i| [sprintf("%02d", i), sprintf("%02d", i)]}
   end
 end

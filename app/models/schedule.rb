@@ -3,6 +3,7 @@
 #
 #= Scheduleモデルクラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/5
 #
 require 'csv'
@@ -31,6 +32,7 @@ class Schedule < ActiveRecord::Base
   validates(:start_at, :presence => true)
   validates(:end_at, :presence => true)
   validates(:auto_reflect, :presence => true, :inclusion => { in: AUTO_REFLECTS.values, if: Proc.new{|e| !e.auto_reflect.blank?} })
+  validate :date_eql_validate
   validate :date_compare_validate
 
   # デフォルトスコープ
@@ -38,7 +40,7 @@ class Schedule < ActiveRecord::Base
 
   # スコープ定義
   scope :list, includes(:project).includes(:work_type)
-               .order('`schedules`.schedule_date DESC, `projects`.project_code ASC, `work_types`.view_order ASC, `schedules`.start_at ASC, `schedules`.end_at ASC' )
+               .order('`schedules`.schedule_date ASC, `projects`.project_code ASC, `work_types`.view_order ASC, `schedules`.start_at ASC, `schedules`.end_at ASC' )
   # 指定ユーザのスケジュール取得
   scope :by_user_id, lambda{|user_id| {:include => :sch_members, :conditions => ['`sch_members`.user_id = ? and `sch_members`.deleted = 0', user_id]} }
 
@@ -46,6 +48,13 @@ class Schedule < ActiveRecord::Base
   def date_compare_validate
     if self.errors[:start_at].blank? && self.errors[:end_at].blank? && self.start_at > self.end_at
       self.errors[:end_at] << I18n.t('errors.messages.datetime_compare_error', start_at: I18n.t('activerecord.attributes.schedule.start_at'))
+    end
+  end
+
+  # 終了時間と開始時間の同値チェック
+  def date_eql_validate
+    if self.errors[:start_at].blank? && self.errors[:end_at].blank? && self.start_at == self.end_at
+      self.errors[:end_at] << I18n.t('errors.messages.datetime_eql_error', start_at: I18n.t('activerecord.attributes.schedule.start_at'))
     end
   end
 

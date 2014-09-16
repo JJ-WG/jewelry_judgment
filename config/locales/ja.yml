@@ -125,6 +125,8 @@ ja:
       too_short: は%{count}文字以上で入力してください。
       wrong_length: は%{count}文字で入力してください。
       datetime_compare_error: 'は%{start_at}以降の時間を入力してください。'
+      datetime_eql_error: 'は%{start_at}と同じです。'
+      datetime_overlap_error: は他の時間と重複しています。
       deleted: は削除されています。
       finished: は完了しています。
       not_exist: は存在しません。
@@ -471,6 +473,7 @@ ja:
       attached: 添付
       place: 地域（都道府県）
       has_one: 有り
+      list_blank: （選択してください）
     menu:
       list_by_project: プロジェクト別一覧
       list_by_group: グループ別一覧
@@ -534,6 +537,8 @@ ja:
         real_time: 実績時間
         code: コード
         total: 合計
+        start_at: "工数実績: 開始年・月"
+        end_at: 終了年・月
       label:
         manhour: 工数
         relatedSchedule: 関係スケジュール
@@ -554,6 +559,7 @@ ja:
         date_format_error: '%{item}は有効ではありません。(YYYY-MM-DD)'
         time_format_error: '%{item}は有効ではありません。(hh:mm)'
         time_greater_than_error: '%{item_end}は%{item_start}以降の時間を入力してください。'
+        datetime_eql_error: '%{item_end}は%{item_start}と同じです。'
         user_code_not_exist: 'ユーザコード(%{code})が存在しません。'
         user_code_result_exist: 'ユーザ(%{code})に対して、この時間帯に工数実績が既に登録されています。'
         user_code_not_member_of_project: 'ユーザ(%{code})はこのプロジェクトのメンバーではありません。'

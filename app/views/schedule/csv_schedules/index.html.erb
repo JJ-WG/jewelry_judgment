@@ -52,6 +52,72 @@
           <% end -%><!-- end form -->
         </div><!-- end div.file_upload -->
 
+      <% if @csv_schedules.blank? %>
+              CSV記述例 <br />
+        <div class="sample">
+          <textarea>
+"プロジェクトコード","プロジェクト","作業工程コード","作業工程","日付","開始時間","終了時間","自動反映処理フラグ","備考","参加者コード","参加者"
+"T001",プロジェクト1,"S001","作業1","2013/7/5","8:30","17:15","備考欄です。","0","wittaro","ワコム太郎"
+"T002","プロジェクト2","S002","作業2","2013/7/11","8:30","17:15","1","","wittaro:withanako","ワコム太郎:ワコム花子"</textarea>
+        </div>
+
+      <font color="crimson">* は必須項目。</font>
+        <div class="sample">
+          <table border="1" class="tablesorter">
+            <tbody>
+              <tr class="month_header">
+                <td align="center">項目</td>
+                <td align="center">説明</td>
+              </tr>
+              <tr>
+                <td><font color="crimson">*</font> プロジェクトコード</td>
+                <td>プロジェクト管理に確認可能なプロジェクトごとのコード。半角英数。</td>
+              </tr>
+              <tr>
+                <td>プロジェクト</td>
+                <td>プロジェクト管理から確認可能なプロジェクトの名称。</td>
+              </tr>
+              <tr>
+                <td>作業工程コード</td>
+                <td>プロジェクト管理の工数部分に記述されている工程コード。半角英数。</td>
+              </tr>
+              <tr>
+                <td>作業工程</td>
+                <td>プロジェクト管理の工数部分に記述されている工程名。</td>
+              </tr>
+              <tr>
+                <td><font color="crimson">*</font> 日付</td>
+                <td>作業の日付。 YYYY/MM/DD</td>
+              </tr>
+              <tr>
+                <td><font color="crimson">*</font> 開始時間</td>
+                <td>作業の開始時間。 HH:MM</td>
+              </tr>
+              <tr>
+                <td><font color="crimson">*</font> 終了時間</td>
+                <td>作業の終了時間。 HH:MM</td>
+              </tr>
+              <tr>
+                <td><font color="crimson">*</font> 自動反映処理フラグ</td>
+                <td>自動反映の有無　有=1, 無=0</td>
+              </tr>
+              <tr>
+                <td>備考</td>
+                <td>その他特筆すべき事項。</td>
+              </tr>
+              <tr>
+                <td><font color="crimson">*</font> 参加者コード</td>
+                <td>参加者コード。複数人の場合は :で区切る。</td>
+              </tr>
+              <tr>
+                <td>参加者</td>
+                <td>参加者の名前。複数人の場合は :で区切る。</td>
+              </tr>
+            </tbody>  
+          </table>
+        </div>
+      <% end %>
+
         <div class="mul_list">
           <table border="1" class="tablesorter">
             <tbody>

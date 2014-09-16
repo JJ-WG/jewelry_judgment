@@ -2,6 +2,7 @@
 #
 #= 共通メソッド
 #
+# Authors:: 代　如剛
 # Created:: 2013/02/27
 #
 module CodeIndicationModule

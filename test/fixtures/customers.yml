@@ -41,3 +41,10 @@ customer_6:
   name: 広島県
   name_ruby: ヒロシマケン
   pref_cd: 34
+
+customer_7:
+  id: 7
+  code: 007
+  name: 一刻館
+  name_ruby: イッコクカン
+  pref_cd: 12

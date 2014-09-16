@@ -3,6 +3,7 @@
 #
 #= CsvSchedule::CsvSchedulesヘルパークラス
 #
+# Authors:: 代　如剛
 # Created:: 2012/12/26
 #
 module Schedule::CsvSchedulesHelper

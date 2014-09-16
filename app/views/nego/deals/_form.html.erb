@@ -53,7 +53,7 @@
     </dt>
     <dd>
       <dl>
-        <dt style='width: 8%'>
+        <dt style='width: 10%; white-space: nowrap;'>
           <label for="budge_amount">
             (<%= t('activerecord.attributes.deal.budge_amount') %>)
           </label>
@@ -68,7 +68,7 @@
           <% end %>
         </dd>
         <br />
-        <dt style='width: 8%'>
+        <dt style='width: 10%; white-space: nowrap;'>
           <label for="anticipated_price">
             (<%= t('activerecord.attributes.deal.anticipated_price') %>)
           </label>
@@ -92,12 +92,12 @@
     </dt>
     <dd>
       <dl>
-        <dt style='width: 8%'>
+        <dt style='width: 10%; white-space: nowrap;'>
           <label for="adoption_period">
             (<%= t('activerecord.attributes.deal.adoption_period') %>)
           </label>
         </dt>
-        <dd style='width: 18%'>
+        <dd style='width: 20%; white-space: nowrap;'>
           <%= select_year @deal.adoption_period.blank? ? nil : Date.strptime(@deal.adoption_period, Deal::PERIOD_DATE_FORMAT),
             :prefix => 'deal[adoption_period]',
             :start_year => (action_name == 'new' || action_name == 'create') ? Date.today.year : Date.today.year-3,
@@ -109,12 +109,12 @@
           <%= t('label.deal_reflection.label.date_about') %>
         </dd>
         <br />
-        <dt style='width: 8%'>
+        <dt style='width: 10%; white-space: nowrap;'>
           <label for="delivery_period">
             (<%= t('activerecord.attributes.deal.delivery_period') %>)
           </label>
         </dt>
-        <dd style='width: 18%'>
+        <dd style='width: 20%; white-space: nowrap;'>
           <%= select_year @deal.delivery_period.blank? ? nil : Date.strptime(@deal.delivery_period, Deal::PERIOD_DATE_FORMAT),
             :prefix => 'deal[delivery_period]',
             :start_year => (action_name == 'new' || action_name == 'create') ? Date.today.year : Date.today.year-3,

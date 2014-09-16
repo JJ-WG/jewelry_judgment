@@ -29,6 +29,14 @@
 
 <section id="content">
   <div class="inner">
+    <div class="flash">
+      <% flash.each do |type, message| -%>
+        <div class="message <%= type %>">
+          <p><%= message %></p>
+        </div>
+      <% end -%>
+    </div>
+    
     <header class="pageHeader">
       <h1><%= t('common_label.new_model', :model => Result.model_name.human) %></h1>
     </header>

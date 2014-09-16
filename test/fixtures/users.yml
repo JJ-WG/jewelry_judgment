@@ -96,3 +96,17 @@ mori:
   mail_address1: mori@smap
   user_code: mori
   deleted: true
+
+godai:
+  id: 8
+  login: godai
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("godai" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  name: 五代裕作
+  name_ruby: ゴダイ　ユウサク
+  user_rank_cd: <%= USER_RANK_CODE[:manager] %>
+  section_id: 1
+  mail_address1: godai@smap
+  user_code: godai
+  deleted: false

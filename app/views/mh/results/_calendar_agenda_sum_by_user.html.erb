@@ -26,6 +26,7 @@
           lazyFetching: false
         }],
       firstDay: 1,
+      firstHour: 8,
       axisFormat: 'HH:mm',
       timeFormat: {
         agenda: 'HH:mm{ ～ HH:mm}'
@@ -41,6 +42,10 @@
       contentHeight: 550,
       eventClick: function(event, jsEvent, view){
         window.location.replace(app_name_for_url + "/mh/results/" + event.id);
+      },
+      // for tooltip
+      eventRender: function(event, element, date ) {
+        element.attr('title', event.tooltip); 
       }
     });
 

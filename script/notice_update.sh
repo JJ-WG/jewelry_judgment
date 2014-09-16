@@ -14,8 +14,7 @@ logger()
 
 export PATH=/usr/local/bin:/usr/bin:$PATH
 
-cd /opt/jj/
-
+cd /opt/jj/current/
 logger "プロジェクト関連通知メッセージ更新処理を開始します"
 
 bundle exec rails runner -e production "Notice.update"

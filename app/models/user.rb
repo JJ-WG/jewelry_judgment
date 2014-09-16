@@ -3,6 +3,7 @@
 #
 #= Userモデルクラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/5
 #
 class User < ActiveRecord::Base
@@ -33,36 +34,10 @@ class User < ActiveRecord::Base
   has_many :unit_prices
   accepts_nested_attributes_for :unit_prices
   
-  # バリデーション設定
-=begin
-  validates(:user_rank_cd, :presence => true)
-  validates(:official_position, :length => {:maximum => 20})
-  validates(:name, :presence => true, :length => {:maximum => 20})
-  validates(:name_ruby, :presence => true, :length => {:maximum => 40})
-  validates(:user_code, :presence => true, :length => {:maximum => 10})
-  validates(:home_phome_no, :length => {:maximum => 20})
-  validates(:mobile_phone_no, :length => {:maximum => 20})
-  validates(:mail_address1, :presence => true, :length => {:maximum => 40})
-  validates(:mail_address2, :length => {:maximum => 40})
-  validates(:mail_address3, :length => {:maximum => 40})
-  #validates(:now_password, :presence => true,
-  #    :length => {:minimum => 6, :maximum => 20})
-  #validate :is_valid
-=end
-  
   # スコープ定義
   scope :deleted, where(:deleted => true)
   scope :alive, where(:deleted => false)
   scope :list_order, order('users.deleted, users.name_ruby')
-
-  # 以下、プライベートメソッド
-private
-  ##
-  # バリデーションメソッド
-  # 
-  def is_valid
-    
-  end
 
   # 以下、パブリックメソッド
 public
@@ -417,7 +392,7 @@ public
                   .where(option[:include_finished_project] ? nil
                     : {:status_cd => [STATUS_CODE[:preparation],
                                       STATUS_CODE[:progress]]})
-                  .list_order
+                  .list_order_from_name
                   .collect{|project| [project.name, project.id]}
   end
   

@@ -3,6 +3,7 @@
 #
 #= Schedule::Schedulesヘルパークラス
 #
+# Authors:: 代　如剛
 # Created:: 2012/12/11
 #
 module Schedule::SchedulesHelper
@@ -120,5 +121,17 @@ module Schedule::SchedulesHelper
   #
   def get_schedule_backcolor_class(sch)
     return sch && sch.reflected? ? 'reflected' : ''
+  end
+
+  ##
+  # カレンダーの開始日・終了日を取得する
+  # 
+  # 戻り値::
+  #   カレンダーメニューの開始日・終了日
+  #
+  def get_cs_nav_range(current_date=Date.today)
+    start_date = current_date
+    end_date = ((start_date + 7).beginning_of_week(:sunday) + start_date.wday).yesterday
+    return "#{start_date.strftime(t('time.formats.date_only'))} ～ #{end_date.strftime(t('time.formats.date_only'))}"
   end
 end

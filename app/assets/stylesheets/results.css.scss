@@ -8,30 +8,75 @@ a.select {
   cursor:pointer;
 }
 
+/* sample Table
+-------------------------------------------------- */
+div.sample{
+  width: 100%;
+  overflow: auto;
+}
+.sample textarea{
+  width: 99%;
+  height: 5em;
+}
+
+.sample thead{
+  background: #666;
+  color: #fff;
+}
+.sample th,
+.sample td {
+  padding: .5em 8px;
+  border-right: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  border-top: 1px solid #b9b9b9;
+  border-left: 1px solid #b9b9b9;
+  vertical-align: middle;
+}
+.sample table {
+  width: 100%;
+  border-collapse: separate;
+}
+
+.sample thead tr:first-child th:first-child {
+  border-radius: 5px 0 0 0;
+}
+.sample thead tr:first-child th:last-child {
+  border-radius: 0 5px 0 0;
+}
+.sample tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+.sample tbody tr:last-child td:last-child {
+  border-radius: 0 0 5px 0;
+}
+.sample tr.month_header td {
+    background: #666;
+    color: #fff;
+}
 
 /* result_list Table
 -------------------------------------------------- */
 div.result_list {
-	width: 100%;
-	overflow: auto;
+  width: 100%;
+  overflow: auto;
 }
 .result_list table {
-	width: 2500px;
-	margin: 1.5em 0;
-	border-collapse: separate;
-	*border-collapse: collapse;
+  width: 2500px;
+  margin: 1.5em 0;
+  border-collapse: separate;
+  *border-collapse: collapse;
 }
 .result_list th,
 .result_list td {
-	padding: .5em 8px;
-	border-right: 1px solid #b9b9b9;
-	border-bottom: 1px solid #b9b9b9;
-	*border-top: 1px solid #b9b9b9;
-	*border-left: 1px solid #b9b9b9;
-	vertical-align: middle;
+  padding: .5em 8px;
+  border-right: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  *border-top: 1px solid #b9b9b9;
+  *border-left: 1px solid #b9b9b9;
+  vertical-align: middle;
 }
 .result_list tfoot tr:first-child th:first-child {
-	background: #666;
+  background: #666;
 }
 
 thead tr.fc-first.fc-last th,
@@ -50,29 +95,29 @@ thead tr.fc-first.fc-last td {
   background-color: white;
 }
 .result_list td:first-child {
-	border-left: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
 }
 .result_list td:last-child {
-	border-right: 1px solid #a3a3a3;
+  border-right: 1px solid #a3a3a3;
 }
 .result_list tbody tr:first-child td {
-	border-top: 1px solid #b9b9b9;
+  border-top: 1px solid #b9b9b9;
 }
 .result_list tbody tr:first-child td:first-child {
-	border-radius: 5px 0 0 0;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 5px 0 0 0;
+  behavior: url(/assets/PIE.htc);
 }
 .result_list tbody tr:first-child td:last-child {
-	border-radius: 0 5px 0 0;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 0 5px 0 0;
+  behavior: url(/assets/PIE.htc);
 }
 .result_list tbody tr:last-child td:first-child {
-	border-radius: 0 0 0 5px;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 0 0 0 5px;
+  behavior: url(/assets/PIE.htc);
 }
 .result_list tbody tr:last-child td:last-child {
-	border-radius: 0 0 5px 0;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 0 0 5px 0;
+  behavior: url(/assets/PIE.htc);
 }
 .result_list tr.month_header td {
     background: #666;
@@ -109,21 +154,21 @@ thead tr.fc-first.fc-last td {
   background-color: #F2C8CD;
 }
 .list table {
-	width: 100%;
-	margin: 0em 0;
-	border-collapse: separate;
-	*border-collapse: collapse;
+  width: 100%;
+  margin: 0em 0;
+  border-collapse: separate;
+  *border-collapse: collapse;
 }
 .list tbody tr:nth-child(even) th,
 .list tbody tr:nth-child(even) td {
-	background: none;
+  background: none;
 }
 .list tbody tr:hover th,
 .list tbody tr:hover td {
-	background: none;
+  background: none;
 }
 .list tfoot tr:first-child th:first-child {
-	background: #666;
+  background: #666;
 }
 /* 工数実績管理 登録・編集画面 */
 
@@ -141,18 +186,28 @@ form .entryForm  {
   background: #eee;
   margin-top: 0px;
   behavior: url(/assets/PIE.htc);
+  
+  div.button {
+    text-align: right;
+    padding-left: 0;
+  }
 }
 
 form .entryForm dt  {
-  width: 160px;
+  width: 150px;
 }
 
 form .entryForm dd  {
-  padding-left: 160px;
+  padding-left: 150px;
+}
+
+form .entryForm .start-at li,
+     .entryForm .end-at li {
+  display:inline-block;
+  margin-left: -2px;
 }
 
 /* Error */
-
 form .errorMsg {
   margin-left: 8px;
   color: #c00;
@@ -177,39 +232,51 @@ table div.item-control {
 /* カレンダー部分
 -------------------------------------------------- */
 
+header.pageHeader {
+  margin-bottom: 5px !important;
+}
+
 #left {
   float: left;
-  padding-left: 10px;
-  width: 20%;
+  padding-left: 5px;
+  /*width: 20%;*/
 }
 
 #center {
   float: left;
-  padding-left: 65px;
-  width: 25%;
+  padding-left: 5px;
+  width: 35%;
 }
 
 #right {
   float: left;
-  padding-left: 10px;
-  width: 47%;
+  padding-left: 5px;
+  width: 35%;
+}
+
+.exist_results_day a.ui-state-default {
+  background-image : none;
+  background-color : #A1A9D6;
 }
 
 select.member_select {
-  // width: 196px;
   width: 100%;
+  height: 28px;
 }
 
 select.project_select {
   width: 170px;
+  height: 28px;
 }
 
 select.group_select {
   width: 170px;
+  height: 28px;
 }
 
 select.work_type_select {
-  width: 200px;
+  width: 180px;
+  height: 28px;
 }
 
 table#select_member_table,
@@ -280,12 +347,12 @@ table.results-man-days-detail td.total {
 
 .calendar_separate .cs_content .cs_table th,
 .calendar_separate .cs_content .cs_table td {
-	padding: .5em 8px;
-	border-right: 1px solid #b9b9b9;
-	border-bottom: 1px solid #b9b9b9;
-	*border-top: 1px solid #b9b9b9;
-	*border-left: 1px solid #b9b9b9;
-	vertical-align: middle;
+  padding: .5em 8px;
+  border-right: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  *border-top: 1px solid #b9b9b9;
+  *border-left: 1px solid #b9b9b9;
+  vertical-align: middle;
 }
 // ユーザ列
 .calendar_separate .cs_content .cs_table th.cs_table_column_user,
@@ -326,32 +393,32 @@ table.results-man-days-detail td.total {
   background-color: #FFDAB9;
 }
 .calendar_separate .cs_content .cs_table td.cs_calendar_content {
-	vertical-align: top;
+  vertical-align: top;
 }
 .calendar_separate .cs_content .cs_table th:first-child,
 .calendar_separate .cs_content .cs_table td:first-child {
-	border-left: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
 }
 .calendar_separate .cs_content .cs_table td:last-child {
-	border-right: 1px solid #a3a3a3;
+  border-right: 1px solid #a3a3a3;
 }
 .calendar_separate .cs_content .cs_table thead tr:first-child th {
-	border-top: 1px solid #b9b9b9;
+  border-top: 1px solid #b9b9b9;
 }
 .calendar_separate .cs_content .cs_table thead tr:first-child th:first-child {
-	border-radius: 5px 0 0 0;
+  border-radius: 5px 0 0 0;
     behavior: url(/assets/PIE.htc);
 }
 .calendar_separate .cs_content .cs_table thead tr:first-child th:last-child {
-	border-radius: 0 5px 0 0;
+  border-radius: 0 5px 0 0;
     behavior: url(/assets/PIE.htc);
 }
 .calendar_separate .cs_content .cs_table tbody tr:last-child td:first-child {
-	border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
     behavior: url(/assets/PIE.htc);
 }
 .calendar_separate .cs_content .cs_table tbody tr:last-child td:last-child {
-	border-radius: 0 0 5px 0;
+  border-radius: 0 0 5px 0;
     behavior: url(/assets/PIE.htc);
 }
 
@@ -397,8 +464,8 @@ table.results-man-days-detail td.total {
   cursor: pointer;
 }
 // ユーザ列のユーザ情報部分
-td.cs_user_base_info {                                                                                                                             
-  background-color: #BCD2EE;                                                                                                                       
+td.cs_user_base_info {
+  background-color: #BCD2EE;
 }
 // ユーザ列
 .calendar_separate .cs_content .cs_table  table.cs_user tr th,
@@ -450,19 +517,19 @@ table#reflect_member_list {
 -------------------------------------------------- */
 
 .mul_list table {
-	width: 100%;
-	margin: 1.5em 0;
-	border-collapse: separate;
-	*border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: separate;
+  *border-collapse: collapse;
 }
 .mul_list th,
 .mul_list td {
-	padding: .5em 8px;
-	border-right: 1px solid #b9b9b9;
-	border-bottom: 1px solid #b9b9b9;
-	*border-top: 1px solid #b9b9b9;
-	*border-left: 1px solid #b9b9b9;
-	vertical-align: middle;
+  padding: .5em 8px;
+  border-right: 1px solid #b9b9b9;
+  border-bottom: 1px solid #b9b9b9;
+  *border-top: 1px solid #b9b9b9;
+  *border-left: 1px solid #b9b9b9;
+  vertical-align: middle;
 }
 
 .not_reflected {
@@ -475,31 +542,39 @@ table#reflect_member_list {
   background-color: white;
 }
 .mul_list td:first-child {
-	border-left: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
 }
 .mul_list td:last-child {
-	border-right: 1px solid #a3a3a3;
+  border-right: 1px solid #a3a3a3;
 }
 .mul_list tbody tr:first-child td {
-	border-top: 1px solid #b9b9b9;
+  border-top: 1px solid #b9b9b9;
 }
 .mul_list tbody tr:first-child td:first-child {
-	border-radius: 5px 0 0 0;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 5px 0 0 0;
+  behavior: url(/assets/PIE.htc);
 }
 .mul_list tbody tr:first-child td:last-child {
-	border-radius: 0 5px 0 0;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 0 5px 0 0;
+  behavior: url(/assets/PIE.htc);
 }
 .mul_list tbody tr:last-child td:first-child {
-	border-radius: 0 0 0 5px;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 0 0 0 5px;
+  behavior: url(/assets/PIE.htc);
 }
 .mul_list tbody tr:last-child td:last-child {
-	border-radius: 0 0 5px 0;
-	behavior: url(/assets/PIE.htc);
+  border-radius: 0 0 5px 0;
+  behavior: url(/assets/PIE.htc);
 }
 .mul_list tr.month_header td {
     background: #666;
     color: #fff;
+}
+
+/*工数内容表示*/
+div.data {
+  dl {
+    dt { width: 120px; }
+    dd { padding-left: 0px; }
+  }
 }

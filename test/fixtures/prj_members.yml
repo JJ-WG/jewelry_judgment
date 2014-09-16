@@ -179,3 +179,27 @@ prj_member_30:
   project_id: 6
   user_id: 6
   planned_man_days: 12
+
+prj_member_31:
+  id: 31
+  project_id: 7
+  user_id: 8
+  planned_man_days: 35
+
+prj_member_32:
+  id: 32
+  project_id: 7
+  user_id: 9
+  planned_man_days: 25
+
+prj_member_33:
+  id: 33
+  project_id: 7
+  user_id: 10
+  planned_man_days: 40
+
+prj_member_34:
+  id: 34
+  project_id: 7
+  user_id: 11
+  planned_man_days: 20

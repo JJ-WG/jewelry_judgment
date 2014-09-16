@@ -10,7 +10,7 @@
   <%= stylesheet_link_tag 'common' %>
 
   <script>
-    var app_name_for_url = '';
+    var app_name_for_url = '<%= root_path.chop %>';
   </script>
   
   <%= javascript_include_tag 'application' %>
@@ -61,7 +61,7 @@
               </li>
             <% end %>
             <li <% if params[:controller] =~ /^mh\//i %>class="current"<% end %>>
-              <%= link_to(t('app_menu.man_hour_mng'), :controller => 'mh/results', :action => 'index') %>
+              <%= link_to(t('app_menu.man_hour_mng'), :controller => 'mh/results', :action => 'new') %>
             </li>
             <li <% if params[:controller] =~ /^schedule\//i %>class="current"<% end %>>
               <%= link_to(t('app_menu.schedule_mng'), :controller => 'schedule/schedules', :action => 'index') %>

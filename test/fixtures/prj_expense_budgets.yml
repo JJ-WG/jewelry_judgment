@@ -107,3 +107,21 @@ prj_expense_budget_18:
   project_id: 6
   expense_item_cd: 99
   expense_budget: 100000
+
+prj_expense_budget_19:
+  id: 19
+  project_id: 7
+  expense_item_cd: 10
+  expense_budget: 100000
+
+prj_expense_budget_20:
+  id: 20
+  project_id: 7
+  expense_item_cd: 30
+  expense_budget: 200000
+
+prj_expense_budget_21:
+  id: 21
+  project_id: 7
+  expense_item_cd: 99
+  expense_budget: 50000

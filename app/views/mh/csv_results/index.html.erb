@@ -51,6 +51,67 @@
       <% end -%><!-- end form -->
     </div><!-- end div.file_upload -->
 
+    <% if @csv_results.blank? -%>
+      CSV記述例
+    <div class="sample">
+    <textarea>"プロジェクトコード","プロジェクト","作業工程コード","作業工程","日付","開始時間","終了時間","ユーザーコード","ユーザー","備考"
+"PRJ001","プロジェクト１","WORK001","作業１","2014/06/16","8:30","12:00","USER001","ユーザー１","メモ１"
+"PRJ001","","WORK001","","2014/06/16","13:00","17:30","USER001","",""</textarea><br />
+    <font color="crimson">* は必須項目。</font>
+        <table border="1" class="tablesorter">
+          <thead>
+            <tr>
+              <th>項目名</th>
+              <th>説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><font color="crimson">*</font> プロジェクトコード</td>
+              <td>プロジェクト管理から確認可能なプロジェクトごとのコード。半角英数。</td>
+            </tr>
+            <tr>
+              <td>プロジェクト</td>
+              <td>プロジェクト管理から確認可能なプロジェクトの名称。</td>
+            </tr>
+            <tr>
+              <td><font color="crimson">*</font> 作業工程コード</td>
+              <td>プロジェクト管理の工数部分に記述されている工程コード。半角英数。</td>
+            </tr>
+            <tr>
+              <td>作業工程</td>
+              <td>プロジェクト管理の工数部分に記述されている工程名。</td>
+            </tr>
+            <tr>
+              <td><font color="crimson">*</font> 日付</td>
+              <td>作業の日付。 YYYY/MM/DD</td>
+            </tr>
+            <tr>
+              <td><font color="crimson">*</font> 開始時間</td>
+              <td>作業の開始時間。 HH:MM</td>
+            </tr>
+            <tr>
+              <td><font color="crimson">*</font> 終了時間</td>
+              <td>作業の終了時間。 HH:MM</td>
+            </tr>
+            <tr>
+              <td><font color="crimson">*</font> ユーザーコード</td>
+              <td>ユーザーに割り振られたコード。プロジェクト管理のプロジェクトメンバー部分で確認可能になる予定。</td>
+            </tr>
+            <tr>
+              <td>ユーザー</td>
+              <td>ユーザー名。</td>
+            </tr>
+            <tr>
+              <td>備考</td>
+              <td>その他特筆すべき事項。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    <% end -%>
+
     <div class="mul_list">
       <table border="1" class="tablesorter">
         <tbody>

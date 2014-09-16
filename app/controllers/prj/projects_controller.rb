@@ -6,6 +6,7 @@ require 'kconv'
 #
 #= Prj::Projectsコントローラクラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/4
 #
 class Prj::ProjectsController < Prj::PrjController
@@ -22,6 +23,35 @@ class Prj::ProjectsController < Prj::PrjController
   # GET /prj/projects
   #
   def index
+    if params[:submit] == t('web-app-theme.csv_export')
+      # CSV出力
+      create_search_detail(false)
+      csv_export
+    else
+      create_search_detail
+    end
+  end
+
+  ##
+  # CSV出力処理
+  #
+  def csv_export
+    file_name = Rails.configuration.project_csv_file_name + "_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv"
+    send_data(
+      Project.csv_content_for(@projects).encode(Encoding::SJIS),
+      disposition: 'attachment',
+      type: "text/csv;charset=shift_jis;header=present",
+      filename: ERB::Util.url_encode(file_name)
+    )
+  end
+
+  ##
+  # 検索処理
+  # 
+  # need_paginate::
+  #  (true/false) 
+  #
+  def create_search_detail(need_paginate = true)
     if params[:search].nil?
       # 検索条件をクリア
       params[:search] = Hash.new

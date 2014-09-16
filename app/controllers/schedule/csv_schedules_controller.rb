@@ -3,6 +3,7 @@
 #
 #= Schedule::CSV_Schedulesコントローラクラス
 #
+# Authors:: 代　如剛
 # Created:: 2012/12/25
 #
 class Schedule::CsvSchedulesController < Schedule::ScheduleController

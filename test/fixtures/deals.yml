@@ -54,7 +54,7 @@ deal_4:
 
 deal_5:
   id: 5
-  customer_id: 5
+  customer_id: 1
   staff_user_id: 2
   name: 案件５
   budge_amount: 5000000000
@@ -67,7 +67,7 @@ deal_5:
 
 deal_6:
   id: 6
-  customer_id: 6
+  customer_id: 1
   staff_user_id: 2
   name: 案件６
   budge_amount: 6000000000
@@ -76,4 +76,74 @@ deal_6:
   order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
   deal_status_cd: <%= DEAL_STATUS_CODE[:under_negotiation] %>
   reliability_cd: <%= RELIABILITY_CODE[:decision] %>
+  prj_managed: true
+
+deal_7:
+  id: 7
+  customer_id: 7
+  staff_user_id: 8
+  name: デモ依頼
+  customer_section: 音無響子
+  budge_amount: 5500000000
+  anticipated_price: 5500000000
+  order_volume: 5500000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:demo_request] %>
+  reliability_cd: <%= RELIABILITY_CODE[:appear_deal] %>
+  prj_managed: true
+
+deal_8:
+  id: 8
+  customer_id: 7
+  staff_user_id: 8
+  name: 見積中
+  customer_section: 一ノ瀬花枝
+  budge_amount: 6300000000
+  anticipated_price: 6300000000
+  order_volume: 6300000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:making_estimate] %>
+  reliability_cd: <%= RELIABILITY_CODE[:start_deal] %>
+  prj_managed: true
+
+deal_9:
+  id: 9
+  customer_id: 7
+  staff_user_id: 8
+  name: 提案中
+  customer_section: 二階堂望
+  budge_amount: 8500000000
+  anticipated_price: 8500000000
+  order_volume: 8500000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:being_proposed] %>
+  reliability_cd: <%= RELIABILITY_CODE[:strong] %>
+  prj_managed: true
+
+deal_10:
+  id: 10
+  customer_id: 7
+  staff_user_id: 8
+  name: 受注決定
+  customer_section: 四谷
+  budge_amount: 3200000000
+  anticipated_price: 3200000000
+  order_volume: 3200000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:order_decision] %>
+  reliability_cd: <%= RELIABILITY_CODE[:decision] %>
+  prj_managed: true
+
+deal_11:
+  id: 11
+  customer_id: 7
+  staff_user_id: 8
+  name: 失注
+  customer_section: 六本木朱美
+  budge_amount: 9000000000
+  anticipated_price: 9000000000
+  order_volume: 9000000000
+  order_type_cd: <%= ORDER_TYPE_CODE[:contract] %>
+  deal_status_cd: <%= DEAL_STATUS_CODE[:failure_order] %>
+  reliability_cd: <%= RELIABILITY_CODE[:appear_deal] %>
   prj_managed: true

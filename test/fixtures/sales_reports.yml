@@ -1,2 +1,49 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+report_1:
+  id: 1
+  deal_id: 7
+  activity_date: 2013-05-01
+  activity_method: 10
+  main_staff: 五代裕作
+  fellow_staff: 音無響子
+  destination: 一刻館
+  reports: デモ実施
+  responses: 使えそうかも？とのこと。
+  activity_objective: 継続して、営業を実施
+
+report_2:
+  id: 2
+  deal_id: 8
+  activity_date: 2013-06-01
+  activity_method: 20
+  main_staff: 五代裕作
+  fellow_staff: 一ノ瀬花枝
+  destination: 一刻館
+  reports: 見積提示
+  responses: 管理人さんと相談してみるとのこと。
+  activity_objective: １週間後、TELにて確認を行う
+
+report_3:
+  id: 3
+  deal_id: 9
+  activity_date: 2013-06-14
+  activity_method: 30
+  main_staff: 五代裕作
+  fellow_staff: 二階堂望
+  destination: 一刻館
+  reports: 提案実施
+  responses: 一刻館内で、相談してみますとのこと
+  activity_objective: １月後、TELにて確認を行う
+
+report_4:
+  id: 4
+  deal_id: 10
+  activity_date: 2013-07-01
+  activity_method: 90
+  main_staff: 五代裕作
+  fellow_staff: 四谷
+  destination: 一刻館
+  reports: 受注をいただきました
+  responses: 来週から、プロジェクトをスタートする
+  activity_objective: 翌週に、SEを連れて行く

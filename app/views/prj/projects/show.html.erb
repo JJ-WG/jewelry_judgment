@@ -187,6 +187,9 @@
               <table class="show prj-member">
                 <thead>
                   <tr>
+                    <th scope="col" class="user-code">
+                      <%= t('activerecord.attributes.user.user_code') %>
+                    </th>
                     <th scope="col" class="name">
                       <%= t('activerecord.attributes.user.name') %>
                     </th>
@@ -202,7 +205,7 @@
                 </thead>
                 <tfoot>
                   <tr>
-                    <th colspan="2" scope="row">
+                    <th colspan="3" scope="row">
                       合計
                     </th>
                     <td class="total">
@@ -214,6 +217,7 @@
                   <% if @project.prj_members.size == 0%>
                     <tr>
                       <td>&nbsp;</td>
+                      <td>&nbsp;</td>
                       <td class="unit-price">&nbsp;</td>
                       <td class="man-days">&nbsp;</td>
                     </tr>
@@ -221,6 +225,9 @@
                     <% @project.prj_members.each do |prj_member| -%>
                       <% unit_price = @project.member_unit_price(prj_member.user_id) %>
                       <tr>
+                        <td>
+                          <%= User.find_by_id(prj_member.user_id).try(:user_code) %>
+                        </td>
                         <td>
                           <%= User.get_name(prj_member.user_id) %>
                         </td>
@@ -337,6 +344,9 @@
                 <thead>
                   <tr>
                     <th scope="col" class="work-type">
+                      <%= t('activerecord.attributes.work_type.work_type_code') %>
+                    </th>
+                    <th scope="col" class="work-type">
                       <%= t('activerecord.attributes.work_type.name') %>
                     </th>
                     <th scope="col" class="man-days num">
@@ -358,7 +368,7 @@
                 </thead>
                 <tfoot>
                   <tr>
-                    <th scope="row" class="total">合計</th>
+                    <th scope="row" class="total" colspan="2">合計</th>
                     <td class="total">
                       <%= number_with_delimiter(@project.planned_man_days.round(2)) %>
                     </td>
@@ -386,10 +396,14 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                   </tr>
                 <% else %>
                   <% @project.prj_work_types.each do |prj_work_type| -%>
                     <tr>
+                      <td>
+                        <%= WorkType.find_by_id(prj_work_type.work_type_id).work_type_code %>
+                      </td>
                       <td>
                         <%= WorkType.get_name_by_id(prj_work_type.work_type_id) %>
                       </td>

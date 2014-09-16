@@ -3,6 +3,7 @@
 #
 #= Projectモデルクラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/5
 #
 class Project < ActiveRecord::Base
@@ -89,6 +90,7 @@ class Project < ActiveRecord::Base
   scope :uncompleted, where(:status_cd => [STATUS_CODE[:preparation], STATUS_CODE[:progress]])
   scope :started, where(:status_cd => [STATUS_CODE[:progress], STATUS_CODE[:finished]])
   scope :list_order, order('finish_date DESC, projects.id DESC')
+  scope :list_order_from_name, order('projects.name ASC, projects.id DESC')
   
   # 以下、プロテクテッドメソッド
 protected
@@ -224,7 +226,7 @@ public
                                       STATUS_CODE[:progress]]})
                   .where(option[:status_cd].present? ?
                       {:status_cd => option[:status_cd]} : nil)
-                  .list_order
+                  .list_order_from_name
                   .collect{|project| [project.name, project.id]}
   end
   
@@ -836,5 +838,68 @@ public
       work_hour_total += result.work_hours
     end
     return work_hour_total
+  end
+
+  # CSVヘッダー項目
+  CSV_HEADERS = %W!プロジェクトコード プロジェクト 顧客名 マネージャ名 リーダ名 参加人数 参加者 状態
+                   開始予定日 終了予定日 受注額 販売原価 開発工数(予) 開発工数(実) 直労費(予) 直労費(実)
+                   外注費(予) 外注費(実) 直接経費(予) 直接経費(実) 間労費(予) 間労費(実)
+                   開発原価(予) 開発原価(実) 粗利(予) 粗利(実) 粗利率(予) 粗利率(実)!
+  # CSV出力日付フォーマット
+  CSV_DATE_FORMAT = '%Y-%m-%d'
+
+  # CSV レコード作成
+  def to_csv_arr
+    [
+      project_code,
+      name,
+      customer_name,
+      manager_name,
+      leader_name,
+      ApplicationController.helpers.get_prj_member_count(id),
+      get_membars(id),
+      ApplicationController.helpers.status_indication(status_cd),
+      start_date.strftime(CSV_DATE_FORMAT),
+      finish_date.strftime(CSV_DATE_FORMAT),
+      ApplicationController.helpers.unit_thousand_yen(order_volume),
+      ApplicationController.helpers.unit_thousand_yen(sales_cost),
+      planned_man_days,
+      result_man_days.round(2),
+      ApplicationController.helpers.unit_thousand_yen(direct_labor_cost_budget),
+      ApplicationController.helpers.unit_thousand_yen(direct_labor_cost_result),
+      ApplicationController.helpers.unit_thousand_yen(subcontract_cost_budget),
+      ApplicationController.helpers.unit_thousand_yen(subcontract_cost_result),
+      ApplicationController.helpers.unit_thousand_yen(direct_expense_budget),
+      ApplicationController.helpers.unit_thousand_yen(direct_expense_result),
+      ApplicationController.helpers.unit_thousand_yen(indirect_labor_cost_budget),
+      ApplicationController.helpers.unit_thousand_yen(indirect_labor_cost_result),
+      ApplicationController.helpers.unit_thousand_yen(development_cost_budget),
+      ApplicationController.helpers.unit_thousand_yen(development_cost_result),
+      ApplicationController.helpers.unit_thousand_yen(gross_profit_budget),
+      ApplicationController.helpers.unit_thousand_yen(gross_profit_result),
+      profit_ratio_budget,
+      profit_ratio_result
+    ]
+  end
+
+  # CSVファイルの作成
+  def self.csv_content_for(objs)
+    CSV.generate("", {:row_sep => "\r\n"}) do |csv|
+      csv << CSV_HEADERS
+      objs.each do |record|
+        record.totalize_all
+        csv << record.to_csv_arr
+      end
+    end
+  end
+
+  # 参加者取得
+  def get_membars(id)
+    ret = []
+    members = PrjMember.where(:project_id => id)
+    members.each do |member|
+      ret << User.find(member.user_id).name
+    end
+    return ret.join(",")
   end
 end

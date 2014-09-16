@@ -3,6 +3,7 @@
 #
 #= Historicコントローラクラス
 #
+# Authors:: 代　如剛
 # Created:: 2013/01/07
 #
 class Historic::HistoricController < ApplicationController

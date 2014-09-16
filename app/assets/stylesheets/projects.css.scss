@@ -150,19 +150,17 @@ table.man-hour-edit {
 }
 
 table.man-hour-show {
-  width: 520px;
+  max-width: 1000px;
   table-layout: fixed;
 }
 
 table.man-hour-new th.work-type,
-table.man-hour-edit th.work-type,
-table.man-hour-show th.work-type {
+table.man-hour-edit th.work-type {
   width: 160px;
 }
 
 table.man-hour-new th.man-days,
-table.man-hour-edit th.man-days,
-table.man-hour-show th.man-days {
+table.man-hour-edit th.man-days {
   width: 70px;
   text-align: center;
 }
@@ -173,13 +171,7 @@ table.man-hour-edit th.work-type-check {
   text-align: center;
 }
 
-table.man-hour-edit th.progress-rate,
-table.man-hour-show th.progress-rate {
-  width: 70px;
-  text-align: center;
-}
-
-table.man-hour-show th.earned-value {
+table.man-hour-edit th.progress-rate {
   width: 70px;
   text-align: center;
 }
@@ -292,6 +284,10 @@ table.prj-member {
   table-layout:fixed;
 }
 
+table.prj-member th.user-code {
+  width: 40%;
+}
+
 table.prj-member th.name {
   width: 40%;
 }
@@ -301,7 +297,7 @@ table.prj-member th.unit-price {
 }
 
 table.prj-member th.man-days {
-  width: 30%;
+  width: 25%;
 }
 
 table.prj-member td.name {

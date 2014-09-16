@@ -1,0 +1,12 @@
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: jj_db
+  pool: 5
+  username: root
+  password: password
+  host: 127.0.0.1
+  true_value: 1
+  false_value: 0
+  date_format: '%Y-%m-%d'

@@ -1,0 +1,11 @@
+■インストール手順
+(1) 下記のコマンドを実行する
+	crontab -e
+(2) 上記コマンドで開くファイルを下記の内容を追加する
+	# 注意：下記のPATHの設定について、Rubyの環境を設定する(端末で「echo $PATH」コマンドで取得できる)
+	PATH=/usr/local/rvm/gems/ruby-1.9.3-p286/bin:/usr/local/rvm/gems/ruby-1.9.3-p286@global/bin:/usr/local/rvm/rubies/ruby-1.9.3-p286/bin:/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+	# 毎日の朝4時に自動実行する
+	0 4 * * * /usr/local/webapps/trunk/batch/schedule_auto_reflect.sh >> /var/log/cron.log 2>&1
+
+■注意事項
+(1) 今の実行Shellにdevelopment環境を使っていますが、本番の環境はproduction環境を設定すべきだと思います。

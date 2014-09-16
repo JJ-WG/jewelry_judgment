@@ -3,6 +3,7 @@
 #
 #= Mhコントローラクラス
 #
+# Authors:: 兪　春芳
 # Created:: 2012/12/11
 #
 class Mh::MhController < ApplicationController

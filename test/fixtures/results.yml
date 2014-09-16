@@ -6,8 +6,8 @@ result_1:
   project_id: 2
   work_type_id: 1
   result_date: 2012-09-01
-  start_at: 2012-09-01 09:00:00
-  end_at: 2012-09-01 12:00:00
+  start_at: 2012-09-01 09:00:00 +09:00
+  end_at: 2012-09-01 12:00:00 +09:00
 
 result_2:
   id: 2
@@ -15,8 +15,8 @@ result_2:
   project_id: 2
   work_type_id: 1
   result_date: 2012-09-01
-  start_at: 2012-09-01 13:00:00
-  end_at: 2012-09-01 17:30:00
+  start_at: 2012-09-01 13:00:00 +09:00
+  end_at: 2012-09-01 17:30:00 +09:00
 
 result_3:
   id: 3
@@ -24,8 +24,8 @@ result_3:
   project_id: 2
   work_type_id: 1
   result_date: 2012-09-01
-  start_at: 2012-09-01 13:00:00
-  end_at: 2012-09-01 17:30:00
+  start_at: 2012-09-01 13:00:00 +09:00
+  end_at: 2012-09-01 17:30:00 +09:00
 
 result_4:
   id: 4
@@ -33,8 +33,8 @@ result_4:
   project_id: 2
   work_type_id: 1
   result_date: 2012-09-02
-  start_at: 2012-09-02 09:00:00
-  end_at: 2012-09-02 12:00:00
+  start_at: 2012-09-02 09:00:00 +09:00
+  end_at: 2012-09-02 12:00:00 +09:00
 
 result_5:
   id: 5
@@ -42,8 +42,8 @@ result_5:
   project_id: 2
   work_type_id: 1
   result_date: 2012-09-02
-  start_at: 2012-09-02 13:00:00
-  end_at: 2012-09-02 15:30:00
+  start_at: 2012-09-02 13:00:00 +09:00
+  end_at: 2012-09-02 15:30:00 +09:00
 
 result_6:
   id: 6
@@ -51,8 +51,8 @@ result_6:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-03
-  start_at: 2012-09-03 09:00:00
-  end_at: 2012-09-03 11:30:00
+  start_at: 2012-09-03 09:00:00 +09:00
+  end_at: 2012-09-03 11:30:00 +09:00
 
 result_7:
   id: 7
@@ -60,8 +60,8 @@ result_7:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 09:00:00
-  end_at: 2012-09-04 11:30:00
+  start_at: 2012-09-04 09:00:00 +09:00
+  end_at: 2012-09-04 11:30:00 +09:00
 
 result_8:
   id: 8
@@ -69,8 +69,8 @@ result_8:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 13:00:00
-  end_at: 2012-09-04 17:00:00
+  start_at: 2012-09-04 13:00:00 +09:00
+  end_at: 2012-09-04 17:00:00 +09:00
 
 result_9:
   id: 9
@@ -78,8 +78,8 @@ result_9:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 09:00:00
-  end_at: 2012-09-04 12:00:00
+  start_at: 2012-09-04 09:00:00 +09:00
+  end_at: 2012-09-04 12:00:00 +09:00
 
 result_10:
   id: 10
@@ -87,8 +87,8 @@ result_10:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 15:00:00
-  end_at: 2012-09-04 17:30:00
+  start_at: 2012-09-04 15:00:00 +09:00
+  end_at: 2012-09-04 17:30:00 +09:00
 
 result_11:
   id: 11
@@ -96,8 +96,8 @@ result_11:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 09:30:00
-  end_at: 2012-09-07 11:30:00
+  start_at: 2012-09-07 09:30:00 +09:00
+  end_at: 2012-09-07 11:30:00 +09:00
 
 result_12:
   id: 12
@@ -105,8 +105,8 @@ result_12:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 09:30:00
-  end_at: 2012-09-07 12:00:00
+  start_at: 2012-09-07 09:30:00 +09:00
+  end_at: 2012-09-07 12:00:00 +09:00
 
 result_13:
   id: 13
@@ -114,8 +114,8 @@ result_13:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 13:00:00
-  end_at: 2012-09-07 17:30:00
+  start_at: 2012-09-07 13:00:00 +09:00
+  end_at: 2012-09-07 17:30:00 +09:00
 
 result_14:
   id: 14
@@ -123,8 +123,8 @@ result_14:
   project_id: 2
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 13:30:00
-  end_at: 2012-09-07 17:30:00
+  start_at: 2012-09-07 13:30:00 +09:00
+  end_at: 2012-09-07 17:30:00 +09:00
 
 result_15:
   id: 15
@@ -132,8 +132,8 @@ result_15:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-08
-  start_at: 2012-09-08 13:00:00
-  end_at: 2012-09-08 17:00:00
+  start_at: 2012-09-08 13:00:00 +09:00
+  end_at: 2012-09-08 17:00:00 +09:00
 
 result_16:
   id: 16
@@ -141,8 +141,8 @@ result_16:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-08
-  start_at: 2012-09-08 13:30:00
-  end_at: 2012-09-08 17:30:00
+  start_at: 2012-09-08 13:30:00 +09:00
+  end_at: 2012-09-08 17:30:00 +09:00
 
 result_17:
   id: 17
@@ -150,8 +150,8 @@ result_17:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-09
-  start_at: 2012-09-09 09:00:00
-  end_at: 2012-09-09 12:00:00
+  start_at: 2012-09-09 09:00:00 +09:00
+  end_at: 2012-09-09 12:00:00 +09:00
 
 result_18:
   id: 18
@@ -159,8 +159,8 @@ result_18:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-09
-  start_at: 2012-09-09 09:30:00
-  end_at: 2012-09-09 11:30:00
+  start_at: 2012-09-09 09:30:00 +09:00
+  end_at: 2012-09-09 11:30:00 +09:00
 
 result_19:
   id: 19
@@ -168,8 +168,8 @@ result_19:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-09
-  start_at: 2012-09-09 13:30:00
-  end_at: 2012-09-09 17:30:00
+  start_at: 2012-09-09 13:30:00 +09:00
+  end_at: 2012-09-09 17:30:00 +09:00
 
 result_20:
   id: 20
@@ -177,8 +177,8 @@ result_20:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-10
-  start_at: 2012-09-10 09:00:00
-  end_at: 2012-09-10 12:00:00
+  start_at: 2012-09-10 09:00:00 +09:00
+  end_at: 2012-09-10 12:00:00 +09:00
 
 result_21:
   id: 21
@@ -186,8 +186,8 @@ result_21:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-10
-  start_at: 2012-09-10 09:00:00
-  end_at: 2012-09-10 12:00:00
+  start_at: 2012-09-10 09:00:00 +09:00
+  end_at: 2012-09-10 12:00:00 +09:00
 
 result_22:
   id: 22
@@ -195,8 +195,8 @@ result_22:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-10
-  start_at: 2012-09-10 13:00:00
-  end_at: 2012-09-10 17:30:00
+  start_at: 2012-09-10 13:00:00 +09:00
+  end_at: 2012-09-10 17:30:00 +09:00
 
 result_23:
   id: 23
@@ -204,8 +204,8 @@ result_23:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-11
-  start_at: 2012-09-11 09:00:00
-  end_at: 2012-09-11 11:30:00
+  start_at: 2012-09-11 09:00:00 +09:00
+  end_at: 2012-09-11 11:30:00 +09:00
 
 result_24:
   id: 24
@@ -213,8 +213,8 @@ result_24:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-11
-  start_at: 2012-09-11 13:00:00
-  end_at: 2012-09-11 17:00:00
+  start_at: 2012-09-11 13:00:00 +09:00
+  end_at: 2012-09-11 17:00:00 +09:00
 
 result_25:
   id: 25
@@ -222,8 +222,8 @@ result_25:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-14
-  start_at: 2012-09-14 09:00:00
-  end_at: 2012-09-14 11:30:00
+  start_at: 2012-09-14 09:00:00 +09:00
+  end_at: 2012-09-14 11:30:00 +09:00
 
 result_26:
   id: 26
@@ -231,8 +231,8 @@ result_26:
   project_id: 2
   work_type_id: 3
   result_date: 2012-09-15
-  start_at: 2012-09-15 09:00:00
-  end_at: 2012-09-15 11:30:00
+  start_at: 2012-09-15 09:00:00 +09:00
+  end_at: 2012-09-15 11:30:00 +09:00
 
 result_27:
   id: 27
@@ -240,8 +240,8 @@ result_27:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 09:30:00
-  end_at: 2012-09-16 11:30:00
+  start_at: 2012-09-16 09:30:00 +09:00
+  end_at: 2012-09-16 11:30:00 +09:00
 
 result_28:
   id: 28
@@ -249,8 +249,8 @@ result_28:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 09:30:00
-  end_at: 2012-09-16 12:00:00
+  start_at: 2012-09-16 09:30:00 +09:00
+  end_at: 2012-09-16 12:00:00 +09:00
 
 result_29:
   id: 29
@@ -258,8 +258,8 @@ result_29:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 09:00:00
-  end_at: 2012-09-16 11:30:00
+  start_at: 2012-09-16 09:00:00 +09:00
+  end_at: 2012-09-16 11:30:00 +09:00
 
 result_30:
   id: 30
@@ -267,8 +267,8 @@ result_30:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 15:00:00
-  end_at: 2012-09-16 17:30:00
+  start_at: 2012-09-16 15:00:00 +09:00
+  end_at: 2012-09-16 17:30:00 +09:00
 
 result_31:
   id: 31
@@ -276,8 +276,8 @@ result_31:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 13:00:00
-  end_at: 2012-09-16 16:30:00
+  start_at: 2012-09-16 13:00:00 +09:00
+  end_at: 2012-09-16 16:30:00 +09:00
 
 result_32:
   id: 32
@@ -285,8 +285,8 @@ result_32:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 13:30:00
-  end_at: 2012-09-16 17:00:00
+  start_at: 2012-09-16 13:30:00 +09:00
+  end_at: 2012-09-16 17:00:00 +09:00
 
 result_33:
   id: 33
@@ -294,8 +294,8 @@ result_33:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 09:00:00
-  end_at: 2012-09-20 11:30:00
+  start_at: 2012-09-20 09:00:00 +09:00
+  end_at: 2012-09-20 11:30:00 +09:00
 
 result_34:
   id: 34
@@ -303,8 +303,8 @@ result_34:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 09:30:00
-  end_at: 2012-09-20 11:30:00
+  start_at: 2012-09-20 09:30:00 +09:00
+  end_at: 2012-09-20 11:30:00 +09:00
 
 result_35:
   id: 35
@@ -312,8 +312,8 @@ result_35:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 15:00:00
-  end_at: 2012-09-20 17:30:00
+  start_at: 2012-09-20 15:00:00 +09:00
+  end_at: 2012-09-20 17:30:00 +09:00
 
 result_36:
   id: 36
@@ -321,8 +321,8 @@ result_36:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 13:30:00
-  end_at: 2012-09-20 17:00:00
+  start_at: 2012-09-20 13:30:00 +09:00
+  end_at: 2012-09-20 17:00:00 +09:00
 
 result_37:
   id: 37
@@ -330,8 +330,8 @@ result_37:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-21
-  start_at: 2012-09-21 15:30:00
-  end_at: 2012-09-21 17:30:00
+  start_at: 2012-09-21 15:30:00 +09:00
+  end_at: 2012-09-21 17:30:00 +09:00
 
 result_38:
   id: 38
@@ -339,8 +339,8 @@ result_38:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-21
-  start_at: 2012-09-21 13:00:00
-  end_at: 2012-09-21 15:00:00
+  start_at: 2012-09-21 13:00:00 +09:00
+  end_at: 2012-09-21 15:00:00 +09:00
 
 result_39:
   id: 39
@@ -348,8 +348,8 @@ result_39:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-21
-  start_at: 2012-09-21 13:30:00
-  end_at: 2012-09-21 16:00:00
+  start_at: 2012-09-21 13:30:00 +09:00
+  end_at: 2012-09-21 16:00:00 +09:00
 
 result_40:
   id: 40
@@ -357,8 +357,8 @@ result_40:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 9:30:00
-  end_at: 2012-09-22 11:30:00
+  start_at: 2012-09-22 9:30:00 +09:00
+  end_at: 2012-09-22 11:30:00 +09:00
 
 result_41:
   id: 41
@@ -366,8 +366,8 @@ result_41:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 10:30:00
-  end_at: 2012-09-22 12:00:00
+  start_at: 2012-09-22 10:30:00 +09:00
+  end_at: 2012-09-22 12:00:00 +09:00
 
 result_42:
   id: 42
@@ -375,8 +375,8 @@ result_42:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 09:30:00
-  end_at: 2012-09-22 11:30:00
+  start_at: 2012-09-22 09:30:00 +09:00
+  end_at: 2012-09-22 11:30:00 +09:00
 
 result_43:
   id: 43
@@ -384,8 +384,8 @@ result_43:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 13:00:00
-  end_at: 2012-09-22 16:00:00
+  start_at: 2012-09-22 13:00:00 +09:00
+  end_at: 2012-09-22 16:00:00 +09:00
 
 result_44:
   id: 44
@@ -393,8 +393,8 @@ result_44:
   project_id: 2
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 13:00:00
-  end_at: 2012-09-22 15:30:00
+  start_at: 2012-09-22 13:00:00 +09:00
+  end_at: 2012-09-22 15:30:00 +09:00
 
 result_45:
   id: 45
@@ -402,8 +402,8 @@ result_45:
   project_id: 3
   work_type_id: 1
   result_date: 2012-09-01
-  start_at: 2012-09-01 09:00:00
-  end_at: 2012-09-01 12:00:00
+  start_at: 2012-09-01 09:00:00 +09:00
+  end_at: 2012-09-01 12:00:00 +09:00
 
 result_46:
   id: 46
@@ -411,8 +411,8 @@ result_46:
   project_id: 3
   work_type_id: 1
   result_date: 2012-09-01
-  start_at: 2012-09-01 13:00:00
-  end_at: 2012-09-01 17:30:00
+  start_at: 2012-09-01 13:00:00 +09:00
+  end_at: 2012-09-01 17:30:00 +09:00
 
 result_47:
   id: 47
@@ -420,8 +420,8 @@ result_47:
   project_id: 3
   work_type_id: 1
   result_date: 2012-09-01
-  start_at: 2012-09-01 13:00:00
-  end_at: 2012-09-01 17:30:00
+  start_at: 2012-09-01 13:00:00 +09:00
+  end_at: 2012-09-01 17:30:00 +09:00
 
 result_48:
   id: 48
@@ -429,8 +429,8 @@ result_48:
   project_id: 3
   work_type_id: 1
   result_date: 2012-09-02
-  start_at: 2012-09-02 13:30:00
-  end_at: 2012-09-02 17:30:00
+  start_at: 2012-09-02 13:30:00 +09:00
+  end_at: 2012-09-02 17:30:00 +09:00
 
 result_49:
   id: 49
@@ -438,8 +438,8 @@ result_49:
   project_id: 3
   work_type_id: 1
   result_date: 2012-09-03
-  start_at: 2012-09-03 09:00:00
-  end_at: 2012-09-03 12:00:00
+  start_at: 2012-09-03 09:00:00 +09:00
+  end_at: 2012-09-03 12:00:00 +09:00
 
 result_50:
   id: 50
@@ -447,8 +447,8 @@ result_50:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 09:00:00
-  end_at: 2012-09-04 11:30:00
+  start_at: 2012-09-04 09:00:00 +09:00
+  end_at: 2012-09-04 11:30:00 +09:00
 
 result_51:
   id: 51
@@ -456,8 +456,8 @@ result_51:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 13:00:00
-  end_at: 2012-09-04 17:00:00
+  start_at: 2012-09-04 13:00:00 +09:00
+  end_at: 2012-09-04 17:00:00 +09:00
 
 result_52:
   id: 52
@@ -465,8 +465,8 @@ result_52:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 09:00:00
-  end_at: 2012-09-04 11:30:00
+  start_at: 2012-09-04 09:00:00 +09:00
+  end_at: 2012-09-04 11:30:00 +09:00
 
 result_53:
   id: 53
@@ -474,8 +474,8 @@ result_53:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-04
-  start_at: 2012-09-04 15:00:00
-  end_at: 2012-09-04 17:30:00
+  start_at: 2012-09-04 15:00:00 +09:00
+  end_at: 2012-09-04 17:30:00 +09:00
 
 result_54:
   id: 54
@@ -483,8 +483,8 @@ result_54:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 09:30:00
-  end_at: 2012-09-07 11:30:00
+  start_at: 2012-09-07 09:30:00 +09:00
+  end_at: 2012-09-07 11:30:00 +09:00
 
 result_55:
   id: 55
@@ -492,8 +492,8 @@ result_55:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 09:30:00
-  end_at: 2012-09-07 11:30:00
+  start_at: 2012-09-07 09:30:00 +09:00
+  end_at: 2012-09-07 11:30:00 +09:00
 
 result_56:
   id: 56
@@ -501,8 +501,8 @@ result_56:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 13:00:00
-  end_at: 2012-09-07 16:00:00
+  start_at: 2012-09-07 13:00:00 +09:00
+  end_at: 2012-09-07 16:00:00 +09:00
 
 result_57:
   id: 57
@@ -510,8 +510,8 @@ result_57:
   project_id: 3
   work_type_id: 2
   result_date: 2012-09-07
-  start_at: 2012-09-07 13:30:00
-  end_at: 2012-09-07 17:30:00
+  start_at: 2012-09-07 13:30:00 +09:00
+  end_at: 2012-09-07 17:30:00 +09:00
 
 result_58:
   id: 58
@@ -519,8 +519,8 @@ result_58:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-08
-  start_at: 2012-09-08 13:00:00
-  end_at: 2012-09-08 17:00:00
+  start_at: 2012-09-08 13:00:00 +09:00
+  end_at: 2012-09-08 17:00:00 +09:00
 
 result_59:
   id: 59
@@ -528,8 +528,8 @@ result_59:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-08
-  start_at: 2012-09-08 13:00:00
-  end_at: 2012-09-08 17:30:00
+  start_at: 2012-09-08 13:00:00 +09:00
+  end_at: 2012-09-08 17:30:00 +09:00
 
 result_60:
   id: 60
@@ -537,8 +537,8 @@ result_60:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-09
-  start_at: 2012-09-09 09:00:00
-  end_at: 2012-09-09 12:00:00
+  start_at: 2012-09-09 09:00:00 +09:00
+  end_at: 2012-09-09 12:00:00 +09:00
 
 result_61:
   id: 61
@@ -546,8 +546,8 @@ result_61:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-09
-  start_at: 2012-09-09 09:00:00
-  end_at: 2012-09-09 11:30:00
+  start_at: 2012-09-09 09:00:00 +09:00
+  end_at: 2012-09-09 11:30:00 +09:00
 
 result_62:
   id: 62
@@ -555,8 +555,8 @@ result_62:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-09
-  start_at: 2012-09-09 13:00:00
-  end_at: 2012-09-09 17:30:00
+  start_at: 2012-09-09 13:00:00 +09:00
+  end_at: 2012-09-09 17:30:00 +09:00
 
 result_63:
   id: 63
@@ -564,8 +564,8 @@ result_63:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-10
-  start_at: 2012-09-10 09:00:00
-  end_at: 2012-09-10 12:00:00
+  start_at: 2012-09-10 09:00:00 +09:00
+  end_at: 2012-09-10 12:00:00 +09:00
 
 result_64:
   id: 64
@@ -573,8 +573,8 @@ result_64:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-10
-  start_at: 2012-09-10 09:00:00
-  end_at: 2012-09-10 12:00:00
+  start_at: 2012-09-10 09:00:00 +09:00
+  end_at: 2012-09-10 12:00:00 +09:00
 
 result_65:
   id: 65
@@ -582,8 +582,8 @@ result_65:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-10
-  start_at: 2012-09-10 13:00:00
-  end_at: 2012-09-10 17:30:00
+  start_at: 2012-09-10 13:00:00 +09:00
+  end_at: 2012-09-10 17:30:00 +09:00
 
 result_66:
   id: 66
@@ -591,8 +591,8 @@ result_66:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-11
-  start_at: 2012-09-11 09:00:00
-  end_at: 2012-09-11 12:00:00
+  start_at: 2012-09-11 09:00:00 +09:00
+  end_at: 2012-09-11 12:00:00 +09:00
 
 result_67:
   id: 67
@@ -600,8 +600,8 @@ result_67:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-11
-  start_at: 2012-09-11 13:00:00
-  end_at: 2012-09-11 17:30:00
+  start_at: 2012-09-11 13:00:00 +09:00
+  end_at: 2012-09-11 17:30:00 +09:00
 
 result_68:
   id: 68
@@ -609,8 +609,8 @@ result_68:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-14
-  start_at: 2012-09-14 09:00:00
-  end_at: 2012-09-14 12:00:00
+  start_at: 2012-09-14 09:00:00 +09:00
+  end_at: 2012-09-14 12:00:00 +09:00
 
 result_69:
   id: 69
@@ -618,8 +618,8 @@ result_69:
   project_id: 3
   work_type_id: 3
   result_date: 2012-09-15
-  start_at: 2012-09-15 09:00:00
-  end_at: 2012-09-15 11:30:00
+  start_at: 2012-09-15 09:00:00 +09:00
+  end_at: 2012-09-15 11:30:00 +09:00
 
 result_70:
   id: 70
@@ -627,8 +627,8 @@ result_70:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 09:30:00
-  end_at: 2012-09-16 11:30:00
+  start_at: 2012-09-16 09:30:00 +09:00
+  end_at: 2012-09-16 11:30:00 +09:00
 
 result_71:
   id: 71
@@ -636,8 +636,8 @@ result_71:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 09:30:00
-  end_at: 2012-09-16 12:00:00
+  start_at: 2012-09-16 09:30:00 +09:00
+  end_at: 2012-09-16 12:00:00 +09:00
 
 result_72:
   id: 72
@@ -645,8 +645,8 @@ result_72:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 09:30:00
-  end_at: 2012-09-16 11:30:00
+  start_at: 2012-09-16 09:30:00 +09:00
+  end_at: 2012-09-16 11:30:00 +09:00
 
 result_73:
   id: 73
@@ -654,8 +654,8 @@ result_73:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 15:30:00
-  end_at: 2012-09-16 17:30:00
+  start_at: 2012-09-16 15:30:00 +09:00
+  end_at: 2012-09-16 17:30:00 +09:00
 
 result_74:
   id: 74
@@ -663,8 +663,8 @@ result_74:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 13:00:00
-  end_at: 2012-09-16 16:00:00
+  start_at: 2012-09-16 13:00:00 +09:00
+  end_at: 2012-09-16 16:00:00 +09:00
 
 result_75:
   id: 75
@@ -672,8 +672,8 @@ result_75:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-16
-  start_at: 2012-09-16 13:30:00
-  end_at: 2012-09-16 17:00:00
+  start_at: 2012-09-16 13:30:00 +09:00
+  end_at: 2012-09-16 17:00:00 +09:00
 
 result_76:
   id: 76
@@ -681,8 +681,8 @@ result_76:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 09:00:00
-  end_at: 2012-09-20 11:30:00
+  start_at: 2012-09-20 09:00:00 +09:00
+  end_at: 2012-09-20 11:30:00 +09:00
 
 result_77:
   id: 77
@@ -690,8 +690,8 @@ result_77:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 09:30:00
-  end_at: 2012-09-20 11:30:00
+  start_at: 2012-09-20 09:30:00 +09:00
+  end_at: 2012-09-20 11:30:00 +09:00
 
 result_78:
   id: 78
@@ -699,8 +699,8 @@ result_78:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 13:00:00
-  end_at: 2012-09-20 17:30:00
+  start_at: 2012-09-20 13:00:00 +09:00
+  end_at: 2012-09-20 17:30:00 +09:00
 
 result_79:
   id: 79
@@ -708,8 +708,8 @@ result_79:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-20
-  start_at: 2012-09-20 13:30:00
-  end_at: 2012-09-20 17:00:00
+  start_at: 2012-09-20 13:30:00 +09:00
+  end_at: 2012-09-20 17:00:00 +09:00
 
 result_80:
   id: 80
@@ -717,8 +717,8 @@ result_80:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-21
-  start_at: 2012-09-21 14:30:00
-  end_at: 2012-09-21 17:30:00
+  start_at: 2012-09-21 14:30:00 +09:00
+  end_at: 2012-09-21 17:30:00 +09:00
 
 result_81:
   id: 81
@@ -726,8 +726,8 @@ result_81:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-21
-  start_at: 2012-09-21 13:00:00
-  end_at: 2012-09-21 15:00:00
+  start_at: 2012-09-21 13:00:00 +09:00
+  end_at: 2012-09-21 15:00:00 +09:00
 
 result_82:
   id: 82
@@ -735,8 +735,8 @@ result_82:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-21
-  start_at: 2012-09-21 13:30:00
-  end_at: 2012-09-21 17:00:00
+  start_at: 2012-09-21 13:30:00 +09:00
+  end_at: 2012-09-21 17:00:00 +09:00
 
 result_83:
   id: 83
@@ -744,8 +744,8 @@ result_83:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 09:30:00
-  end_at: 2012-09-22 11:30:00
+  start_at: 2012-09-22 09:30:00 +09:00
+  end_at: 2012-09-22 11:30:00 +09:00
 
 result_84:
   id: 84
@@ -753,8 +753,8 @@ result_84:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 09:30:00
-  end_at: 2012-09-22 12:00:00
+  start_at: 2012-09-22 09:30:00 +09:00
+  end_at: 2012-09-22 12:00:00 +09:00
 
 result_85:
   id: 85
@@ -762,8 +762,8 @@ result_85:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 09:30:00
-  end_at: 2012-09-22 11:30:00
+  start_at: 2012-09-22 09:30:00 +09:00
+  end_at: 2012-09-22 11:30:00 +09:00
 
 result_86:
   id: 86
@@ -771,8 +771,8 @@ result_86:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 13:00:00
-  end_at: 2012-09-22 17:00:00
+  start_at: 2012-09-22 13:00:00 +09:00
+  end_at: 2012-09-22 17:00:00 +09:00
 
 result_87:
   id: 87
@@ -780,8 +780,8 @@ result_87:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-22
-  start_at: 2012-09-22 13:00:00
-  end_at: 2012-09-22 15:30:00
+  start_at: 2012-09-22 13:00:00 +09:00
+  end_at: 2012-09-22 15:30:00 +09:00
 
 result_88:
   id: 88
@@ -789,8 +789,8 @@ result_88:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-23
-  start_at: 2012-09-23 09:30:00
-  end_at: 2012-09-23 11:00:00
+  start_at: 2012-09-23 09:30:00 +09:00
+  end_at: 2012-09-23 11:00:00 +09:00
 
 result_89:
   id: 89
@@ -798,8 +798,8 @@ result_89:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-23
-  start_at: 2012-09-23 09:30:00
-  end_at: 2012-09-23 12:00:00
+  start_at: 2012-09-23 09:30:00 +09:00
+  end_at: 2012-09-23 12:00:00 +09:00
 
 result_90:
   id: 90
@@ -807,8 +807,8 @@ result_90:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-23
-  start_at: 2012-09-23 09:30:00
-  end_at: 2012-09-23 12:00:00
+  start_at: 2012-09-23 09:30:00 +09:00
+  end_at: 2012-09-23 12:00:00 +09:00
 
 result_91:
   id: 91
@@ -816,8 +816,8 @@ result_91:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-23
-  start_at: 2012-09-23 14:30:00
-  end_at: 2012-09-23 17:00:00
+  start_at: 2012-09-23 14:30:00 +09:00
+  end_at: 2012-09-23 17:00:00 +09:00
 
 result_92:
   id: 92
@@ -825,8 +825,8 @@ result_92:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-26
-  start_at: 2012-09-26 13:00:00
-  end_at: 2012-09-26 17:00:00
+  start_at: 2012-09-26 13:00:00 +09:00
+  end_at: 2012-09-26 17:00:00 +09:00
 
 result_93:
   id: 93
@@ -834,8 +834,8 @@ result_93:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-27
-  start_at: 2012-09-27 09:30:00
-  end_at: 2012-09-27 11:30:00
+  start_at: 2012-09-27 09:30:00 +09:00
+  end_at: 2012-09-27 11:30:00 +09:00
 
 result_94:
   id: 94
@@ -843,8 +843,8 @@ result_94:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-27
-  start_at: 2012-09-27 09:30:00
-  end_at: 2012-09-27 11:00:00
+  start_at: 2012-09-27 09:30:00 +09:00
+  end_at: 2012-09-27 11:00:00 +09:00
 
 result_95:
   id: 95
@@ -852,8 +852,8 @@ result_95:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-27
-  start_at: 2012-09-27 09:30:00
-  end_at: 2012-09-27 12:00:00
+  start_at: 2012-09-27 09:30:00 +09:00
+  end_at: 2012-09-27 12:00:00 +09:00
 
 result_96:
   id: 96
@@ -861,8 +861,8 @@ result_96:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-27
-  start_at: 2012-09-27 15:30:00
-  end_at: 2012-09-27 17:30:00
+  start_at: 2012-09-27 15:30:00 +09:00
+  end_at: 2012-09-27 17:30:00 +09:00
 
 result_97:
   id: 97
@@ -870,8 +870,8 @@ result_97:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-27
-  start_at: 2012-09-27 14:00:00
-  end_at: 2012-09-27 17:00:00
+  start_at: 2012-09-27 14:00:00 +09:00
+  end_at: 2012-09-27 17:00:00 +09:00
 
 result_98:
   id: 98
@@ -879,8 +879,8 @@ result_98:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-27
-  start_at: 2012-09-27 13:30:00
-  end_at: 2012-09-27 16:00:00
+  start_at: 2012-09-27 13:30:00 +09:00
+  end_at: 2012-09-27 16:00:00 +09:00
 
 result_99:
   id: 99
@@ -888,8 +888,8 @@ result_99:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-29
-  start_at: 2012-09-29 10:00:00
-  end_at: 2012-09-29 12:00:00
+  start_at: 2012-09-29 10:00:00 +09:00
+  end_at: 2012-09-29 12:00:00 +09:00
 
 result_100:
   id: 100
@@ -897,8 +897,8 @@ result_100:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-29
-  start_at: 2012-09-29 09:00:00
-  end_at: 2012-09-29 12:00:00
+  start_at: 2012-09-29 09:00:00 +09:00
+  end_at: 2012-09-29 12:00:00 +09:00
 
 result_101:
   id: 101
@@ -906,8 +906,8 @@ result_101:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-29
-  start_at: 2012-09-29 09:30:00
-  end_at: 2012-09-29 11:00:00
+  start_at: 2012-09-29 09:30:00 +09:00
+  end_at: 2012-09-29 11:00:00 +09:00
 
 result_102:
   id: 102
@@ -915,8 +915,8 @@ result_102:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-30
-  start_at: 2012-09-30 09:30:00
-  end_at: 2012-09-30 11:00:00
+  start_at: 2012-09-30 09:30:00 +09:00
+  end_at: 2012-09-30 11:00:00 +09:00
 
 result_103:
   id: 103
@@ -924,8 +924,8 @@ result_103:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-30
-  start_at: 2012-09-29 09:00:00
-  end_at: 2012-09-29 11:00:00
+  start_at: 2012-09-29 09:00:00 +09:00
+  end_at: 2012-09-29 11:00:00 +09:00
 
 result_104:
   id: 104
@@ -933,8 +933,8 @@ result_104:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-30
-  start_at: 2012-09-30 15:30:00
-  end_at: 2012-09-30 17:00:00
+  start_at: 2012-09-30 15:30:00 +09:00
+  end_at: 2012-09-30 17:00:00 +09:00
 
 result_105:
   id: 105
@@ -942,8 +942,8 @@ result_105:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-30
-  start_at: 2012-09-30 14:00:00
-  end_at: 2012-09-30 17:00:00
+  start_at: 2012-09-30 14:00:00 +09:00
+  end_at: 2012-09-30 17:00:00 +09:00
 
 result_106:
   id: 106
@@ -951,8 +951,8 @@ result_106:
   project_id: 3
   work_type_id: 4
   result_date: 2012-09-30
-  start_at: 2012-09-30 13:30:00
-  end_at: 2012-09-30 16:30:00
+  start_at: 2012-09-30 13:30:00 +09:00
+  end_at: 2012-09-30 16:30:00 +09:00
 
 result_107:
   id: 107
@@ -960,8 +960,8 @@ result_107:
   project_id: 3
   work_type_id: 4
   result_date: 2012-10-03
-  start_at: 2012-10-03 09:30:00
-  end_at: 2012-10-03 11:00:00
+  start_at: 2012-10-03 09:30:00 +09:00
+  end_at: 2012-10-03 11:00:00 +09:00
 
 result_108:
   id: 108
@@ -969,8 +969,8 @@ result_108:
   project_id: 3
   work_type_id: 4
   result_date: 2012-10-03
-  start_at: 2012-10-03 13:00:00
-  end_at: 2012-10-03 17:00:00
+  start_at: 2012-10-03 13:00:00 +09:00
+  end_at: 2012-10-03 17:00:00 +09:00
 
 result_109:
   id: 109
@@ -978,8 +978,8 @@ result_109:
   project_id: 3
   work_type_id: 4
   result_date: 2012-10-03
-  start_at: 2012-10-03 13:00:00
-  end_at: 2012-10-03 17:30:00
+  start_at: 2012-10-03 13:00:00 +09:00
+  end_at: 2012-10-03 17:30:00 +09:00
 
 result_110:
   id: 110
@@ -987,8 +987,8 @@ result_110:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-05
-  start_at: 2012-10-05 13:00:00
-  end_at: 2012-10-05 17:30:00
+  start_at: 2012-10-05 13:00:00 +09:00
+  end_at: 2012-10-05 17:30:00 +09:00
 
 result_111:
   id: 111
@@ -996,8 +996,8 @@ result_111:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-05
-  start_at: 2012-10-05 13:00:00
-  end_at: 2012-10-05 17:00:00
+  start_at: 2012-10-05 13:00:00 +09:00
+  end_at: 2012-10-05 17:00:00 +09:00
 
 result_112:
   id: 112
@@ -1005,8 +1005,8 @@ result_112:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-05
-  start_at: 2012-10-05 14:00:00
-  end_at: 2012-10-05 16:00:00
+  start_at: 2012-10-05 14:00:00 +09:00
+  end_at: 2012-10-05 16:00:00 +09:00
 
 result_113:
   id: 113
@@ -1014,8 +1014,8 @@ result_113:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-06
-  start_at: 2012-10-06 10:00:00
-  end_at: 2012-10-06 12:00:00
+  start_at: 2012-10-06 10:00:00 +09:00
+  end_at: 2012-10-06 12:00:00 +09:00
 
 result_114:
   id: 114
@@ -1023,8 +1023,8 @@ result_114:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-06
-  start_at: 2012-10-06 13:00:00
-  end_at: 2012-10-06 16:30:00
+  start_at: 2012-10-06 13:00:00 +09:00
+  end_at: 2012-10-06 16:30:00 +09:00
 
 result_115:
   id: 115
@@ -1032,8 +1032,8 @@ result_115:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-06
-  start_at: 2012-10-06 13:00:00
-  end_at: 2012-10-06 16:30:00
+  start_at: 2012-10-06 13:00:00 +09:00
+  end_at: 2012-10-06 16:30:00 +09:00
 
 result_116:
   id: 116
@@ -1041,8 +1041,8 @@ result_116:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-07
-  start_at: 2012-10-07 09:30:00
-  end_at: 2012-10-07 11:30:00
+  start_at: 2012-10-07 09:30:00 +09:00
+  end_at: 2012-10-07 11:30:00 +09:00
 
 result_117:
   id: 117
@@ -1050,8 +1050,8 @@ result_117:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-07
-  start_at: 2012-10-07 09:00:00
-  end_at: 2012-10-07 12:00:00
+  start_at: 2012-10-07 09:00:00 +09:00
+  end_at: 2012-10-07 12:00:00 +09:00
 
 result_118:
   id: 118
@@ -1059,8 +1059,8 @@ result_118:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-07
-  start_at: 2012-10-07 15:00:00
-  end_at: 2012-10-07 17:30:00
+  start_at: 2012-10-07 15:00:00 +09:00
+  end_at: 2012-10-07 17:30:00 +09:00
 
 result_119:
   id: 119
@@ -1068,8 +1068,8 @@ result_119:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-07
-  start_at: 2012-10-07 13:00:00
-  end_at: 2012-10-07 16:00:00
+  start_at: 2012-10-07 13:00:00 +09:00
+  end_at: 2012-10-07 16:00:00 +09:00
 
 result_120:
   id: 120
@@ -1077,8 +1077,8 @@ result_120:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-07
-  start_at: 2012-10-07 13:30:00
-  end_at: 2012-10-07 17:00:00
+  start_at: 2012-10-07 13:30:00 +09:00
+  end_at: 2012-10-07 17:00:00 +09:00
 
 result_121:
   id: 121
@@ -1086,8 +1086,8 @@ result_121:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-11
-  start_at: 2012-10-11 09:00:00
-  end_at: 2012-10-11 11:30:00
+  start_at: 2012-10-11 09:00:00 +09:00
+  end_at: 2012-10-11 11:30:00 +09:00
 
 result_122:
   id: 122
@@ -1095,8 +1095,8 @@ result_122:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-11
-  start_at: 2012-10-11 09:30:00
-  end_at: 2012-10-11 12:00:00
+  start_at: 2012-10-11 09:30:00 +09:00
+  end_at: 2012-10-11 12:00:00 +09:00
 
 result_123:
   id: 123
@@ -1104,8 +1104,8 @@ result_123:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-11
-  start_at: 2012-10-11 14:00:00
-  end_at: 2012-10-11 17:30:00
+  start_at: 2012-10-11 14:00:00 +09:00
+  end_at: 2012-10-11 17:30:00 +09:00
 
 result_124:
   id: 124
@@ -1113,8 +1113,8 @@ result_124:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-11
-  start_at: 2012-10-11 13:00:00
-  end_at: 2012-10-11 17:00:00
+  start_at: 2012-10-11 13:00:00 +09:00
+  end_at: 2012-10-11 17:00:00 +09:00
 
 result_125:
   id: 125
@@ -1122,8 +1122,8 @@ result_125:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-11
-  start_at: 2012-10-11 13:30:00
-  end_at: 2012-10-11 17:00:00
+  start_at: 2012-10-11 13:30:00 +09:00
+  end_at: 2012-10-11 17:00:00 +09:00
 
 result_126:
   id: 126
@@ -1131,8 +1131,8 @@ result_126:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-12
-  start_at: 2012-10-12 09:00:00
-  end_at: 2012-10-12 11:00:00
+  start_at: 2012-10-12 09:00:00 +09:00
+  end_at: 2012-10-12 11:00:00 +09:00
 
 result_127:
   id: 127
@@ -1140,8 +1140,8 @@ result_127:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-12
-  start_at: 2012-10-12 13:00:00
-  end_at: 2012-10-12 17:00:00
+  start_at: 2012-10-12 13:00:00 +09:00
+  end_at: 2012-10-12 17:00:00 +09:00
 
 result_128:
   id: 128
@@ -1149,8 +1149,8 @@ result_128:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-12
-  start_at: 2012-10-12 14:00:00
-  end_at: 2012-10-12 17:00:00
+  start_at: 2012-10-12 14:00:00 +09:00
+  end_at: 2012-10-12 17:00:00 +09:00
 
 result_129:
   id: 129
@@ -1158,8 +1158,8 @@ result_129:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-13
-  start_at: 2012-10-13 09:00:00
-  end_at: 2012-10-13 12:00:00
+  start_at: 2012-10-13 09:00:00 +09:00
+  end_at: 2012-10-13 12:00:00 +09:00
 
 result_130:
   id: 130
@@ -1167,8 +1167,8 @@ result_130:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-13
-  start_at: 2012-10-13 09:00:00
-  end_at: 2012-10-13 11:30:00
+  start_at: 2012-10-13 09:00:00 +09:00
+  end_at: 2012-10-13 11:30:00 +09:00
 
 result_131:
   id: 131
@@ -1176,8 +1176,8 @@ result_131:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-13
-  start_at: 2012-10-13 09:30:00
-  end_at: 2012-10-13 12:00:00
+  start_at: 2012-10-13 09:30:00 +09:00
+  end_at: 2012-10-13 12:00:00 +09:00
 
 result_132:
   id: 132
@@ -1185,8 +1185,8 @@ result_132:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-13
-  start_at: 2012-10-13 13:00:00
-  end_at: 2012-10-13 17:30:00
+  start_at: 2012-10-13 13:00:00 +09:00
+  end_at: 2012-10-13 17:30:00 +09:00
 
 result_133:
   id: 133
@@ -1194,8 +1194,8 @@ result_133:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-13
-  start_at: 2012-10-13 15:30:00
-  end_at: 2012-10-13 17:30:00
+  start_at: 2012-10-13 15:30:00 +09:00
+  end_at: 2012-10-13 17:30:00 +09:00
 
 result_134:
   id: 134
@@ -1203,8 +1203,8 @@ result_134:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-14
-  start_at: 2012-10-14 09:30:00
-  end_at: 2012-10-14 12:00:00
+  start_at: 2012-10-14 09:30:00 +09:00
+  end_at: 2012-10-14 12:00:00 +09:00
 
 result_135:
   id: 135
@@ -1212,8 +1212,8 @@ result_135:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-14
-  start_at: 2012-10-14 09:00:00
-  end_at: 2012-10-14 11:30:00
+  start_at: 2012-10-14 09:00:00 +09:00
+  end_at: 2012-10-14 11:30:00 +09:00
 
 result_136:
   id: 136
@@ -1221,8 +1221,8 @@ result_136:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-14
-  start_at: 2012-10-14 09:30:00
-  end_at: 2012-10-14 11:30:00
+  start_at: 2012-10-14 09:30:00 +09:00
+  end_at: 2012-10-14 11:30:00 +09:00
 
 result_137:
   id: 137
@@ -1230,8 +1230,8 @@ result_137:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-14
-  start_at: 2012-10-14 13:30:00
-  end_at: 2012-10-14 17:00:00
+  start_at: 2012-10-14 13:30:00 +09:00
+  end_at: 2012-10-14 17:00:00 +09:00
 
 result_138:
   id: 138
@@ -1239,8 +1239,8 @@ result_138:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-14
-  start_at: 2012-10-14 13:00:00
-  end_at: 2012-10-14 16:30:00
+  start_at: 2012-10-14 13:00:00 +09:00
+  end_at: 2012-10-14 16:30:00 +09:00
 
 result_139:
   id: 139
@@ -1248,8 +1248,8 @@ result_139:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-17
-  start_at: 2012-10-17 09:00:00
-  end_at: 2012-10-17 12:00:00
+  start_at: 2012-10-17 09:00:00 +09:00
+  end_at: 2012-10-17 12:00:00 +09:00
 
 result_140:
   id: 140
@@ -1257,8 +1257,8 @@ result_140:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-17
-  start_at: 2012-10-17 09:00:00
-  end_at: 2012-10-17 11:30:00
+  start_at: 2012-10-17 09:00:00 +09:00
+  end_at: 2012-10-17 11:30:00 +09:00
 
 result_141:
   id: 141
@@ -1266,8 +1266,8 @@ result_141:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-17
-  start_at: 2012-10-17 13:00:00
-  end_at: 2012-10-17 17:00:00
+  start_at: 2012-10-17 13:00:00 +09:00
+  end_at: 2012-10-17 17:00:00 +09:00
 
 result_142:
   id: 142
@@ -1275,8 +1275,8 @@ result_142:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-17
-  start_at: 2012-10-17 14:00:00
-  end_at: 2012-10-17 17:30:00
+  start_at: 2012-10-17 14:00:00 +09:00
+  end_at: 2012-10-17 17:30:00 +09:00
 
 result_143:
   id: 143
@@ -1284,8 +1284,8 @@ result_143:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-18
-  start_at: 2012-10-18 09:30:00
-  end_at: 2012-10-18 12:00:00
+  start_at: 2012-10-18 09:30:00 +09:00
+  end_at: 2012-10-18 12:00:00 +09:00
 
 result_144:
   id: 144
@@ -1293,8 +1293,8 @@ result_144:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-18
-  start_at: 2012-10-18 09:00:00
-  end_at: 2012-10-18 11:30:00
+  start_at: 2012-10-18 09:00:00 +09:00
+  end_at: 2012-10-18 11:30:00 +09:00
 
 result_145:
   id: 145
@@ -1302,8 +1302,8 @@ result_145:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-18
-  start_at: 2012-10-18 09:30:00
-  end_at: 2012-10-18 11:00:00
+  start_at: 2012-10-18 09:30:00 +09:00
+  end_at: 2012-10-18 11:00:00 +09:00
 
 result_146:
   id: 146
@@ -1311,8 +1311,8 @@ result_146:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-18
-  start_at: 2012-10-18 13:30:00
-  end_at: 2012-10-18 17:00:00
+  start_at: 2012-10-18 13:30:00 +09:00
+  end_at: 2012-10-18 17:00:00 +09:00
 
 result_147:
   id: 147
@@ -1320,8 +1320,8 @@ result_147:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-18
-  start_at: 2012-10-18 14:00:00
-  end_at: 2012-10-18 16:30:00
+  start_at: 2012-10-18 14:00:00 +09:00
+  end_at: 2012-10-18 16:30:00 +09:00
 
 result_148:
   id: 148
@@ -1329,8 +1329,8 @@ result_148:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-18
-  start_at: 2012-10-18 13:30:00
-  end_at: 2012-10-18 16:30:00
+  start_at: 2012-10-18 13:30:00 +09:00
+  end_at: 2012-10-18 16:30:00 +09:00
 
 result_149:
   id: 149
@@ -1338,8 +1338,8 @@ result_149:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-19
-  start_at: 2012-10-19 10:00:00
-  end_at: 2012-10-19 12:00:00
+  start_at: 2012-10-19 10:00:00 +09:00
+  end_at: 2012-10-19 12:00:00 +09:00
 
 result_150:
   id: 150
@@ -1347,8 +1347,8 @@ result_150:
   project_id: 3
   work_type_id: 5
   result_date: 2012-10-19
-  start_at: 2012-10-19 13:30:00
-  end_at: 2012-10-19 15:00:00
+  start_at: 2012-10-19 13:30:00 +09:00
+  end_at: 2012-10-19 15:00:00 +09:00
 
 result_151:
   id: 151
@@ -1356,8 +1356,8 @@ result_151:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-21
-  start_at: 2012-10-21 09:30:00
-  end_at: 2012-10-21 11:30:00
+  start_at: 2012-10-21 09:30:00 +09:00
+  end_at: 2012-10-21 11:30:00 +09:00
 
 result_152:
   id: 152
@@ -1365,8 +1365,8 @@ result_152:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-21
-  start_at: 2012-10-21 09:00:00
-  end_at: 2012-10-21 12:00:00
+  start_at: 2012-10-21 09:00:00 +09:00
+  end_at: 2012-10-21 12:00:00 +09:00
 
 result_153:
   id: 153
@@ -1374,8 +1374,8 @@ result_153:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-21
-  start_at: 2012-10-21 15:00:00
-  end_at: 2012-10-21 17:30:00
+  start_at: 2012-10-21 15:00:00 +09:00
+  end_at: 2012-10-21 17:30:00 +09:00
 
 result_154:
   id: 154
@@ -1383,8 +1383,8 @@ result_154:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-21
-  start_at: 2012-10-21 13:00:00
-  end_at: 2012-10-21 16:00:00
+  start_at: 2012-10-21 13:00:00 +09:00
+  end_at: 2012-10-21 16:00:00 +09:00
 
 result_155:
   id: 155
@@ -1392,8 +1392,8 @@ result_155:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-21
-  start_at: 2012-10-21 13:30:00
-  end_at: 2012-10-21 17:00:00
+  start_at: 2012-10-21 13:30:00 +09:00
+  end_at: 2012-10-21 17:00:00 +09:00
 
 result_156:
   id: 156
@@ -1401,8 +1401,8 @@ result_156:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-24
-  start_at: 2012-10-24 09:00:00
-  end_at: 2012-10-24 11:30:00
+  start_at: 2012-10-24 09:00:00 +09:00
+  end_at: 2012-10-24 11:30:00 +09:00
 
 result_157:
   id: 157
@@ -1410,8 +1410,8 @@ result_157:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-24
-  start_at: 2012-10-24 09:30:00
-  end_at: 2012-10-24 12:00:00
+  start_at: 2012-10-24 09:30:00 +09:00
+  end_at: 2012-10-24 12:00:00 +09:00
 
 result_158:
   id: 158
@@ -1419,8 +1419,8 @@ result_158:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-24
-  start_at: 2012-10-24 14:00:00
-  end_at: 2012-10-24 17:30:00
+  start_at: 2012-10-24 14:00:00 +09:00
+  end_at: 2012-10-24 17:30:00 +09:00
 
 result_159:
   id: 159
@@ -1428,8 +1428,8 @@ result_159:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-11
-  start_at: 2012-10-11 13:00:00
-  end_at: 2012-10-11 17:00:00
+  start_at: 2012-10-11 13:00:00 +09:00
+  end_at: 2012-10-11 17:00:00 +09:00
 
 result_160:
   id: 160
@@ -1437,8 +1437,8 @@ result_160:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-24
-  start_at: 2012-10-24 13:30:00
-  end_at: 2012-10-24 17:00:00
+  start_at: 2012-10-24 13:30:00 +09:00
+  end_at: 2012-10-24 17:00:00 +09:00
 
 result_161:
   id: 161
@@ -1446,8 +1446,8 @@ result_161:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-25
-  start_at: 2012-10-25 09:00:00
-  end_at: 2012-10-25 11:00:00
+  start_at: 2012-10-25 09:00:00 +09:00
+  end_at: 2012-10-25 11:00:00 +09:00
 
 result_162:
   id: 162
@@ -1455,8 +1455,8 @@ result_162:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-26
-  start_at: 2012-10-26 13:00:00
-  end_at: 2012-10-26 17:00:00
+  start_at: 2012-10-26 13:00:00 +09:00
+  end_at: 2012-10-26 17:00:00 +09:00
 
 result_163:
   id: 163
@@ -1464,8 +1464,8 @@ result_163:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-26
-  start_at: 2012-10-26 14:00:00
-  end_at: 2012-10-26 17:00:00
+  start_at: 2012-10-26 14:00:00 +09:00
+  end_at: 2012-10-26 17:00:00 +09:00
 
 result_164:
   id: 164
@@ -1473,8 +1473,8 @@ result_164:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-27
-  start_at: 2012-10-27 09:00:00
-  end_at: 2012-10-27 12:00:00
+  start_at: 2012-10-27 09:00:00 +09:00
+  end_at: 2012-10-27 12:00:00 +09:00
 
 result_165:
   id: 165
@@ -1482,8 +1482,8 @@ result_165:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-27
-  start_at: 2012-10-27 09:00:00
-  end_at: 2012-10-27 11:30:00
+  start_at: 2012-10-27 09:00:00 +09:00
+  end_at: 2012-10-27 11:30:00 +09:00
 
 result_166:
   id: 166
@@ -1491,8 +1491,8 @@ result_166:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-27
-  start_at: 2012-10-27 09:30:00
-  end_at: 2012-10-27 12:00:00
+  start_at: 2012-10-27 09:30:00 +09:00
+  end_at: 2012-10-27 12:00:00 +09:00
 
 result_167:
   id: 167
@@ -1500,8 +1500,8 @@ result_167:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-27
-  start_at: 2012-10-27 13:00:00
-  end_at: 2012-10-27 17:30:00
+  start_at: 2012-10-27 13:00:00 +09:00
+  end_at: 2012-10-27 17:30:00 +09:00
 
 result_168:
   id: 168
@@ -1509,8 +1509,8 @@ result_168:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-27
-  start_at: 2012-10-27 15:30:00
-  end_at: 2012-10-27 17:30:00
+  start_at: 2012-10-27 15:30:00 +09:00
+  end_at: 2012-10-27 17:30:00 +09:00
 
 result_169:
   id: 169
@@ -1518,8 +1518,8 @@ result_169:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-28
-  start_at: 2012-10-28 09:30:00
-  end_at: 2012-10-28 12:00:00
+  start_at: 2012-10-28 09:30:00 +09:00
+  end_at: 2012-10-28 12:00:00 +09:00
 
 result_170:
   id: 170
@@ -1527,8 +1527,8 @@ result_170:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-28
-  start_at: 2012-10-28 09:00:00
-  end_at: 2012-10-28 11:30:00
+  start_at: 2012-10-28 09:00:00 +09:00
+  end_at: 2012-10-28 11:30:00 +09:00
 
 result_171:
   id: 171
@@ -1536,8 +1536,8 @@ result_171:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-28
-  start_at: 2012-10-28 09:30:00
-  end_at: 2012-10-28 11:30:00
+  start_at: 2012-10-28 09:30:00 +09:00
+  end_at: 2012-10-28 11:30:00 +09:00
 
 result_172:
   id: 172
@@ -1545,8 +1545,8 @@ result_172:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-28
-  start_at: 2012-10-28 13:30:00
-  end_at: 2012-10-28 17:00:00
+  start_at: 2012-10-28 13:30:00 +09:00
+  end_at: 2012-10-28 17:00:00 +09:00
 
 result_173:
   id: 173
@@ -1554,8 +1554,8 @@ result_173:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-28
-  start_at: 2012-10-28 13:00:00
-  end_at: 2012-10-28 16:30:00
+  start_at: 2012-10-28 13:00:00 +09:00
+  end_at: 2012-10-28 16:30:00 +09:00
 
 result_174:
   id: 174
@@ -1563,8 +1563,8 @@ result_174:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-31
-  start_at: 2012-10-31 09:00:00
-  end_at: 2012-10-31 12:00:00
+  start_at: 2012-10-31 09:00:00 +09:00
+  end_at: 2012-10-31 12:00:00 +09:00
 
 result_175:
   id: 175
@@ -1572,8 +1572,8 @@ result_175:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-31
-  start_at: 2012-10-31 09:00:00
-  end_at: 2012-10-31 11:30:00
+  start_at: 2012-10-31 09:00:00 +09:00
+  end_at: 2012-10-31 11:30:00 +09:00
 
 result_176:
   id: 176
@@ -1581,8 +1581,8 @@ result_176:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-31
-  start_at: 2012-10-31 13:00:00
-  end_at: 2012-10-31 17:00:00
+  start_at: 2012-10-31 13:00:00 +09:00
+  end_at: 2012-10-31 17:00:00 +09:00
 
 result_177:
   id: 177
@@ -1590,8 +1590,8 @@ result_177:
   project_id: 3
   work_type_id: 6
   result_date: 2012-10-31
-  start_at: 2012-10-31 14:00:00
-  end_at: 2012-10-31 17:30:00
+  start_at: 2012-10-31 14:00:00 +09:00
+  end_at: 2012-10-31 17:30:00 +09:00
 
 result_178:
   id: 178
@@ -1599,8 +1599,8 @@ result_178:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-01
-  start_at: 2012-11-01 09:30:00
-  end_at: 2012-11-01 12:00:00
+  start_at: 2012-11-01 09:30:00 +09:00
+  end_at: 2012-11-01 12:00:00 +09:00
 
 result_179:
   id: 179
@@ -1608,8 +1608,8 @@ result_179:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-01
-  start_at: 2012-11-01 09:00:00
-  end_at: 2012-11-01 11:30:00
+  start_at: 2012-11-01 09:00:00 +09:00
+  end_at: 2012-11-01 11:30:00 +09:00
 
 result_180:
   id: 180
@@ -1617,8 +1617,8 @@ result_180:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-01
-  start_at: 2012-11-01 09:30:00
-  end_at: 2012-11-01 11:30:00
+  start_at: 2012-11-01 09:30:00 +09:00
+  end_at: 2012-11-01 11:30:00 +09:00
 
 result_181:
   id: 181
@@ -1626,8 +1626,8 @@ result_181:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-01
-  start_at: 2012-11-01 13:30:00
-  end_at: 2012-11-01 17:00:00
+  start_at: 2012-11-01 13:30:00 +09:00
+  end_at: 2012-11-01 17:00:00 +09:00
 
 result_182:
   id: 182
@@ -1635,8 +1635,8 @@ result_182:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-01
-  start_at: 2012-11-01 14:00:00
-  end_at: 2012-11-01 17:30:00
+  start_at: 2012-11-01 14:00:00 +09:00
+  end_at: 2012-11-01 17:30:00 +09:00
 
 result_183:
   id: 183
@@ -1644,8 +1644,8 @@ result_183:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-01
-  start_at: 2012-11-01 13:30:00
-  end_at: 2012-11-01 16:30:00
+  start_at: 2012-11-01 13:30:00 +09:00
+  end_at: 2012-11-01 16:30:00 +09:00
 
 result_184:
   id: 184
@@ -1653,8 +1653,8 @@ result_184:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-02
-  start_at: 2012-11-02 10:00:00
-  end_at: 2012-11-02 12:00:00
+  start_at: 2012-11-02 10:00:00 +09:00
+  end_at: 2012-11-02 12:00:00 +09:00
 
 result_185:
   id: 185
@@ -1662,8 +1662,8 @@ result_185:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-02
-  start_at: 2012-11-02 13:30:00
-  end_at: 2012-11-02 16:00:00
+  start_at: 2012-11-02 13:30:00 +09:00
+  end_at: 2012-11-02 16:00:00 +09:00
 
 result_186:
   id: 186
@@ -1671,8 +1671,8 @@ result_186:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-03
-  start_at: 2012-11-03 09:00:00
-  end_at: 2012-11-03 11:30:00
+  start_at: 2012-11-03 09:00:00 +09:00
+  end_at: 2012-11-03 11:30:00 +09:00
 
 result_187:
   id: 187
@@ -1680,8 +1680,8 @@ result_187:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-03
-  start_at: 2012-11-03 09:00:00
-  end_at: 2012-11-03 11:30:00
+  start_at: 2012-11-03 09:00:00 +09:00
+  end_at: 2012-11-03 11:30:00 +09:00
 
 result_188:
   id: 188
@@ -1689,8 +1689,8 @@ result_188:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-03
-  start_at: 2012-11-03 14:00:00
-  end_at: 2012-11-03 17:30:00
+  start_at: 2012-11-03 14:00:00 +09:00
+  end_at: 2012-11-03 17:30:00 +09:00
 
 result_189:
   id: 189
@@ -1698,8 +1698,8 @@ result_189:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-03
-  start_at: 2012-11-03 13:30:00
-  end_at: 2012-11-03 16:30:00
+  start_at: 2012-11-03 13:30:00 +09:00
+  end_at: 2012-11-03 16:30:00 +09:00
 
 result_190:
   id: 190
@@ -1707,8 +1707,8 @@ result_190:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-04
-  start_at: 2012-11-04 13:00:00
-  end_at: 2012-11-04 17:00:00
+  start_at: 2012-11-04 13:00:00 +09:00
+  end_at: 2012-11-04 17:00:00 +09:00
 
 result_191:
   id: 191
@@ -1716,8 +1716,8 @@ result_191:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-04
-  start_at: 2012-11-04 14:00:00
-  end_at: 2012-11-04 17:00:00
+  start_at: 2012-11-04 14:00:00 +09:00
+  end_at: 2012-11-04 17:00:00 +09:00
 
 result_192:
   id: 192
@@ -1725,5 +1725,5 @@ result_192:
   project_id: 3
   work_type_id: 6
   result_date: 2012-11-04
-  start_at: 2012-11-04 13:00:00
-  end_at: 2012-11-04 16:30:00
+  start_at: 2012-11-04 13:00:00 +09:00
+  end_at: 2012-11-04 16:30:00 +09:00

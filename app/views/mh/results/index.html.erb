@@ -45,7 +45,7 @@
           <tr>
             <td>
               <div class="condition">
-                <label for="cond1"><%= t('label.common.start_at') %>:&nbsp;&nbsp;</label>
+                <label for="cond1"><%= t('label.result_reflection.title.start_at') %>:&nbsp;&nbsp;</label>
                 <%= select_year Date.civil(params[:search][:start_at][:year].to_i), :prefix => 'search[start_at]',
                   :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
                 <%= t('datetime.prompts.year') %>
@@ -54,7 +54,7 @@
                 <%= t('datetime.prompts.month') %>
               </div>
               <div class="condition">
-                <label for="cond2"><%= t('label.common.end_at') %>:&nbsp;&nbsp;</label>
+                <label for="cond2"><%= t('label.result_reflection.title.end_at') %>:&nbsp;&nbsp;</label>
                 <%= select_year Date.civil(params[:search][:end_at][:year].to_i), :prefix => 'search[end_at]',
                   :start_year => Date.today.year-SELECT_YEAR_INTERVAL, :end_year => Date.today.year+SELECT_YEAR_INTERVAL %>
                 <%= t('datetime.prompts.year') %>

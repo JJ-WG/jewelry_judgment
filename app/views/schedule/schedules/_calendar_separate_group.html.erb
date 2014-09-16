@@ -33,39 +33,45 @@
 
         <div class='calendar_separate'>
           <div class='cs_nav'>
-            <div id='' class="cs_button_calendar_show">
-              <input id='show_calendar' type='text' style='width:0;border:none;' />
-              <button id='calendar_btn' type='button' class='calendar_show'><%= t('label.common.calendar_show') %></button>
+            <div class='cs_nav_left'>
+              <div class="cs_title"><%= get_cs_nav_range(@week_schedules[:first_day]) %></div>
             </div>
-            <% temp_dates = get_cs_nav_dates(@week_schedules[:first_day]) %>
-            <div class="cs_button">
-              <%= link_to t('label.calendar_nav.next_month'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_month]})) %>
+            <div class='cs_nav_right'>
+              <div id='' class="cs_button_calendar_show">
+                <input id='show_calendar' type='text' style='width:0;border:none;' />
+                <button id='calendar_btn' type='button' class='calendar_show'><%= t('label.common.calendar_show') %></button>
+              </div>
+              <% temp_dates = get_cs_nav_dates(@week_schedules[:first_day]) %>
+              <div class="cs_button">
+                <%= link_to t('label.calendar_nav.next_month'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_month]})) %>
+              </div>
+              <div class="cs_button">
+                <%= link_to t('label.calendar_nav.next_week'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_week]})) %>
+              </div>
+              <div class="cs_button">
+                <%= link_to t('label.calendar_nav.next_day'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_day]})) %>
+              </div>
+              <div class="cs_button" style='width:70px; text-align:center;'>
+                <%= link_to t('label.calendar_nav.today'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:today]})) %>
+              </div>
+              <div class="cs_button">
+                <%= link_to t('label.calendar_nav.pre_day'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_day]})) %>
+              </div>
+              <div class="cs_button">
+                <%= link_to t('label.calendar_nav.pre_week'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_week]})) %>
+              </div>
+              <div class="cs_button">
+                <%= link_to t('label.calendar_nav.pre_month'), 
+                  list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_month]})) %>
+              </div>
             </div>
-            <div class="cs_button">
-              <%= link_to t('label.calendar_nav.next_week'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_week]})) %>
-            </div>
-            <div class="cs_button">
-              <%= link_to t('label.calendar_nav.next_day'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:next_day]})) %>
-            </div>
-            <div class="cs_button" style='width:70px; text-align:center;'>
-              <%= link_to t('label.calendar_nav.today'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:today]})) %>
-            </div>
-            <div class="cs_button">
-              <%= link_to t('label.calendar_nav.pre_day'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_day]})) %>
-            </div>
-            <div class="cs_button">
-              <%= link_to t('label.calendar_nav.pre_week'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_week]})) %>
-            </div>
-            <div class="cs_button">
-              <%= link_to t('label.calendar_nav.pre_month'), 
-                list_by_group_schedule_schedules_path(:search => params[:search].merge({start_date: temp_dates[:pre_month]})) %>
-            </div>
+            <div class='cs_nav_clear'></div>
           </div>
 
           <%= render :partial => 'calendar_separate_content' %>

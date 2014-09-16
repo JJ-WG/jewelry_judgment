@@ -3,6 +3,7 @@
 #
 #= Nego::Dealsコントローラクラス
 #
+# Authors:: 代　如剛
 # Created:: 2013/02/22
 #
 class Nego::SalesReportsController < Nego::NegoController

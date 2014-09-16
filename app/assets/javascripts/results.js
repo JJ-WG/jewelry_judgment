@@ -12,4 +12,9 @@ jQuery(function(){
         $.get(app_name_for_url + "/mh/results/on_change_project_list.js?project_id=" + project_id);
     });
 
-})
+    $('.sample textarea').click(function(){
+      $(this).select();
+      return false;
+    });
+
+});

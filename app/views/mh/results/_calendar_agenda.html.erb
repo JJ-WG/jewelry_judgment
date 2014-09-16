@@ -23,8 +23,31 @@
         var selectDate = $( "#datepicker" ).datepicker( "getDate" );
         window.location.replace(app_name_for_url + '/mh/results/show_by_date?select_date=' + $.fullCalendar.formatDate(selectDate, 'yyyy-MM-dd'));
 <% end %>
-    }
+      },
+      beforeShowDay: function(date) {
+        var dateStr = createDateStr(date);
+        if ($("#resultDateList").val().indexOf(dateStr) != -1) {
+          return [true, "exist_results_day"];
+        }
+        else {
+          return [true, ""];
+        }
+      },
+      onChangeMonthYear: function (year, month, instance) {
+        /* カレンダーの月が変更になった時の処理 */
+      }
   });
+
+  function createDateStr(date) {
+    var year = date.getYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    if (year < 2000) { year += 1900 };
+    month = ('0' + month).slice(-2);
+    day = ('0' + day).slice(-2);
+    var dateStr = year + "/" + month + "/" + day;
+    return dateStr;
+  }
 
   $('#calendar').fullCalendar({
     header: false,
@@ -38,6 +61,7 @@
         lazyFetching: false
       }],
     firstDay: 1,
+    firstHour: 8,
     axisFormat: 'HH:mm',
     timeFormat: {
       agenda: 'HH:mm{ ～ HH:mm}'
@@ -53,7 +77,21 @@
     contentHeight: 550,
     eventClick: function(event, jsEvent, view){
       window.location.replace(app_name_for_url + "/mh/results/" + event.id);
+    },
+    // for tooltip
+    eventRender: function(event, element, date ) {
+      element.attr('title', event.tooltip); 
+    },
+<%- if %w(new create edit update).include?(action_name) -%>
+    dayClick: function(date, allDay, jsEvent, view) {
+      var hour = date.getHours();
+      var min = date.getMinutes();
+      $("#result_start_at_hour").val(('00' + hour).slice(-2));
+      $("#result_start_at_minute").val(('00' + min).slice(-2));
+      $("#result_end_at_hour").val(('00' + (hour + 1)).slice(-2));
+      $("#result_end_at_minute").val(('00' + min).slice(-2));
     }
+<%- end -%>
   });
 
   // 初期設定
@@ -63,6 +101,7 @@
 });
 </script>
 <div id="left">
+  <input type="hidden" id="resultDateList" value="<%= @result_date_list %>" />
   <div id="datepicker"></div>
 </div>
 <div id="center">

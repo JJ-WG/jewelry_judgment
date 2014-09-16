@@ -3,6 +3,7 @@
 #
 #= Dealモデルクラス
 #
+# Authors:: 青山 ひろ子
 # Created:: 2012/10/5
 #
 class Deal < ActiveRecord::Base
@@ -13,7 +14,9 @@ class Deal < ActiveRecord::Base
   PERIOD_DATE_FORMAT = '%Y年%m月頃'
 
   # CSVヘッダー項目
-  CSV_HEADERS = %W!案件名 顧客名 担当営業名 ステータス 最終営業日 営業回数 受注確度 オーダー 添付!
+  CSV_HEADERS = %W!顧客名 案件名 担当営業名 顧客担当者名 予算額（税抜） 予定価格（税抜）
+                   受注額（税抜） 選定時期 導入時期 選定方法 契約形態 請求先
+                   ステータス 最終営業日 営業回数 受注確度 オーダー 添付 備考!
 
   # アクセサ定義
   attr_accessible :adoption_period, :anticipated_price, :billing_destination, :budge_amount, :contact_person_name, :customer_id, :customer_section, :deal_status_cd, :delivery_period, :name, :notes, :order_type_cd, :order_volume, :prj_managed, :selection_method, :solution_name, :staff_user_id, :reliability_cd, :deleted
@@ -186,15 +189,25 @@ class Deal < ActiveRecord::Base
   #
   def to_csv_arr
     [
-      name,
       customer.name,
+      name,
       staff_user.name,
+      contact_person_name,
+      budge_amount,
+      anticipated_price,
+      order_volume,
+      adoption_period,
+      delivery_period,
+      selection_method,
+      ApplicationController.helpers.order_type_indication(order_type_cd),
+      billing_destination,
       deal_status_indication(deal_status_cd),
       last_activity_date ? I18n.l(last_activity_date) : '',
       sales_reports.length,
       reliability_indication(reliability_cd),
       project.present? ? project.project_code : '',
-      has_related_file? ? I18n.t('label.common.has_one') : ''
+      has_related_file? ? I18n.t('label.common.has_one') : '',
+      notes
     ]
   end
 

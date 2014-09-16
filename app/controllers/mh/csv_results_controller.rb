@@ -3,6 +3,7 @@
 #
 #= Mh::CSV_Resultsコントローラクラス
 #
+# Authors:: 兪　春芳
 # Created:: 2012/12/25
 #
 class Mh::CsvResultsController < Mh::MhController
@@ -208,6 +209,8 @@ class Mh::CsvResultsController < Mh::MhController
     end
     # 終了時間が開始時間より後であるチェック
     return errs << I18n.t('label.csv_result_reflection.check_error.time_greater_than_error', item_end: Result::CSV_HEADERS[6], item_start: Result::CSV_HEADERS[5]), rst if start_at > end_at
+    # 開始時間と終了時間の同値チェック
+    return errs << I18n.t('label.csv_result_reflection.check_error.datetime_eql_error', item_end: Result::CSV_HEADERS[6], item_start: Result::CSV_HEADERS[5]), rst if start_at == end_at
     #ユーザーの存在チェック
     prj_member_ids = []
     if row[0] != Project::INTERNAL_BUSSINESS_PRJ[:project_code]

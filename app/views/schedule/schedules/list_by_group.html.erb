@@ -45,7 +45,7 @@
             <div class="condition">
               <label for="cond1"><%= t('label.common.group') %>:&nbsp;&nbsp;</label>
               <%= f.select(:group_id, get_current_user_can_acccess_groups,
-                           {:include_blank => true, selected: params[:search][:group_id]}, {:class => 'group_select'}) %>
+                           {:prompt => t('label.common.list_blank'), selected: params[:search][:group_id]}, {:class => 'group_select'}) %>
               <%= hidden_field_tag 'search[start_date]', @week_schedules[:first_day] %>
             </div>
 
