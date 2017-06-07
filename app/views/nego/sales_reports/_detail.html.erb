@@ -77,14 +77,14 @@
                   <%= t('activerecord.attributes.sales_report.reports') %>
                 </dt>
                 <dd>
-                  <%= @sales_report.reports %>
+                  <%= simple_format(h(@sales_report.reports)) %>
                 </dd>
 
                 <dt>
                   <%= t('activerecord.attributes.sales_report.responses') %>
                 </dt>
                 <dd>
-                  <%= @sales_report.responses %>
+                  <%= simple_format(h(@sales_report.responses)) %>
                 </dd>
 
               </dl>

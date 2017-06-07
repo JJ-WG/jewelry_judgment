@@ -137,7 +137,7 @@
                     (<%= t('label.deal_reflection.label.notes_tip') %>)
                 </dt>
                 <dd>
-                  <%= @deal.notes %>
+                  <%= simple_format(h(@deal.notes)) %>
                 </dd>
 
                 <dt>
