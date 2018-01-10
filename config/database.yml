@@ -1,12 +1,20 @@
-production:
+development: &default
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: jj_db
+  database: jj_db_dev
   pool: 5
-  username: root
-  password: password
-  host: 127.0.0.1
+  username: <%= ENV['JJ_DATABASE_USER'] || 'root' %>
+  password: <%= ENV['JJ_DATABASE_PASSWORD'] || 'password' %>
+  host: <%= ENV['JJ_DATABASE_HOST'] || 'localhost' %>
   true_value: 1
   false_value: 0
   date_format: '%Y-%m-%d'
+
+test:
+  <<: *default
+  database: jj_db_test
+
+production:
+  <<: *default
+  database: jj_db
