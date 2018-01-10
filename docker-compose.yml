@@ -1,0 +1,20 @@
+version: "3"
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  app:
+    image: ruby:1.9.3
+    working_dir: /works/jj
+    command: /bin/bash script/server.sh
+    volumes:
+      - ".:/works/jj"
+    ports:
+      - "3000:3000"
+    environment:
+      JJ_DATABASE_HOST: db
+      JJ_DATABASE_USER: root
+      JJ_DATABASE_PASSWORD: password
+    depends_on:
+      - db
