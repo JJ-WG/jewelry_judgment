@@ -9,6 +9,7 @@ gem 'rails', '3.2.8'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass', '~> 3.1.10'
   gem 'sass-rails',   '3.2.6'
   gem 'coffee-rails', '3.2.2'
 
@@ -35,11 +36,13 @@ gem 'jquery-rails', '2.3.0'
 # To use debugger
 # gem 'debugger'
 
+gem 'rake', '~> 0.9.2'
+
 gem 'will_paginate', '3.0.5'
 gem 'authlogic', '3.3.0'
 gem 'prawn', '0.12.0'
 gem 'prawnto_2', '0.2.6', :require => 'prawnto'
-if RUBY_PLATFORM=~ /mingw32/ 
+if RUBY_PLATFORM=~ /mingw32/
   gem 'mysql2', '0.3.11'
 else
   gem 'mysql2', '0.3.13'
@@ -49,4 +52,3 @@ group :development, :test do
   gem 'rails-erd'
   gem 'i18n_generators'
 end
-
